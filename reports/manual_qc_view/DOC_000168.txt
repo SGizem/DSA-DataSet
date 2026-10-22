@@ -1,0 +1,39 @@
+document_id: DOC_000168
+title: Kokteyl sıralaması
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Kokteyl_sıralaması
+language: tr
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: siralama_ve_arama
+split: train
+char_count: 1174
+token_count: 372
+
+===== BAŞ (ilk 1500 karakter) =====
+Kokteyl sıralaması, bilgisayar bilimlerinde kabarcık sıralaması algoritmasına benzer bir sıralama algoritmasıdır. Kabarcık sıralamasından farkı sıralanacak listenin üzerinden tek yöne doğru değil iki yöne de geçerek öğeleri sıralamasıdır. Algoritmanın uygulanması kabarcık sıralaması algoritmasının uygulanmasından çok az daha zordur.
+Sözde kodu
+Kokteyl sıralamasının en yalın biçimi her defasında listenin tamamının üzerinden geçer:
+procedure cocktailSort(A : list of sortable items ) defined as:
+  do
+    swapped := false
+    for each i in 0 to length(A ) - 2 do:
+      if A[ i ] > A[ i + 1 ] then // ardışık iki öğenin doğru sırada olup olmadığına bak order
+        swap(A[ i ], A[ i + 1 ] ) // iki öğenin yerlerini değiştir
+        swapped := true
+      end if
+    end for
+    if swapped = false then
+      // eğer değişiklik yapılmadıysa dıştaki döngüden çıkabiliriz.
+      break do-while loop
+    end if
+    swapped := false
+    for each i in length(A ) - 2 to 0 do:
+      if A[ i ] > A[ i + 1 ] then
+        swap(A[ i ], A[ i + 1 ] )
+        swapped := true
+      end if
+    end for
+  while swapped // hiçbir öğe yer değiştirmediyse liste sıralanmıştır
+end procedure
+

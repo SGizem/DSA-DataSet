@@ -1,0 +1,65 @@
+document_id: DOC_000004
+title: Dynamic Programming
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: ozyineleme_ve_dp
+split: train
+char_count: 127493
+token_count: 33370
+
+===== BAŞ (ilk 1500 karakter) =====
+Potes enim videre in hac margine, qualiter hoc operati fuimus, scilicet quod
+iunximus primum numerum cum secundo, videlicet 1 cum 2; et secundum cum
+tercio; et tercium cum quarto; et quartum cum quinto, et sic deinceps....
+[You can see in the margin here how we have worked this; clearly, we combined the
+first number with the second, namely 1 with 2, and the second with the third, and
+the third with the fourth, and the fourth with the fifth, and so forth....]
+— Leonardo Pisano, Liber Abaci (1202)
+Those who cannot remember the past are condemned to repeat it.
+— Jorge Agustín Nicolás Ruiz de Santayana y Borrás,
+The Life of Reason, Book I: Introduction and Reason in Common Sense (1905)
+You know what a learning experience is?
+A learning experience is one of those things that says,
+“You know that thing you just did? Don’t do that.”
+— Douglas Adams, The Salmon of Doubt (2002)
+3
+Dynamic Programming
+3.1
+M¯atr¯avr.tta
+One of the earliest examples of recursion arose in India more than 2000 years ago,
+in the study of poetic meter, or prosody. Classical Sanskrit poetry distinguishes
+between two types of syllables (aks.ara): light (laghu) and heavy (guru). In
+one class of meters, variously called m¯atr¯avr.tta or m¯atr¯achandas, each line of
+poetry consists of a fixed number of “beats” (m¯atr¯a), where each light syllable
+lasts one beat and each heavy syllable lasts two beats. The formal study of
+m¯atr¯a-vr.tta dates back to the Chandah. ś¯astra, written by the scholar Pi˙ngala
+between 600
+
+===== ORTA (63746. karakterden 700 karakter) =====
+s requires O(ℓ) time?
+8. Describe and analyze an efficient algorithm to find the length of the longest
+contiguous substring that appears both forward and backward in an input
+string T[1.. n]. The forward and backward substrings must not overlap.
+Here are several examples:
+• Given the input string ALGORITHM, your algorithm should return 0.
+• Given the input string RECURSION, your algorithm should return 1, for
+the substring R.
+• Given the input string REDIVIDE, your algorithm should return 3, for the
+substring EDI. (The forward and backward substrings must not overlap!)
+• Given the input string DYNAMICPROGRAMMINGMANYTIMES, your algorithm
+should return 4, for the substring YNAM. (In particular
+
+===== SON (son 500 karakter) =====
+lgorithm to find the largest
+binary-search-ordered minor of an arbitrary ordered tree T whose nodes
+are labeled with numbers. Again, the left-to-right order of nodes in M
+should be consistent with their order in T.
+n(e) Describe an algorithm to find the largest common ordered rooted minor
+of two ordered labeled rooted trees.
+on(f) Describe an algorithm to find the largest common unordered rooted
+minor of two unordered labeled rooted trees. [Hint: Combine dynamic
+programming with maximum flows.]
+

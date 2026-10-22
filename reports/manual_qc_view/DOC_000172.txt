@@ -1,0 +1,16 @@
+document_id: DOC_000172
+title: Kütüphane sıralaması
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Kütüphane_sıralaması
+language: tr
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: siralama_ve_arama
+split: train
+char_count: 1507
+token_count: 480
+
+===== BAŞ (ilk 1500 karakter) =====
+Kütüphane Sıralaması ya da diğer bir deyişle aralıklı eklemeli sıralama, eklemeli sıralama algoritmasını art arda yapılan eklemeleri dizideki boşlukları kullanıp hızlandırarak kullanan bir sıralama algoritmasıdır. Adının kütüphane sıralaması olması bir benzetmeden gelmektedir:
+- Bir kütüphane görevlisinin bir raftaki bütün kitapları A harfiyle başlayanlar sol tarafta kalarak sağa doğru kitapların arasında boşluk kalmayacak biçimde alfabetik sıraya dizmek istediğini varsayalım. Eğer görevli B bölümüne ait yeni bir kitabı yerleştirmek isterse kitabın yerini B alanında bulduktan sonra yeni kitaba yer açmak için ilgili kitaptan sonraki bütün kitapları sağa kaydırması gerekir. Bu bir eklemeli sıralamadır. Ancak, eğer görvli daha önce her bir harften sonra belirli bir boşluk bırakmış olsaydı, yalnızca B harfindeki kitapların yarısını hareket ettirerek bu sıralamayı sağlayabilirdi. Kütüphane sıralamasının ana ilkesi budur.
+Algoritma Michael A. Bender, Martín Farach-Colton ve Miguel Mosteiro tarafından 2004'te geliştirilmiştir. Kütüphane sıralaması, aynı kendisinden türetildiği eklemeli sıralama gibi, kararlı bir karşılaştırma sıralamasıdır ve sıralamayı yaptığı sırada sıraladığı diziye yeni elemanlar eklenmesine izin verir. Ayrıca kütüphane sıralaması çoğu durumda eklemeli sıralama algoritmasının O(n^2) karmaşıklığı yerine hızlı sıralama algoritmasının O(n log n) karmaşıklığına yaklaşmaktadır. Tek sorunu ise algoritmanın kullanıdığı aralıklar nedeniyle fazladan yere gereksinim duyma

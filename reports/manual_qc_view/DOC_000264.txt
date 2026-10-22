@@ -1,0 +1,37 @@
+document_id: DOC_000264
+title: Borůvka's algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Borůvka's_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 4912
+token_count: 1088
+
+===== BAŞ (ilk 1500 karakter) =====
+Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a graph, or a minimum spanning forest in the case of a graph that is not connected.
+It was first published in 1926 by Otakar Borůvka as a method of constructing an efficient electricity network for Moravia. The algorithm was rediscovered by Choquet in 1938; again by Florek, Łukasiewicz, Perkal, Steinhaus, and Zubrzycki in 1951; and again by Georges Sollin in 1965. This algorithm is frequently called Sollin's algorithm, especially in the parallel computing literature.
+The algorithm begins by finding the minimum-weight edge incident to each vertex of the graph, and adding all of those edges to the forest. Then, it repeats a similar process of finding the minimum-weight edge from each tree constructed so far to a different tree, and adding all of those edges to the forest. Each repetition of this process reduces the number of trees, within each connected component of the graph, to at most half of this former value, so after logarithmically many repetitions the process finishes. When it does, the set of edges it has added forms the minimum spanning forest.
+Pseudocode
+The following pseudocode illustrates a basic implementation of Borůvka's algorithm. In the conditional clauses, every edge uv is considered cheaper than "None". The purpose of the completed variable is to determine whether the forest F is yet a spanning forest.
+If edges do not have distinct weights, then a consistent tie-breaking rule mu
+
+===== ORTA (2456. karakterden 700 karakter) =====
+ected components of F and assign to each vertex its component
+        Initialize the cheapest edge for each component to "None"
+        for each edge uv in E, where u and v are in different components of F:
+            let wx be the cheapest edge for the component of u
+            if is-preferred-over(uv, wx) then
+                Set uv as the cheapest edge for the component of u
+            let yz be the cheapest edge for the component of v
+            if is-preferred-over(uv, yz) then
+                Set uv as the cheapest edge for the component of v
+        if all components have cheapest edge set to "None" then
+            // no more trees can be merged -- we are finished
+            com
+
+===== SON (son 500 karakter) =====
+lgorithm due to Karger, Klein, and Tarjan runs in expected O(E) time. The best known (deterministic) minimum spanning tree algorithm by Bernard Chazelle is also based in part on Borůvka's and runs in O(E α(E,V)) time, where α is the inverse Ackermann function. These randomized and deterministic algorithms combine steps of Borůvka's algorithm, reducing the number of components that remain to be connected, with steps of a different type that reduce the number of edges between pairs of components.
+

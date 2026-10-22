@@ -1,0 +1,31 @@
+document_id: DOC_000265
+title: Boyer–Moore string-search algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Boyer–Moore_string-search_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 12441
+token_count: 2862
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, the Boyer–Moore string-search algorithm is an efficient string-searching algorithm that is the standard benchmark for practical string-search literature. It was developed by Robert S. Boyer and J Strother Moore in 1977. The original paper contained static tables for computing the pattern shifts without an explanation of how to produce them. The algorithm for producing the tables was published in a follow-on paper; this paper contained errors which were later corrected by Wojciech Rytter in 1980.
+The algorithm preprocesses the string being searched for (the pattern), but not the string being searched in (the text). It is thus well-suited for applications in which the pattern is much shorter than the text or where it persists across multiple searches. The Boyer–Moore algorithm uses information gathered during the preprocess step to skip sections of the text, resulting in a lower constant factor than many other string search algorithms. In general, the algorithm runs faster as the pattern length increases. The key features of the algorithm are to match on the tail of the pattern rather than the head, and to skip along the text in jumps of multiple characters rather than searching every single character in the text.
+Definitions
+- T denotes the input text to be searched. Its length is n.
+- P denotes the string to be searched for, called the pattern. Its length is m.
+- S[i] denotes the character at index i of string S, counting from 1.
+- S[i..j] denotes the sub
+
+===== ORTA (6220. karakterden 700 karakter) =====
+both concept and implementation than the bad-character rule. Like the bad-character rule, it also exploits the algorithm's feature of comparisons beginning at the end of the pattern and proceeding towards the pattern's start. It can be described as follows:
+Suppose for a given alignment of P and T, a substring t of T matches a suffix of P and suppose t is the largest such substring for the given alignment.
+- Then find, if it exists, the right-most copy t′ of t in P such that t′ is not a suffix of P and the character to the left of t′ in P differs from the character to the left of t in P. Shift P to the right so that substring t′ in P aligns with substring t in T.
+- If t′ does not exist, then
+
+===== SON (son 500 karakter) =====
+ given alignment by skipping explicit character comparisons. This uses information gleaned during the pre-processing of the pattern in conjunction with suffix match lengths recorded at each match attempt. Storing suffix match lengths requires an additional table equal in size to the text being searched.
+The Raita algorithm improves the performance of Boyer–Moore–Horspool algorithm. The searching pattern of particular sub-string in a given string is different from Boyer–Moore–Horspool algorithm.
+

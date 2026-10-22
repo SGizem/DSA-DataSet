@@ -1,0 +1,16 @@
+document_id: DOC_000189
+title: Sıralı erişim
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Sıralı_erişim
+language: tr
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: siralama_ve_arama
+split: train
+char_count: 1167
+token_count: 379
+
+===== BAŞ (ilk 1500 karakter) =====
+Bilgisayar bilimlerinde sıralı erişim, bir grup veri elemanına (bellekte, diskte veya kasette bulunan) önceden belirlenen bir sıra izlenerek birbiri ardı sıra ulaşılması anlamına gelir. Bu erişim bazen veriye ulaşmak için tek yoldur (bir kasette olduğu gibi). Bazen ise olası seçeneklerden sadece bir tanesidir. Örneğin, bir veri dizisi üzerinde basit işlemler yapmak istendiğinde veri yapılarında sıralı erişim uygulaması şöyle olur: Verilere önceden belirlenmiş özel bir sıralama üzerinden ardışık olarak ulaşılır. Bunun veri yapılarında en bilinen örneği bağlı listelerdir. Sıralı erişimle işlem gören bir liste üzerindeki sıralama Q(k) kadar bir işletim zamanına sahiptir. Burada k, dizindir.
+Hızlı sıralama ve ikili arama gibi algoritmalar sıralı erişimle kötü çalışırlar. Öyle ki, daha basit algoritmalar kadar bile etkili değillerdir. Bu tarz algoritmalar sadece rastgele erişim kullanılan veri yapıları için etkindirler. Öte yandan, birleştirme sıralaması gibi tamamen sıralama yapmayan algoritmalar sıralı erişime uygundurlar. Çünkü bu algoritma veri dizisini tamamen sıralamaz, sadece sıralı iki diziyi birleştirir. Böylece gereksiz zaman harcanmamış olur.
+

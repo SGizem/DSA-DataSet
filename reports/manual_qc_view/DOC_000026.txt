@@ -1,0 +1,34 @@
+document_id: DOC_000026
+title: Dynamic Programming
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/dynamic-programming/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: ozyineleme_ve_dp
+split: train
+char_count: 33258
+token_count: 7474
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- understand the relationship between recursion and dynamic programming.
+- understand the benefits of dynamic programming for optimization.
+- understand the criteria for applying dynamic programming.
+- be able to implement two classic dynamic programming algorithms.
+Introduction
+Dynamic programming is a technique for helping improve the runtime of certain optimization problems. It works by breaking a problem into several subproblems and using a record-keeping system to avoid redundant work. This approach is called “dynamic programming” for historical reasons. Richard Bellman developed the method in the 1940s and needed a catchy name to describe the mathematical work he was doing to optimize decision processes. The name stuck and, perhaps, leads to some confusion. This is because many terms in computer science have several meanings depending on the context, especially the terms “dynamic” and “programming.” In any case, the technique of dynamic programming remains a powerful tool for optimization. Let’s look deeper into this concept by exploring its link to problems that can be expressed recursively.
+Recursion and Dynamic Programming
+Recursive algorithms solve problems by breaking them into smaller subproblems and then combining them. Solving the subproblems is done by applying the same recursive algorithm to the smaller subproblems by breaking the subproblems into sub-subproblems. This continues until the base case is reached. Below is a re
+
+===== ORTA (16629. karakterden 700 karakter) =====
+trying the different options for the splitIndex. The splitIndex is updated in the splits table each time an improvement in cost is found. We should note that we again make use of the MAX value, which acts like infinity as we minimize the cost for a split. The process continues for larger and larger sequence lengths until it finds the cost of the longest sequence, the one including all the matrices.
+Complexity of the Dynamic Programming Algorithm
+Now we have seen two algorithms for solving the optimal matrix chain multiplication problem. The recursive formulation proved to be exponential time (O(2^n)) with each recursive call potentially branching n − 1 times. The dynamic programming algorith
+
+===== SON (son 500 karakter) =====
+optimal alignment score using this method for the strings “acctg” and “gacta.”
+Bellman, Richard. Eye of the Hurricane. World Scientific, 1984.
+Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms, 2nd ed. Cambridge, MA: The MIT Press, 2001.
+Needleman, Saul B., and Christian D. Wunsch. “A General Method Applicable to the Search for Similarities in the Amino Acid Sequence of Two Proteins.” Journal of Molecular Biology 48, no. 3 (1970): 443–453.
+

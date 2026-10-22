@@ -1,0 +1,37 @@
+document_id: DOC_000486
+title: Priority queue
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Priority_queue
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: yigin_ve_kuyruk
+split: validation
+char_count: 22758
+token_count: 4698
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a priority queue is an abstract data type similar to a regular queue where each element has an associated priority determining its order of service. Priority queue serves highest priority items first. Priority values have to be instances of an ordered data type, and higher priority can be given either to the lesser or to the greater values with respect to the given order relation. For example, in the Java standard library, the PriorityQueue class considers the lowest element with respect to their order as having the highest priority.
+While priority queues are often implemented using heaps, they are conceptually distinct. A priority queue can be implemented with a heap or with other methods; just as a list can be implemented with a linked list or with an array.
+Operations
+A priority queue has the following operations:
+Max-priority queue
+- insert(S, element, priority): add an element to set S with an associated priority.
+- maximum(S): return the element with highest priority.
+  - This is also known as "find_max".
+- extract_max(S): remove the element from set S with highest priority, and return it.
+  - This is also known as "delete", or "extract".
+- increase_key(S, element, k): increase the associated priority with an element to the new value k.
+Min-priority queue
+- insert(S, element, priority): add an element to set S with an associated priority.
+- minimum(S): return the element with lowest priority.
+  - This is also known as "find_min".
+- extract_min(S): r
+
+===== ORTA (11379. karakterden 700 karakter) =====
+th on a transmission line from a network router. In the event of outgoing traffic queuing due to insufficient bandwidth, all other queues can be halted to send the traffic from the highest priority queue upon arrival. This ensures that the prioritized traffic (such as real-time traffic, e.g. an RTP stream of a VoIP connection) is forwarded with the least delay and the least likelihood of being rejected due to a queue reaching its maximum capacity. All other traffic can be handled when the highest priority queue is empty. Another approach used is to send disproportionately more traffic from higher priority queues.
+Many modern protocols for local area networks also include the concept of prior
+
+===== SON (son 500 karakter) =====
+ble speedup can be reached. But not all algorithms can use this kind of priority queue. Dijkstra's algorithm for example can not work on several nodes at once. The algorithm takes the node with the smallest distance from the priority queue and calculates new distances for all its neighbor nodes. If you would take out $k$ nodes, working at one node could change the distance of another one of the $k$ nodes. So using k-element operations destroys the label setting property of Dijkstra's algorithm.
+

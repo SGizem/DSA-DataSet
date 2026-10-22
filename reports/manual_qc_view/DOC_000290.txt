@@ -1,0 +1,29 @@
+document_id: DOC_000290
+title: Comparison sort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Comparison_sort
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 12648
+token_count: 3172
+
+===== BAŞ (ilk 1500 karakter) =====
+A comparison sort is a type of sorting algorithm that only reads the list elements through a single abstract comparison operation (often a "less than or equal to" operator or a three-way comparison) that determines which of two elements should occur first in the final sorted list. The only requirement is that the operator forms a total preorder over the data; that is:
+- if a ≤ b and b ≤ c then a ≤ c (transitivity)
+- for all a and b, a ≤ b or b ≤ a (connexity).
+It is possible that both a ≤ b and b ≤ a with a ≠ b; in this case either may come first in the sorted list. In a stable sort, the input order determines the sorted order in this case.
+Comparison sorts studied in the literature are "comparison-based". Elements a and b can be swapped or otherwise re-arranged by the algorithm only when the order between these elements has been established based on the outcomes of prior comparisons. This is the case when the order between a and b can be derived via the transitive closure of these prior comparison outcomes.
+For comparison-based sorts, the decision to execute basic operations other than comparisons is based on the outcome of comparisons. Hence in a time analysis, the number of executed comparisons is used to determine upper bound estimates for the number of executed basic operations such as swaps or assignments.
+A metaphor for thinking about comparison sorts is that someone has a set of unlabelled weights and a balance scale. Their goal is to line up the weights in order by t
+
+===== ORTA (6324. karakterden 700 karakter) =====
+\Omega(n \log n).$
+This provides the lower-bound part of the claim. A more precise bound can be given via Stirling's approximation. An upper bound of the same form, with the same leading term as the bound obtained from Stirling's approximation, follows from the existence of the algorithms that attain this bound in the worst case, like merge sort.
+The above argument provides an absolute, rather than only asymptotic lower bound on the number of comparisons, namely $\left\lceil\log_2(n!)\right\rceil$ comparisons. This lower bound is fairly good (it can be approached within a linear tolerance by a simple merge sort), but it is known to be inexact. For example, $\left\lceil\log_2(13!)\right\rceil
+
+===== SON (son 500 karakter) =====
+e of sortedness, the number of comparisons required to sort it can be smaller. An adaptive sort takes advantage of this "presortedness" and runs more quickly on nearly-sorted inputs, often while still maintaining an $O(n\log n)$ worst case time bound. An example is adaptive heap sort, a sorting algorithm based on Cartesian trees. It takes time $O(n\log k)$, where k is the average, over all values x in the sequence, of the number of times the sequence jumps from below x to above x or vice versa.
+

@@ -1,0 +1,66 @@
+document_id: DOC_000003
+title: Backtracking
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: algoritma_paradigmalari
+split: train
+char_count: 54952
+token_count: 14322
+
+===== BAŞ (ilk 1500 karakter) =====
+Where, however, the ambiguity cannot be cleared up, either by the rule of faith or by
+the context, there is nothing to hinder us to point the sentence according to any
+method we choose of those that suggest themselves.
+— Augustine of Hippo, De doctrina Christiana (397CE)
+Translated by Marcus Dods (1892)
+I dropped my dinner, and ran back to the laboratory. There, in my excitement,
+I tasted the contents of every beaker and evaporating dish on the table. Luckily for
+me, none contained any corrosive or poisonous liquid.
+— Constantine Fahlberg on his discovery of saccharin,
+Scientific American (1886)
+The greatest challenge to any thinker is stating the problem
+in a way that will allow a solution.
+— attributed to Bertrand Russell
+When you come to a fork in the road, take it.
+— Yogi Berra (giving directions to his house)
+2
+Backtracking
+This chapter describes another important recursive strategy called backtracking.
+A backtracking algorithm tries to construct a solution to a computational problem
+incrementally, one small piece at a time. Whenever the algorithm needs to
+decide between multiple alternatives to the next component of the solution, it
+recursively evaluates every alternative and then chooses the best one.
+2.1
+N Queens
+The prototypical backtracking problem is the classical n Queens Problem, first
+proposed by German chess enthusiast Max Bezzel in 1848 (under his pseudonym
+“Schachfreund”) for the standard 8 × 8 board and by François-Joseph Eustache
+Lionnet in 1869 for the mor
+
+===== ORTA (27476. karakterden 700 karakter) =====
+rence, using index notation
+instead of array notation is an important habit, not only to speed up backtracking
+algorithms in practice, but for developing dynamic programming algorithms,
+which we discuss in the next chapter.
+nAnalysis
+It should come as no surprise that most backtracking algorithms have exponential
+worst-case running times. Analyzing the precise running times of many of
+these algorithms requires techniques that are beyond the scope of this book.
+Fortunately, most of the backtracking algorithms we will encounter in this book
+are only intermediate results on the way to more efficient algorithms, which
+means their exact worst-case running time is not actually important. (First
+ma
+
+===== SON (son 500 karakter) =====
+an optimal AA
+tree for a given set of search keys and frequencies.
+Don’t analyze the running times of your algorithms, except to satisfy your
+own curiosity. All three algorithms run in exponential time; we’ll improve
+that later, so the precise running times aren’t particularly important.
+For more backtracking exercises, see the next chapter!
+14Sedgwick’s reformulation requires that no right child is red. Whatever. Andersson and
+Sedgwick are strangely silent on which end of the egg to eat first.
+

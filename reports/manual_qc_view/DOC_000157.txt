@@ -1,0 +1,30 @@
+document_id: DOC_000157
+title: Düğüm (bilgisayar bilimi)
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Düğüm_(bilgisayar_bilimi)
+language: tr
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 1148
+token_count: 384
+
+===== BAŞ (ilk 1500 karakter) =====
+Düğüm; ağaç, bağlı liste ve bilgisayar tabanlı örüntüler gibi veri yapıları oluşturmaya yarayan temel soyut birime verilen addır. Her düğüm bir miktar veriden oluşmakta ve çoğunlukla farklı bir düğüme bağlanmaktadır. Düğümler birbirlerine işaretçiler yoluyla bağlanmaktadır.
+Düğüm bir miktar veriyi saklayan mantıksal bir alan olarak düşünülebilir. Bir miktar veri ve diğer düğümlere bağlantılar içeren bellek kütüğü olarak tanımlanan düğüm, birbirlerine bağlı çok sayıda düğümle birlikte karmaşık veri yapılarının elde edilmesini kolaylaştırmaktadır.
+Soyut düğüm uygulaması örnekleri
+Bir atıf alanı içeren düğüm şöyle tanımlanmaktadır:
+ class Node {
+    data // Düğümde saklanan veri
+    next // Sonraki düğüme yapılan atıf, son düğümse null
+ }
+Burada, yukarıdaki biçimde tanımlanan üç düğüm 3 öğeli bir bağlı liste oluşturmaktadır.
+İki atıf alanı içeren düğüm ise şöyle tanımlanmaktadır:
+ class Node {
+    data // Düğümde saklanan veri
+    previous // Önceki düğüme yapılan atıf, ilk düğümse null
+    next // Sonraki düğüme yapılan atıf, son düğümse null
+ }
+Burada, yukarıdaki biçimde tanımlanan üç düğüm 3 öğeli bir bağlı liste oluşturmaktadır.
+

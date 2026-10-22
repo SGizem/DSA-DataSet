@@ -1,0 +1,34 @@
+document_id: DOC_000531
+title: Set (abstract data type)
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Set_(abstract_data_type)
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: hash_tablolari
+split: train
+char_count: 16207
+token_count: 3545
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a set is an abstract data type that can store distinct values, without any particular order. It is a computer implementation of the mathematical concept of a finite set. Unlike most other collection types, rather than retrieving a specific element from a set, one typically tests a value for membership in a set.
+Some set data structures are designed for static or frozen sets that do not change after they are constructed. Static sets allow only query operations on their elements — such as checking whether a given value is in the set, or enumerating the values in some arbitrary order. Other variants, called dynamic or mutable sets, allow also the insertion and deletion of elements from the set.
+A multiset is a special kind of set in which an element can appear multiple times in the set.
+Type theory
+In type theory, sets are generally identified with their indicator function (characteristic function): accordingly, a set of values of type $A$ may be denoted by $2^{A}$ or $\mathcal{P}(A)$. (Subtypes and subsets may be modeled by refinement types, and quotient sets may be replaced by setoids.) The characteristic function $F$ of a set $S$ is defined as:
+- $F(x) = \begin{cases} 1, & \mbox{if } x \in S \\ 0, & \mbox{if } x \not \in S \end{cases}$
+In theory, many other abstract data structures can be viewed as set structures with additional operations and/or additional axioms imposed on the standard operations. For example, an abstract heap can be viewed as a set str
+
+===== ORTA (8103. karakterden 700 karakter) =====
+e set template class, which is typically implemented using a binary search tree (e.g. red–black tree); SGI's STL also provides the hash_set template class, which implements a set using a hash table. C++11 has support for the unordered_set template class, which is implemented using a hash table. In sets, the elements themselves are the keys, in contrast to sequenced containers, where elements are accessed using their (relative or absolute) position. Set elements must have a strict weak ordering.
+- The Rust standard library provides the generic HashSet and BTreeSet types.
+- Java offers the Set interface to support sets (with the HashSet class implementing it using a hash table), and the Sorted
+
+===== SON (son 500 karakter) =====
+es the primary (or a candidate) key.
+In ANSI SQL the MULTISET keyword can be used to transform a subquery into a collection expression:
+SELECT expression1, expression2... FROM table_name...
+is a general select that can be used as subquery expression of another more general query, while
+MULTISET(SELECT expression1, expression2... FROM table_name...)
+transforms the subquery into a collection expression that can be used in another query, or in assignment to a column of appropriate collection type.
+

@@ -1,0 +1,31 @@
+document_id: DOC_000247
+title: Biconnected component
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Biconnected_component
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 6904
+token_count: 1560
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory, a biconnected component or block (sometimes known as a 2-connected component) is a maximal biconnected subgraph. Any connected graph decomposes into a tree of biconnected components called the block-cut tree of the graph. The blocks are attached to each other at shared vertices called cut vertices or separating vertices or articulation points. Specifically, a cut vertex is any vertex whose removal increases the number of connected components. A block containing at most one cut vertex is called a leaf block, it corresponds to a leaf vertex in the block-cut tree.
+Algorithms
+Linear time depth-first search
+The classic sequential algorithm for computing biconnected components in a connected undirected graph is due to John Hopcroft and Robert Tarjan (1973). It runs in linear time, and is based on depth-first search. This algorithm is also outlined as Problem 22-2 of Introduction to Algorithms (both 2nd and 3rd editions).
+The idea is to run a depth-first search while maintaining the following information:
+- the depth of each vertex in the depth-first-search tree (once it gets visited), and
+- for each vertex v, the lowest depth of neighbors of all descendants of v (including v itself) in the depth-first-search tree, called the lowpoint.
+The depth is standard to maintain during a depth-first search. The lowpoint of v can be computed after visiting all descendants of v (i.e., just before v gets popped off the depth-first-search stack) as the minimum of the depth of v, 
+
+===== ORTA (3452. karakterden 700 karakter) =====
+ther algorithms
+A simple alternative to the above algorithm uses chain decompositions, which are special ear decompositions depending on DFS-trees. Chain decompositions can be computed in linear time by this traversing rule. Let C be a chain decomposition of G. Then G is 2-vertex-connected if and only if G has minimum degree 2 and C_1 is the only cycle in C. This gives immediately a linear-time 2-connectivity test and can be extended to list all cut vertices of G in linear time using the following statement: A vertex v in a connected graph G (with minimum degree 2) is a cut vertex if and only if v is incident to a bridge or v is the first vertex of a cycle in C – C_1. The list of cut vertice
+
+===== SON (son 500 karakter) =====
+property are known as the block graphs.
+Block-cut tree
+A cutpoint, cut vertex, or articulation point of a graph G is a vertex that is shared by two or more blocks. The structure of the blocks and cutpoints of a connected graph can be described by a tree called the block-cut tree or BC-tree. This tree has a vertex for each block and for each articulation point of the given graph. There is an edge in the block-cut tree for each pair of a block and an articulation point that belongs to that block.
+

@@ -1,0 +1,9061 @@
+# Instruction manuel kontrolü — okuma dosyası
+
+`python -m scripts.12_sample_for_manual_qc` üretti. 200 örnek, görev türüne göre tabakalı, seed 42. İşaretlemeler `reports/manual_qc_instruction.csv` dosyasına (no sütunu bu dosyadaki numara).
+
+Kontroller (1 = evet, 0 = hayır): instruction_clear (talimat anlaşılır mı), response_correct (cevap doğru mu), grounded_in_source (cevap kaynak metinle tutarlı mı), answers_instruction (cevap talimatı karşılıyor mu), task_type_ok (örnek görev türüne uyuyor mu).
+
+## 1. kavram_aciklama — bağlamsız (DOC_000001:18:kavram_aciklama)
+
+Kaynak: DOC_000001 — Introduction, passage 18
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+However, if we implement the priority queue as a binary heap or a heap-ordered
+array, we have N = Θ(1) and I = E = O(log n), so the overall algorithm runs in
+O(R logn) time.
+Finally, sometimes we are interested in computational resources other than
+time, such as space, number of coin flips, number of cache or page faults, number
+of inter-process messages, or the number of gifts my true love gave to me. These
+resources can be analyzed using the same techniques used to analyze running
+time. For example, lattice multiplication of two n-digit numbers requires O(n^2)
+space if we write down all the partial products before adding them, but only
+O(n) space if we add them on the fly.
+Exercises
+0. Describe and analyze an efficient algorithm that determines, given a legal
+arrangement of standard pieces on a standard chess board, which player will
+win at chess from the given starting position if both players play perfectly.
+[Hint: There is a trivial one-line solution!]
+n1. (a) Identify (or write) a song that requires Θ(n3) time to sing the first n
+verses.
+(b) Identify (or write) a song that requires Θ(nlog n) time to sing the first
+n verses.
+(c) Identify (or write) a song that requires some other weird amount of
+time to sing the first n verses.
+2. Careful readers might complain that our analysis of songs like “n Bottles of
+Beer on the Wall” or “The n Days of Christmas” is overly simplistic, because
+larger numbers take longer to sing than shorter numbers. More generally,
+because there are only so many words of a given length, larger sets of words
+necessarily contain longer words.^{24} We can more accurately estimate singing
+time by counting the number of syllables sung, rather than the number of
+words.
+(a) How long does it take to sing the integer n?
+24Ja, das ist das Subatomarteilchenbeschleunigungsnaturmäßigkeitsuntersuchungsmaschine!
+(b) How long does it take to sing “n Bottles of Beer on the Wall”?
+(c) How long does it take to sing “The n Days of Christmas”?
+As usual, express your answers in the form O(f (n)) for some function f .
+3. The cumulative drinking song “The Barley Mow” has been sung throughout
+the British Isles for centuries. The song has many variants; Figure 0.6
+contains pseudolyrics for one version traditionally sung in Devon and
+Cornwall, where vessel[i] is the name of a vessel that holds 2^i ounces of
+beer.^{25}
+BarleyMow(n):
+```
+
+</details>
+
+**Talimat:**
+
+Öncelik kuyruğu bir ikili yığın (binary heap) veya yığın sıralı dizi ile uygulandığında N ve I = E için ne söylenebilir?
+
+**Cevap:**
+
+Öncelik kuyruğu ikili yığın veya yığın sıralı dizi olarak uygulandığında N = Θ(1) ve I = E = O(log n) olmaktadır. Bu durum, genel algoritmanın O(R log n) sürede çalışmasını sağlar. Hesaplama kaynakları olarak zamanın yanı sıra bellek veya sayfa hataları gibi diğer kaynaklar da benzer tekniklerle analiz edilebilir.
+
+## 2. karmasiklik_analizi — bağlamlı (DOC_000002:43:karmasiklik_analizi)
+
+Kaynak: DOC_000002 — Recursion, passage 43
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Describe and analyze an algorithm to find a central vertex in an arbitrary
+given binary tree. [Hint: First prove that every tree has a central vertex.]
+34 14 7 12
+Figure 1.27. Deleting a central vertex in a 34-node binary tree, leaving subtrees with 14, 7, and 12 nodes.
+39. (a) Professor George O’Jungle has a 27-node binary tree, in which every
+node is labeled with a unique letter of the Roman alphabet or the
+character &. Preorder and postorder traversals of the tree visit the nodes
+in the following order:
+• Preorder: I Q J H L E M V O T S B R G Y Z K C A & F P N U D W X
+• Postorder: H E M L J V Q S G Y R Z B T C P U D N F W & X A K O I
+Draw George’s binary tree.
+(b) Recall that a binary tree is full if every non-leaf node has exactly two
+children.
+i. Describe and analyze a recursive algorithm to reconstruct an arbitrary
+full binary tree, given its preorder and postorder node sequences as
+input.
+ii. Prove that there is no algorithm to reconstruct an arbitrary binary
+tree from its preorder and postorder node sequences.
+(c) Describe and analyze a recursive algorithm to reconstruct an arbitrary
+binary tree, given its preorder and inorder node sequences as input.
+(d) Describe and analyze a recursive algorithm to reconstruct an arbitrary
+binary search tree, given only its preorder node sequence.
+n(e) Describe and analyze a recursive algorithm to reconstruct an arbitrary
+binary search tree, given only its preorder node sequence, in O(n) time.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, bir ikili arama ağacını (binary search tree) sadece preorder düğüm diziliminden O(n) sürede yeniden oluşturmak için kullanılan özyinelemeli algoritmanın karmaşıklığı nedir ve neden?
+
+**Cevap:**
+
+Bu algoritmanın zaman karmaşıklığı O(n)'dir. n elemanlı preorder dizisi işlenirken her düğüm ağaca eklenir ve alt ağaç sınırları doğrusal bir tarama ile belirlenir. Her düğüm işlem sırasında sabit sayıda karşılaştırmaya tabi tutulduğu ve alt ağaç aralıkları verimli bir şekilde bölündüğü için toplam çalışma süresi düğüm sayısı olan n ile doğru orantılıdır.
+
+## 3. konu_ozeti_anlatim — bağlamlı (DOC_000003:17:konu_ozeti_anlatim)
+
+Kaynak: DOC_000003 — Backtracking, passage 17
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The simplest approach is to add an artificial sentinel value −∞to the beginning
+of the array.
+2.7. Longest Increasing Subsequence, Take 2
+LIS(A[1.. n]):
+A[0] ←−∞
+return LISbigger(0,1)
+The running time of LISbigger satisfies the Hanoi recurrence T(n) ≤
+2T(n−1)+O(1), which as usual implies that T(n) = O(2^n). We really shouldn’t
+be surprised by this running time; in the worst case, the algorithm examines
+each of the 2^n subsequences of the input array.
+2.7
+Longest Increasing Subsequence, Take 2
+This is not the only backtracking strategy we can use to find longest increasing
+subsequences. Instead of considering the input sequence one element at a time,
+we could try to construct the output sequence one element at a time. That is,
+instead of asking “Is A[i] the next element of the output sequence?”, we could
+ask directly, “Where is the next element of the output sequence, if any?”
+Jumping into the middle of this strategy, we might be faced with the following
+picture. Suppose we just decided to include the 6 just left of the black bar in
+our output sequence, and we need to decide which element to the right of the
+bar to include next.
+3 1 4 1 5 9 2 6
+5^? 3^? 5^? 8^? 9^? 7^? 9^? 3^? 2^? 3^? 8^? 4^? 6^? 2^? 6^?
+Of course, we can only include numbers on the right that are greater than 6;
+otherwise, our output sequence would not be increasing.
+3 1 4 1 5 9 2 6 5 3 5
+8^? 9^? 7^? 9^? 3
+2
+3
+8^? 4
+6
+2
+6
+But we have no idea which of those larger numbers is the best choice, and trying
+to cleverly figure out the best choice is too much work, and it’s only going to get
+us into trouble anyway. Instead, we enumerate all possibilities by brute force,
+and let the Recursion Fairy evaluate each one.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre en uzun artan altdizi (LIS) bulma probleminde geri izleme (backtracking) yaklaşımını özetler misin?
+
+**Cevap:**
+
+Bu bölümde en uzun artan altdizileri bulmak için kullanılan geri izleme stratejileri ele alınmaktadır.
+- İlk yaklaşımda dizinin başına -inf sentineli eklenir ve LISbigger fonksiyonu ile tüm olası 2^n altdizi özyinelemeli olarak taranır.
+- Alternatif olarak, girdi sırasını tek tek incelemek yerine çıktı dizisini eleman eleman kurma stratejisi de denenebilir.
+- Çıktıya eklenebilecek daha büyük sayılar arasından en iyisini akıllıca seçmek yerine, kaba kuvvetle (brute force) tüm olasılıklar numaralandırılır.
+- Özyineleme perisi (Recursion Fairy) her bir olasılığı değerlendirmek üzere sürece dahil edilir.
+
+## 4. algoritma_izleme — bağlamsız (DOC_000003:7:algoritma_izleme)
+
+Kaynak: DOC_000003 — Backtracking, passage 7
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Variants
+With only minor changes, we can solve several variants of SubsetSum. For
+example, Figure 2.6 shows an algorithm that actually constructs a subset of X
+that sums to T, if one exists, or returns the error value None if no such subset
+exists; this algorithm uses exactly the same recursive strategy as our earlier
+decision algorithms. This algorithm also runs in O(2^n) time; the analysis is
+simplest if we assume a set data structure that allows us to insert a single
+element in O(1) time (for example, a linked list), but in fact the running time
+is still O(2^n) even if insertion requires O(n) time (for example, a sorted linked
+list). Similar variants allow us to count subsets that sum to a particular value,
+or choose the best subset (according to some other criterion) that sums to a
+particular value.
+Most other problems that are solved by backtracking have this property:
+the same recursive strategy can be used to solve many different variants of the
+same problem. For example, it is easy to modify the recursive strategy described
+in the previous section, which determines whether a given game position is
+good or bad, to instead return a good move, or a list of all good moves. For
+this reason, when we design backtracking algorithms, we should aim for the
+simplest possible variant of the problem, computing a number or even a single
+boolean instead of more complex information or structure.
+2.4. The General Pattern
+〈〈Return a subset of X[1.. i] that sums to T〉〉
+〈〈or NONE if no such subset exists〉〉
+ConstructSubset(X, i, T):
+if T = 0
+return ∅
+if T < 0 or n = 0
+return None
+Y ←ConstructSubset(X, i −1, T)
+if Y̸ = None
+return Y
+Y ←ConstructSubset(X, i −1, T −X[i])
+if Y̸ = None
+return Y ∪{X[i]}
+return None
+Figure 2.6. A recursive backtracking algorithm for the construction version of SUBSETSUM.
+2.4
+The General Pattern
+Backtracking algorithms are commonly used to make a sequence of decisions, with
+the goal of building a recursively defined structure satisfying certain constraints.
+Often (but not always) this goal structure is itself a sequence. For example:
+• In the n-queens problem, the goal is a sequence of queen positions, one in
+each row, such that no two queens attack each other. For each row, the
+algorithm decides where to place the queen.
+• In the game tree problem, the goal is a sequence of legal moves, such that
+each move is as good as possible for the player making it. For each game
+state, the algorithm decides the best possible next move.
+• In the SubsetSum problem, the goal is a sequence of input elements that
+have a particular sum. For each input element, the algorithm decides whether
+to include it in the output sequence or not.
+(Hang on, why is the goal of subset sum finding a sequence?
+```
+
+</details>
+
+**Talimat:**
+
+Geri izleme (backtracking) tabanlı alt küme toplamı problemi için verilen `ConstructSubset(X, i, T)` algoritmasını `X = [2, 3]`, `i = 2` ve `T = 5` değerleri için adım adım izler misin?
+
+**Cevap:**
+
+1. `ConstructSubset([2, 3], 2, 5)` çağrısında `T = 5` (0 değil), taban durumlar sağlanmadı. Önce birinci dal olan `ConstructSubset(X, 1, 5)` çağrılır.
+2. `ConstructSubset([2, 3], 1, 5)` için de alt dallara inilir ve sonuç bulunamazsa `X[2]` yani 3 değeri hesaba katılarak `ConstructSubset([2, 3], 1, 5 - 3)` yani `ConstructSubset([2, 3], 1, 2)` çağrısı yapılır.
+3. Bu adımda `T = 2` için `X[1] = 2` elemanı dikkate alınarak `ConstructSubset([2, 3], 0, 2 - 2)` yani `ConstructSubset([2, 3], 0, 0)` çağrısına ulaşılır.
+4. `T = 0` olduğundan `∅` (boş küme) döndürülür.
+5. Geriye doğru çıkarken birleşim adımları uygulanır ve son olarak `Y ∪ {X[2]}` işlemiyle `{2, 3}` kümesi elde edilir. Sonuç olarak `{2, 3}` döndürülür.
+
+## 5. kavram_aciklama — bağlamsız (DOC_000004:13:kavram_aciklama)
+
+Kaynak: DOC_000004 — Dynamic Programming, passage 13
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+This may not be the order that the recursive algorithm would use, but it works,
+so we’ll go with it. The right figure in Figure 3.4 illustrates this evaluation order,
+with a double arrow indicating the outer loop and single arrows indicating the
+12In fact, we only need half of this array, because we always have i < j. But even if we cared
+about constant factors in this book (we don’t), this would be the wrong time to worry about
+them. First make it work; then make it better.
+i
+j
+Figure 3.4. Subproblem dependencies for longest increasing subsequence, and a valid evaluation order
+inner loop. In this case, the single arrows are bidirectional, because the order
+that we use to fill each column doesn’t matter.
+And we’re done! Pseudocode for our dynamic programming algorithm is
+shown below; as expected, our algorithm clearly runs in O(n^2) time. If necessary,
+we can reduce the space bound from O(n^2) to O(n) by maintaining only the
+two most recent columns of the table, LISbigger[·, j] and LISbigger[·, j + 1].^{13}
+FastLIS(A[1.. n]):
+A[0] ←−∞
+〈〈Add a sentinel〉〉
+for i ←0 to n
+〈〈Base cases〉〉
+LISbigger[i, n + 1] ←0
+for j ←n down to 1
+for i ←0 to j −1
+〈〈...or whatever〉〉
+keep ←1 + LISbigger[j, j + 1]
+skip ←LISbigger[i, j + 1]
+if A[i] ≥A[j]
+LISbigger[i, j] ←skip
+else
+LISbigger[i, j] ←max{keep,skip}
+return LISbigger[0,1]
+Second Recurrence: What’s Next?
+Our second backtracking algorithm evaluated the function LISfirst(i), which
+we defined as the length of the longest increasing subsequence of A[i .. n] that
+begins with A[i]. We derived the following recurrence for this function:
+LISfirst(i) = 1 + max
+{
+LISfirst(j)
+|| j > i and A[j] > A[i]
+}
+Here, we assume that max∅= 0, so that the base cases like LISfirst(n) = 1 fall
+out of the recurrence automatically. To solve the original problem, we can add
+a sentinel value A[0] = −∞to the array and compute LISfirst(0) −1.
+```
+
+</details>
+
+**Talimat:**
+
+Dinamik programlama algoritmalarında bellek (space) sınırını azaltmak için tablolarda nasıl bir optimizasyon yapılabilir?
+
+**Cevap:**
+
+Dinamik programlama algoritmalarında, tablonun tamamı yerine yalnızca en güncel sütun veya satırları (örneğin en son iki sütun) tutarak bellek gereksinimi üstel ya da büyük boyutlu durumlardan daha küçük bir sınıra indirgenebilir. Metinde verilen örnekte olduğu gibi, tablonun tüm sütunları yerine sadece en son iki sütun (`LISbigger[·, j]` ve `LISbigger[·, j + 1]`) saklanarak bellek sınırı O(n^2) seviyesinden O(n) seviyesine düşürülebilir.
+
+## 6. karmasiklik_analizi — bağlamsız (DOC_000004:3:karmasiklik_analizi)
+
+Kaynak: DOC_000004 — Dynamic Programming, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+We can actually see this exponential growth directly as follows. Think of the
+recursion tree for RecFibo as a binary tree of additions, with only 0s and 1s
+at the leaves. Since the eventual output is Fn, exactly Fn of the leaves must
+have value 1; these leaves represent the calls to RecRibo(1). An easy inductive
+argument (hint, hint) implies that RecFibo(0) is called exactly Fn−1 times. (If
+we just want an asymptotic bound, it’s enough to observe that the number
+of calls to RecFibo(0) is at most the number of calls to RecFibo(1).) Thus,
+the recursion tree has exactly Fn + Fn−1 = Fn+1 = O(Fn) leaves, and therefore,
+because it’s a full binary tree, 2Fn+1 −1 = O(Fn) nodes altogether.
+Memo(r)ization: Remember Everything
+The obvious reason for the recursive algorithm’s lack of speed is that it computes the same Fibonacci numbers over and over and over. A single call to
+RecFibo(n) results in one recursive call to RecFibo(n −1), two recursive calls
+to RecFibo(n −2), three recursive calls to RecFibo(n −3), five recursive calls
+to RecFibo(n −4), and in general Fk−1 recursive calls to RecFibo(n −k) for
+any integer 0 ≤k < n. Each call is recomputing some Fibonacci number from
+scratch.
+We can speed up our recursive algorithm considerably by writing down the
+results of our recursive calls and looking them up again if we need them later.
+4See http://algorithms.wtf for notes on solving backtracking recurrences.
+F5 F3 F4 F2 F1 F1 F0 F3 F2 F1 F1 F0 F2 F1 F0 F4 F3 F2 F1 F1 F0 F2 F1 F0 F6 F5 F3 F4 F2 F1 F1 F0 F3 F2 F1 F1 F0 F2 F1 F0 F7
+Figure 3.1. The recursion tree for computing F7; arrows represent recursive calls.
+```
+
+</details>
+
+**Talimat:**
+
+Özyineli Fibonacci algoritmasının recursion ağacının toplam düğüm sayısı ve zaman karmaşıklığı nedir?
+
+**Cevap:**
+
+Özyineli Fibonacci algoritmasının recursion ağacı tam bir ikili ağaçtır ve toplam düğüm sayısı 2F_{n+1} - 1 olup bu da O(F_n) karmaşıklığına karşılık gelir. Ağacın yapraklarında Fn tane 1 değeri ve indüksiyon argümanına göre F_{n-1} tane 0 değeri bulunur. Böylece ağaç toplamda F_n + F_{n-1} = F_{n+1} = O(F_n) yaprağa ve dolayısıyla O(F_n) toplam düğüme sahip olur.
+
+## 7. kavram_aciklama — bağlamsız (DOC_000004:52:kavram_aciklama)
+
+Kaynak: DOC_000004 — Dynamic Programming, passage 52
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In particular, all keys in the leftmost subtree v.child[0] are smaller than
+v.key[1], and all keys in the rightmost subtree v.child[v.d] are larger than
+v.key[v.d].
+Intuitively, you should have the following picture in mind:
+[ ·^•
+< key[1] < ·^•
+< key[2] < ·^•
+···
+·•
+< key[d] < ·^•
+] T0 T1 T2
+··· Td−1
+Td
+24Normally, B-trees are required to satisfy two additional constraints, which guarantee a
+worst-case search cost of O(logB n): Every leaf must have exactly the same depth, and every node
+except possibly the root must contain at least B/2 keys. However, in this problem, we are not
+interested in optimizing the worst-case search cost, but rather the total cost of a sequence of
+searches, so we will not impose these additional constraints.
+Here Ti is the subtree pointed to by child[i].
+The cost of searching for a key x in a B-tree is the number of nodes in
+the path from the root to the node containing x as one of its keys. A 1-tree
+is just a standard binary search tree.
+```
+
+</details>
+
+**Talimat:**
+
+B-tree yapısında anahtarların ve alt ağaçların yerleşimi nasıldır, bu yapının temel özelliği nedir?
+
+**Cevap:**
+
+B-tree düğümlerinde anahtarlar sıralı bir biçimde tutulur. Sol taraftaki alt ağaçtaki tüm anahtarlar düğümdeki ilgili anahtardan daha küçük, sağ taraftaki alt ağaçtaki tüm anahtarlar ise o anahtardan daha büyüktür. Bir B-tree üzerinde bir x anahtarını aramanın maliyeti, kökten x anahtarını içeren düğüme giden yoldaki düğüm sayısı olarak tanımlanır. İçerikte bahsedilen standart bir ikili arama ağacı (binary search tree) ise 1-tree olarak düşünülebilir.
+
+## 8. karsilastirma — bağlamlı (DOC_000005:13:karsilastirma)
+
+Kaynak: DOC_000005 — Greedy Algorithms, passage 13
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Each year, doctors submit a ranked list of all hospitals where they would accept
+an internship, and each hospital submits a ranked list of doctors they would
+accept as interns. The NRMP then computes an matching between doctors
+and hospitals that satisfies the following stability requirement. A matching is
+unstable if there is a doctor α and hospital B that would be both happier with
+each other than with their current match; that is,
+• α is matched with some other hospital A, even though she prefers B.
+• B is matched with some other doctor β, even though they prefer α.
+In this case, we call (α, B) an unstable pair for the matching. The goal of the
+Resident Match is a stable matching, which is a matching with no unstable
+pairs.
+For simplicity, I’ll assume from now on that there are exactly the same
+number of doctors and hospitals; each hospital offers exactly one internship;
+each doctor ranks all hospitals and vice versa; and finally, there are no ties in
+the doctors’ or hospitals’ rankings.^9
+Some Bad Ideas
+At first glance, it is not even clear that a stable matching always exists! Certainly
+not every matching of doctors and hospitals is stable. Suppose there are three
+doctors (Dr. Quincy, Dr. Rotwang, Dr. Shephard, represented by lower-case
+letters) and three hospitals (Arkham Asylum, Bethlem Royal Hospital, and
+County General Hospital, represented by upper-case letters), who rank each
+other as follows:
+q r s A C A C A B B B C A B C r s q q q r s r s
+The matching {Aq, Br, Cs} is unstable, because Arkham would rather hire
+Dr. Rotwang than Dr. Quincy, and Dr. Rotwang would rather work at Arkham
+than at Bedlam. (A, r) is an unstable pair for this matching.
+its interviews are over, before making any faculty offers. Needless to say, the mishmash of offer
+dates and decision deadlines causes tremendous stress, for candidates and departments alike.
+For similar reasons, since 1965, most American universities have agreed to a common April 15
+deadline for prospective graduate students to accept offers of financial support (and by extension,
+offers of admission).
+9In reality, most hospitals offer multiple internships, each doctor ranks only a subset of the
+hospitals and vice versa, and there are typically more internships than interested doctors. And
+then it starts getting complicated.
+One might imagine using an incremental algorithm that starts with an
+arbitrary matching, and then greedily performs exchanges to resolve instabilities.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre doktorlar ve hastaneler eşleştirmesindeki istikrarsız eşleşme (unstable matching) durumunu ve istikrarsız çift kavramını açıklar mısın?
+
+**Cevap:**
+
+Doktorlar ve hastaneler eşleştirmesinde bir eşleşmenin istikrarsız olması, iki tarafın da mevcut eşlerinden ziyade birbirleriyle eşleşmeyi tercih edeceği bir durumun varlığına dayanır. Metne göre bu durum iki koşulda ortaya çıkar: Birincisi, bir doktor α mevcut hastanesi A yerine B hastanesini tercih etmesine rağmen başka bir hastaneyle eşleşmiştir. İkincisi, B hastanesi mevcut doktoru β yerine α doktorunu tercih etmesine rağmen başka bir doktorla eşleşmiştir. Bu iki koşulu sağlayan (α, B) ikilisine istikrarsız çift denir. Amaç ise hiç istikrarsız çifti olmayan kararlı bir eşleşme (stable matching) elde etmektir.
+
+## 9. karsilastirma — bağlamlı (DOC_000005:18:karsilastirma)
+
+Kaynak: DOC_000005 — Greedy Algorithms, passage 18
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Proof: We prove the lemma by induction on the number of rounds. Consider
+an arbitrary round of the algorithm, in which doctor α rejects one hospital A
+for another hospital B. The rejection implies that α prefers B to A. Each doctor
+that appears higher than α in B’s preference list already rejected B in an earlier
+round and therefore, by the inductive hypothesis, is infeasible for B.
+Now consider an arbitrary matching (of the same doctors and hospitals)
+that assigns α to A. We already established that α prefers B to A. If B prefers α
+to its partner, the matching is unstable. On the other hand, if B prefers its
+partner to α, then (by our earlier argument) its partner is infeasible, and again
+the matching is unstable. We conclude that there is no stable matching that
+assigns α to A.
+□
+Now let best(A) denote the highest-ranked feasible doctor on A’s preference
+list. Lemma 4.7 implies that every doctor that A prefers to its final match is
+infeasible for A. On the other hand, the final matching is stable, so the doctor
+assigned to A must be feasible for A. The following result is now immediate:
+Corollary 4.8. The Gale-Shapley algorithm matches best(A) with A, for every
+hospital A.
+In other words, the Gale-Shapley algorithm computes the best possible stable
+matching from the hospitals’ point of view. It turns out that this matching is
+also the worst possible from the doctors’ point of view! Let worst(α) denote the
+lowest-ranked feasible hospital on doctor α’s preference list.
+Corollary 4.9. The Gale-Shapley algorithm matches α with worst(α), for every
+doctor α.
+Proof: Suppose Gale and Shapley assign doctor α to hospital A; we need to
+show that A = worst(α). Consider an arbitrary stable matching where A is not
+matched with α but with another doctor β. The previous corollary implies that
+A prefers α = best(A) to β. Because the matching is stable, α must therefore
+prefer her assigned hospital to A. This argument works for any stable matching,
+so α prefers every other feasible match to A; in other words, A = worst(α).
+□
+A subtle consequence of these two corollaries, discovered by Lester Dubins
+and David Freedman in 1981, is that a doctor can potentially improve her match
+by lying about her preferences, but a hospital cannot. (However, a set of hospitals
+can collude so that some of their matches improve.) Partly for this reason, the
+National Residency Matching Program reversed its matching algorithm in
+1998, so that potential residents offer to work for hospitals, according to their
+preference orders, and each hospital accepts its best offer. Thus, the new
+algorithm computes the best possible stable matching for the doctors, and the
+worst possible stable matching for the hospitals. In practice, however, this
+reversal altered less than 1% of the residents’ matches. As far as I know, the
+precise effect of this change on the patients is an open problem.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Gale-Shapley algoritmasının hastalar (doktorlar) ve hastaneler yönünden ürettiği eşleşmeleri karşılaştırır mısın?
+
+**Cevap:**
+
+İki yönü iki ana ölçüte göre karşılaştırabiliriz. Eşleşme kalitesi: Gale-Shapley algoritması hastaneler için en iyi kararlı eşleşmeyi (best(A)) sağlarken, doktorlar için en kötü kararlı eşleşmeyi (worst(α)) üretir. Algoritmanın yönü ve tercih stratejisi: Hastaneler açısından en iyi sonucu veren bu yapı, Lester Dubins ve David Freedman'ın keşfettiği üzere bir doktorun tercihlerinde yalan söyleyerek eşleşmesini iyileştirmesine olanak tanıyabilirken, bir hastanenin tek başına bunu yapmasını engeller. Özetle, algoritma hastanelere maksimum avantaj sağlarken doktorlara minimum avantaj sunar.
+
+## 10. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000005:26:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000005 — Greedy Algorithms, passage 26
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Alex and her friends (who are all excellent climbers) decided to play a
+game, where as many climbers as possible are simultaneously on the boulder
+and each climber needs to perform a sequence of exactly k moves. Each
+climber can choose an arbitrary hold to start from, and all moves must move
+away from the ground. Thus, each climber traces out a path of k edges
+in the tree T, all directed toward the root. However, no two climbers are
+allowed to touch the same hold; the paths followed by different climbers
+cannot intersect at all.
+(a) Describe and analyze a greedy algorithm to compute the maximum
+number of climbers that can play this game. Your algorithm is given
+a rooted tree T and an integer k as input, and it should compute the
+largest possible number of disjoint paths in T, where each path has
+length k. Do not assume that T is a binary tree. For example, given the
+tree below as input, your algorithm should return the integer 8.
+Figure 4.6. Seven disjoint paths of length k = 3. This is not the largest such set of paths in this tree.
+(b) Now suppose each vertex in T has an associated reward, and your goal
+is to maximize the total reward of the vertices in your paths, instead of
+the total number of paths. Show that your greedy algorithm does not
+always return the optimal reward.
+(c) Describe an efficient algorithm to compute the maximum possible reward,
+as described in part (b).
+24. Congratulations! You have successfully conquered Camelot, transforming
+the former battle-scarred hereditary monarchy into an anarcho-syndicalist
+commune, where citizens take turns to act as a sort of executive-officer-
+for-the-week, but with all the decisions of that officer ratified at a special
+bi-weekly meeting, by a simple majority in the case of purely internal affairs,
+but by a two-thirds majority in the case of more major. . . .
+As a final symbolic act, you order the Round Table (surprisingly, an
+actual circular table) to be split into pizza-like wedges and distributed to the
+citizens of Camelot as trophies. Each citizen has submitted a request for an
+angular wedge of the table, specified by two angles—for example: Sir Robin
+the Brave might request the wedge from 17.23^◦to 42^◦, and Sir Lancelot
+the Pure might request the 2^◦wedge from 359^◦to 1^◦. Each citizen will be
+happy if and only if they receive precisely the wedge that they requested.
+Unfortunately, some of these ranges overlap, so satisfying all the citizens’
+requests is simply impossible. Welcome to politics.
+Describe and analyze an algorithm to find the maximum number of
+requests that can be satisfied. [Hint: The output of your algorithm should
+not change if you rotate the table. Do not assume that angles are integers.]
+25. Suppose you are standing in a field surrounded by several large balloons.
+```
+
+</details>
+
+**Talimat:**
+
+Yuvarlak masa dilimlerinin dağıtımı ve açgözlü yaklaşımlar hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Yuvarlak masa etrafındaki vatandaşların açısal dilim taleplerini karşılayan bir problemde, açgözlü veya benzeri bir algoritma tasarlarken aşağıdakilerden hangisi doğrudur?
+A) Algoritmanın çıktısı masanın döndürülmesinden kesinlikle etkilenir ve sonuç değişir.
+B) Algoritmanın çıktısı masayı döndürdüğünüzde değişmez.
+C) Her vatandaşın talebinin rastgele açılardan bağımsız olarak rastgele kesişmesi zorunludur.
+D) Tüm vatandaşların taleplerini her zaman %100 oranında memnun etmek mümkündür.
+Doğru şık: B
+Açıklama: Ders içeriğinde belirtildiği üzere, bu tür bir problemde algoritmanın çıktısı masanın döndürülmesinden etkilenmez, yani sabittir. A seçeneği bu yüzden yanlıştır. Ayrıca çakışmalar nedeniyle tüm talepleri karşılamak her zaman imkansız olabilir (D şıkkı yanlıştır).
+
+## 11. karsilastirma — bağlamlı (DOC_000006:21:karsilastirma)
+
+Kaynak: DOC_000006 — Basic Graph Algorithms, passage 21
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Exercises
+Graphs
+1. Prove that the following definitions are all equivalent.
+• A tree is a connected acyclic graph.
+• A tree is one component of a forest. (A forest is an acyclic graph.)
+• A tree is a connected graph with at most V −1 edges.
+• A tree is a minimally connected graph; removing any edge disconnects
+the graph.
+• A tree is an acyclic graph with at least V −1 edges.
+• A tree is a maximally acyclic graph; adding an edge between any two
+vertices creates a cycle.
+• A tree is a graph that contains a unique path between each pair of
+vertices.
+2. Prove that any connected acyclic graph with n ≥2 vertices has at least
+two vertices with degree 1. Do not use the words “tree” or “leaf”, or any
+well-known properties of trees; your proof should follow entirely from the
+definitions of “connected” and “acyclic”.
+3. A graph (V, E) is bipartite if the vertices V can be partitioned into two
+subsets L and R, such that every edge has one vertex in L and the other in R.
+(a) Prove that every tree is a bipartite graph.
+(b) Prove that a graph G is bipartite if and only if every cycle in G has an
+even number of edges.
+(c) Describe and analyze an efficient algorithm that determines whether a
+given undirected graph is bipartite.
+4. Whenever groups of pigeons gather, they instinctively establish a pecking
+order. For any pair of pigeons, one pigeon always pecks the other, driving
+it away from food or potential mates. The same pair of pigeons always
+chooses the same pecking order, even after years of separation, no matter
+what other pigeons are around. Surprisingly, the overall pecking order can
+contain cycles—for example, pigeon i pecks pigeon j, which pecks pigeon k,
+which pecks pigeon ℓ, which pecks pigeon i.
+(a) Prove that any finite population of pigeons can be placed in a procession
+(perhaps a parade?) so that each pigeon pecks the preceding pigeon’s
+posterior. Pretty please.
+(b) Suppose you are given a directed graph representing the pecking relationships among a set of n pigeons. The graph contains one vertex
+per pigeon, and it contains an edge i→j if and only if pigeon i pecks
+pigeon j. Describe and analyze an algorithm to compute a pecking order
+for the pigeons, as guaranteed by part (a).
+(c) Prove that for any set of at least three pigeons, either the pecking order
+described in part (a) is unique, or there are three pigeons i, j, and k,
+such that pigeon i pecks pigeon j, which pecks pigeon k, which pecks
+pigeon i.
+5. An Euler tour of a graph G is a closed walk through G that traverses every
+edge of G exactly once.
+```
+
+</details>
+
+**Talimat:**
+
+Bir grafın ağaç (tree) olması için gereken iki tanımı karşılaştırabilir misin?
+
+**Cevap:**
+
+Ağaç tanımını iki farklı ifade üzerinden karşılaştırabiliriz: İlk tanım, ağacı bağlı ve döngüsüz (connected acyclic) bir graf olarak ele alır. İkinci tanım ise ağacı en az V - 1 kenara sahip döngüsüz bir graf olarak tanımlar. Her iki tanım da ağaç yapısının temel özelliklerindendir; birinci tanım grafın hem bağlantılı olmasını hem de döngü içermemesini zorunlu kılarken, ikinci tanım kenar sayısı ile köşe sayısı arasındaki alt sınırı vurgular. Grafın hem bağlantılı olup olmadığını kontrol etmek hem de döngüsüzlüğünü test etmek için bağlı ve döngüsüz tanımı tercih edilir.
+
+## 12. karmasiklik_analizi — bağlamsız (DOC_000007:6:karmasiklik_analizi)
+
+Kaynak: DOC_000007 — Depth-First Search, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+6.3
+Topological Sort
+A topological ordering of a directed graph G is a total order ≺on the vertices
+such that u ≺v for every edge u→v. Less formally, a topological ordering
+arranges the vertices along a horizontal line so that all edges point from left to
+right. A topological ordering is clearly impossible if the graph G has a directed
+cycle—the rightmost vertex of the cycle would have an edge pointing to the left!
+On the other hand, consider an arbitrary postordering of an arbitrary
+directed graph G. Our earlier analysis implies that u.post < v.post for any edge
+u→v, then G contains a directed path from v to u, and therefore contains a
+directed cycle through u→v. Equivalently, if G is acyclic, then u.post > v.post for
+every edge u→v. It follows that every directed acyclic graph G has a topological
+ordering; in particular, the reversal of any postordering of G is a topological
+ordering of G.
+a b c d e f g h i j k l m n o p b f g c h d o k p e i n j m l a
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
+1 2 3 4 5 6 a b c d e f g h i j k m n p l o
+Figure 6.8. Reversed postordering of the dag from Figure 6.6.
+If we require the topological ordering in a separate data structure, we can
+simply write the vertices into an array in reverse postorder, in O(V + E) time, as
+shown in Figure 6.9.
+```
+
+</details>
+
+**Talimat:**
+
+Bir grafın düğümlerini ters sonlandırma (reverse postorder) sırasıyla bir diziye yazarak topolojik sıralama elde etmenin zaman karmaşıklığı nedir, neden?
+
+**Cevap:**
+
+Ters sonlandırma sırasını kullanarak topolojik sıralamayı bir diziye yazma işleminin zaman karmaşıklığı O(V + E)'dir. Bu karmaşıklık, graf üzerinde derinlemesine arama (Depth-First Search) yapılarak düğüm sonlandırma sıra numaralarının hesaplanması ve düğümlerin bir diziye yerleştirilmesi sürecinin toplam maliyetinden kaynaklanır; V düğüm sayısını, E ise kenar sayısını ifade eder.
+
+## 13. kavram_aciklama — bağlamsız (DOC_000007:6:kavram_aciklama)
+
+Kaynak: DOC_000007 — Depth-First Search, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+6.3
+Topological Sort
+A topological ordering of a directed graph G is a total order ≺on the vertices
+such that u ≺v for every edge u→v. Less formally, a topological ordering
+arranges the vertices along a horizontal line so that all edges point from left to
+right. A topological ordering is clearly impossible if the graph G has a directed
+cycle—the rightmost vertex of the cycle would have an edge pointing to the left!
+On the other hand, consider an arbitrary postordering of an arbitrary
+directed graph G. Our earlier analysis implies that u.post < v.post for any edge
+u→v, then G contains a directed path from v to u, and therefore contains a
+directed cycle through u→v. Equivalently, if G is acyclic, then u.post > v.post for
+every edge u→v. It follows that every directed acyclic graph G has a topological
+ordering; in particular, the reversal of any postordering of G is a topological
+ordering of G.
+a b c d e f g h i j k l m n o p b f g c h d o k p e i n j m l a
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
+1 2 3 4 5 6 a b c d e f g h i j k m n p l o
+Figure 6.8. Reversed postordering of the dag from Figure 6.6.
+If we require the topological ordering in a separate data structure, we can
+simply write the vertices into an array in reverse postorder, in O(V + E) time, as
+shown in Figure 6.9.
+```
+
+</details>
+
+**Talimat:**
+
+Topolojik sıralama nedir ve hangi tür graflar için geçerlidir?
+
+**Cevap:**
+
+Topolojik sıralama, yönlü bir grafın düğümlerinin, her u→v kenarı için u düğümü v düğümünden önce gelecek şekilde doğrusal bir çizgide sıralanmasıdır. Bu sıralama yalnızca yönlü çevrim içermeyen yönlü asiklik graflar (DAG) için mümkündür; graf içinde yönlü bir çevrim varsa sağdaki düğümün sola işaret eden bir kenarı olacağı için topolojik sıralama yapılamaz. Yönlü asiklik graflarda ise herhangi bir sonlandırma sıralamasının (postordering) tersi alınarak kolayca bir topolojik sıralama elde edilebilir.
+
+## 14. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000007:9:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000007 — Depth-First Search, passage 9
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+6.4
+Memoization and Dynamic Programming
+Our topological sort algorithm is arguably the model for a wide class of dynamic
+programming algorithms. Recall that the dependency graph of a recurrence
+has a vertex for every recursive subproblem and an edge from one subproblem
+to another if evaluating the first subproblem requires a recursive evaluation
+of the second. The dependency graph must be acyclic, or the naïve recursive
+algorithm would never halt.
+Evaluating any recurrence with memoization is exactly the same as performing a depth-first search of the dependency graph. In particular, a vertex of the
+dependency graph is “marked” if the value of the corresponding subproblem has
+already been computed. The black-box subroutines PreVisit and PostVisit
+are proxies for the actual value computation. See Figure 6.10.
+Carrying this analogy further, evaluating a recurrence using dynamic programming is the same as evaluating all subproblems in the dependency graph of
+the recurrence in reverse topological order—every subproblem is considered
+after the subproblems it depends on. Thus, every dynamic programming algorithm is equivalent to a postorder traversal of the dependency graph of its
+underlying recurrence!
+3A postordering of the reversal of G is not necessarily the reversal of a postordering of G,
+even though both are topological orderings of G.
+6.4. Memoization and Dynamic Programming
+Memoize(x) :
+if value[x] is undefined
+initialize value[x]
+for all subproblems y of x
+Memoize(y)
+update value[x] based on value[y]
+finalize value[x]
+DFS(v) :
+if v is unmarked
+mark v
+PreVisit(x)
+for all edges v→w
+DFS(w)
+PostVisit(x)
+Figure 6.10. Memoized recursion is depth-first search. Depth-first search is memoized recursion.
+DynamicProgramming(G) :
+for all subproblems x in postorder
+initialize value[x]
+for all subproblems y of x
+update value[x] based on value[y]
+finalize value[x]
+Figure 6.11. Dynamic programming is postorder traversal.
+However, there are some minor differences between most dynamic programming algorithms and topological sort. First, in most dynamic programming
+algorithms, the dependency graph is implicit—the nodes and edges are not
+explicitly stored in memory, but rather are encoded by the underlying recur-
+rence. But this difference really is minor; as long as we can enumerate recursive
+subproblems in constant time each, we can traverse the dependency graph
+exactly as if it were explicitly stored in an adjacency list.
+More significantly, most dynamic programming recurrences have highly
+structured dependency graphs. For example, as we discussed in Chapter 5,
+the dependency graph for the edit distance recurrence is a regular grid with
+diagonals, and the dependency graph for optimal binary search trees is an
+upper triangular grid with all possible rightward and upward edges. This
+regular structure allows us to hard-wire a suitable evaluation order directly into
+the algorithm, typically as a collection of nested loops, so there is no need to
+topologically sort the dependency graph at run time. We previously called the
+reverse topological order an evaluation order.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak dinamik programlama ve grafik dolaşmaları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Ders içeriğine göre dinamik programlama ile bağımlılık grafiği arasındaki temel eşdeğerlik aşağıdakilerden hangisidir?
+A) Dinamik programlama, bağımlılık grafiğinin önorder (preorder) dolaşımına eşdeğerdir.
+B) Dinamik programlama, bağımlılık grafiğinin ters topolojik sırada (reverse topological order) tüm alt problemlerin değerlendirilmesine yani sonorder (postorder) dolaşımına eşdeğerdir.
+C) Dinamik programlama, bağımlılık grafiğinin genişlik öncelikli arama (BFS) ile taranmasına eşdeğerdir.
+D) Dinamik programlama, bağımlılık grafiğindeki düğümlerin rastgele sırada ziyaret edilmesidir.
+Doğru şık: B
+Açıklama: Metne göre, bir yinelemeyi dinamik programlama kullanarak değerlendirmek, bağımlılık grafiğindeki tüm alt problemlerin ters topolojik sırada değerlendirilmesiyle aynıdır; bu da grafin sonorder (postorder) dolaşımına eşdeğerdir. A seçeneği yanlıştır çünkü preorder değil postorder kullanılır. C ve D şıkları ise içerikteki bilgilere uymamaktadır.
+
+## 15. karmasiklik_analizi — bağlamlı (DOC_000009:17:karmasiklik_analizi)
+
+Kaynak: DOC_000009 — Shortest Paths, passage 17
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Unfortunately, when the input graph has negative edges, the familiar
+“expanding wavefront” intuition is no longer accurate. The same vertex can be
+Extracted multiple times; the same edge can be relaxed multiple times; and
+distances might not be discovered in increasing order. Figure 8.15 shows an
+example execution where the top left vertex is Extracted six times, and the
+top three edges are each relaxed twice.
+For graphs without negative cycles, but no other restrictions on edge weights,
+the worst-case running time of Dijkstra is actually exponential. Figure 8.14
+shows particularly simple family of graphs (due to Douglas Shier and Christoph
+Witzgall) that forces Dijkstra to perform Θ(2^{V/2}) relaxations.^9 A more complex
+family of graphs (which I’ll leave as an exercise) forces Θ(2^V) relaxations, which
+is the worst possible. In practice, however, Dijkstra’s algorithm is usually fast
+even for graphs with negative edges.
+–1 –2 –4 –8 0
+–16 0
+–8 –4 –2 0 0
+–2^{k–1}
+0
+–2^k
+Figure 8.14. A directed graph with negative edges that forces DIJKSTRA to run in exponential time.
+```
+
+</details>
+
+**Talimat:**
+
+Negatif kenarları olan bir graf üzerinde Dijkstra algoritması çalıştırıldığında en kötü durumda zaman karmaşıklığı ne olur, yukarıdaki metne göre nedeni nedir?
+
+**Cevap:**
+
+Negatif kenarları olan ve negatif çevrim barındırmayan graflarda, özel bir kısıtlama yoksa Dijkstra algoritmasının en kötü durumdaki zaman karmaşıklığı üsteldir (exponential). Douglas Shier ve Christoph Witzgall tarafından tasarlanan graf ailelerinde, algoritmanın Θ(2^{V/2}) kez gevşetme (relaxation) yapması zorlanır; daha karmaşık ailelerde ise bu sayı Θ(2^V) gevşetmeye kadar çıkar. Bunun nedeni, negatif kenarlar yüzünden genişleyen dalga sezgisinin artık doğru çalışmaması, aynı tepe noktasının birden fazla kez çıkarılabilmesi, aynı kenarın birden çok kez gevşetilebilmesi ve mesafelerin artan sırada keşfedilememesidir.
+
+## 16. konu_ozeti_anlatim — bağlamsız (DOC_000009:26:konu_ozeti_anlatim)
+
+Kaynak: DOC_000009 — Shortest Paths, passage 26
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Exercises
+0. Let G be a directed graph with arbitrary edge weights (which may be positive,
+negative, or zero), possibly with negative cycles, and let s be an arbitrary
+vertex of G.
+(a) Suppose every vertex v stores a number dist(v) (but no predecessor
+pointers). Describe and analyze an algorithm to determine whether
+dist(v) is the shortest-path distance from s to v, for every vertex v.
+(b) Suppose instead that every vertex v̸ = s stores a pointer pred(v) to
+another vertex in G (but no distances).
+Describe and analyze an
+algorithm to determine whether these predecessor pointers define a
+single-source shortest path tree rooted at s.
+1. A looped tree is a weighted, directed graph built from a binary tree by adding
+an edge from every leaf back to the root. Every edge has non-negative
+weight.
+5 8 17 0 1 23 9 14 42 4 16 7
+A looped tree.
+(a) How much time would Dijkstra’s algorithm require to compute the
+shortest path between two vertices u and v in a looped tree with n
+nodes?
+(b) Describe and analyze a faster algorithm.
+2. Suppose we are given a directed graph G with weighted edges and two
+vertices s and t.
+(a) Describe and analyze an algorithm to find the shortest path from s
+to t when exactly one edge in G has negative weight. [Hint: Modify
+Dijkstra’s algorithm. Or don’t.]
+(b) Describe and analyze an algorithm to find the shortest path from s to t
+when exactly k edges in G have negative weight. How does the running
+time of your algorithm depend on k?
+3. Suppose we are given an undirected graph G in which every vertex has a
+positive weight.
+(a) Describe and analyze an algorithm to find a spanning tree of G with
+minimum total weight. (The total weight of a spanning tree is the sum
+of the weights of its vertices.)
+(b) Describe and analyze an algorithm to find a path in G from one given
+vertex s to another given vertex t with minimum total weight. (The total
+weight of a path is the sum of the weights of its vertices.)
+[Hint: One of these problems is trivial.]
+4. For any edge e in any graph G, let G \ e denote the graph obtained by
+deleting e from G. Suppose we are given a graph G and two vertices s
+and t. The replacement paths problem asks us to compute the shortest-path
+distance from s to t in G \ e, for every edge e of G. The output is an array
+of E distances, one for each edge of G.
+(a) Suppose G is a directed graph, and the shortest path from vertex s to
+vertex t passes through every vertex of G. Describe an algorithm to solve
+this special case of the replacement paths problem in O(E log V) time.
+n(b) Describe an algorithm to solve the replacement paths problem for
+arbitrary undirected graphs in O(E log V) time.
+In both subproblems, you may assume that all edge weights are non-negative.
+```
+
+</details>
+
+**Talimat:**
+
+En kısa yol problemlerindeki halkalı ağaç (looped tree) yapısını ve bu yapı için geliştirilebilecek algoritmaları kısaca özetler misin?
+
+**Cevap:**
+
+Halkalı ağaç, bir ikili ağacın her yaprağından köküne yönlendirilmiş kenarlar eklenmesiyle oluşan ağırlıklı ve yönlendirilmiş bir graf yapısıdır.
+- Bu yapıda kenar ağırlıklarının hepsi negatif olmayan değerlere sahiptir.
+- İki tepe noktası arasındaki en kısa yolu bulmak için Dijkstra algoritması kullanılabilir ancak daha hızlı özel algoritmalar da tasarlanabilir.
+- Ayrıca graf içerisindeki kenar ağırlıklarının ve negatif kenarların durumuna göre en kısa yol problemleri farklı yaklaşımlar gerektirebilir.
+
+## 17. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000009:4:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000009 — Shortest Paths, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Specifically, if v violates this condition but its predecessor pred(v) does
+not, the edge pred(v)→v is tense.
+4. If no edge in G is tense, then for every vertex v, the path of predecessor
+edges s→···→pred(pred(v))→pred(v)→v is in fact a shortest path from s
+to v. Specifically, if v violates this condition but its predecessor u in some
+shortest path does not, the edge u→v is tense. This claim also implies
+that if G has a negative cycle, then some edge is always tense, so the
+generic algorithm never halts.
+So far I haven’t said anything about how to find tense edges, or which tense
+edge(s) to relax if there is more than one. Just like whatever-first search, there
+are several different instantiations of Ford’s generic relaxation algorithm. Unlike
+whatever-first search, however, the efficiency and correctness of each search
+strategy depends on the structure of the input graph.
+The rest of this chapter considers the four most common instantiations
+of Ford’s algorithm, each of which is the best choice for a different class of
+input graphs. I’ll leave the remaining details of the generic correctness proof
+as exercises, and instead give (more informative, self-contained) correctness
+proofs for each of these four specific algorithms.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak Ford'un genel gevşetme algoritması ve gergin kenarlar hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Yukarıdaki metne göre, graf içerisinde hiç gergin (tense) kenar kalmadığı durumda ne söylenebilir?
+A) Graf negatif bir döngüye sahiptir ve algoritma asla sonlanmaz.
+B) Her v düğümü için öncül kenarların yolu s'den v'ye gerçek bir en kısa yol oluşturur.
+C) Ford'un genel algoritması çalışmayı durdurur ancak en kısa yollar bulunamamıştır.
+D) Düğümlerin öncülleri güncellenemez ve tüm kenarlar silinir.
+Doğru şık: B
+Açıklama: Metne göre, graf içinde hiçbir kenar gergin değilse, her v düğümü için s'den başlayan öncül kenar yolları aslında s'den v'ye bir en kısa yoldur. A şıkkı yanlıştır çünkü negatif döngü varsa kenarlar her zaman gergin kalır; C ve D seçenekleri ise metinle uyuşmamaktadır.
+
+## 18. yanlis_cevap_aciklama — bağlamlı (DOC_000009:5:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000009 — Shortest Paths, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+8.4
+Unweighted Graphs: Breadth-First Search
+In the simplest special case of the shortest path problem, all edges have weight 1,
+and the length of a path is just the number of edges. This special case can be
+solved by a species of our generic graph-traversal algorithm called breadth-first
+search. Breadth-first search is often attributed to Edward Moore, who described
+it in 1957 (as “Algorithm A”) as the first published method to find the shortest
+path through a maze.^4 Especially in the context of VLSI wiring and robot path
+planning, breadth-first search is sometimes attributed to Chin Yang Lee, who
+described several applications of Moore’s “Algorithm A” (with proper credit to
+Moore) in 1961. However, in 1945, more than a decade before Moore considered
+mazes, Konrad Zuse described an implementation of breadth-first search, as a
+method to count and label the components of a disconnected graph.^6
+4Moore was motivated by a weakness in Claude Shannon’s maze-solving robot “Theseus”,
+which Shannon designed and constructed in 1950. (Theseus used a memoized version of depth-
+first search, implemented using electromechanical relays; this was almost certainly the first
+implementation of depth-first search in graphs.) According to Moore, “When this machine was
+used with a maze which had more than one solution, a visitor asked why it had not been built
+to always find the shortest path. Shannon and I each attempted to find economical methods
+of doing this by machine. He found several methods suitable for analog computation,^5 and I
+obtained these algorithms.”
+5Analog methods for computing shortest paths through mazes have been proposed using
+ball bearings, fluid/plasma flow, chemical reaction waves, chemotaxis, resistor networks, electric
+circuits with LEDs, memristor networks, glow discharge in microfluidic chips, growing plants,
+slime mold, amoebas, ants, bees, nematodes, and tourists.
+6Konrad Zuse was one of the early pioneers of computing; he designed and built his first
+programmable computer (later dubbed the Z1) in the late 1930s from metal strips and rods in his
+parents’ living room; the Z1 and its original blueprints were destroyed by a British air raid in 1944.
+Zuse’s 1945 PhD thesis describes the very first high-level programming language, called Plankalkül.
+The first complete example of a Plankalkül program in Zuse’s thesis is an implementation of
+breadth-first search to count components, along with a pseudocode explanation and an illustrated
+step-by-step trace of the algorithm’s execution on a disconnected graph with eight vertices. Due
+to the collapse of the Nazi government, Zuse was unable to submit his PhD thesis, and Plankalkül
+remained unpublished until 1972. The first Plankalkül compiler was finally implemented in 1975
+by Joachim Hohmann.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre genişlik öncelikli aramanın en eski bilinçli uygulamasını ilk kim gerçekleştirmiştir sorusuna Claude Shannon cevabını verdim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap Konrad Zuse'dir. Claude Shannon 1950 yılında "Theseus" adlı labirent çözen robotunu tasarlamıştır ve bu robot muhtemelen derinlik öncelikli aramanın (depth-first search) hafızalı bir versiyonunu kullanmıştır. Metne göre genişlik öncelikli aramanın (breadth-first search) ilk uygulaması ise daha erken bir tarihte, 1945 yılında Konrad Zuse tarafından bağlantısız bir grafiğin bileşenlerini saymak ve etiketlemek amacıyla gerçekleştirilmiştir. Dolayısıyla Shannon derinlik öncelikli arama ile ilişkilendirilirken, genişlik öncelikli aramanın ilk uygulaması Zuse'ye aittir.
+
+## 19. algoritma_izleme — bağlamlı (DOC_000012:15:algoritma_izleme)
+
+Kaynak: DOC_000012 — Open Data Structures: Array-Based Lists, passage 15
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The remove(i) operation is similar to add(i,x). It shifts the elements
+with indices i+1,...,n left by one position and then, if there is more than
+one empty block, it calls the shrink() method to remove all but one of the
+unused blocks:
+remove(i)
+x ←get(i)
+for j in i,i + 1,i + 2,...,n −2 do
+set(j,get(j + 1))
+n ←n −1
+r ←blocks.size()
+if (r −2) · (r −1)/2 ≥n then shrink()
+return x
+shrink()
+r ←blocks.size()
+while r > 0 and (r −2) · (r −1)/2 ≥n do
+blocks.remove(blocks.size() −1)
+r ←r −1
+Once again, ignoring the cost of the shrink() operation, the cost of a
+remove(i) operation is dominated by the cost of shifting and is therefore
+O(n −i).
+RootishArrayStack: A Space-Efficient Array Stack
+2.6.1
+Analysis of Growing and Shrinking
+The above analysis of add(i,x) and remove(i) does not account for the cost
+of grow() and shrink(). Note that, unlike the ArrayStack.resize() opera-
+tion, grow() and shrink() do not copy any data. They only allocate or free
+an array of size r. In some environments, this takes only constant time,
+while in others, it may require time proportional to r.
+We note that, immediately after a call to grow() or shrink(), the situ-
+ation is clear. The final block is completely empty, and all other blocks
+are completely full. Another call to grow() or shrink() will not happen
+until at least r−1 elements have been added or removed. Therefore, even
+if grow() and shrink() take O(r) time, this cost can be amortized over at
+least r −1 add(i,x) or remove(i) operations, so that the amortized cost of
+grow() and shrink() is O(1) per operation.
+2.6.2
+Space Usage
+Next, we analyze the amount of extra space used by a RootishArrayStack.
+In particular, we want to count any space used by a RootishArrayStack
+that is not an array element currently used to hold a list element. We call
+all such space wasted space.
+The remove(i) operation ensures that a RootishArrayStack never has
+more than two blocks that are not completely full. The number of blocks,
+r, used by a RootishArrayStack that stores n elements therefore satisfies
+(r −2)(r −1) ≤n .
+Again, using the quadratic equation on this gives
+r ≤(3 +
+√
+1 + 4n)/2 = O(
+√
+n) .
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre r blok sayısına sahip bir RootishArrayStack yapısında shrink() fonksiyonunun nasıl çalıştığını r = 4 ve n = 2 durumu için adım adım izler misin?
+
+**Cevap:**
+
+shrink() fonksiyonu, r > 0 olduğu ve (r - 2) * (r - 1) / 2 >= n koşulu sağlandığı sürece blok listesinin sonundaki boş blokları kaldırmak için çalışır.
+1. Başlangıç durumu: Blok sayısı r = 4 ve eleman sayısı n = 2.
+2. Koşul kontrolü: (4 - 2) * (4 - 1) / 2 = (2 * 3) / 2 = 3. 3 >= 2 olduğu için koşul sağlanır ve döngüye girilir.
+3. Birinci silme adımı: blocks.remove(blocks.size() - 1) çalıştırılarak son blok kaldırılır, r değeri 1 azaltılarak 3 yapılır.
+4. Yeniden koşul kontrolü: r = 3 için (3 - 2) * (3 - 1) / 2 = (1 * 2) / 2 = 1. 1 >= 2 koşulu yanlıştır (1 ≩ 2), bu nedenle döngü sona erer.
+Sonuç: shrink() işlemi tamamlanır ve son blok kaldırıldıktan sonra r = 3 olur.
+
+## 20. kod_okuma — bağlamsız (DOC_000013:12:kod_okuma)
+
+Kaynak: DOC_000013 — Open Data Structures: Linked Lists, passage 12
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Exercise 3.13. This exercise walks you through an implementation of the
+merge-sort algorithm for sorting a DLList, as discussed in Section 11.1.1.
+1. Write a DLList method called take first(l2). This method takes the
+first node from l2 and appends it to the the receiving list. This is
+equivalent to add(size(),l2.remove(0)), except that it should not cre-
+ate a new node.
+2. Write a DLList static method, merge(l1,l2), that takes two sorted
+lists l1 and l2, merges them, and returns a new sorted list containing
+the result. This causes l1 and l2 to be emptied in the proces. For
+example, if l1 contains a,c,d and l2 contains b,e,f , then this method
+returns a new list containing a,b,c,d,e,f .
+3. Write a DLList method sort() that sorts the elements contained in
+the list using the merge sort algorithm. This recursive algorithm
+works in the following way:
+(a) If the list contains 0 or 1 elements then there is nothing to do.
+Otherwise,
+(b) Using the truncate(size()/2) method, split the list into two lists
+of approximately equal length, l1 and l2;
+(c) Recursively sort l1;
+(d) Recursively sort l2; and, finally,
+Discussion and Exercises
+(e) Merge l1 and l2 into a single sorted list.
+The next few exercises are more advanced and require a clear understanding of what happens to the minimum value stored in a Stack or
+Queue as items are added and removed.
+Exercise 3.14. Design and implement a MinStack data structure that can
+store comparable elements and supports the stack operations push(x),
+pop(), and size(), as well as the min() operation, which returns the mini-
+mum value currently stored in the data structure. All operations should
+run in constant time.
+Exercise 3.15. Design and implement a MinQueue data structure that
+can store comparable elements and supports the queue operations add(x),
+remove(), and size(), as well as the min() operation, which returns the
+minimum value currently stored in the data structure. All operations
+should run in constant amortized time.
+Exercise 3.16. Design and implement a MinDeque data structure that
+can store comparable elements and supports all the deque operations
+add first(x), add last(x) remove first(), remove last() and size(), and the
+min() operation, which returns the minimum value currently stored in
+the data structure. All operations should run in constant amortized time.
+The next exercises are designed to test the reader’s understanding of
+the implementation and analysis of the space-efficient SEList:
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki özyinelemeli `sort()` metodu ne yapar?
+```
+sort()
+  if size() <= 1
+    return
+  l1 = truncate(size() / 2)
+  l2 = this
+  l1.sort()
+  l2.sort()
+  merge(l1, l2)
+```
+
+**Cevap:**
+
+Bu sözde kod, bir DLList üzerinde birleştirme sıralaması (merge-sort) algoritmasını çalıştırarak liste elemanlarını sıralar. Liste boyutu 0 veya 1 ise doğrudan döner. Değilse `truncate(size() / 2)` metodu ile listeyi yaklaşık eşit uzunlukta iki parçaya (`l1` ve `l2`) böler, her iki parçayı özyinelemeli olarak sıralar ve son olarak `merge(l1, l2)` metodunu kullanarak bu iki sıralı listeyi tek bir sıralı liste halinde birleştirir.
+
+## 21. konu_ozeti_anlatim — bağlamsız (DOC_000013:4:konu_ozeti_anlatim)
+
+Kaynak: DOC_000013 — Open Data Structures: Linked Lists, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+3.3
+SEList: A Space-Efficient Linked List
+One of the drawbacks of linked lists (besides the time it takes to access
+elements that are deep within the list) is their space usage. Each node in
+a DLList requires an additional two references to the next and previous
+nodes in the list. Two of the fields in a Node are dedicated to maintaining
+the list, and only one of the fields is for storing data!
+An SEList (space-efficient list) reduces this wasted space using a simple idea: Rather than store individual elements in a DLList, we store a
+block (array) containing several items. More precisely, an SEList is parameterized by a block size b. Each individual node in an SEList stores a
+block that can hold up to b + 1 elements.
+For reasons that will become clear later, it will be helpful if we can do
+Deque operations on each block. The data structure that we choose for
+this is a BDeque (bounded deque), derived from the ArrayDeque structure described in Section 2.4. The BDeque differs from the ArrayDeque in
+one small way: When a new BDeque is created, the size of the backing array a is fixed at b+1 and never grows or shrinks. The important property
+of a BDeque is that it allows for the addition or removal of elements at
+either the front or back in constant time. This will be useful as elements
+are shifted from one block to another.
+An SEList is just a doubly-linked list of blocks. In addition to next and
+prev pointers, each node u in an SEList contains a BDeque, u.d.
+3.3.1
+Space Requirements
+An SEList places very tight restrictions on the number of elements in a
+block: Unless a block is the last block, then that block contains at least
+b −1 and at most b + 1 elements. This means that, if an SEList contains n
+elements, then it has at most
+n/(b −1) + 1 = O(n/b)
+blocks. The BDeque for each block contains an array of length b + 1 but,
+for every block except the last, at most a constant amount of space is
+wasted in this array. The remaining memory used by a block is also constant. This means that the wasted space in an SEList is only O(b + n/b).
+By choosing a value of b within a constant factor of ^√n, we can make
+the space-overhead of an SEList approach the ^√n lower bound given in
+Section 2.6.2.
+3.3.2
+Finding Elements
+The first challenge we face with an SEList is finding the list item with a
+given index i. Note that the location of an element consists of two parts:
+1. The node u that contains the block that contains the element with
+index i; and
+2. the index j of the element within its block.
+```
+
+</details>
+
+**Talimat:**
+
+SEList veri yapısının temel mantığını ve blok yönetimini kısaca açıklar mısın?
+
+**Cevap:**
+
+SEList (space-efficient list), bağlı listelerin bellek israfını azaltmak için tasarlanmış bir veri yapısıdır. Bireysel elemanları tek tek DLList düğümleri yerine, b block büyüklüğüne sahip diziler (bloklar) içinde saklar.
+- Her bir düğüm b + 1 elemana kadar tutabilen bir blok içerir ve bu bloklar üzerinde çift yönlü bağlı liste yapısı kurulur.
+- Blok içi işlemler için BDeque (bounded deque) adı verilen, boyutu sabit b + 1 olan ve değişmeyen özel bir yapı kullanılır.
+- SEList, bloklardaki eleman sayısını b - 1 ile b + 1 arasında tutarak n eleman için en fazla O(n/b) blok olmasını sağlar ve bellek etkinliği elde eder.
+
+## 22. kod_okuma — bağlamsız (DOC_000013:5:kod_okuma)
+
+Kaynak: DOC_000013 — Open Data Structures: Linked Lists, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+To find the block that contains a particular element, we proceed the
+same way as we do in a DLList. We either start at the front of the list and
+traverse in the forward direction, or at the back of the list and traverse
+backwards until we reach the node we want. The only difference is that,
+each time we move from one node to the next, we skip over a whole block
+of elements.
+get location(i)
+if i < ndiv2 then
+u ←dummy.next
+while i ≥u.d.size() do
+i ←i −u.d.size()
+u ←u.next
+return u,i
+else
+u ←dummy
+idx ←n
+while i < idx do
+u ←u.prev
+idx ←idx −u.d.size()
+return u,i −idx
+Remember that, with the exception of at most one block, each block
+contains at least b −1 elements, so each step in our search gets us b −1
+elements closer to the element we are looking for. If we are searching
+forward, this means that we reach the node we want after O(1 + i/b)
+steps. If we search backwards, then we reach the node we want after
+O(1+(n−i)/b) steps. The algorithm takes the smaller of these two quantities depending on the value of i, so the time to locate the item with index
+i is O(1 + min{i,n −i}/b).
+Once we know how to locate the item with index i, the get(i) and
+set(i,x) operations translate into getting or setting a particular index in
+the correct block:
+get(i)
+u,j ←get location(i)
+return u.d.get(j)
+set(i,x)
+u,j ←get location(i)
+return u.d.set(j,x)
+The running times of these operations are dominated by the time it
+takes to locate the item, so they also run in O(1 + min{i,n −i}/b) time.
+3.3.3
+Adding an Element
+Adding elements to an SEList is a little more complicated. Before considering the general case, we consider the easier operation, add(x), in which
+x is added to the end of the list. If the last block is full (or does not exist
+because there are no blocks yet), then we first allocate a new block and
+append it to the list of blocks. Now that we are sure that the last block
+exists and is not full, we append x to the last block.
+append(x)
+last ←dummy.prev
+if last = dummy or last.d.size() = b + 1 then
+last ←add before(dummy)
+last.d.append(x)
+n ←n + 1
+Things get more complicated when we add to the interior of the list
+using add(i,x). We first locate i to get the node u whose block contains the
+ith list item. The problem is that we want to insert x into u’s block, but
+we have to be prepared for the case where u’s block already contains b+1
+elements, so that it is full and there is no room for x.
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki sözde kod ne yapar? `get(i)` fonksiyonu nasıl çalışır?
+```
+get(i)
+u,j ←get location(i)
+return u.d.get(j)
+```
+
+**Cevap:**
+
+Fonksiyon, `i` indeksine sahip elemanı almak için kullanılır. İlk olarak `get location(i)` çağrısı ile `i` indeksli elemanı içeren düğüm `u` ve o blok içindeki yerel indeks `j` bulunur. Ardından, `u.d.get(j)` çağrısı ile doğru bloktaki ilgili eleman döndürülür.
+
+## 23. kod_okuma — bağlamlı (DOC_000013:6:kod_okuma)
+
+Kaynak: DOC_000013 — Open Data Structures: Linked Lists, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Let u0,u1,u2,... denote u, u.next, u.next.next, and so on. We explore
+u0,u1,u2,... looking for a node that can provide space for x. Three cases
+a b c d e f g h i j ··· ··· a x b c d e f g h i ··· ··· j a b c d e f g h ··· a x b c d e f g h ··· a b c d e f g h i j ··· ··· a x b c d e f g h ··· i k l ··· j k l
+Figure 3.4: The three cases that occur during the addition of an item x in the
+interior of an SEList. (This SEList has block size b = 3.)
+can occur during our space exploration (see Figure 3.4):
+1. We quickly (in r +1 ≤b steps) find a node ur whose block is not full.
+In this case, we perform r shifts of an element from one block into
+the next, so that the free space in ur becomes a free space in u0. We
+can then insert x into u0’s block.
+2. We quickly (in r +1 ≤b steps) run off the end of the list of blocks. In
+this case, we add a new empty block to the end of the list of blocks
+and proceed as in the first case.
+3. After b steps we do not find any block that is not full. In this case,
+u0,...,ub−1 is a sequence of b blocks that each contain b+1 elements.
+We insert a new block ub at the end of this sequence and spread the
+original b(b + 1) elements so that each block of u0,...,ub contains
+exactly b elements. Now u0’s block contains only b elements so it
+has room for us to insert x.
+add(i,x)
+if i = n then
+append(x)
+return
+u,j ←get location(i)
+r ←0
+w ←u
+while r < b and w ≠ dummy and w.d.size() = b + 1 do
+w ←w.next
+r ←r + 1
+if r = b then # b blocks, each with b+1 elements
+spread(u)
+w ←u
+if w = dummy then # ran off the end - add new node
+w ←add before(w)
+while w ≠ u do # work backwards, shifting elements as we go
+w.d.add first(w.prev.d.remove last())
+w ←w.prev
+w.d.add(j,x)
+n ←n + 1
+The running time of the add(i,x) operation depends on which of the
+three cases above occurs. Cases 1 and 2 involve examining and shifting
+elements through at most b blocks and take O(b) time. Case 3 involves
+calling the spread(u) method, which moves b(b + 1) elements and takes
+O(b^2) time. If we ignore the cost of Case 3 (which we will account for
+later with amortization) this means that the total running time to locate i
+and perform the insertion of x is O(b + min{i,n −i}/b).
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, SEList içine eleman eklerken (add(i,x)) üçüncü durum (Case 3) gerçekleştiğinde çalışan ve b(b + 1) elemanı dağıtan metodun adı nedir ve bu durum ne kadar sürede çalışır?
+
+```text
+if r = b then # b blocks, each with b+1 elements
+    spread(u)
+    w <- u
+```
+
+**Cevap:**
+
+Bu durumda çağrılan metodun adı `spread(u)`'dur. Bu metod b(b + 1) elemanı hareket ettirir ve O(b^2) sürede çalışır.
+
+## 24. karsilastirma — bağlamsız (DOC_000014:0:karsilastirma)
+
+Kaynak: DOC_000014 — Open Data Structures: Skiplists, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Chapter 4
+In this chapter, we discuss a beautiful data structure: the skiplist, which
+has a variety of applications. Using a skiplist we can implement a List
+that has O(logn) time implementations of get(i), set(i,x), add(i,x), and
+remove(i). We can also implement an SSet in which all operations run in
+O(logn) expected time.
+The efficiency of skiplists relies on their use of randomization. When
+a new element is added to a skiplist, the skiplist uses random coin tosses
+to determine the height of the new element. The performance of skiplists
+is expressed in terms of expected running times and path lengths. This
+expectation is taken over the random coin tosses used by the skiplist. In
+the implementation, the random coin tosses used by a skiplist are simulated using a pseudo-random number (or bit) generator.
+4.1
+The Basic Structure
+Conceptually, a skiplist is a sequence of singly-linked lists L0,...,Lh. Each
+list Lr contains a subset of the items in Lr−1. We start with the input list
+L0 that contains n items and construct L1 from L0, L2 from L1, and so on.
+The items in Lr are obtained by tossing a coin for each element, x, in Lr−1
+and including x in Lr if the coin turns up as heads. This process ends
+when we create a list Lr that is empty. An example of a skiplist is shown
+in Figure 4.1.
+For an element, x, in a skiplist, we call the height of x the largest value
+0 1 2 3 4 5 6
+sentinel
+L0 L1 L2 L3 L4 L5
+Figure 4.1: A skiplist containing seven elements.
+r such that x appears in Lr. Thus, for example, elements that only appear
+in L0 have height 0. If we spend a few moments thinking about it, we
+notice that the height of x corresponds to the following experiment: Toss
+a coin repeatedly until it comes up as tails. How many times did it come
+up as heads? The answer, not surprisingly, is that the expected height of
+a node is 1. (We expect to toss the coin twice before getting tails, but we
+don’t count the last toss.) The height of a skiplist is the height of its tallest
+node.
+At the head of every list is a special node, called the sentinel, that acts
+as a dummy node for the list. The key property of skiplists is that there is
+a short path, called the search path, from the sentinel in Lh to every node
+in L0. Remembering how to construct a search path for a node, u, is easy
+(see Figure 4.2) : Start at the top left corner of your skiplist (the sentinel
+in Lh) and always go right unless that would overshoot u, in which case
+you should take a step down into the list below.
+```
+
+</details>
+
+**Talimat:**
+
+Atlama listesi (skiplist) yapısının özünde yer alan L0 listesi ile sonraki Lr listeleri arasındaki ilişkiyi açıklar mısın?
+
+**Cevap:**
+
+L0 listesi n adet eleman içeren girdi listesidir. Sonraki Lr listeleri ise bir önceki Lr-1 listesinden türetilir; Lr-1 içindeki her bir eleman için para atılır ve tura gelirse o eleman Lr listesine de dahil edilir. Bu süreç, oluşturulan Lr listesi boş kalana kadar devam eder.
+
+## 25. hata_bulma — bağlamlı (DOC_000014:1:hata_bulma)
+
+Kaynak: DOC_000014 — Open Data Structures: Skiplists, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+More precisely, to construct the search path for the node u in L0, we
+start at the sentinel, w, in Lh. Next, we examine w.next. If w.next contains
+an item that appears before u in L0, then we set w = w.next. Otherwise,
+we move down and continue the search at the occurrence of w in the list
+Lh−1. We continue this way until we reach the predecessor of u in L0.
+The following result, which we will prove in Section 4.4, shows that
+the search path is quite short:
+Lemma 4.1. The expected length of the search path for any node, u, in L0 is
+at most 2logn + O(1) = O(logn).
+A space-efficient way to implement a skiplist is to define a Node, u,
+SkiplistSSet: An Efficient SSet
+0 1 2 3 4 5 6
+sentinel
+L0 L1 L2 L3 L4 L5
+Figure 4.2: The search path for the node containing 4 in a skiplist.
+as consisting of a data value, x, and an array, next, of pointers, where
+u.next[i] points to u’s successor in the list Li. In this way, the data, x, in a
+node is referenced only once, even though x may appear in several lists.
+The next two sections of this chapter discuss two different applications of skiplists. In each of these applications, L0 stores the main structure (a list of elements or a sorted set of elements). The primary difference
+between these structures is in how a search path is navigated; in partic-
+ular, they differ in how they decide if a search path should go down into
+Lr−1 or go right within Lr.
+4.2
+SkiplistSSet: An Efficient SSet
+A SkiplistSSet uses a skiplist structure to implement the SSet interface.
+When used in this way, the list L0 stores the elements of the SSet in sorted
+order. The find(x) method works by following the search path for the
+smallest value y such that y ≥x:
+find pred node(x)
+u ←sentinel
+r ←h
+while r ≥0 do
+while u.next[r] ≠ nil and u.next[r].x < x do
+u ←u.next[r] # go right in list r
+r ←r −1 # go down into list r-1
+return u
+find(x)
+u ←find pred node(x)
+if u.next[0] = nil then return nil
+return u.next[0].x
+Following the search path for y is easy: when situated at some node,
+u, in Lr, we look right to u.next[r].x. If x > u.next[r].x, then we take a step
+to the right in Lr; otherwise, we move down into Lr−1. Each step (right or
+down) in this search takes only constant time; thus, by Lemma 4.1, the
+expected running time of find(x) is O(logn).
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre verilen `find_pred_node(x)` sözde kodunda arama döngüsü sonsuz döngüye girebiliyor, hata nerede?
+```
+find pred node(x)
+u <- sentinel
+r <- h
+while r >= 0 do
+    while u.next[r] != nil and u.next[r].x < x do
+        u <- u.next[r]
+    r <- r + 1
+return u
+```
+
+**Cevap:**
+
+Hatalı satır `r <- r + 1`: arama sırasında üst listelerden alt listelere inilmesi gerekirken r indeksi artırılıyor ve bu da yüksek seviyelerde sonsuz döngüye veya sınır dışı hatasına yol açar. `r` değeri her adımda azaltılmalıdır. Düzeltilmiş satır: `r <- r - 1`.
+
+## 26. kod_okuma — bağlamlı (DOC_000014:2:kod_okuma)
+
+Kaynak: DOC_000014 — Open Data Structures: Skiplists, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Before we can add an element to a SkipListSSet, we need a method to
+simulate tossing coins to determine the height, k, of a new node. We do
+so by picking a random integer, z, and counting the number of trailing 1s
+in the binary representation of z:^1
+pick height()
+z ←random.getrandbits(32)
+k ←0
+while z ∧1 do
+k ←k + 1
+z ←zdiv2
+return k
+To implement the add(x) method in a SkiplistSSet we search for x
+and then splice x into a few lists L0,. . . ,Lk, where k is selected using the
+pick height() method. The easiest way to do this is to use an array, stack,
+that keeps track of the nodes at which the search path goes down from
+some list Lr into Lr−1. More precisely, stack[r] is the node in Lr where
+the search path proceeded down into Lr−1. The nodes that we modify to
+insert x are precisely the nodes stack[0],...,stack[k]. The following code
+implements this algorithm for add(x):
+1This method does not exactly replicate the coin-tossing experiment since the value of k
+will always be less than the number of bits in an int. However, this will have negligible im-
+pact unless the number of elements in the structure is much greater than 2^{32} = 4294967296.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, aşağıdaki kod parçası ne yapar ve `pick_height()` fonksiyonundaki mantık yüksekliği belirlemek için neyi sayar?
+```
+pick height()
+z ←random.getrandbits(32)
+k ←0
+while z ∧1 do
+k ←k + 1
+z ←zdiv2
+return k
+```
+
+**Cevap:**
+
+Bu fonksiyon, yeni bir düğümün yüksekliğini (k) belirlemek için madeni para atma deneyini simüle eder. Rastgele 32 bitlik bir `z` tamsayısı seçer ve `z`'nin ikili (binary) gösterimindeki sondan gelen (trailing) 1'lerin sayısını sayarak `k` yüksekliğini hesaplar.
+
+## 27. hata_bulma — bağlamsız (DOC_000015:0:hata_bulma)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Chapter 5
+Hash tables are an efficient method of storing a small number, n, of inte-
+gers from a large range U = {0,...,2^w −1}. The term hash table includes a
+broad range of data structures. The first part of this chapter focuses on
+two of the most common implementations of hash tables: hashing with
+chaining and linear probing.
+Very often hash tables store types of data that are not integers. In this
+case, an integer hash code is associated with each data item and is used in
+the hash table. The second part of this chapter discusses how such hash
+codes are generated.
+Some of the methods used in this chapter require random choices of
+integers in some specific range. In the code samples, some of these “random” integers are hard-coded constants. These constants were obtained
+using random bits generated from atmospheric noise.
+5.1
+ChainedHashTable: Hashing with Chaining
+A ChainedHashTable data structure uses hashing with chaining to store
+data as an array, t, of lists. An integer, n, keeps track of the total number
+of items in all lists (see Figure 5.1):
+initialize()
+d ←1
+t ←alloc table(2^d)
+b d c i x h j g a f m e ℓ k 0 1 2 3 4 5 6 7 8
+9 10 11 12 13 14 15
+t
+Figure 5.1: An example of a ChainedHashTable with n = 14 and length(t) = 16. In
+this example hash(x) = 6
+z ←random odd int()
+n ←0
+The hash value of a data item x, denoted hash(x) is a value in the range
+{0,...,length(t)−1}. All items with hash value i are stored in the list at t[i].
+To ensure that lists don’t get too long, we maintain the invariant
+n ≤length(t)
+so that the average number of elements stored in one of these lists is
+n/length(t) ≤1.
+To add an element, x, to the hash table, we first check if the length of
+t needs to be increased and, if so, we grow t. With this out of the way we
+hash x to get an integer, i, in the range {0,...,length(t)−1}, and we append
+x to the list t[i]:
+add(x)
+if find(x) ≠ nil then return false
+if n + 1 > length(t) then resize()
+t[hash(x)].append(x)
+n ←n + 1
+return true
+Growing the table, if necessary, involves doubling the length of t and
+reinserting all elements into the new table. This strategy is exactly the
+same as the one used in the implementation of ArrayStack and the same
+ChainedHashTable: Hashing with Chaining
+result applies: The cost of growing is only constant when amortized over
+a sequence of insertions (see Lemma 2.1 on page 35).
+```
+
+</details>
+
+**Talimat:**
+
+Bu tablo büyütme algoritması tablonun boyutunu ayarlarken bazı durumlarda yanlış çalışıyor, hata nerede?
+```
+add(x)
+if find(x) != nil then return false
+if n > length(t) then resize()
+t[hash(x)].append(x)
+n = n + 1
+return true
+```
+
+**Cevap:**
+
+Hatalı satır `if n > length(t) then resize()`: koşul eksik eleman sayısını hesaba katmaktadır. Yeni eklenecek elemanla birlikte toplam sayının tablonun kapasitesini aşıp aşmadığı kontrol edilmelidir, aksi takdirde `n <= length(t)` değişmezliği bozulur. Doğru satır şu şekilde olmalıdır: `if n + 1 > length(t) then resize()`.
+
+## 28. kod_okuma — bağlamsız (DOC_000015:0:kod_okuma)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Chapter 5
+Hash tables are an efficient method of storing a small number, n, of inte-
+gers from a large range U = {0,...,2^w −1}. The term hash table includes a
+broad range of data structures. The first part of this chapter focuses on
+two of the most common implementations of hash tables: hashing with
+chaining and linear probing.
+Very often hash tables store types of data that are not integers. In this
+case, an integer hash code is associated with each data item and is used in
+the hash table. The second part of this chapter discusses how such hash
+codes are generated.
+Some of the methods used in this chapter require random choices of
+integers in some specific range. In the code samples, some of these “random” integers are hard-coded constants. These constants were obtained
+using random bits generated from atmospheric noise.
+5.1
+ChainedHashTable: Hashing with Chaining
+A ChainedHashTable data structure uses hashing with chaining to store
+data as an array, t, of lists. An integer, n, keeps track of the total number
+of items in all lists (see Figure 5.1):
+initialize()
+d ←1
+t ←alloc table(2^d)
+b d c i x h j g a f m e ℓ k 0 1 2 3 4 5 6 7 8
+9 10 11 12 13 14 15
+t
+Figure 5.1: An example of a ChainedHashTable with n = 14 and length(t) = 16. In
+this example hash(x) = 6
+z ←random odd int()
+n ←0
+The hash value of a data item x, denoted hash(x) is a value in the range
+{0,...,length(t)−1}. All items with hash value i are stored in the list at t[i].
+To ensure that lists don’t get too long, we maintain the invariant
+n ≤length(t)
+so that the average number of elements stored in one of these lists is
+n/length(t) ≤1.
+To add an element, x, to the hash table, we first check if the length of
+t needs to be increased and, if so, we grow t. With this out of the way we
+hash x to get an integer, i, in the range {0,...,length(t)−1}, and we append
+x to the list t[i]:
+add(x)
+if find(x) ≠ nil then return false
+if n + 1 > length(t) then resize()
+t[hash(x)].append(x)
+n ←n + 1
+return true
+Growing the table, if necessary, involves doubling the length of t and
+reinserting all elements into the new table. This strategy is exactly the
+same as the one used in the implementation of ArrayStack and the same
+ChainedHashTable: Hashing with Chaining
+result applies: The cost of growing is only constant when amortized over
+a sequence of insertions (see Lemma 2.1 on page 35).
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki sözde kod ne yapar?
+```
+add(x)
+if find(x) != nil then return false
+if n + 1 > length(t) then resize()
+t[hash(x)].append(x)
+n = n + 1
+return true
+```
+
+**Cevap:**
+
+Fonksiyon, hash tablosuna yeni bir x elemanı ekler. Önce `find(x)` ile elemanın tabloda olup olmadığını kontrol eder; varsa eklemeden false döndürür. Eğer toplam eleman sayısı tablo uzunluğunu aşacaksa `resize()` ile tabloyu büyütür. Ardından `hash(x)` ile elemanın ait olduğu indeksi bulup ilgili listeye `x`'i ekler, eleman sayısını (`n`) bir artırır ve true döndürür.
+
+## 29. kavram_aciklama — bağlamlı (DOC_000015:18:kavram_aciklama)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 18
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The multiply-add hashing method uses the function
+h(x) = ((zx + b) mod 2^{2w})div2^{2w−d}
+where z and b are each randomly chosen from {0,...,2^{2w}−1}. Multiply-add
+hashing has a collision probability of only 1/2^d [21], but requires 2w-bit
+precision arithmetic.
+There are a number of methods of obtaining hash codes from fixed-length sequences of w-bit integers. One particularly fast method [11] is
+the function
+h(x0,...,xr−1)
+=
+(∑r/2−1
+i=0 ^{((x2i + a2i) mod 2w)((x2i+1 + a2i+1) mod 2w)}
+)
+mod 2^{2w}
+where r is even and a0,...,ar−1 are randomly chosen from {0,...,2^w}. This
+yields a 2w-bit hash code that has collision probability 1/2^w. This can
+be reduced to a w-bit hash code using multiplicative (or multiply-add)
+hashing. This method is fast because it requires only r/2 2w-bit multiplications whereas the method described in Section 5.3.2 requires r multiplications. (The mod operations occur implicitly by using w and 2w-bit
+arithmetic for the additions and multiplications, respectively.)
+The method from Section 5.3.3 of using polynomials over prime fields
+to hash variable-length arrays and strings is due to Dietzfelbinger et al.
+[22]. Due to its use of the mod operator which relies on a costly machine instruction, it is, unfortunately, not very fast. Some variants of this
+method choose the prime p to be one of the form 2^w −1, in which case
+the mod operator can be replaced with addition (+) and bitwise-and (∧)
+operations [47, Section 3.6]. Another option is to apply one of the fast
+methods for fixed-length strings to blocks of length c for some constant
+c > 1 and then apply the prime field method to the resulting sequence of
+⌈r/c⌉hash codes.
+Exercise 5.1. A certain university assigns each of its students student
+numbers the first time they register for any course. These numbers are
+sequential integers that started at 0 many years ago and are now in the
+millions. Suppose we have a class of one hundred first year students and
+we want to assign them hash codes based on their student numbers. Does
+it make more sense to use the first two digits or the last two digits of their
+student number? Justify your answer.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre multiply-add hashing yöntemi nasıl çalışır ve çarpışma olasılığı nedir?
+
+**Cevap:**
+
+Multiply-add hashing yöntemi, z ve b rastgele seçilmiş sayılar olmak üzere h(x) = ((zx + b) mod 2^{2w}) div 2^{2w−d} fonksiyonunu kullanan bir hashing yöntemidir. Bu yöntem 2w-bit hassasiyetli aritmetik gerektirir ve oldukça düşük bir çarpışma olasılığına sahiptir; bu olasılık yalnızca 1 / 2^d kadardır.
+
+## 30. konu_ozeti_anlatim — bağlamlı (DOC_000015:5:konu_ozeti_anlatim)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+5.1.2
+Summary
+The following theorem summarizes the performance of a ChainedHash-
+Table data structure:
+Theorem 5.1. A ChainedHashTable implements the USet interface. Ignor-
+ing the cost of calls to grow(), a ChainedHashTable supports the operations
+add(x), remove(x), and find(x) in O(1) expected time per operation.
+Furthermore, beginning with an empty ChainedHashTable, any sequence
+of m add(x) and remove(x) operations results in a total of O(m) time spent
+during all calls to grow().
+5.2
+LinearHashTable: Linear Probing
+The ChainedHashTable data structure uses an array of lists, where the
+ith list stores all elements x such that hash(x) = i. An alternative, called
+open addressing is to store the elements directly in an array, t, with each
+array location in t storing at most one value. This approach is taken by
+the LinearHashTable described in this section. In some places, this data
+structure is described as open addressing with linear probing.
+The main idea behind a LinearHashTable is that we would, ideally,
+like to store the element x with hash value i ←hash(x) in the table lo-
+cation t[i]. If we cannot do this (because some element is already stored
+there) then we try to store it at location t[(i + 1) mod length(t)]; if that’s
+not possible, then we try t[(i + 2) mod length(t)], and so on, until we find
+a place for x.
+LinearHashTable: Linear Probing
+There are three types of entries stored in t:
+1. data values: actual values in the USet that we are representing;
+2. nil values: at array locations where no data has ever been stored;
+and
+3. del values: at array locations where data was once stored but that
+has since been deleted.
+In addition to the counter, n, that keeps track of the number of elements
+in the LinearHashTable, a counter, q, keeps track of the number of elements of Types 1 and 3. That is, q is equal to n plus the number of del
+values in t. To make this work efficiently, we need t to be considerably
+larger than q, so that there are lots of nil values in t. The operations on a
+LinearHashTable therefore maintain the invariant that length(t) ≥2q.
+```
+
+</details>
+
+**Talimat:**
+
+Bu metinde anlatılan LinearHashTable ve doğrusal yoklama (linear probing) mantığını sade bir dille özetler misin?
+
+**Cevap:**
+
+LinearHashTable, verileri doğrudan bir t dizisinde saklayan açık adresleme tabanlı bir hash tablosudur. İdeal olarak x elemanını t[i] konumuna yerleştirmek isteriz; eğer o konum doluysa sırasıyla t[(i + 1) mod length(t)], t[(i + 2) mod length(t)] şeklinde boş bir yer bulana kadar ilerleriz. Dizide veri değerleri (data), hiç kullanılmamış boş yerler (nil) ve daha önce silinmiş verilerin yerini gösteren (del) olmak üzere üç tür giriş bulunur. Tablonun verimli çalışabilmesi için n eleman sayısına ek olarak silinenleri de içeren q sayacı takip edilir ve her zaman length(t) >= 2q koşulu korunur.
+
+## 31. kavram_aciklama — bağlamlı (DOC_000015:6:kavram_aciklama)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+To summarize, a LinearHashTable contains an array, t, that stores data
+elements, and integers n and q that keep track of the number of data elements and non-nil values of t, respectively. Because many hash functions
+only work for table sizes that are a power of 2, we also keep an integer d
+and maintain the invariant that length(t) = 2^d.
+initialize()
+del ←object()
+initialize()
+d ←1
+t ←new array(2^d)
+q ←0
+n ←0
+The find(x) operation in a LinearHashTable is simple. We start at array
+entry t[i] where i = hash(x) and search entries t[i], t[(i + 1) mod length(t)],
+t[(i + 2) mod length(t)], and so on, until we find an index i′ such that,
+either, t[i′] ←x, or t[i′] ←nil. In the former case we return t[i′]. In
+the latter case, we conclude that x is not contained in the hash table and
+return nil.
+find(x)
+i ←hash(x)
+while t[i] ≠ nil do
+if t[i] ≠ del and x = t[i] then
+return t[i]
+i ←(i + 1) mod length(t)
+The add(x) operation is also fairly easy to implement. After checking
+that x is not already stored in the table (using find(x)), we search t[i],
+t[(i + 1) mod length(t)], t[(i + 2) mod length(t)], and so on, until we find a
+nil or del and store x at that location, increment n, and q, if appropriate.
+add(x)
+if find(x) ≠ nil then return false
+if 2 · (q + 1) > length(t) then resize()
+i ←hash(x)
+while t[i] ≠ nil and t[i] ≠ del do
+i ←(i + 1) mod length(t)
+if t[i] = nil then q ←q + 1
+n ←n + 1
+t[i] ←x
+return true
+By now, the implementation of the remove(x) operation should be obvious. We search t[i], t[(i + 1) mod length(t)], t[(i + 2) mod length(t)], and
+so on until we find an index i′ such that t[i′] ←x or t[i′] ←nil. In the for-
+mer case, we set t[i′] ←del and return true. In the latter case we conclude
+that x was not stored in the table (and therefore cannot be deleted) and
+return false.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre LinearHashTable veri yapısı içinde tutulan `n`, `q` ve `d` değişkenleri neyi ifade eder?
+
+**Cevap:**
+
+LinearHashTable, veri elemanlarını saklayan `t` dizisini ve tablonun durumunu takip eden tamsayıları barındırır. `n` değişkeni tablodaki toplam veri elemanı sayısını tutar. `q` değişkeni ise `t` dizisindeki silinmiş elemanlar hariç boş olmayan (`non-nil`) değerlerin sayısını takip eder. `d` değişkeni ise tablonun boyutunun ikinin katı olmasını sağlamak için tutulur ve `length(t) = 2^d` değişmezini korur.
+
+## 32. kod_okuma — bağlamsız (DOC_000015:6:kod_okuma)
+
+Kaynak: DOC_000015 — Open Data Structures: Hash Tables, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+To summarize, a LinearHashTable contains an array, t, that stores data
+elements, and integers n and q that keep track of the number of data elements and non-nil values of t, respectively. Because many hash functions
+only work for table sizes that are a power of 2, we also keep an integer d
+and maintain the invariant that length(t) = 2^d.
+initialize()
+del ←object()
+initialize()
+d ←1
+t ←new array(2^d)
+q ←0
+n ←0
+The find(x) operation in a LinearHashTable is simple. We start at array
+entry t[i] where i = hash(x) and search entries t[i], t[(i + 1) mod length(t)],
+t[(i + 2) mod length(t)], and so on, until we find an index i′ such that,
+either, t[i′] ←x, or t[i′] ←nil. In the former case we return t[i′]. In
+the latter case, we conclude that x is not contained in the hash table and
+return nil.
+find(x)
+i ←hash(x)
+while t[i] ≠ nil do
+if t[i] ≠ del and x = t[i] then
+return t[i]
+i ←(i + 1) mod length(t)
+The add(x) operation is also fairly easy to implement. After checking
+that x is not already stored in the table (using find(x)), we search t[i],
+t[(i + 1) mod length(t)], t[(i + 2) mod length(t)], and so on, until we find a
+nil or del and store x at that location, increment n, and q, if appropriate.
+add(x)
+if find(x) ≠ nil then return false
+if 2 · (q + 1) > length(t) then resize()
+i ←hash(x)
+while t[i] ≠ nil and t[i] ≠ del do
+i ←(i + 1) mod length(t)
+if t[i] = nil then q ←q + 1
+n ←n + 1
+t[i] ←x
+return true
+By now, the implementation of the remove(x) operation should be obvious. We search t[i], t[(i + 1) mod length(t)], t[(i + 2) mod length(t)], and
+so on until we find an index i′ such that t[i′] ←x or t[i′] ←nil. In the for-
+mer case, we set t[i′] ←del and return true. In the latter case we conclude
+that x was not stored in the table (and therefore cannot be deleted) and
+return false.
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki `find(x)` fonksiyonu ne yapar? Açıklar mısın?
+```
+find(x)
+i ←hash(x)
+while t[i] ≠ nil do
+if t[i] ≠ del and x = t[i] then
+return t[i]
+i ←(i + 1) mod length(t)
+```
+
+**Cevap:**
+
+Fonksiyon, LinearHashTable içinde verilen `x` elemanını arar. `hash(x)` ile hesaplanan başlangıç indeksinden `t[i]` konumundan başlar; eğer hücre boş değilse (`t[i] ≠ nil`) ve silinmiş işaretçi değilse (`t[i] ≠ del`) elemanı kontrol eder. Eğer eleman bulunursa onu döndürür; aksi takdirde doğrusal olarak tablodaki sonraki konuma (`(i + 1) mod length(t)`) ilerler. Hücre `nil` olduğunda arama sonlanır ve `x` tabloda yok demektir.
+
+## 33. hata_bulma — bağlamsız (DOC_000016:4:hata_bulma)
+
+Kaynak: DOC_000016 — Open Data Structures: Binary Trees, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The search terminates when Case 3 occurs or when u ←nil. In the former
+case, we found x. In the latter case, we conclude that x is not in the binary
+search tree.
+find eq(x)
+w ←r
+while w ≠ nil do
+if x < w.x then
+w ←w.lef t
+else if x > w.x
+w ←w.right
+else
+return w.x
+return nil
+BinarySearchTree: An Unbalanced Binary Search Tree
+Two examples of searches in a binary search tree are shown in Figure 6.6. As the second example shows, even if we don’t find x in the tree,
+we still gain some valuable information. If we look at the last node, u, at
+which Case 1 occurred, we see that u.x is the smallest value in the tree
+that is greater than x. Similarly, the last node at which Case 2 occurred
+contains the largest value in the tree that is less than x. Therefore, by
+keeping track of the last node, z, at which Case 1 occurs, a BinarySearch-
+Tree can implement the find(x) operation that returns the smallest value
+stored in the tree that is greater than or equal to x:
+find(x)
+w ←r
+z ←nil
+while w ≠ nil do
+if x < w.x then
+z ←w
+w ←w.lef t
+else if x > w.x
+w ←w.right
+else
+return w.x
+if z = nil then return nil
+return z.x
+6.2.2
+Addition
+To add a new value, x, to a BinarySearchTree, we first search for x. If we
+find it, then there is no need to insert it. Otherwise, we store x at a leaf
+child of the last node, p, encountered during the search for x. Whether the
+new node is the left or right child of p depends on the result of comparing
+x and p.x.
+add(x)
+p ←find last(x)
+1 4 6 12 14 13 3 5 7 11 9 8 1 4 6 12 14 13 3 5 7 11 9 8 (a) (b)
+Figure 6.6: An example of (a) a successful search (for 6) and (b) an unsuccessful
+search (for 10) in a binary search tree.
+```
+
+</details>
+
+**Talimat:**
+
+İkili arama ağacında (BinarySearchTree) arama yaparken kullanılan aşağıdaki `find_eq(x)` fonksiyonu bazı durumlarda doğru çalışmıyor, hata nerede?
+```
+find_eq(x)
+w ←r
+while w ≠ nil do
+if x < w.x then
+w ←w.left
+else if x > w.x
+w ←w.right
+else
+return w.x
+return 0
+```
+
+**Cevap:**
+
+Hatalı satır `return 0`: aranan değer ağaçta bulunamadığında (`w` nil olduğunda) dönmesi gereken değer yanlış verilmiştir. Ağaçta `nil` dönmesi gerekirken fonksiyon 0 döndürmektedir, bu da aranan değerin bulunamadığı durumlar ile ağaçta anahtarı 0 olan bir düğümün bulunduğu durumların karışmasına yol açabilir. Düzeltilmiş satır `return nil` olmalıdır.
+
+## 34. karsilastirma — bağlamsız (DOC_000017:5:karsilastirma)
+
+Kaynak: DOC_000017 — Open Data Structures: Random Binary Search Trees, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+7.2
+Treap: A Randomized Binary Search Tree
+The problem with random binary search trees is, of course, that they
+are not dynamic. They don’t support the add(x) or remove(x) operations
+needed to implement the SSet interface. In this section we describe a
+data structure called a Treap that uses Lemma 7.1 to implement the SSet
+interface.^2
+A node in a Treap is like a node in a BinarySearchTree in that it has
+a data value, x, but it also contains a unique numerical priority, p, that is
+assigned at random: In addition to being a binary search tree, the nodes
+in a Treap also obey the heap property:
+• (Heap Property) At every node u, except the root, u.parent.p < u.p.
+In other words, each node has a priority smaller than that of its two children. An example is shown in Figure 7.5.
+The heap and binary search tree conditions together ensure that, once
+the key (x) and priority (p) for each node are defined, the shape of the
+Treap is completely determined. The heap property tells us that the node
+with minimum priority has to be the root, r, of the Treap. The binary
+search tree property tells us that all nodes with keys smaller than r.x are
+stored in the subtree rooted at r.left and all nodes with keys larger than
+r.x are stored in the subtree rooted at r.right.
+The important point about the priority values in a Treap is that they
+are unique and assigned at random. Because of this, there are two equivalent ways we can think about a Treap. As defined above, a Treap obeys
+2The names Treap comes from the fact that this data structure is simultaneously a binary
+search tree (Section 6.2) and a heap (Chapter 10).
+6,42
+0,9
+1,6
+2,99
+3,1
+5,11
+4,14
+7,22
+9,17
+8,49
+Figure 7.5: An example of a Treap containing the integers 0,...,9. Each node, u,
+is illustrated as a box containing u.x,u.p.
+the heap and binary search tree properties. Alternatively, we can think
+of a Treap as a BinarySearchTree whose nodes were added in increasing
+order of priority. For example, the Treap in Figure 7.5 can be obtained by
+adding the sequence of (x,p) values
+⟨(3,1),(1,6),(0,9),(5,11),(4,14),(9,17),(7,22),(6,42),(8,49),(2,99)⟩
+into a BinarySearchTree.
+```
+
+</details>
+
+**Talimat:**
+
+Treap veri yapısını eşdeğer iki farklı bakış açısıyla nasıl düşünebiliriz?
+
+**Cevap:**
+
+Treap yapısını iki eşdeğer yoldan ele alabiliriz. İlk olarak, bir düğümün hem x değerine göre ikili arama ağacı koşulunu hem de p öncelik değerine göre yığın (heap) özelliğini aynı anda sağlayan bir yapı olarak düşünebiliriz. İkinci olarak, düğümlerin (x, p) değerlerinin önceliklerine göre artan sırada bir BinarySearchTree içerisine eklenmesiyle elde edilen bir ağaç olarak da ele alabiliriz.
+
+## 35. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000019:14:bilgi_yetersizligi)
+
+Kaynak: DOC_000019 — Open Data Structures: Red-Black Trees, passage 14
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Exercise 9.13. Implement an AVLTree class that implements AVL trees
+as described above. Compare its performance to that of the RedBlackTree
+implementation. Which implementation has a faster find(x) operation?
+Exercise 9.14. Design and implement a series of experiments that compare the relative performance of find(x), add(x), and remove(x) for the
+SSet implemeentations SkiplistSSet, ScapegoatTree, Treap, and RedBlack-
+Tree. Be sure to include multiple test scenarios, including cases where the
+data is random, already sorted, is removed in random order, is removed
+in sorted order, and so on.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre AVLTree sınıfının find(x) operasyonu RedBlackTree implementasyonundan kesin olarak kaç milisaniye daha hızlıdır?
+
+**Cevap:**
+
+Bu metin milisaniye cinsinden kesin bir performans süresi veya sayısal bir hız karşılaştırması vermiyor. Metin yalnızca bir AVLTree sınıfı implemente edip performanslarını karşılaştırmayı ve hangisinin daha hızlı olduğunu bulmayı bir alıştırma olarak önermektedir.
+
+## 36. yanlis_cevap_aciklama — bağlamlı (DOC_000020:2:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000020 — Open Data Structures: Heaps, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The easiest way to do this is to replace the root with the value a[n−1],
+delete that value, and decrement n. Unfortunately, the new root element
+is now probably not the smallest element, so it needs to be moved downwards. We do this by repeatedly comparing this element to its two children. If it is the smallest of the three then we are done. Otherwise, we
+swap this element with the smallest of its two children and continue.
+19 17 69 9 32 26 93 4 55 16 50 8 9 8
+26 50
+17
+16 19 69 32 93 55
+4 19 17 69 9 32 26 93 4 55 6 16 50 8 6 9 8
+26 50
+17
+16 19 69 32 93 55
+4 19 17 69 9 32 26 93 4 55 16 8 9 8 26 17
+16 19 69 32 93 55
+4 6 50 50 6 19 17 69 9 32 26 93 4 55 16 1 2 4 5 3 6 7 8
+9 10 11 12 13 14
+0 9 26 17
+16 19 69 32 93 55
+4 50 8 6 50 6 8
+Figure 10.2: Adding the value 6 to a BinaryHeap.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre BinaryHeap üzerinde kök eleman silindikten sonra yeni kök eleman en küçük değilse ne yapılır sorusuna ben 'elemanı olduğu yerde bırakırız' dedim ama yanlış aldım. Neden?
+
+**Cevap:**
+
+Doğru yaklaşım, yeni kök eleman en küçük değilse onu iki çocuğundan en küçüğü ile yer değiştirerek aşağı doğru taşımaktır. Senin cevabındaki yanılgı, yığın (heap) özelliğinin korunması gerektiğini göz ardı etmekten kaynaklanmaktadır. Kök elemanın çocuklarından küçük olması kuralı bozulduğu için, eleman doğru konuma gelene kadar aşağı yönlü karşılaştırma ve yer değiştirme adımları tekrarlanmalıdır.
+
+## 37. konu_ozeti_anlatim — bağlamsız (DOC_000021:17:konu_ozeti_anlatim)
+
+Kaynak: DOC_000021 — Open Data Structures: Sorting Algorithms, passage 17
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Exercise 11.6. Design a Comparator, c, that you could pass as an argu-
+ment to quick sort(a,i,n,c) and that would cause quicksort to perform ^{(n}
+2
+)
+comparisons. (Hint: Your comparator does not actually need to look at
+the values being compared.)
+Exercise 11.7. Analyze the expected number of comparisons done by
+Quicksort a little more carefully than the proof of Theorem 11.3. In particular, show that the expected number of comparisons is 2nHn −n + Hn.
+Discussion and Exercises
+Exercise 11.8. Describe an input array that causes heap sort to perform
+at least 2nlogn −O(n) comparisons. Justify your answer.
+Exercise 11.9. Find another pair of permutations of 1,2,3 that are not
+correctly sorted by the comparison tree in Figure 11.6.
+Exercise 11.10. Prove that logn! = nlogn −O(n).
+Exercise 11.11. Prove that a binary tree with k leaves has height at least
+logk.
+Exercise 11.12. Prove that, if we pick a random leaf from a binary tree
+with k leaves, then the expected height of this leaf is at least logk.
+Exercise 11.13. The implementation of radix sort(a,k) given here works
+when the input array, a contains only integers.
+```
+
+</details>
+
+**Talimat:**
+
+Kök sıralama (radix sort) algoritmasının bu dersteki uygulaması hakkında ne söylenebilir?
+
+**Cevap:**
+
+Köksıralama (radix sort) algoritmasının verilen uygulaması, girdi dizisinin yalnızca tamsayılar içermesi durumunda çalışmaktadır.
+
+## 38. hata_bulma — bağlamlı (DOC_000021:2:hata_bulma)
+
+Kaynak: DOC_000021 — Open Data Structures: Sorting Algorithms, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+merge(a0,a1,a)
+i0 ←i1 ←0
+for i in 0,1,2,...,length(a) −1 do
+if i0 = length(a0) then
+a[i] ←a1[i1]
+i1 ←i2
+else if i1 = length(a1)
+a[i] ←a0[i0]
+i0 ←i1
+else if a0[i0] ≤a1[i1]
+a[i] ←a0[i0]
+i0 ←i1
+else
+a[i] ←a1[i1]
+i1 ←i2
+Notice that the merge(a0,a1,a,c) algorithm performs at most n−1 com-
+2 1 1 2 1 1 2 1 1 2 1 1 2 1 1 2 n 2 n 2 n n 4 n 4 n 4 n 4 n 8 n 8 n 8 n 8 n 8 n 8 n 8 n 8 ... ... ... ... ... ... ... ... + + + + + + + + + + + + + + + + ··· + + + + + + 1
+1 ^{= n}
+= n = n = n = n = n + + + + + + ···
+Figure 11.2: The merge-sort recursion tree.
+parisons before running out of elements in one of a0 or a1.
+To understand the running-time of merge-sort, it is easiest to think
+of it in terms of its recursion tree. Suppose for now that n is a power of
+two, so that n = 2^{logn}, and logn is an integer. Refer to Figure 11.2. Merge-
+sort turns the problem of sorting n elements into two problems, each of
+sorting n/2 elements. These two subproblem are then turned into two
+problems each, for a total of four subproblems, each of size n/4. These
+four subproblems become eight subproblems, each of size n/8, and so
+on. At the bottom of this process, n/2 subproblems, each of size two, are
+converted into n problems, each of size one. For each subproblem of size
+n/2^i, the time spent merging and copying data is O(n/2^i). Since there are
+2^i subproblems of size n/2^i, the total time spent working on problems of
+size 2^i, not counting recursive calls, is
+2^i × O(n/2^i) = O(n) .
+Therefore, the total amount of time taken by merge-sort is
+logn
+∑
+i=0
+O(n) = O(nlogn) .
+The proof of the following theorem is based on preceding analysis,
+but has to be a little more careful to deal with the cases where n is not a
+power of 2.
+Theorem 11.1. The merge sort(a) algorithm runs in O(nlogn) time and performs at most nlogn comparisons.
+```
+
+</details>
+
+**Talimat:**
+
+Metinde verilen birleştirme (merge) sözde kodunda aşağıdaki gibi bir parça var. Ancak bu kodda bir indeks veya sayaç güncelleme hatası bulunuyor, `i1 ← i2` satırı yanlış yazılmış. Hata nerede ve nasıl düzeltilmeli?
+```
+merge(a0,a1,a)
+i0 ← i1 ← 0
+for i in 0,1,2,...,length(a) − 1 do
+  if i0 = length(a0) then
+    a[i] ← a1[i1]
+    i1 ← i2
+  else if i1 = length(a1)
+    a[i] ← a0[i0]
+    i0 ← i0 + 1
+```
+
+**Cevap:**
+
+Hatalı satır `i1 ← i2`: `i2` adında tanımlı bir değişken olmadığı için mantıksaldır ve `i1` sayacını doğru artırmaz. `a1` dizisinden bir eleman alındığında `i1` sayacının bir sonraki elemana geçmesi için 1 artırılması gerekir. Bu satır `i1 ← i1 + 1` şeklinde düzeltilmelidir. Benzer şekilde, `i0` sayacının güncellendiği yerlerde de `i0 ← i0 + 1` kullanılmalıdır.
+
+## 39. yanlis_cevap_aciklama — bağlamlı (DOC_000026:0:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000026 — Dynamic Programming, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+After reading this chapter you will…
+- understand the relationship between recursion and dynamic programming.
+- understand the benefits of dynamic programming for optimization.
+- understand the criteria for applying dynamic programming.
+- be able to implement two classic dynamic programming algorithms.
+Introduction
+Dynamic programming is a technique for helping improve the runtime of certain optimization problems. It works by breaking a problem into several subproblems and using a record-keeping system to avoid redundant work. This approach is called “dynamic programming” for historical reasons. Richard Bellman developed the method in the 1940s and needed a catchy name to describe the mathematical work he was doing to optimize decision processes. The name stuck and, perhaps, leads to some confusion. This is because many terms in computer science have several meanings depending on the context, especially the terms “dynamic” and “programming.” In any case, the technique of dynamic programming remains a powerful tool for optimization. Let’s look deeper into this concept by exploring its link to problems that can be expressed recursively.
+Recursion and Dynamic Programming
+Recursive algorithms solve problems by breaking them into smaller subproblems and then combining them. Solving the subproblems is done by applying the same recursive algorithm to the smaller subproblems by breaking the subproblems into sub-subproblems. This continues until the base case is reached. Below is a recursive algorithm from chapter 2 for calculating the Fibonacci numbers:
+To solve the problem for fibonacci(n), we need to solve it for fibonacci(n − 1) and fibonacci(n − 2). We see that there are subproblems with the same structure as the original problem.
+The Fibonacci numbers algorithm is not an optimization problem, but it can give us some insight to help understand how dynamic programming can help us. Let’s look at a specific instance of this problem. The recursive formula for Fibonacci numbers is given below:
+F_0 = 0
+F_1 = 1
+F_n = F_{n−1} + F_{n−2}.
+Now let’s explore calculating the eighth Fibonacci number:
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, Fibonacci sayılarını hesaplarken karşılaşılan alt problemler özgün problemle aynı yapıya mı sahiptir? Ben hayır, farklı bir yapıya sahiptir demiştim ama yanlış çıktı, neden?
+
+**Cevap:**
+
+Doğru cevap, alt problemlerin özgün problemle aynı yapıya sahip olduğudur. fibonacci(n) problemini çözmek için fibonacci(n - 1) ve fibonacci(n - 2) alt problemlerini çözmemiz gerekir; bu da alt problemlerin orijinal problemle birebir aynı yapıyı paylaştığını gösterir. Senin cevabındaki yanılgı, alt problemlerin girdi boyutları küçüldükçe yapının da değişeceğini varsaymaktandır; oysa özyinelemeli algoritmalar aynı mantığı daha küçük girdilerle uygulamaya devam eder.
+
+## 40. yanlis_cevap_aciklama — bağlamlı (DOC_000026:7:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000026 — Dynamic Programming, passage 7
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A Dynamic Programming Solution
+Let’s think back to our precious example for a moment. Think specifically about the first two groupings we wanted to consider. These are (M_0) (M_1 M_2 M_3 M_4) and (M_0 M_1) (M_2 M_3 M_4). For the first grouping, we need to optimize the grouping of (M_1 M_2 M_3 M_4) as a subproblem. This would involve also considering the optimal grouping of (M_2 M_3 M_4). Optimally grouping (M_2 M_3 M_4) is a problem that must be solved in the process of calculating the cost of (M_0 M_1) (M_2 M_3 M_4), which is the second subproblem in the original grouping. From this, we see that there are overlapping subproblems. Considering this problem meets the criteria of optimal substructure and overlapping subproblems, we can be confident that dynamic programming will give us an advantage.
+The logic behind the dynamic programming approach is to calculate the optimal groupings for subproblems first, working our way through larger and larger subsequences and saving their optimal cost. Eventually, the algorithm minimizes the cost of the full sequence of matrix multiplies. In this calculation, the algorithm queries the optimal costs of the smaller sequences from a table. This algorithm uses two tables. The first table, modeled using a 2D array, stores the calculated optimal cost of multiplying matrices i through j. This table will be called costs. The second table holds the choice of split index associated with the optimal cost. This table will be called splits. While the algorithm calculates costs, the splits are the important data that can be used to perform the actual multiplication in the right order.
+The algorithm is given below. It begins by assigning the optimal values for a single matrix. A single matrix has no multiplies, so when calculating a matrix chain multiplication with a sequence of 1, the cost is 0. Next, the algorithm sets a sequence length starting at 2. From here, start and end indexes are set and updated such that the optimal cost of all length 2 sequences in the chain are calculated and stored in the costs table. Next, the sequence length is increased to 3, and all optimal sequences of length 3 are calculated by trying the different options for the splitIndex. The splitIndex is updated in the splits table each time an improvement in cost is found. We should note that we again make use of the MAX value, which acts like infinity as we minimize the cost for a split. The process continues for larger and larger sequence lengths until it finds the cost of the longest sequence, the one including all the matrices.
+```
+
+</details>
+
+**Talimat:**
+
+Soru: Dinamik programlama yaklaşımıyla matris zinciri çarpımı hesaplanırken hangi tablolardan yararlanılır ve splitIndex ne işe yarar? Ben sadece tek bir costs tablosu kullanılır ve splitIndex maliyeti sıfırlar dedim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap iki tablo kullanıldığıdır: matris çarpım maliyetlerini tutan costs tablosu ve en uygun bölünme indisini tutan splits tablosu. splitIndex maliyeti sıfırlamaz; aksine, en iyi maliyeti bulmak için farklı bölünme seçeneklerini dener ve bir maliyet iyileşmesi bulunduğunda splits tablosunda güncellenir. Yanılgın, tek tablo varsaymaktan ve bölünme indisinin matematiksel rolünü yanlış yorumlamaktan kaynaklanıyor.
+
+## 41. kod_okuma — bağlamlı (DOC_000026:9:kod_okuma)
+
+Kaynak: DOC_000026 — Dynamic Programming, passage 9
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Defining the LCS and Motivating Dynamic Programming
+A common subsequence is any shared subsequence of two strings. A subsequence of a string would be any ordered subset of the original sequence. An LCS just requires that this be the longest such subsequence belonging to both strings. We say “an” LCS and not “the” LCS because there could be multiple common subsequences with the same optimal length.
+Let’s add some terms to better understand the problem. Suppose we have two strings A and B with lengths m and n, respectively. We can think of A as a sequence of characters A = {a_0, a_1, …, a_{m−1}} and B as a sequence of the form B = {b_0, b_1, …, b_{n−1}}. Suppose we already know that C is an LCS of A and B. Let’s let k be the length of C. We will let A_i or B_i mean the subsequence up to i, or A_i = {a_0, a_1, …, a_i}. If we think of the last element in C, C_{k−1} must be in A and B. For this to be the case, one of the following must be true:
+- c_{k−1} = a_{m−1} and c_{k−1} = b_{n−1}. This means that a_{m−1} = b_{n−1} and C_{k−2} is an LCS of A_{m−2} and B_{n−2}.
+- a_{m−1} is not equal to b_{n−1}, and c_{k−1} is not equal to a_{m−1}. This must mean that C is an LCS of A_{m−2} and B.
+- a_{m−1} is not equal to b_{n−1}, and c_{k−1} is not equal to b_{n−1}. This must mean that C is an LCS of A and B_{n−2}.
+In other words, if the last element of C is also the last element of A and B, then it means that the subsequence C_{k−2} is an LCS of A_{m−2} and B_{n−2}. This is hinting at the idea of optimal substructure, where the full LCS could be built from the C_{k−2} subproblem. The other two cases also imply subproblems where an LCS, C, is constructed from either the case of A_{m−2} (A minus its last element) and B or the case of A and B_{n−2} (B minus its last element).
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, C dizisinin uzunluğu k ve son elemanı c_{k-1} için a_{m-1} = b_{n-1} olduğunda hangi alt problem çözülmektedir?
+```
+c_{k-1} = a_{m-1} ve c_{k-1} = b_{n-1}
+```
+
+**Cevap:**
+
+Bu durumda a_{m-1} ile b_{n-1} birbirine eşittir ve C_{k-2}, A_{m-2} ve B_{n-2} dizilerinin bir en uzun ortak alt dizisi (LCS) olur. Yani tam alt problem, A dizisinin son elemanı çıkarılmış hali olan A_{m-2} ve B dizisinin son elemanı çıkarılmış hali olan B_{n-2} üzerinde çözülmektedir.
+
+## 42. karsilastirma — bağlamlı (DOC_000027:2:karsilastirma)
+
+Kaynak: DOC_000027 — Graphs, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Figure 11.3
+Notice that all we have asserted so far is that the intersection of the row and column supplies information about the nature of the edge. The data we store at each intersection depends on the type of graph we are modeling. Some considerations for adjacency matrices include the following:
+- Weighted or Unweighted: If the graph is weighted, intersections will store the weight of the edge as some numeric type. In unweighted graphs, the intersection simply stores whether the edge exists.
+- Directed or Undirected: If the graph is undirected, each nondiagonal intersection stores redundant information with exactly one other cell. For example, if an undirected graph has an edge between A and B, then the (A, B) intersection stores the same information as (B, A). On occasion, this may be desirable or undesirable. Naturally, a directed graph would store nonredundant information in each cell.
+- Node Identities: The most logical choice for an underlying data structure would be a two-dimensional array. To leverage the constant-time lookups, we must provide an integer identifier for each node.
+- Existence of Edges: Regardless of the points above, we must determine how to indicate that no edge exists. While many modern languages have some concept of a nullable type, you may not always want to use it. Particularly, nullable types often come with an implied increase in storage size (it may take 32 bits to store an integer, but storing an integer along with whether it exists is more information and consequently more bits). As a result, we might, by convention, choose a value to store in the matrix that indicates that no edge exists. Most weighted graphs in the natural world have strictly positive weights, so storing a −1 may serve as a useful indicator for a nonexistent edge. When working with an unweighted graph, simple 0s and 1s or true and false will suffice.
+Adjacency Lists
+If we perceive an adjacency matrix as a square table of edge information, an adjacency list is a jagged list of lists. The primary list has one entry for each node in the graph. Each of those entries then points to a list of adjacent nodes. The size of each secondary list depends on the degree of that node. Using the same graph as we used for adjacency matrices, we have the following adjacency list.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak komşuluk matrisi (adjacency matrix) ile komşuluk listesini (adjacency list) karşılaştırır mısın?
+
+**Cevap:**
+
+Komşuluk matrisi ve komşuluk listesini iki açıdan karşılaştırabiliriz. Veri yapısı biçimi: komşuluk matrisi, tüm düğüm çiftleri için satır ve sütunların kesişiminden oluşan iki boyutlu kare bir tablo (dizi) kullanır; komşuluk listesi ise her bir düğümün kendine komşu düğümleri işaret ettiği düzensiz bir liste dizisidir (jagged list of lists). Bilgi saklama ve boyut: matriste yönlü veya yönsüz olma durumuna göre sabit bir iki boyutlu alan kaplanırken, komşuluk listesinde her ikincil listenin boyutu ilgili düğümün derecesine (degree) bağlı olarak değişir.
+
+## 43. kavram_aciklama — bağlamsız (DOC_000027:2:kavram_aciklama)
+
+Kaynak: DOC_000027 — Graphs, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Figure 11.3
+Notice that all we have asserted so far is that the intersection of the row and column supplies information about the nature of the edge. The data we store at each intersection depends on the type of graph we are modeling. Some considerations for adjacency matrices include the following:
+- Weighted or Unweighted: If the graph is weighted, intersections will store the weight of the edge as some numeric type. In unweighted graphs, the intersection simply stores whether the edge exists.
+- Directed or Undirected: If the graph is undirected, each nondiagonal intersection stores redundant information with exactly one other cell. For example, if an undirected graph has an edge between A and B, then the (A, B) intersection stores the same information as (B, A). On occasion, this may be desirable or undesirable. Naturally, a directed graph would store nonredundant information in each cell.
+- Node Identities: The most logical choice for an underlying data structure would be a two-dimensional array. To leverage the constant-time lookups, we must provide an integer identifier for each node.
+- Existence of Edges: Regardless of the points above, we must determine how to indicate that no edge exists. While many modern languages have some concept of a nullable type, you may not always want to use it. Particularly, nullable types often come with an implied increase in storage size (it may take 32 bits to store an integer, but storing an integer along with whether it exists is more information and consequently more bits). As a result, we might, by convention, choose a value to store in the matrix that indicates that no edge exists. Most weighted graphs in the natural world have strictly positive weights, so storing a −1 may serve as a useful indicator for a nonexistent edge. When working with an unweighted graph, simple 0s and 1s or true and false will suffice.
+Adjacency Lists
+If we perceive an adjacency matrix as a square table of edge information, an adjacency list is a jagged list of lists. The primary list has one entry for each node in the graph. Each of those entries then points to a list of adjacent nodes. The size of each secondary list depends on the degree of that node. Using the same graph as we used for adjacency matrices, we have the following adjacency list.
+```
+
+</details>
+
+**Talimat:**
+
+Komşuluk matrisi (adjacency matrix) veri yapısı nedir ve kenar (edge) bilgileri matris içinde nasıl saklanır?
+
+**Cevap:**
+
+Komşuluk matrisi, grafın düğümleri arasındaki kenar bilgilerini saklayan iki boyutlu bir dizi veya tablolu yapıdır. Matrisin satır ve sütunlarının kesişim noktaları, düğümler arasındaki kenarların doğasına dair bilgi verir. Kenarların ağırlıklı olup olmamasına, yönlü olup olmamasına veya kenarın var olup olmamasına göre bu kesişim hücrelerinde ağırlık sayısal değerleri, yön bilgileri veya kenar yokluğunu belirten özel göstergeler yer alır.
+
+## 44. yanlis_cevap_aciklama — bağlamsız (DOC_000030:0:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000030 — Priority Queues, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+After reading this chapter you will…
+- understand the concept of a priority queue.
+- understand the features of heaps, one of the most common priority queue implementations.
+- be able to implement Heap Sort, a sorting algorithm that uses a priority queue.
+- be able to explain the common operations on priority queues and their complexity.
+- be able to implement a binomial heap that supports a fast union operation.
+Introduction
+We have already discussed the concept of a queue. This is a data structure that accepts items and removes them in the order they were inserted. This is often referred to as first-in-first-out, or FIFO. A priority queue serves like a regular queue allowing items to be inserted, but it allows for the item with the highest priority to exit the queue first. We could implement a priority queue as a simple array with a current capacity that just resorts all the items by priority every time an item is inserted. This would mean that the insert operation for our simple priority queue would be O(n log n). There may be more clever approaches to preserve the sorted order by moving things over. This might lead to an O(n) insert operation. Extract could work similarly by removing the first element and then copying all the elements over. Could we do better than O(n) though? Linear time might be a long time to wait for a large n. For example, suppose many players are waiting to start an online game. We could use a priority queue to add players to the next game based on how long they have been waiting. A game AI may want to prioritize and target players that are the most dangerous first. We will see in chapter 11 that priority queues are used as the foundation for some important graph algorithms. Since this type of data structure could be very useful, researchers and engineers have discovered a variety of data structures that greatly improve the time-cost complexity. We will explore two interesting implementations of priority queues in this chapter.
+Heaps
+A heap is a data structure that guarantees that the minimum (or maximum) value is easily extracted. The most common heap is a binary heap, which is a sort of binary tree. In a binary heap, the “left” or “right” position of a child node no longer carries any specific meaning. Rather, in a max-binary-heap, or just max-heap, the parent is guaranteed to be greater than both children. Min-binary-heaps naturally reverse that relationship, with the parent guaranteed to be less than the children. We call this quality the heap property. It will allow us to isolate our reasoning to only subheaps and thus aid our understanding of heap-related algorithms.
+For the remainder of this section, we assume max-binary-heaps to avoid confusion. We will also assume unique values in our binary heap. This simplifies the relationships between parents and their children. If a particular application of binary heaps necessitates duplicate keys, this is easily remedied by adjusting the appropriate comparisons. The figure below gives an example of a heap:
+```
+
+</details>
+
+**Talimat:**
+
+Soru: Basit bir dizide öncelikli kuyruk için ekleme işleminin en kötü durum zaman karmaşıklığı nedir? Ben O(1) dedim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap O(n log n) veya akıllıca yaklaşımlar için O(n)'dir. O(1) diyerek yanıldın çünkü basit bir dizi tabanlı öncelikli kuyrukta her eleman eklendiğinde elemanların öncelik sırasına göre yeniden sıralanması gerekir. Eğer her eklemede tüm öğeleri yeniden sıralarsak bu işlem O(n log n) sürer; kaydırma yaparak sıralı düzeni korumaya çalışsak bile ekleme maliyeti O(n) olur. Sabit zamanda O(1) ekleme yapabilmek için arka planda yığın (heap) gibi daha gelişmiş veri yapıları kullanılması gerekir.
+
+## 45. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000030:12:bilgi_yetersizligi)
+
+Kaynak: DOC_000030 — Priority Queues, passage 12
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- Implement both binomial heaps using linked structures and binary heaps using an array implementation. Using a random number generator, create two equal-sized heaps, and try to merge them. Try the merge with binomial heaps, and get some statistics for the merge speed. Compare with the merge speed of binary heaps with integers. Repeat this process several times to explore how larger n affects the speed of the rival heap merge algorithms. The results may not be what you expect. How might caches play a role in the speed of these algorithms?
+Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms, 2nd ed. Cambridge, MA: The MIT Press, 2001.
+Vuillemin, Jean. “A Data Structure for Manipulating Priority Queues.” Communications of the ACM 21, no. 4 (1978): 309–315.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, ikili terimli yığınları birleştirirken saniyede ortalama kaç milyon işlem yapılabilir?
+
+**Cevap:**
+
+Bu metin saniyede yapılan işlem sayısı ya da kesin bir performans rakamı vermiyor. Metin yalnızca rastgele sayı üreteci ile eşit boyutlu iki yığın oluşturulup birleştirilebileceğinden, hız istatistikleri toplanabileceğinden ve önbelleklerin bu algoritmaların hızında nasıl rol oynayabileceğinden bahseder. Kesin bir işlem hızı söylemem tahmin olur.
+
+## 46. algoritma_izleme — bağlamlı (DOC_000039:0:algoritma_izleme)
+
+Kaynak: DOC_000039 — median_two_array.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+https://www.enjoyalgorithms.com/blog/median-of-two-sorted-arrays
+"""
+
+
+def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
+    """
+    Find the median of two arrays.
+
+    Args:
+        nums1: The first array.
+        nums2: The second array.
+
+    Returns:
+    The median of the two arrays.
+
+    Examples:
+        >>> find_median_sorted_arrays([1, 3], [2])
+        2.0
+
+        >>> find_median_sorted_arrays([1, 2], [3, 4])
+        2.5
+
+        >>> find_median_sorted_arrays([0, 0], [0, 0])
+        0.0
+
+        >>> find_median_sorted_arrays([], [])
+        Traceback (most recent call last):
+            ...
+        ValueError: Both input arrays are empty.
+
+        >>> find_median_sorted_arrays([], [1])
+        1.0
+
+        >>> find_median_sorted_arrays([-1000], [1000])
+        0.0
+
+        >>> find_median_sorted_arrays([-1.1, -2.2], [-3.3, -4.4])
+        -2.75
+    """
+    if not nums1 and not nums2:
+        raise ValueError("Both input arrays are empty.")
+
+    # Merge the arrays into a single sorted array.
+    merged = sorted(nums1 + nums2)
+    total = len(merged)
+
+    if total % 2 == 1:  # If the total number of elements is odd
+        return float(merged[total // 2])  # then return the middle element
+
+    # If the total number of elements is even, calculate
+    # the average of the two middle elements as the median.
+    middle1 = merged[total // 2 - 1]
+    middle2 = merged[total // 2]
+    return (float(middle1) + float(middle2)) / 2.0
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+```
+
+</details>
+
+**Talimat:**
+
+find_median_sorted_arrays fonksiyonunu `nums1 = [1, 2]` ve `nums2 = [3, 4]` girdileriyle adım adım izler misiniz?
+
+**Cevap:**
+
+1. `nums1` ve `nums2` boş olmadığı için hata kontrolü geçilir.
+2. `nums1 + nums2` birleştirilerek `[1, 2, 3, 4]` elde edilir ve `sorted()` ile sıralanmış `merged = [1, 2, 3, 4]` dizisi oluşturulur.
+3. `total = len(merged)` hesaplanır ve `total = 4` olur.
+4. `total % 2 == 1` koşulu (`4 % 2 == 1`) yanlıştır, bu nedenle çift eleman dalına girilir.
+5. `middle1 = merged[4 // 2 - 1]` yani `merged[1]` bulunur ve `middle1 = 2` olur.
+6. `middle2 = merged[4 // 2]` yani `merged[2]` bulunur ve `middle2 = 3` olur.
+7. `(float(2) + float(3)) / 2.0` hesaplanır ve sonuç `2.5` olarak döndürülür.
+
+## 47. hata_bulma — bağlamsız (DOC_000051:0:hata_bulma)
+
+Kaynak: DOC_000051 — wavelet_tree.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+Wavelet tree is a data-structure designed to efficiently answer various range queries
+for arrays. Wavelets trees are different from other binary trees in the sense that
+the nodes are split based on the actual values of the elements and not on indices,
+such as the with segment trees or fenwick trees. You can read more about them here:
+1. https://users.dcc.uchile.cl/~jperez/papers/ioiconf16.pdf
+2. https://www.youtube.com/watch?v=4aSv9PcecDw&t=811s
+3. https://www.youtube.com/watch?v=CybAgVF-MMc&t=1178s
+"""
+
+from __future__ import annotations
+
+test_array = [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
+
+
+class Node:
+    def __init__(self, length: int) -> None:
+        self.minn: int = -1
+        self.maxx: int = -1
+        self.map_left: list[int] = [-1] * length
+        self.left: Node | None = None
+        self.right: Node | None = None
+
+    def __repr__(self) -> str:
+        """
+        >>> node = Node(length=27)
+        >>> repr(node)
+        'Node(min_value=-1 max_value=-1)'
+        >>> repr(node) == str(node)
+        True
+        """
+        return f"Node(min_value={self.minn} max_value={self.maxx})"
+
+
+def build_tree(arr: list[int]) -> Node | None:
+    """
+    Builds the tree for arr and returns the root
+    of the constructed tree
+
+    >>> build_tree(test_array)
+    Node(min_value=0 max_value=9)
+    """
+    root = Node(len(arr))
+    root.minn, root.maxx = min(arr), max(arr)
+    # Leaf node case where the node contains only one unique value
+    if root.minn == root.maxx:
+        return root
+    """
+    Take the mean of min and max element of arr as the pivot and
+    partition arr into left_arr and right_arr with all elements <= pivot in the
+    left_arr and the rest in right_arr, maintaining the order of the elements,
+    then recursively build trees for left_arr and right_arr
+    """
+    pivot = (root.minn + root.maxx) // 2
+
+    left_arr: list[int] = []
+    right_arr: list[int] = []
+
+    for index, num in enumerate(arr):
+        if num <= pivot:
+            left_arr.append(num)
+        else:
+            right_arr.append(num)
+        root.map_left[index] = len(left_arr)
+    root.left = build_tree(left_arr)
+    root.right = build_tree(right_arr)
+    return root
+```
+
+</details>
+
+**Talimat:**
+
+Bu fonksiyon düğüm oluştururken `minn` ve `maxx` değerlerini yanlış atıyor ve bazen ağacı doğru kuramıyor, hata nerede?
+```python
+def build_tree(arr: list[int]) -> Node | None:
+    root = Node(len(arr))
+    root.minn = 0
+    root.maxx = max(arr)
+    if root.minn == root.maxx:
+        return root
+```
+
+**Cevap:**
+
+Hatalı satır `root.minn = 0`: minimum değer doğrudan sabit bir sıfır olarak atanmış, halbuki dizinin gerçek minimum değeri olmalıdır. `arr` dizisi sıfırdan küçük veya sıfırdan farklı minimum değerler içerdiğinde pivot hesabı ve eleman bölme işlemi yanlış çalışır. Düzeltilmiş satır `root.minn = min(arr)` olmalıdır.
+
+## 48. algoritma_izleme — bağlamsız (DOC_000055:0:algoritma_izleme)
+
+Kaynak: DOC_000055 — min_heap.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+# Min heap data structure
+# with decrease key functionality - in O(log(n)) time
+
+
+class Node:
+    def __init__(self, name, val) -> None:
+        self.name = name
+        self.val = val
+
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}({self.name}, {self.val})"
+
+    def __lt__(self, other) -> bool:
+        return self.val < other.val
+
+
+class MinHeap:
+    """
+    >>> r = Node("R", -1)
+    >>> b = Node("B", 6)
+    >>> a = Node("A", 3)
+    >>> x = Node("X", 1)
+    >>> e = Node("E", 4)
+    >>> print(b)
+    Node(B, 6)
+    >>> myMinHeap = MinHeap([r, b, a, x, e])
+    >>> myMinHeap.decrease_key(b, -17)
+    >>> print(b)
+    Node(B, -17)
+    >>> myMinHeap["B"]
+    -17
+    """
+
+    def __init__(self, array) -> None:
+        self.idx_of_element = {}
+        self.heap_dict = {}
+        self.heap = self.build_heap(array)
+
+    def __getitem__(self, key):
+        return self.get_value(key)
+
+    def get_parent_idx(self, idx) -> int:
+        return (idx - 1) // 2
+
+    def get_left_child_idx(self, idx) -> int:
+        return idx * 2 + 1
+
+    def get_right_child_idx(self, idx) -> int:
+        return idx * 2 + 2
+
+    def get_value(self, key):
+        return self.heap_dict[key]
+
+    def build_heap(self, array) -> list:
+        last_idx = len(array) - 1
+        start_from = self.get_parent_idx(last_idx)
+
+        for idx, i in enumerate(array):
+            self.idx_of_element[i] = idx
+            self.heap_dict[i.name] = i.val
+
+        for i in range(start_from, -1, -1):
+            self.sift_down(i, array)
+        return array
+
+    # this is min-heapify method
+    def sift_down(self, idx, array) -> None:
+        while True:
+            left = self.get_left_child_idx(idx)
+            right = self.get_right_child_idx(idx)
+
+            smallest = idx
+            if left < len(array) and array[left] < array[idx]:
+                smallest = left
+            if right < len(array) and array[right] < array[smallest]:
+                smallest = right
+
+            if smallest != idx:
+                array[idx], array[smallest] = array[smallest], array[idx]
+                (
+                    self.idx_of_element[array[idx]],
+                    self.idx_of_element[array[smallest]],
+                ) = (
+                    self.idx_of_element[array[smallest]],
+                    self.idx_of_element[array[idx]],
+                )
+                idx = smallest
+            else:
+                break
+```
+
+</details>
+
+**Talimat:**
+
+Node("R", -1), Node("B", 6), Node("A", 3), Node("X", 1), Node("E", 4) düğümlerinden oluşan bir dizi için yığın (heap) yapısını kuran build_heap fonksiyonu sift_down adımını nasıl çalıştırır, izler misin?
+
+**Cevap:**
+
+Verilen dizi [Node(R, -1), Node(B, 6), Node(A, 3), Node(X, 1), Node(E, 4)] şeklindedir. Eleman değerleri sırasıyla [-1, 6, 3, 1, 4] olur. build_heap son ebeveyn düğümden (start_from = 1, yani değer 6 olan düğüm) başlayarak geriye doğru sift_down uygular.
+1. Adım (idx = 1, değer 6): Sol çocuk 1 (değer 1), sağ çocuk 4 (değer 4). En küçük çocuk 1 değerine sahip düğümdür (indeks 3). 6 ile 1 yer değiştirir. Dizi: [Node(R, -1), Node(X, 1), Node(A, 3), Node(B, 6), Node(E, 4)].
+2. Adım (idx = 0, değer -1): Sol çocuk 1 (değer 1), sağ çocuk 2 (değer 3). Kök zaten en küçüktür (-1), değişiklik gerekmez.
+Sonuç min-heap dizisi değerleri: [-1, 1, 3, 6, 4].
+
+## 49. hata_bulma — bağlamsız (DOC_000059:0:hata_bulma)
+
+Kaynak: DOC_000059 — test_kdtree.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+#  Created by: Ramy-Badr-Ahmed (https://github.com/Ramy-Badr-Ahmed)
+#  in Pull Request: #11532
+#  https://github.com/TheAlgorithms/Python/pull/11532
+#
+#  Please mention me (@Ramy-Badr-Ahmed) in any issue or pull request
+#  addressing bugs/corrections to this file.
+#  Thank you!
+
+import numpy as np
+import pytest
+
+from data_structures.kd_tree.build_kdtree import build_kdtree
+from data_structures.kd_tree.example.hypercube_points import hypercube_points
+from data_structures.kd_tree.kd_node import KDNode
+from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_search
+
+
+@pytest.mark.parametrize(
+    ("num_points", "cube_size", "num_dimensions", "depth", "expected_result"),
+    [
+        (0, 10.0, 2, 0, None),  # Empty points list
+        (10, 10.0, 2, 2, KDNode),  # Depth = 2, 2D points
+        (10, 10.0, 3, -2, KDNode),  # Depth = -2, 3D points
+    ],
+)
+def test_build_kdtree(
+    num_points, cube_size, num_dimensions, depth, expected_result
+) -> None:
+    """
+    Test that KD-Tree is built correctly.
+
+    Cases:
+        - Empty points list.
+        - Positive depth value.
+        - Negative depth value.
+    """
+    points = (
+        hypercube_points(num_points, cube_size, num_dimensions).tolist()
+        if num_points > 0
+        else []
+    )
+
+    kdtree = build_kdtree(points, depth=depth)
+
+    if expected_result is None:
+        # Empty points list case
+        assert kdtree is None, f"Expected None for empty points list, got {kdtree}"
+    else:
+        # Check if root node is not None
+        assert kdtree is not None, "Expected a KDNode, got None"
+
+        # Check if root has correct dimensions
+        assert len(kdtree.point) == num_dimensions, (
+            f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
+        )
+
+        # Check that the tree is balanced to some extent (simplistic check)
+        assert isinstance(kdtree, KDNode), (
+            f"Expected KDNode instance, got {type(kdtree)}"
+        )
+
+
+def test_nearest_neighbour_search() -> None:
+    """
+    Test the nearest neighbor search function.
+    """
+    num_points = 10
+    cube_size = 10.0
+    num_dimensions = 2
+    points = hypercube_points(num_points, cube_size, num_dimensions)
+    kdtree = build_kdtree(points.tolist())
+
+    rng = np.random.default_rng()
+    query_point = rng.random(num_dimensions).tolist()
+```
+
+</details>
+
+**Talimat:**
+
+KD-Ağacı (KD-Tree) oluşturma testinde boş liste kontrolü yapılıyor ancak aşağıdaki kodda beklenen sonuç yanlış ele alınıyor. Hata nerede?
+```python
+    if expected_result is None:
+        assert kdtree is not None, f"Expected None for empty points list, got {kdtree}"
+    else:
+        assert kdtree is not None, "Expected a KDNode, got None"
+```
+
+**Cevap:**
+
+Hatalı satır `assert kdtree is not None`: boş nokta listesi verildiğinde `expected_result` `None` olmalıdır ve fonksiyonun `None` döndürmesi beklenir. Ancak bu satırda `kdtree` değerinin `None` olmaması iddia edilmektedir, bu da testin boş liste durumunda hata vermesine yol açar. Düzeltilmiş satır şu şekilde olmalıdır: `assert kdtree is None, f"Expected None for empty points list, got {kdtree}"`.
+
+## 50. hata_bulma — bağlamlı (DOC_000072:1:hata_bulma)
+
+Kaynak: DOC_000072 — stack.py, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+>>> S = Stack()
+        >>> S.push(10)
+        >>> S.is_empty()
+        False
+        """
+        return not bool(self.stack)
+
+    def is_full(self) -> bool:
+        """
+        >>> S = Stack()
+        >>> S.is_full()
+        False
+
+        >>> S = Stack(1)
+        >>> S.push(10)
+        >>> S.is_full()
+        True
+        """
+        return self.size() == self.limit
+
+    def size(self) -> int:
+        """
+        Return the size of the stack.
+
+        >>> S = Stack(3)
+        >>> S.size()
+        0
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> S.size()
+        1
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> S.push(20)
+        >>> S.size()
+        2
+        """
+        return len(self.stack)
+
+    def __contains__(self, item: T) -> bool:
+        """
+        Check if item is in stack
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> 10 in S
+        True
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> 20 in S
+        False
+        """
+        return item in self.stack
+
+
+def test_stack() -> None:
+    """
+    >>> test_stack()
+    """
+    stack: Stack[int] = Stack(10)
+    assert bool(stack) is False
+    assert stack.is_empty() is True
+    assert stack.is_full() is False
+    assert str(stack) == "[]"
+
+    try:
+        _ = stack.pop()
+        raise AssertionError  # This should not happen
+    except StackUnderflowError:
+        assert True  # This should happen
+
+    try:
+        _ = stack.peek()
+        raise AssertionError  # This should not happen
+    except StackUnderflowError:
+        assert True  # This should happen
+
+    for i in range(10):
+        assert stack.size() == i
+        stack.push(i)
+
+    assert bool(stack)
+    assert not stack.is_empty()
+    assert stack.is_full()
+    assert str(stack) == str(list(range(10)))
+    assert stack.pop() == 9
+    assert stack.peek() == 8
+
+    stack.push(100)
+    assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 100])
+
+    try:
+        stack.push(200)
+        raise AssertionError  # This should not happen
+    except StackOverflowError:
+        assert True  # This should happen
+
+    assert not stack.is_empty()
+    assert stack.size() == 10
+
+    assert 5 in stack
+    assert 55 not in stack
+
+
+if __name__ == "__main__":
+    test_stack()
+import doctest
+
+    doctest.testmod()
+```
+
+</details>
+
+**Talimat:**
+
+Bu yığıt (stack) sınıfındaki boyut kontrolü doğru çalışmıyor, `is_full()` metodu yanlış sonuç veriyor gibi görünüyor. Hata nerede?
+```python
+def is_full(self) -> bool:
+    return self.size() < self.limit
+```
+
+**Cevap:**
+
+Hatalı satır `return self.size() < self.limit`: karşılaştırma operatörü yanlış seçilmiş. Küçüktür işareti yığıtın dolu olup olmadığını değil, kapasitenin altında olup olmadığını kontrol eder; bu yüzden yığıt dolduğunda bile True yerine yanlış sonuç üretebilir. Düzeltilmiş satır şu şekilde olmalıdır: `return self.size() == self.limit`.
+
+## 51. algoritma_izleme — bağlamsız (DOC_000100:0:algoritma_izleme)
+
+Kaynak: DOC_000100 — edmonds_blossom_algorithm.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+from collections import deque
+
+
+class BlossomAuxData:
+    """Class to hold auxiliary data during the blossom algorithm's execution."""
+
+    def __init__(
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
+    ) -> None:
+        """
+        Initializes the BlossomAuxData instance.
+
+        Args:
+            queue: A deque for BFS processing.
+            parent: List of parent vertices in the augmenting path.
+            base: List of base vertices for each vertex.
+            in_blossom: Boolean list indicating if a vertex is in a blossom.
+            match: List of matched vertices.
+            in_queue: Boolean list indicating if a vertex is in the queue.
+        """
+        self.queue = queue
+        self.parent = parent
+        self.base = base
+        self.in_blossom = in_blossom
+        self.match = match
+        self.in_queue = in_queue
+
+
+class BlossomData:
+    """Class to encapsulate data related to a blossom in the graph."""
+
+    def __init__(
+        self,
+        aux_data: BlossomAuxData,
+        vertex_u: int,
+        vertex_v: int,
+        lowest_common_ancestor: int,
+    ) -> None:
+        """
+        Initializes the BlossomData instance.
+
+        Args:
+            aux_data: The auxiliary data related to the blossom.
+            vertex_u: One vertex in the blossom.
+            vertex_v: The other vertex in the blossom.
+            lowest_common_ancestor: The lowest common ancestor of vertex_u and vertex_v.
+        """
+        self.aux_data = aux_data
+        self.vertex_u = vertex_u
+        self.vertex_v = vertex_v
+        self.lowest_common_ancestor = lowest_common_ancestor
+
+
+class EdmondsBlossomAlgorithm:
+    UNMATCHED = -1  # Constant to represent unmatched vertices
+
+    @staticmethod
+    def maximum_matching(edges: list[list[int]], vertex_count: int) -> list[list[int]]:
+        """
+        Finds the maximum matching in a graph using the Edmonds Blossom Algorithm.
+
+        Args:
+            edges: A list of edges represented as pairs of vertices.
+            vertex_count: The total number of vertices in the graph.
+
+        Returns:
+            A list of matched pairs in the form of a list of lists.
+        """
+        # Create an adjacency list for the graph
+        graph: list[list[int]] = [[] for _ in range(vertex_count)]
+
+        # Populate the graph with the edges
+        for edge in edges:
+            u, v = edge
+            graph[u].append(v)
+            graph[v].append(u)
+```
+
+</details>
+
+**Talimat:**
+
+EdmondsBlossomAlgorithm sınıfı içindeki `maximum_matching` metoduna `vertex_count = 3` ve `edges = [[0, 1], [1, 2]]` girdileri verildiğinde komşuluk listesinin oluşturulma adımlarını gösterir misin?
+
+**Cevap:**
+
+1. Başlangıçta 3 düğüm için boş komşuluk listeleri oluşturulur: `graph = [[], [], []]`.
+2. İlk kenar `[0, 1]` işlenir: `u = 0`, `v = 1`. `graph[0]` listesine 1 eklenir, `graph[1]` listesine 0 eklenir. Güncel durum: `graph = [[1], [0], []]`.
+3. İkinci kenar `[1, 2]` işlenir: `u = 1`, `v = 2`. `graph[1]` listesine 2 eklenir, `graph[2]` listesine 1 eklenir. Güncel durum: `graph = [[1], [0, 2], [1]]`.
+Sonuç olarak komşuluk listesi `[[1], [0, 2], [1]]` olarak döner.
+
+## 52. algoritma_izleme — bağlamlı (DOC_000103:0:algoritma_izleme)
+
+Kaynak: DOC_000103 — graph_adjacency_matrix.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+#!/usr/bin/env python3
+"""
+Author: Vikram Nithyanandam
+
+Description:
+The following implementation is a robust unweighted Graph data structure
+implemented using an adjacency matrix. This vertices and edges of this graph can be
+effectively initialized and modified while storing your chosen generic
+value in each vertex.
+
+Adjacency Matrix: https://mathworld.wolfram.com/AdjacencyMatrix.html
+
+Potential Future Ideas:
+- Add a flag to set edge weights on and set edge weights
+- Make edge weights and vertex values customizable to store whatever the client wants
+- Support multigraph functionality if the client wants it
+"""
+
+from __future__ import annotations
+
+import random
+import unittest
+from pprint import pformat
+from typing import TypeVar
+
+import pytest
+
+T = TypeVar("T")
+
+
+class GraphAdjacencyMatrix[T]:
+    def __init__(
+        self, vertices: list[T], edges: list[list[T]], directed: bool = True
+    ) -> None:
+        """
+        Parameters:
+        - vertices: (list[T]) The list of vertex names the client wants to
+        pass in. Default is empty.
+        - edges: (list[list[T]]) The list of edges the client wants to
+        pass in. Each edge is a 2-element list. Default is empty.
+        - directed: (bool) Indicates if graph is directed or undirected.
+        Default is True.
+        """
+        self.directed = directed
+        self.vertex_to_index: dict[T, int] = {}
+        self.adj_matrix: list[list[int]] = []
+
+        # Falsey checks
+        edges = edges or []
+        vertices = vertices or []
+
+        for vertex in vertices:
+            self.add_vertex(vertex)
+
+        for edge in edges:
+            if len(edge) != 2:
+                msg = f"Invalid input: {edge} must have length 2."
+                raise ValueError(msg)
+            self.add_edge(edge[0], edge[1])
+
+    def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
+        """
+        Creates an edge from source vertex to destination vertex. If any
+        given vertex doesn't exist or the edge already exists, a ValueError
+        will be thrown.
+        """
+        if not (
+            self.contains_vertex(source_vertex)
+            and self.contains_vertex(destination_vertex)
+        ):
+            msg = (
+                f"Incorrect input: Either {source_vertex} or "
+                f"{destination_vertex} does not exist"
+            )
+            raise ValueError(msg)
+        if self.contains_edge(source_vertex, destination_vertex):
+            msg = (
+                "Incorrect input: The edge already exists between "
+                f"{source_vertex} and {destination_vertex}"
+            )
+            raise ValueError(msg)
+
+        # Get the indices of the corresponding vertices and set their edge value to 1.
+        u: int = self.vertex_to_index[source_vertex]
+        v: int = self.vertex_to_index[destination_vertex]
+        self.adj_matrix[u][v] = 1
+        if not self.directed:
+            self.adj_matrix[v][u] = 1
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki GraphAdjacencyMatrix sınıfına göre A ve B düğümleri ile aralarında yönlü bir [A, B] kenarı içeren bir graf yapısı oluşturulurken add_edge metodunun çalışmasını adım adım açıklar mısın?
+
+**Cevap:**
+
+1. __init__ metodu çağrıldığında vertices listesindeki A ve B düğümleri add_vertex ile eklenir ve edges listesindeki [A, B] kenarı add_edge metoduna gönderilir.
+2. add_edge metodunda ilk olarak contains_vertex kontrolü yapılır; hem A hem de B düğümlerinin graf içinde mevcut olduğu doğrulanır.
+3. contains_edge kontrolü ile A ve B arasında daha önce bir kenar olup olmadığına bakılır, olmadığı görülür.
+4. vertex_to_index sözlüğünden A düğümünün indeksi u ve B düğümünün indeksi v olarak alınır.
+5. Yönlü (directed=True) bir graf olduğu için adjacency matrix üzerinde self.adj_matrix[u][v] = 1 atanarak kenar eklenir.
+
+## 53. algoritma_izleme — bağlamsız (DOC_000107:2:algoritma_izleme)
+
+Kaynak: DOC_000107 — binary_tree_traversal.py, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+def level_order_actual(node: TreeNode) -> None:
+    """
+    >>> root = TreeNode(1)
+    >>> tree_node2 = TreeNode(2)
+    >>> tree_node3 = TreeNode(3)
+    >>> tree_node4 = TreeNode(4)
+    >>> tree_node5 = TreeNode(5)
+    >>> tree_node6 = TreeNode(6)
+    >>> tree_node7 = TreeNode(7)
+    >>> root.left, root.right = tree_node2, tree_node3
+    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
+    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
+    >>> level_order_actual(root)
+    1,
+    2,3,
+    4,5,6,7,
+    """
+    if not isinstance(node, TreeNode) or not node:
+        return
+    q: queue.Queue = queue.Queue()
+    q.put(node)
+    while not q.empty():
+        list_ = []
+        while not q.empty():
+            node_dequeued = q.get()
+            print(node_dequeued.data, end=",")
+            if node_dequeued.left:
+                list_.append(node_dequeued.left)
+            if node_dequeued.right:
+                list_.append(node_dequeued.right)
+        print()
+        for inner_node in list_:
+            q.put(inner_node)
+
+
+# iteration version
+def pre_order_iter(node: TreeNode) -> None:
+    """
+    >>> root = TreeNode(1)
+    >>> tree_node2 = TreeNode(2)
+    >>> tree_node3 = TreeNode(3)
+    >>> tree_node4 = TreeNode(4)
+    >>> tree_node5 = TreeNode(5)
+    >>> tree_node6 = TreeNode(6)
+    >>> tree_node7 = TreeNode(7)
+    >>> root.left, root.right = tree_node2, tree_node3
+    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
+    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
+    >>> pre_order_iter(root)
+    1,2,4,5,3,6,7,
+    """
+    if not isinstance(node, TreeNode) or not node:
+        return
+    stack: list[TreeNode] = []
+    n = node
+    while n or stack:
+        while n:  # start from root node, find its left child
+            print(n.data, end=",")
+            stack.append(n)
+            n = n.left
+        # end of while means current node doesn't have left child
+        n = stack.pop()
+        # start to traverse its right child
+        n = n.right
+```
+
+</details>
+
+**Talimat:**
+
+Kökü 1 olan ve sırasıyla sol çocukları 2 (2'nin solu 4, sağı 5), sağ çocukları 3 (3'ün solu 6, sağı 7) olan bir ikili ağaca `pre_order_iter` fonksiyonu uygulandığında algoritma yığıt (stack) ve çıktı açısından nasıl adım adım çalışır?
+
+**Cevap:**
+
+Pre-order iteratif algoritması kökten başlar, sol çocukları yığıta (stack) ekleyerek ilerler ve sol bitince yığıttan çıkarıp sağ çocuğa geçer:
+1. `n = 1` ile başlanır. 1 yazdırılır (`1`), yığıta eklenir (`stack = [1]`). `n` sol çocuğuna güncellenir (`n = 2`).
+2. 2 yazdırılır (`1,2`), yığıta eklenir (`stack = [1, 2]`). `n` sol çocuğuna güncellenir (`n = 4`).
+3. 4 yazdırılır (`1,2,4`), yığıta eklenir (`stack = [1, 2, 4]`). `n` sol çocuğuna geçer ancak sol çocuğu yoktur (`n = None`). İç döngü biter.
+4. Yığıttan eleman çıkarılır (`stack.pop()` ile 4 alınır), sağ çocuğuna bakılır ancak yoktur (`n = None`).
+5. Yığıttan sonraki eleman çıkarılır (`stack.pop()` ile 2 alınır), sağ çocuğuna geçilir (`n = 5`).
+6. 5 yazdırılır (`1,2,4,5`), yığıta eklenir (`stack = [1, 5]`), sol çocuğu yoktu, yığıttan 5 çıkarılır ve sağ çocuğuna bakılır (`n = None`).
+7. Yığıttan 1 çıkarılır, sağ çocuğuna geçilir (`n = 3`).
+8. 3 yazdırılır (`1,2,4,5,3`), yığıta eklenir (`stack = [3]`), sol çocuğuna geçilir (`n = 6`).
+9. 6 yazdırılır (`1,2,4,5,3,6`), yığıta eklenir (`stack = [3, 6]`), sol çocuğu yok, yığıttan 6 çıkarılır, sağ çocuğu yok.
+10. Yığıttan 3 çıkarılır, sağ çocuğuna geçilir (`n = 7`).
+11. 7 yazdırılır (`1,2,4,5,3,6,7`), yığıta eklenir (`stack = [7]`), solu yok, yığıttan 7 çıkarılır, sağı yok. Döngü biter. Sonuç: 1,2,4,5,3,6,7,
+
+## 54. algoritma_izleme — bağlamsız (DOC_000110:1:algoritma_izleme)
+
+Kaynak: DOC_000110 — exponential_search.py, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+return _search(left, right)
+
+
+def exponential_search(sorted_collection: list[int], item: int) -> int:
+    """
+    Pure implementation of an exponential search algorithm in Python.
+    For more information, refer to:
+    https://en.wikipedia.org/wiki/Exponential_search
+
+    Be careful: the collection must be ascendingly sorted; otherwise the result will
+    be unpredictable.
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item value to search
+    :return: index of the found item or -1 if the item is not found
+
+    The time complexity of this algorithm is O(log i), where i is the index of the item.
+
+    Examples:
+    >>> exponential_search([0, 5, 7, 10, 15], 0)
+    0
+    >>> exponential_search([0, 5, 7, 10, 15], 15)
+    4
+    >>> exponential_search([0, 5, 7, 10, 15], 5)
+    1
+    >>> exponential_search([0, 5, 7, 10, 15], 6)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], -3)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], 20)
+    -1
+    >>> exponential_search([], 1)  # Empty array edge case
+    -1
+    """
+    if list(sorted_collection) != sorted(sorted_collection):
+        raise ValueError("sorted_collection must be sorted in ascending order")
+
+    if not sorted_collection:
+        return -1
+    if sorted_collection[0] == item:
+        return 0
+
+    bound = 1
+    while bound < len(sorted_collection) and sorted_collection[bound] < item:
+        bound *= 2
+
+    left = bound // 2
+    right = min(bound, len(sorted_collection) - 1)
+    return binary_search_by_recursion(sorted_collection, item, left, right)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    # Manual testing
+    user_input = input("Enter numbers separated by commas: ").strip()
+    collection = sorted(int(item) for item in user_input.split(","))
+    target = int(input("Enter a number to search for: "))
+    result = exponential_search(sorted_collection=collection, item=target)
+    if result == -1:
+        print(f"{target} was not found in {collection}.")
+    else:
+        print(f"{target} was found at index {result} in {collection}.")
+```
+
+</details>
+
+**Talimat:**
+
+exponential_search fonksiyonunu [0, 5, 7, 10, 15] dizisi ve 10 elemanı için adım adım izler misin?
+
+**Cevap:**
+
+1. Koleksiyonun sıralı olduğu kontrol edilir ve boş olmadığı görülür.
+2. İlk eleman kontrol edilir: sorted_collection[0] (0) == 10 olmadığından devam edilir.
+3. bound = 1 olarak başlatılır.
+4. Döngü çalışır: bound < 5 ve sorted_collection[1] (5) < 10 olduğu için bound *= 2 yapılır ve bound 2 olur.
+5. Döngü tekrar çalışır: bound < 5 ve sorted_collection[2] (7) < 10 olduğu için bound *= 2 yapılır ve bound 4 olur.
+6. Döngü bir sonraki adımda bound < 5 (4 < 5) ancak sorted_collection[4] (15) < 10 koşulu sağlanmadığı için sonlanır.
+7. left = bound // 2 -> 4 // 2 = 2 olarak hesaplanır.
+8. right = min(4, 5 - 1) -> min(4, 4) = 4 olarak hesaplanır.
+9. binary_search_by_recursion fonksiyonu [2, 4] aralığında 10 değerini aramak üzere çağrılır ve 3 indeksini döndürür.
+
+## 55. hata_bulma — bağlamsız (DOC_000110:1:hata_bulma)
+
+Kaynak: DOC_000110 — exponential_search.py, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+return _search(left, right)
+
+
+def exponential_search(sorted_collection: list[int], item: int) -> int:
+    """
+    Pure implementation of an exponential search algorithm in Python.
+    For more information, refer to:
+    https://en.wikipedia.org/wiki/Exponential_search
+
+    Be careful: the collection must be ascendingly sorted; otherwise the result will
+    be unpredictable.
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item value to search
+    :return: index of the found item or -1 if the item is not found
+
+    The time complexity of this algorithm is O(log i), where i is the index of the item.
+
+    Examples:
+    >>> exponential_search([0, 5, 7, 10, 15], 0)
+    0
+    >>> exponential_search([0, 5, 7, 10, 15], 15)
+    4
+    >>> exponential_search([0, 5, 7, 10, 15], 5)
+    1
+    >>> exponential_search([0, 5, 7, 10, 15], 6)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], -3)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], 20)
+    -1
+    >>> exponential_search([], 1)  # Empty array edge case
+    -1
+    """
+    if list(sorted_collection) != sorted(sorted_collection):
+        raise ValueError("sorted_collection must be sorted in ascending order")
+
+    if not sorted_collection:
+        return -1
+    if sorted_collection[0] == item:
+        return 0
+
+    bound = 1
+    while bound < len(sorted_collection) and sorted_collection[bound] < item:
+        bound *= 2
+
+    left = bound // 2
+    right = min(bound, len(sorted_collection) - 1)
+    return binary_search_by_recursion(sorted_collection, item, left, right)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    # Manual testing
+    user_input = input("Enter numbers separated by commas: ").strip()
+    collection = sorted(int(item) for item in user_input.split(","))
+    target = int(input("Enter a number to search for: "))
+    result = exponential_search(sorted_collection=collection, item=target)
+    if result == -1:
+        print(f"{target} was not found in {collection}.")
+    else:
+        print(f"{target} was found at index {result} in {collection}.")
+```
+
+</details>
+
+**Talimat:**
+
+Bu üstel arama fonksiyonu sıralı olmayan bir dizi verildiğinde hata fırlatması gerekirken bazen yanılıyor veya yanlış çalışıyor. Hata nerede?
+```python
+def exponential_search(sorted_collection: list[int], item: int) -> int:
+    if list(sorted_collection) != sorted(sorted_collection):
+        raise ValueError("sorted_collection must be sorted in ascending order")
+
+    if not sorted_collection:
+        return -1
+    if sorted_collection[0] == item:
+        return 0
+
+    bound = 0
+    while bound < len(sorted_collection) and sorted_collection[bound] < item:
+        bound *= 2
+
+    left = bound // 2
+    right = min(bound, len(sorted_collection) - 1)
+    return binary_search_by_recursion(sorted_collection, item, left, right)
+```
+
+**Cevap:**
+
+Hatalı satır `bound = 0`: üstel arama algoritmasında sınır (bound) başlangıçta 1 olmalıdır. Başlangıç değeri 0 yapıldığında, `bound *= 2` işlemi `0 * 2 = 0` olacağı için döngü sonsuz döngüye girer veya `bound` hiç ilerlemez, bu da arama aralığının doğru hesaplanmasını engeller. Doğru kullanım `bound = 1` olmalıdır.
+
+## 56. hata_bulma — bağlamlı (DOC_000111:0:hata_bulma)
+
+Kaynak: DOC_000111 — jump_search.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+Pure Python implementation of the jump search algorithm.
+This algorithm iterates through a sorted collection with a step of n^(1/2),
+until the element compared is bigger than the one searched.
+It will then perform a linear search until it matches the wanted number.
+If not found, it returns -1.
+
+https://en.wikipedia.org/wiki/Jump_search
+"""
+
+import math
+from collections.abc import Sequence
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
+    """
+    Python implementation of the jump search algorithm.
+    Return the index if the `item` is found, otherwise return -1.
+
+    Examples:
+    >>> jump_search([0, 1, 2, 3, 4, 5], 3)
+    3
+    >>> jump_search([-5, -2, -1], -1)
+    2
+    >>> jump_search([0, 5, 10, 20], 8)
+    -1
+    >>> jump_search([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610], 55)
+    10
+    >>> jump_search(["aa", "bb", "cc", "dd", "ee", "ff"], "ee")
+    4
+    >>> jump_search([], 1)
+    -1
+    """
+    if not arr:
+        return -1
+    arr_size = len(arr)
+    block_size = int(math.sqrt(arr_size))
+
+    prev = 0
+    step = block_size
+    while arr[min(step, arr_size) - 1] < item:
+        prev = step
+        step += block_size
+        if prev >= arr_size:
+            return -1
+
+    while arr[prev] < item:
+        prev += 1
+        if prev == min(step, arr_size):
+            return -1
+    if arr[prev] == item:
+        return prev
+    return -1
+
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    array = [int(item) for item in user_input.split(",")]
+    x = int(input("Enter the number to be searched:\n"))
+
+    res = jump_search(array, x)
+    if res == -1:
+        print("Number not found!")
+    else:
+        print(f"Number {x} is at index {res}")
+```
+
+</details>
+
+**Talimat:**
+
+Bu atlamalı arama fonksiyonu listede olmayan bazı değerleri ararken sonsuz döngüye giriyor ya da yanlış indeks döndürüyor. Hata nerede?
+```python
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
+    if not arr:
+        return -1
+    arr_size = len(arr)
+    block_size = int(math.sqrt(arr_size))
+
+    prev = 0
+    step = block_size
+    while arr[min(step, arr_size) - 1] < item:
+        prev = step
+        step += block_size
+        if prev > arr_size:
+            return -1
+
+    while arr[prev] < item:
+        prev += 1
+        if prev == min(step, arr_size):
+            return -1
+    if arr[prev] == item:
+        return prev
+    return -1
+```
+
+**Cevap:**
+
+Hatalı satır `if prev > arr_size:` koşuludur. `prev` değeri `arr_size` değerine eşit olabilir ancak bu durumda döngüden çıkış sağlanmaz ve yanlışlıkla büyük dizin erişimlerine veya sonsuz durumlara yol açabilir. Koşul `if prev >= arr_size:` şeklinde olmalıdır ki `prev` dizi boyutuna ulaştığında ya da geçtiğinde arama sonlandırılabilsin.
+
+## 57. kod_okuma — bağlamsız (DOC_000111:0:kod_okuma)
+
+Kaynak: DOC_000111 — jump_search.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+Pure Python implementation of the jump search algorithm.
+This algorithm iterates through a sorted collection with a step of n^(1/2),
+until the element compared is bigger than the one searched.
+It will then perform a linear search until it matches the wanted number.
+If not found, it returns -1.
+
+https://en.wikipedia.org/wiki/Jump_search
+"""
+
+import math
+from collections.abc import Sequence
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
+    """
+    Python implementation of the jump search algorithm.
+    Return the index if the `item` is found, otherwise return -1.
+
+    Examples:
+    >>> jump_search([0, 1, 2, 3, 4, 5], 3)
+    3
+    >>> jump_search([-5, -2, -1], -1)
+    2
+    >>> jump_search([0, 5, 10, 20], 8)
+    -1
+    >>> jump_search([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610], 55)
+    10
+    >>> jump_search(["aa", "bb", "cc", "dd", "ee", "ff"], "ee")
+    4
+    >>> jump_search([], 1)
+    -1
+    """
+    if not arr:
+        return -1
+    arr_size = len(arr)
+    block_size = int(math.sqrt(arr_size))
+
+    prev = 0
+    step = block_size
+    while arr[min(step, arr_size) - 1] < item:
+        prev = step
+        step += block_size
+        if prev >= arr_size:
+            return -1
+
+    while arr[prev] < item:
+        prev += 1
+        if prev == min(step, arr_size):
+            return -1
+    if arr[prev] == item:
+        return prev
+    return -1
+
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    array = [int(item) for item in user_input.split(",")]
+    x = int(input("Enter the number to be searched:\n"))
+
+    res = jump_search(array, x)
+    if res == -1:
+        print("Number not found!")
+    else:
+        print(f"Number {x} is at index {res}")
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki fonksiyon ne yapar ve `jump_search([0, 1, 2, 3, 4, 5], 3)` çağrısı ne döndürür?
+```python
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
+    if not arr:
+        return -1
+    arr_size = len(arr)
+    block_size = int(math.sqrt(arr_size))
+
+    prev = 0
+    step = block_size
+    while arr[min(step, arr_size) - 1] < item:
+        prev = step
+        step += block_size
+        if prev >= arr_size:
+            return -1
+
+    while arr[prev] < item:
+        prev += 1
+        if prev == min(step, arr_size):
+            return -1
+    if arr[prev] == item:
+        return prev
+    return -1
+```
+
+**Cevap:**
+
+Fonksiyon, sıralı bir dizide atlamalı arama (jump search) algoritmasını kullanarak verilen elemanın indeksini bulur; eleman bulunamazsa -1 döndürür. `[0, 1, 2, 3, 4, 5]` dizisinde 3 arandığında, bloklar halinde ilerleyerek 3 değerine ulaşır ve bulunduğu indis olan 3'ü döndürür.
+
+## 58. algoritma_izleme — bağlamsız (DOC_000121:1:algoritma_izleme)
+
+Kaynak: DOC_000121 — bucket_sort.py, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+def bucket_sort(
+    my_list: list[int | float], bucket_count: int = 10
+) -> list[int | float]:
+    """
+    >>> data = [-1, 2, -5, 0]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [9, 8, 7, 6, -12]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [.4, 1.2, .1, .2, -.9]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> bucket_sort([]) == sorted([])
+    True
+    >>> data = [-1e10, 1e10]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> import random
+    >>> collection = random.sample(range(-50, 50), 50)
+    >>> bucket_sort(collection) == sorted(collection)
+    True
+    >>> data = [1, 2, 2, 1, 1, 3]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [5, 5, 5, 5, 5]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [1000, -1000, 500, -500, 0]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [5.5, 2.2, -1.1, 3.3, 0.0]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> bucket_sort(data, 2.5)
+    Traceback (most recent call last):
+    TypeError: bucket_count must be an integer
+    >>> bucket_sort([1]) == [1]
+    True
+    >>> bucket_sort([1, 2, 3], 2.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: bucket_count must be an integer
+    >>> data = [-1.1, -1.5, -3.4, 2.5, 3.6, -3.3]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [9, 2, 7, 1, 5]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> bucket_sort(data, 3.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: bucket_count must be an integer
+    """
+
+    if not isinstance(bucket_count, (bool, int)):
+        raise TypeError("bucket_count must be an integer")
+    if not my_list or bucket_count <= 0:
+        return []
+
+    min_value, max_value = min(my_list), max(my_list)
+    if min_value == max_value:
+        return my_list
+
+    bucket_size = (max_value - min_value) / bucket_count
+    buckets: list[list] = [[] for _ in range(bucket_count)]
+```
+
+</details>
+
+**Talimat:**
+
+my_list = [9, 2, 7] ve bucket_count = 3 için kova sıralaması (bucket sort) fonksiyonunun ilk adımlarını (min_value, max_value bulma, kova boyutunu hesaplama ve kovalari oluşturma) adım adım açıklar mısın?
+
+**Cevap:**
+
+1. `bucket_count` kontrolü yapılır: 3 bir tamsayıdır, kontrolden geçer.
+2. Liste boştan farklıdır ve kova sayısı 0'dan büyüktür.
+3. min_value ve max_value hesaplanır: `min_value = 2`, `max_value = 9`.
+4. Değerler birbirine eşit değildir (2 != 9).
+5. Kova boyutu `bucket_size = (max_value - min_value) / bucket_count` formülüyle hesaplanır: `(9 - 2) / 3 = 7 / 3` yani yaklaşık 2.333 çıkar.
+6. 3 adet boş kova oluşturulur: `buckets = [[], [], []]`.
+
+## 59. algoritma_izleme — bağlamsız (DOC_000123:0:algoritma_izleme)
+
+Kaynak: DOC_000123 — cyclic_sort.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+This is a pure Python implementation of the Cyclic Sort algorithm.
+
+For doctests run following command:
+python -m doctest -v cyclic_sort.py
+or
+python3 -m doctest -v cyclic_sort.py
+
+For manual testing run:
+python cyclic_sort.py
+or
+python3 cyclic_sort.py
+"""
+
+
+def cyclic_sort(nums: list[int]) -> list[int]:
+    """
+    Sorts the input list of n integers from 1 to n in-place
+    using the Cyclic Sort algorithm.
+
+    :param nums: List of n integers from 1 to n to be sorted.
+    :return: The same list sorted in ascending order.
+
+    Time complexity: O(n), where n is the number of integers in the list.
+
+    Examples:
+    >>> cyclic_sort([])
+    []
+    >>> cyclic_sort([3, 5, 2, 1, 4])
+    [1, 2, 3, 4, 5]
+
+    >>> cyclic_sort([1, 2, 2])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be unique, got 2
+
+    >>> cyclic_sort([1, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be in range 1 to 2, got 5
+    """
+
+    # Input validation
+    seen = set()
+    n = len(nums)
+
+    for num in nums:
+        if num in seen:
+            message = f"All numbers must be unique, got {num}"
+            raise ValueError(message)
+
+        if num < 1 or num > n:
+            message = f"All numbers must be in range 1 to {n}, got {num}"
+            raise ValueError(message)
+
+        seen.add(num)
+
+    # Perform cyclic sort
+    index = 0
+    while index < len(nums):
+        correct_index = nums[index] - 1
+
+        if index != correct_index:
+            nums[index], nums[correct_index] = nums[correct_index], nums[index]
+
+        else:
+            index += 1
+
+    return nums
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(*cyclic_sort(unsorted), sep=",")
+```
+
+</details>
+
+**Talimat:**
+
+Cyclic Sort algoritmasını [3, 1, 2] dizisi üzerinde adım adım çalıştırabilir misin?
+
+**Cevap:**
+
+1. index = 0, nums[0] = 3. Doğru indeksi: correct_index = 3 - 1 = 2. index (0) != correct_index (2) olduğundan nums[0] ile nums[2] yer değiştirir. Yeni dizi: [2, 1, 3]
+2. index = 0, nums[0] = 2. Doğru indeksi: correct_index = 2 - 1 = 1. index (0) != correct_index (1) olduğundan nums[0] ile nums[1] yer değiştirir. Yeni dizi: [1, 2, 3]
+3. index = 0, nums[0] = 1. Doğru indeksi: correct_index = 1 - 1 = 0. index == correct_index olduğu için index 1 artırılır. index = 1
+4. index = 1, nums[1] = 2. Doğru indeksi: correct_index = 2 - 1 = 1. index == correct_index olduğu için index 1 artırılır. index = 2
+5. index = 2, nums[2] = 3. Doğru indeksi: correct_index = 3 - 1 = 2. index == correct_index olduğu için index 1 artırılır. index = 3
+Döngü sonlanır (index < len(nums) koşulu sağlanmaz). Sonuç: [1, 2, 3].
+
+## 60. algoritma_izleme — bağlamlı (DOC_000124:0:algoritma_izleme)
+
+Kaynak: DOC_000124 — double_sort.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+from typing import Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def double_sort[T: Comparable](collection: list[T]) -> list[T]:
+    """This sorting algorithm sorts an array using the principle of bubble sort,
+    but does it both from left to right and right to left.
+    Hence, it's called "Double sort"
+    :param collection: mutable ordered sequence of comparable elements
+    :return: the same collection in ascending order
+    Examples:
+    >>> double_sort([-1 ,-2 ,-3 ,-4 ,-5 ,-6 ,-7])
+    [-7, -6, -5, -4, -3, -2, -1]
+    >>> double_sort([])
+    []
+    >>> double_sort([-1 ,-2 ,-3 ,-4 ,-5 ,-6])
+    [-6, -5, -4, -3, -2, -1]
+    >>> double_sort([-3, 10, 16, -42, 29]) == sorted([-3, 10, 16, -42, 29])
+    True
+    >>> double_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> double_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> double_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
+    """
+    no_of_elements = len(collection)
+    for _ in range(
+        int(((no_of_elements - 1) / 2) + 1)
+    ):  # we don't need to traverse to end of list as
+        for j in range(no_of_elements - 1):
+            # apply the bubble sort algorithm from left to right (or forwards)
+            if collection[j + 1] < collection[j]:
+                collection[j], collection[j + 1] = collection[j + 1], collection[j]
+            # apply the bubble sort algorithm from right to left (or backwards)
+            if collection[no_of_elements - 1 - j] < collection[no_of_elements - 2 - j]:
+                (
+                    collection[no_of_elements - 1 - j],
+                    collection[no_of_elements - 2 - j],
+                ) = (
+                    collection[no_of_elements - 2 - j],
+                    collection[no_of_elements - 1 - j],
+                )
+    return collection
+
+
+if __name__ == "__main__":
+    # allow the user to input the elements of the list on one line
+    unsorted = [int(x) for x in input("Enter the list to be sorted: ").split() if x]
+    print("the sorted list is")
+    print(f"{double_sort(unsorted) = }")
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki double_sort fonksiyonunu [3, 1, 2] dizisi üzerinde adım adım çalıştırır mısın?
+
+**Cevap:**
+
+double_sort algoritması bubble sort mantığını kullanarak hem soldan sağa hem de sağdan sola sıralama yapar. no_of_elements 3 olduğundan dış döngü int(((3 - 1) / 2) + 1) yani 2 kez çalışır.
+1. Tur:
+- Soldan sağa: j=0 için collection[1] < collection[0] (1 < 3) olduğu için yer değiştirir → [1, 3, 2]; j=1 için collection[2] < collection[1] (2 < 3) olduğu için yer değiştirir → [1, 2, 3].
+- Sağdan sola: j=0 için collection[2] < collection[1] (3 < 2) yanlış, yer değişmez → [1, 2, 3]; j=1 için collection[1] < collection[0] (2 < 1) yanlış, yer değişmez → [1, 2, 3].
+2. Tur:
+- Soldan sağa ve sağdan sola kontrolleri yapılır ancak dizi zaten sıralı olduğu için elemanlar değişmez → [1, 2, 3].
+Sonuç: [1, 2, 3]
+
+## 61. algoritma_izleme — bağlamlı (DOC_000125:0:algoritma_izleme)
+
+Kaynak: DOC_000125 — exchange_sort.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def exchange_sort[T: Comparable](numbers: list[T]) -> list[T]:
+    """
+    Uses exchange sort to sort a list of numbers.
+    Source: https://en.wikipedia.org/wiki/Sorting_algorithm#Exchange_sort
+    >>> exchange_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+    >>> exchange_sort([-1, -2, -3])
+    [-3, -2, -1]
+    >>> exchange_sort([1, 2, 3, 4, 5])
+    [1, 2, 3, 4, 5]
+    >>> exchange_sort([0, 10, -2, 5, 3])
+    [-2, 0, 3, 5, 10]
+    >>> exchange_sort([])
+    []
+    >>> exchange_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> exchange_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> exchange_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
+    """
+    numbers_length = len(numbers)
+    for i in range(numbers_length):
+        for j in range(i + 1, numbers_length):
+            if numbers[j] < numbers[i]:
+                numbers[i], numbers[j] = numbers[j], numbers[i]
+    return numbers
+
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(exchange_sort(unsorted))
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki exchange_sort algoritmasını [5, 2, 4, 1] dizisi üzerinde adım adım nasıl uygularız?
+
+**Cevap:**
+
+Exchange sort algoritması, dış döngüde i indeksli elemanı, iç döngüde ise ondan sonra gelen j indeksli elemanlarla karşılaştırır ve eğer numbers[j] < numbers[i] ise bu iki elemanın yerini değiştirir.
+1. i=0 için (numbers[0] = 5): j=1 (2) ile karşılaştırılır, 2 < 5 olduğu için yer değiştirir → [2, 5, 4, 1]. j=2 (4) ile karşılaştırılır, 4 < 2 yanlış, değişiklik yok → [2, 5, 4, 1]. j=3 (1) ile karşılaştırılır, 1 < 2 olduğu için yer değiştirir → [1, 5, 4, 2].
+2. i=1 için (numbers[1] = 5): j=2 (4) ile karşılaştırılır, 4 < 5 olduğu için yer değiştirir → [1, 4, 5, 2]. j=3 (2) ile karşılaştırılır, 2 < 4 olduğu için yer değiştirir → [1, 2, 5, 4].
+3. i=2 için (numbers[2] = 5): j=3 (4) ile karşılaştırılır, 4 < 5 olduğu için yer değiştirir → [1, 2, 4, 5].
+Sonuç: [1, 2, 4, 5].
+
+## 62. algoritma_izleme — bağlamsız (DOC_000133:0:algoritma_izleme)
+
+Kaynak: DOC_000133 — smoothsort.py, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"""
+Smoothsort algorithm implementation.
+
+Smoothsort is an adaptive, in-place comparison sort invented by Edsger W. Dijkstra.
+It runs in O(n log n) worst-case and degrades gracefully to O(n) for nearly sorted data.
+It uses a forest of Leonardo heaps to achieve this adaptive behaviour.
+
+Reference:
+    https://en.wikipedia.org/wiki/Smoothsort
+    https://www.cs.utexas.edu/~EWD/ewd07xx/EWD796a.PDF
+"""
+
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+# Precomputed Leonardo numbers: L(0)=1, L(1)=1, L(k)=L(k-1)+L(k-2)+1.
+# 46 values comfortably cover all practical list sizes.
+_LEONARDO: list[int] = [1, 1]
+while _LEONARDO[-1] < 2**31:
+    _LEONARDO.append(_LEONARDO[-1] + _LEONARDO[-2] + 1)
+
+
+def _sift[T: Comparable](seq: list[T], root: int, order: int) -> None:
+    """
+    Restore the max-heap property within a Leonardo tree of the given ``order``.
+
+    Sifts ``seq[root]`` downward until the subtree satisfies the Leonardo
+    max-heap invariant: every node is >= both of its children.
+    Trees of order 0 or 1 are single nodes and already satisfy the invariant.
+
+    In a Leonardo tree of order k rooted at index ``root``:
+      - the right child root is at ``root - 1``
+      - the left  child root is at ``root - 1 - L(k-2)``
+
+    Args:
+        seq:   The list being sorted (mutated in-place).
+        root:  Index of the root of the Leonardo tree to fix.
+        order: Leonardo order of the tree rooted at ``root``.
+
+    Examples:
+        >>> data = [3, 5, 4]
+        >>> _sift(data, 2, 2)
+        >>> data
+        [3, 4, 5]
+
+        >>> data = [1, 2, 3]
+        >>> _sift(data, 2, 2)
+        >>> data
+        [1, 2, 3]
+
+        >>> data = [7]
+        >>> _sift(data, 0, 1)
+        >>> data
+        [7]
+
+        >>> data = [9, 1, 8, 5, 3]
+        >>> _sift(data, 4, 3)
+        >>> data
+        [3, 1, 9, 5, 8]
+    """
+    while order > 1:
+        right = root - 1  # right child root
+        left = root - 1 - _LEONARDO[order - 2]  # left child root
+```
+
+</details>
+
+**Talimat:**
+
+Verilen Leonardo sayıları dizisi başlangıcı `_LEONARDO = [1, 1, 3]` iken, `root = 2` ve `order = 3` için _sift fonksiyonundaki ilk döngü adımında `right` ve `left` kök indeksleri ne olur, adım adım gösterir misiniz?
+
+**Cevap:**
+
+1. `_LEONARDO[order - 2]` ifadesi için `order = 3` olduğundan `_LEONARDO[3 - 2] = _LEONARDO[1]` alınır ve bu değer 1'dir.
+2. Sağ çocuk kökü `right = root - 1` formülüyle `2 - 1 = 1` olarak bulunur.
+3. Sol çocuk kökü `left = root - 1 - _LEONARDO[order - 2]` formülüyle `2 - 1 - 1 = 0` olarak bulunur.
+Sonuç olarak `right` 1, `left` ise 0 indeksini gösterir.
+
+## 63. karmasiklik_analizi — bağlamsız (DOC_000136:0:karmasiklik_analizi)
+
+Kaynak: DOC_000136 — AVL ağacı, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Bilgisayar bilimlerinde bir AVL ağacı (İsmini icat eden Adelson-Velsky ve Landis'den alır) kendi kendini dengeleyen bir İkili arama ağacıdır. Bu tip Veri yapılarının icat edilmiş ilk örneğidir.[1] Bir AVL ağacında, iki çocuk alt ağacın uzunluk farklı en fazla bir olabilir; Eğer herhangi bir anda fark birden fazlaysa, dengeleme yapılarak bu özellik korunur. Arama, ekleme ve silme işlemlerinin hepsi hem ortalama hem de en kötü durumlarda O(log n) zaman sürer, burada $n$ harfi operasyon öncesindeki düğüm(node) adetidir. Ekleme ve çıkarma işlemleri ağacın bir veya daha fazla ağaç rotasyonları ile dengelenmesini gerektirebilir.
+AVL ağacı ismini iki Sovyet mucitlerinden alır, Georgy Adelson-Velsky ve Evgenii Landis algoritmayı 1962'deki makaleleri "An algorithm for the organization of information".[2]'de yayımladılar.
+AVL ağaçı ve Kırmızı-siyah ağaç aynı operasyonları destekledikleri ve ikisinde de basit operasyonlar için ${\displaystyle {\text{O}}(\log n)}$ zamanı sürdüğü için sıklıkla kıyaslanırlar. Arama işleminin fazla olduğu uygulamalar için AVL ağaçları daha katı şekilde dengelendiği için Kırmızı-siyah ağaçtan daha hızlıdır.[3] Kırmızı siyah ağaçlara benzer şekilde AVL ağaçları uzunluğa göre dengelenmiştir.
+Tanım
+Dengeleme Faktörü (Balance factor)
+Bir İkili ağaçda bir düğümün(node) Dengeleme Faktörü X iki çocuk alt ağaçlarının uzunluk farkı olarak tanımlanır.
+- $\text{BF}(X) := \text{Uzunluk}(\text{SağAltAğaç}(X)) - \text{Uzunluk}(\text{SolAltAğaç}(X))$[4]:459
+Bir ikili ağaçın AVL ağacı olarak tanımlanması için değişmez(Invariant)'ın
+- $\text{BF}(X) \in {\{-1,0,1\}}$[5] bütün düğmleri için geçerli olması gerekir.
+Bir düğüm X için eğer $\text{BF}(X)<0$ ise o düğüm sol taraf ağırlıklı(left-heavy), $\text{BF}(X)>0$ ise sağ taraf ağırlıklı(right-heavy) ve $\text{BF}(X)=0$ ise dengeli denir.
+```
+
+</details>
+
+**Talimat:**
+
+AVL ağacında arama işleminin zaman karmaşıklığı nedir, neden bu şekildedir?
+
+**Cevap:**
+
+AVL ağacında arama işleminin zaman karmaşıklığı hem ortalama hem de en kötü durumda O(log n)'dir, burada n operasyon öncesindeki düğüm adetidir. Bunun nedeni, ağacın uzunluğa göre dengelenmiş olması ve her düğümde iki çocuk alt ağacın uzunluk farkının en fazla bir kalacak şekilde yapısının korunmasıdır.
+
+## 64. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000146:0:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000146 — Bağlı liste, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Bağlı liste, her elemanın bir değerinin yanında bir de referans içerdiği veri yapısıdır.
+Bağlı listeler en basit ve en çok kullanılan veri yapılarındandır. Yığın, kuyruk gibi diğer soyut veri yapılarını gerçeklemek için sıklıkla kullanılır. Bağlı listeler pek çok programlama dili ile uygulanabilir. Lisp ve Scheme gibi dillerin içinde bağlı liste veri yapısı gömülü olarak vardır. 1955 yılında Allen Newell, Cliff Shaw ve Herbert Simon tarafından geliştirilmiştir.
+Avantajları
+- Bağlı liste bir dinamik veri yapısıdır ve programın çalışması sırasında büyüyüp küçülebilir.
+- Ekleme ve çıkarma işlemleri, dizilerin aksine kaydırma işlemi gerektirmeden kolayca yapılabilir.
+- Yığın ve kuyruk gibi veri yapıları bağlı liste kullanılarak gerçeklenebilir.
+- Bağlı liste oluşturulurken bir başlanıç boyutu belirtilmesine gerek yoktur.
+- Listenin ortasına veri eklenebilir ya da ortasından veri kaldırılabilir.
+Dezavantajları
+- Sahip olduğu işaretçiler sebebiyle dizilere göre daha çok hafıza gerektirir.
+- Tekli bağlı listede geriye dönüş işlemleri oldukça külfetlidir.
+```
+
+</details>
+
+**Talimat:**
+
+Bağlı listelerin dezavantajları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Aşağıdakilerden hangisi bağlı listelerin dezavantajlarından biridir?
+A) Çalışma sırasında büyüyüp küçülemezler
+B) Sahip oldukları işaretçiler sebebiyle dizilere göre daha çok hafıza gerektirirler
+C) Ekleme ve çıkarma işlemlerinde kaydırma işlemi yapılması zorunludur
+D) Oluşturulurken mutlaka başlangıç boyutu belirtilmelidir
+Doğru şık: B
+Açıklama: Bağlı listeler, her düğümde veri dışında bir de işaretçi (referans) tuttukları için dizilere kıyasla daha fazla hafıza harcarlar. A, C ve D şıkları ise bağlı listelerin avantajları arasındadır.
+
+## 65. hata_bulma — bağlamsız (DOC_000148:0:hata_bulma)
+
+Kaynak: DOC_000148 — Birleştirmeli sıralama, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Birleşmeli Sıralama (Merge Sort), bilgisayar bilimlerinde $\mathcal{O}(n~\log(n))$ derecesinde karmaşıklığa sahip bir sıralama algoritmasıdır. Girdi olarak aldığı diziyi en küçük hale gelene kadar ikili gruplara böler ve karşılaştırma yöntemi kullanarak diziyi sıralar.
+Algoritma
+Algoritmanın çalışması kavramsal olarak şöyledir:
+- Sıralı olmayan listeyi ortadan eşit olarak iki alt listeye ayırır.
+- Alt listeleri kendi içinde sıralar.
+- Sıralı iki alt listeyi tek bir sıralı liste olacak şekilde birleştirir.
+Bu algoritma John von Neumann tarafından 1945 yılında bulunmuştur. Sözde kod formatındaki bir algoritma örneği aşağıdaki gibidir.
+function mergesort(m)
+    var list left, right
+    if length(m) ≤ 1
+        return m
+
+    middle = length(m) / 2
+    foreach x in m up to middle
+        add x to left
+    foreach x in m after middle
+        add x to right
+    left = mergesort(left)
+    right = mergesort(right)
+    result = merge(left, right)
+    return result
+Yukarıda kullanılan merge() fonksiyonunun değişik şekilleri olabilir. Bunlardan en basiti şöyledir.
+function merge(left, right)
+    var list result
+    while length(left) > 0 and length(right) > 0
+        if first(left) ≤ first(right)
+            append first(left) to result
+            left = rest(left)
+        else
+            append first(right) to result
+            right = rest(right)
+    if length(left) > 0 
+        append left to result
+    if length(right) > 0 
+        append right to result
+    return result
+Karmaşıklık Hesabı
+Birleştirme sıralaması böl ve yönet algoritmasına güzel bir örnektir. Algoritma her adımda diziyi ikiye bölüp en küçük birime geldiğinde bu alt dizileri sıralar ve daha sonra sıralanmış alt dizileri birleştirerek sonuca varır. Birleştirme sıralamasının karmaşıklığını hesaplamak için sıralanacak N elemanlı diziyi bir ağaç yapısına taşıyınca her bir düğüm bir alt diziyi temsil eder. Ağaç tam olarak n seviye içerir. k sayısı 0'dan n-1'e kadar ağaç seviyesini temsil etsin, yukarıdan aşağıya doğru ağacın k. seviyesinde $2^k$ tane düğüm bulunur. Bu düğümlerin her biri $2^{n-k}$uzunluğunda bir alt diziyi temsil eder. Bir alt dizinin eleman sayısı $2^{n-k}$ olduğu için en fazla $2^{n-k}$ karşılaştırma yapılabilir.
+```
+
+</details>
+
+**Talimat:**
+
+Bu mergesort fonksiyonu bazı durumlarda sonsuz döngüye giriyor ya da hatalı çalışıyor, hata nerede?
+```
+function mergesort(m)
+    var list left, right
+    if length(m) <= 1
+        return m
+
+    middle = length(m) / 2
+    foreach x in m up to middle
+        add x to left
+    foreach x in m after middle
+        add x to right
+    left = mergesort(left)
+    right = mergesort(right)
+    result = merge(left, right)
+    return result
+```
+
+**Cevap:**
+
+Hata, orta noktanın kesirli çıkabileceği durumlarda listelerin doğru bölünememesi veya döngü koşullarının eleman paylaşımında kayba yol açmasıyla ilgilidir. Simgesel olarak `middle = length(m) / 2` ifadesinde eğer bölme işlemi tam sayı (integer) bölünmesi olarak ele alınmazsa veya indeksler tamsayıya yuvarlanmazsa, listenin bölünmesi sırasında `left` ve `right` listelerinin uzunlukları orijinal dizinin uzunluğuyla aynı kalabilir. Bu durum, özellikle 2 elemanlı listelerde bölme işleminin sonsuz döngüye girmesine (recursive infinite recursion) neden olur. Çözüm olarak orta nokta hesaplanırken değerin aşağıya yuvarlanması veya tamsayı bölmesi kullanılması gerekir.
+
+## 66. kavram_aciklama — bağlamlı (DOC_000152:17:kavram_aciklama)
+
+Kaynak: DOC_000152 — Dijkstra algoritması, passage 17
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Dinamik programlama perspektifi
+Dinamik programlama açısından bakıldığında Dijkstra algoritması, en kısa yol problemi için dinamik programlama fonksiyonel denklemini Ulaşma (Reaching) yöntemiyle çözen ardışık bir yaklaşım şemasıdır.[37][38][39]
+Aslında Dijkstra'nın algoritmanın arkasındaki mantığa getirdiği açıklama:[40]
+Problem 2. Verilen iki düğüm P ve Q arasındaki minimum toplam uzunluktaki yolu bulun. Şu gerçeği kullanıyoruz: Eğer R, P'den Q'ya giden minimal yol üzerinde bir düğümse, bu yolun bilinmesi P'den R'ye giden minimal yolun bilinmesini gerektirir.
+en kısa yol problemi bağlamında Bellman optimallik ilkesinin (principle of optimality) başka sözcüklerle ifade edilmiş hâlidir.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Dijkstra algoritmasının dinamik programlama perspektifi ve arkasındaki temel mantık nedir?
+
+**Cevap:**
+
+Yukarıdaki metne göre Dijkstra algoritması, dinamik programlama açısından en kısa yol problemi için fonksiyonel denklemi Ulaşma (Reaching) yöntemiyle çözen ardışık bir yaklaşım şemasıdır. Algoritmanın arkasındaki temel mantık Bellman optimallik ilkesinin başka sözcüklerle ifade edilmiş hâlidir. Bu mantığa göre, verilen P ve Q düğümleri arasındaki minimal yol üzerinde R gibi bir düğüm bulunuyorsa, bu yolun bilinmesi P'den R'ye giden minimal yolun da bilinmesini gerektirir.
+
+## 67. hata_bulma — bağlamlı (DOC_000158:2:hata_bulma)
+
+Kaynak: DOC_000158 — Eklemeli sıralama, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Sözde Kodu(Pseudo Code)
+insertionSort(array A)
+    for i = 1 to length[A-1] do
+        value = A[i]
+        j = i-1
+        while j >= 0 and A[j] > value
+            A[j + 1] = A[j]
+            j = j-1
+        A[j+1] = value
+Karmaşıklık Hesabı
+Eklemeli sıralama algoritmasının zaman karmaşıklığı hesaplanırken, yapılan karşılaştırmalar ve yer değiştirmeler dikkate alınır. Eklemeli sıralama algoritması $n$ elemanlı bir listede, ikinci eleman için en fazla 1 karşılaştırma ve 1 yer değiştirme yapar, üçüncü eleman için 2 karşılaştırma ve 2 yer değiştirme, dördüncü eleman için 3 karşılaştırma ve 3 yer değiştirme yapar. Bu şekilde son eleman için en fazla $n-1$ karşılaştırma ve $n-1$ yer değiştirme yapar. Listedeki bütün elemanlar için yapılan karşılaştırmaların ve yer değiştirmelerin toplamı
+$$2(1 + 2 + 3+ 4+ ... + (n-2) + (n-1)) = 2(n(n-1)/2) = n(n-1)$$ yapar. Hesaplamalar sonucunda elde edilen $$n(n-1)$$ değerinin asimptotik üst sınırı $O(n^2)$ değerini verir.
+En kötü başarım: Eklemeli sıralama algoritması en kötü durumda, örneğin liste tersten sıralıysa $O(n^2)$ karmaşıklıkla çalışır.
+En iyi başarım: Eklemeli sıralama algoritması en iyi durumda, örneğin liste sıralıysa sadece $n-1$ karşılaştırma yapar ve $O(n)$ karmaşıklıkla çalışır.
+Ortalama başarım: Eklemeli sıralama algoritması ortalama $O(n^2)$ karmaşıklıkla çalışır.[3]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre eklemeli sıralama algoritmasının sözde kodunda while döngüsünün koşulunda küçük bir hata yaptım ve kod doğru sıralama yapmıyor. Hata nerede?
+```
+insertionSort(array A)
+    for i = 1 to length[A-1] do
+        value = A[i]
+        j = i-1
+        while j >= 0 and A[j] < value
+            A[j + 1] = A[j]
+            j = j-1
+        A[j+1] = value
+```
+
+**Cevap:**
+
+Hatalı satır `while j >= 0 and A[j] < value`: karşılaştırma operatörü yanlış yönlendirilmiştir. `A[j] < value` yapılması, elemanları küçükten büyüğe sıralarken yanlışlıkla büyükten küçüğe doğru kaydırma yapılmasına neden olur ve liste doğru sıralanmaz. Karşılaştırma işareti büyük olmalıdır: `while j >= 0 and A[j] > value`. Bu düzeltmeyle, mevcut elemandan büyük olan öğeler sağa kaydırılarak doğru konum aranır.
+
+## 68. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000194:4:bilgi_yetersizligi)
+
+Kaynak: DOC_000194 — Veri yapısı, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Dil desteği
+Çoğu assembly dili ve BCPL (Basic Combined Programming Language, Temel Birleştirilmiş Programlama Dili) gibi bazı düşük seviyeli diller, veri yapıları için yerleşik destekten yoksundur. Öte yandan, birçok üst düzey programlama dili ve MASM gibi bazı üst düzey assembly dilleri, kayıtlar ve diziler gibi belirli veri yapıları için özel sözdizimine veya diğer yerleşik desteğe sahiptir. Örneğin, C (BCPL'nin doğrudan soyundan gelen) ve Pascal dilleri, vektörlere (tek boyutlu diziler) ve çok boyutlu dizilere ek olarak sırasıyla yapıları ve kayıtları destekler.
+Çoğu programlama dili, veri yapısı uygulamalarının farklı programlar tarafından yeniden kullanılmasına izin veren bir tür kütüphane mekanizmasına sahiptir. Modern diller genellikle en yaygın veri yapılarını gerçekleyen standart kütüphanelerle birlikte gelir. Örnekler C++ Standart Şablon Kitaplığı, Java Koleksiyon Çerçevesi ve Microsoft.NET Çerçevesidir.
+Modern diller ayrıca genellikle modüler programlamayı, yani bir kütüphane modülünün arayüzü ile bunun uygulanması arasındaki ayrımı destekler. Bazıları, istemcilerin uygulama ayrıntılarını gizlemesine olanak tanıyan opak veri türleri sağlar. C++, Java ve Smalltalk gibi nesne yönelimli programlama dilleri genellikle bu amaç için sınıfları kullanır.
+Bilinen birçok veri yapısının, birden fazla bilgi işlem iş parçacığının bir veri yapısının tek bir somut örneğine aynı anda erişmesine izin veren eşzamanlı versiyonları vardır.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre C++ Standart Şablon Kitaplığı'nın içinde tam olarak kaç tane farklı veri yapısı sınıfı bulunmaktadır?
+
+**Cevap:**
+
+Bu metin, C++ Standart Şablon Kitaplığı'nın içinde tam olarak kaç adet veri yapısı sınıfı bulunduğu bilgisini içermemektedir. Metin yalnızca C++ Standart Şablon Kitaplığı'nın modern dillerin sahip olduğu standart kütüphanelere bir örnek olduğunu ve sınıfların modüler programlama ile opak veri türleri sağlamak amacıyla kullanıldığını belirtmektedir. Kesin sınıf sayısını bu metne dayanarak söyleyemem.
+
+## 69. karsilastirma — bağlamsız (DOC_000206:4:karsilastirma)
+
+Kaynak: DOC_000206 — 2–3 heap, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Removal of a Tree: Trees rooted at the top most trunks of the heap are not removed. To remove the tree $tree(v)$ of type $T(i - 1)$ of a node $v$, there are two cases, one where the workspace of $v$ is of size 4, and another where the size is larger. Note that $v$ is a node on an $i$th trunk of the heap.
+In a workspace of size larger than 4, the $i$th trunk either has 2 nodes or 3 nodes. If it has 3 nodes, then it can be of the form $(u,v,w)$ or $(u,w,v)$. In either case, remove $tree(v)$ and shrink the trunk. Note that $v$ cannot be the first node on the $i$th trunk since that node would be on the $i + 1$th trunk, which must exist as nodes on the top most trunks are not removed.
+If the $i$th trunk is of the form $(u,v)$, then remove $tree(v)$ and account for the loss of the $i$th trunk by moving around some other trees of type $T(i - 1)$ in the workspace.
+For the case in which the workspace is of size 4, remove $tree(v)$ and rearrange the other three nodes so that two come under the head node of the workspace. This makes an $i$th trunk of length two (three nodes in a line) but causes a loss of an $(i + 1)$th trunk. This loss is fixed by moving around trees from workspace of nodes on the $(i + 1)$th dimension. This process continues upwards in dimension until it is resolved.
+Decrease Key: Assume the key of node $v$ of dimension $i - 1$ is decreased, and it is not at the top level. Then $tree(v)$ is removed and inserted into the $j$th term at the top level of the heap (i.e. $T(j)$ in the extended polynomial), where $j = dim(v)$. If $v$ was at the top level of its tree, then the heap property was not violated from decrease key and no tree removal is required. However, the trunks on the top most trunk $i$ may need to be rearranged.
+```
+
+</details>
+
+**Talimat:**
+
+Heap veri yapısında boyut 4 olan çalışma alanı ile boyutu 4'ten büyük olan çalışma alanındaki ağaç kaldırma işlemlerini karşılaştırır mısın?
+
+**Cevap:**
+
+İki durumu iki açıdan karşılaştırabiliriz. Çalışma alanı boyutu: boyutu 4'ten büyük olan çalışma alanında i-inci gövde 2 veya 3 düğüme sahiptir ve ağaç (tree(v)) doğrudan kaldırılıp gövde küçültülebilir ya da düğümler kaydırılarak durum çözülür. Boyut 4 olduğunda ise ağaç kaldırıldıktan sonra kalan üç düğüm, çalışma alanının baş düğümü altında iki düğüm kalacak şekilde yeniden düzenlenir; bu durum i+1-inci gövdenin kaybolmasına yol açar. Yayılma ve düzeltme: Boyutu 4'ten büyük alanlarda ek bir üst boyuta taşma olmayabilirken, boyut 4 durumunda i+1-inci boyuttaki düğümlerin çalışma alanlarından ağaçlar taşıma suretiyle üst boyutlara doğru devam eden bir düzeltme süreci tetiklenir.
+
+## 70. yanlis_cevap_aciklama — bağlamlı (DOC_000211:1:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000211 — A* search algorithm, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+History
+A* was created as part of the Shakey project, which had the aim of building a mobile robot that could plan its own actions. Nils Nilsson originally proposed using the Graph Traverser algorithm[5] for Shakey's path planning.[6] Graph Traverser is guided by a heuristic function h(n), the estimated distance from node n to the goal node: it entirely ignores g(n), the distance from the start node to n. Bertram Raphael suggested using the sum, g(n) + h(n).[7] Peter Hart invented the concepts we now call admissibility and consistency of heuristic functions. A* was originally designed for finding least-cost paths when the cost of a path is the sum of its costs, but it has been shown that A* can be used to find optimal paths for any problem satisfying the conditions of a cost algebra.[8]
+The original 1968 A* paper[4] contained a theorem stating that no A*-like algorithm[a] could expand fewer nodes than A* if the heuristic function is consistent and A*'s tie-breaking rule is suitably chosen. A "correction" was published a few years later[9] claiming that consistency was not required, but this was shown to be false in 1985 in Dechter and Pearl's definitive study of A*'s optimality (now called optimal efficiency), which gave an example of A* with a heuristic that was admissible but not consistent expanding arbitrarily more nodes than an alternative A*-like algorithm.[10]
+Description
+A* is an informed search algorithm, or a best-first search, meaning that it is formulated in terms of weighted graphs: starting from a specific starting node of a graph, it aims to find a path to the given goal node having the smallest cost (least distance travelled, shortest time, etc.). It does this by maintaining a tree of paths originating at the start node and extending those paths one edge at a time until the goal node is reached.
+At each iteration of its main loop, A* needs to determine which of its paths to extend. It does so based on the cost of the path and an estimate of the cost required to extend the path all the way to the goal. Specifically, A* selects the path that minimizes
+- $f(n) = g(n) + h(n)$
+where n is the next node on the path, g(n) is the cost of the path from the start node to n, and h(n) is a heuristic function that estimates the cost of the cheapest path from n to the goal. The heuristic function is problem-specific.
+Typical implementations of A* use a priority queue to perform the repeated selection of minimum (estimated) cost nodes to expand. This priority queue is known as the open set, fringe or frontier. At each step of the algorithm, the node with the lowest f(x) value is removed from the queue, the f and g values of its neighbors are updated accordingly, and these neighbors are added to the queue. The algorithm continues until a removed node (thus the node with the lowest f value out of all fringe nodes) is a goal node.[b] The f value of that goal is then also the cost of the shortest path, since h at the goal is zero in an admissible heuristic.
+```
+
+</details>
+
+**Talimat:**
+
+Soru: A* arama algoritmasında heuristic fonksiyonunun tutarlı (consistent) olması her zaman zorunlu mudur? Ben hayır zorunlu değildir, sadece admissibility yeterlidir dedim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap, tutarlılığın zorunlu olduğudur; Dechter ve Pearl'ün 1985 yılındaki çalışmasında, yalnızca admissibility (kabul edilebilirlik) özelliğine sahip ama tutarlı olmayan bir heuristic kullanan A* algoritmasının, alternatif A*-benzeri bir algoritmaya kıyasla gelişigüzel çok daha fazla düğüm genişletebileceği gösterilmiştir. Sadece kabul edilebilir bir heuristic her zaman en az düğüm genişletme garantisini sağlamaz.
+
+## 71. kod_okuma — bağlamlı (DOC_000212:8:kod_okuma)
+
+Kaynak: DOC_000212 — Abstract data type, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Imperative-style interface
+An imperative-style interface might be:
+// type: stack instance representation (opaque record)
+typedef struct {
+    // implementation here
+} Stack;
+// type: value stored in stack instance (arbitrary address)
+typedef void* Item;
+// creates a new empty stack instance
+Stack* stack_create(void);
+// adds an item at the top of the stack
+void stack_push(Stack* s, Item x);
+// removes the top item from the stack and returns it
+Item stack_pop(Stack* s);
+// checks whether stack is empty
+bool stack_is_empty(Stack* s);
+This interface could be used in the following manner:
+#include <stack.h>
+int main() {
+    Stack* s = stack_create(); // creates a new empty stack instance
+    int x = 17;
+    // adds the address of x at the top of the stack
+    stack_push(s, &x);
+    // removes the address of x from the stack and returns it
+    Item y = stack_pop(s);
+    if (stack_is_empty(s)) {
+        // does something if stack is empty
+        printf("Stack is empty!");
+    }
+}
+This interface can be implemented in many ways. The implementation may be arbitrarily inefficient, since the formal definition of the ADT, above, does not specify how much space the stack may use, nor how long each operation should take. It also does not specify whether the stack state s continues to exist after a call x ← pop(s).
+In practice the formal definition should specify that the space is proportional to the number of items pushed and not yet popped; and that every one of the operations above must finish in a constant amount of time, independently of that number. To comply with these additional specifications, the implementation could use a linked list, or an array (with dynamic resizing) together with two integers (an item count and the array size).
+Functional-style interface
+Functional-style ADT definitions are more appropriate for functional programming languages, and vice versa. However, one can provide a functional-style interface even in an imperative language like C. For example:
+// type: stack instance representation (opaque record)
+typedef struct {
+    // implementation here
+} Stack;
+// type: value stored in stack instance (arbitrary address)
+typedef void* Item;
+// returns the empty stack state
+Stack* stack_is_empty(void);
+// adds an item at the top of the stack state and returns the resulting stack state
+Stack* stack_push(Stack* s, Item x);
+// removes the top item from the stack state and returns the resulting stack state
+Stack* stack_pop(Stack* s);
+// returns the top item of the stack state
+Item stack_top(Stack* s);
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki kod parçası ne amaçla yazılmıştır ve `main` fonksiyonu içinde sırasıyla hangi işlemler gerçekleştirilmektedir?
+```c
+#include <stack.h>
+int main() {
+    Stack* s = stack_create();
+    int x = 17;
+    stack_push(s, &x);
+    Item y = stack_pop(s);
+    if (stack_is_empty(s)) {
+        printf("Stack is empty!");
+    }
+}
+```
+
+**Cevap:**
+
+Bu kod parçası, imperatif tarzdaki yığıt (stack) arayüzünün nasıl kullanılacağını gösteren bir örnek sunar. İşlem sırasıyla şöyledir: Önce `stack_create()` fonksiyonu ile yeni ve boş bir yığıt örneği oluşturulur. Ardından 17 değerini tutan `x` değişkeninin adresi `stack_push()` kullanılarak yığıtın tepesine eklenir. Sonra `stack_pop()` ile bu adres yığıttan çıkarılır ve `y` değişkenine atanır. Son olarak `stack_is_empty()` ile yığıtın boş olup olmadığı kontrol edilir ve yığıt boş olduğu için ekrana "Stack is empty!" yazdırılır.
+
+## 72. algoritma_izleme — bağlamsız (DOC_000216:0:algoritma_izleme)
+
+Kaynak: DOC_000216 — Adaptive sort, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A sorting algorithm falls into the adaptive sort family if it takes advantage of existing order in its input. It benefits from the presortedness in the input sequence – or a limited amount of disorder for various definitions of measures of disorder – and sorts faster. Adaptive sorting is usually performed by modifying existing sorting algorithms.
+Motivation
+Comparison-based sorting algorithms have traditionally dealt with achieving an optimal bound of O(n log n) when dealing with time complexity. Adaptive sort takes advantage of the existing order of the input to try to achieve better times, so that the time taken by the algorithm to sort is a smoothly growing function of the size of the sequence and the disorder in the sequence. In other words, the more presorted the input is, the faster it should be sorted.
+This is an attractive feature for a sorting algorithm because sequences that nearly sorted are common in practice. Thus, the performance of existing sorting algorithms can be improved by taking into account the existing order in the input.
+Most worst-case sorting algorithms that do optimally well in the worst-case, notably heap sort and merge sort, do not take existing order within their input into account, although this deficiency is easily rectified in the case of merge sort by checking if the last element of the left-hand group is less than (or equal) to the first element of the righthand group, in which case a merge operation may be replaced by simple concatenation – a modification that is well within the scope of making an algorithm adaptive.
+Examples
+A classic example of an adaptive sorting algorithm is insertion sort.[1] In this sorting algorithm, the input is scanned from left to right, repeatedly finding the position of the current item, and inserting it into an array of previously sorted items.
+Pseudo-code for the insertion sort algorithm follows (array X is zero-based):
+procedure Insertion Sort (X):
+    for j = 1 to length(X) - 1 do
+        t ← X[j]
+        i ← j
+        while i > 0 and X[i - 1] > t do
+            X[i] ← X[i - 1]
+            i ← i - 1
+        end
+        X[i] ← t
+    end
+The performance of this algorithm can be described in terms of the number of inversions in the input, and then $T(n)$ will be roughly equal to $I(A) + (n - 1)$, where $I(A)$ is the number of inversions. Using this measure of presortedness – being relative to the number of inversions – insertion sort takes less time to sort the closer the array of data is to being sorted.
+Other examples of adaptive sorting algorithms are adaptive heap sort, adaptive merge sort, patience sort,[2] Shellsort, smoothsort, splaysort, Timsort, and Cartesian tree sorting.[3]
+```
+
+</details>
+
+**Talimat:**
+
+Insertion sort algoritmasını [12, 11, 13, 5, 6] dizisi üzerinde adım adım uygular mısın?
+
+**Cevap:**
+
+1. Tur (j = 1): t = 11, X[0] = 12. 12 > 11 olduğu için 12 sağa kaydırılır. Dizi durumu: [11, 12, 13, 5, 6]
+2. Tur (j = 2): t = 13, X[1] = 12. 13'ten büyük sol eleman olmadığı için dizi değişmez. Dizi durumu: [11, 12, 13, 5, 6]
+3. Tur (j = 3): t = 5, X[2] = 13, X[1] = 12, X[0] = 11. 13, 12 ve 11 değerleri sağa kaydırılır. Dizi durumu: [5, 11, 12, 13, 6]
+4. Tur (j = 4): t = 6, X[3] = 13, X[2] = 12, X[1] = 11. 13, 12 ve 11 sağa kaydırılır, 6 uygun konuma yerleştirilir. Sonuç: [5, 6, 11, 12, 13].
+
+## 73. hata_bulma — bağlamsız (DOC_000216:0:hata_bulma)
+
+Kaynak: DOC_000216 — Adaptive sort, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A sorting algorithm falls into the adaptive sort family if it takes advantage of existing order in its input. It benefits from the presortedness in the input sequence – or a limited amount of disorder for various definitions of measures of disorder – and sorts faster. Adaptive sorting is usually performed by modifying existing sorting algorithms.
+Motivation
+Comparison-based sorting algorithms have traditionally dealt with achieving an optimal bound of O(n log n) when dealing with time complexity. Adaptive sort takes advantage of the existing order of the input to try to achieve better times, so that the time taken by the algorithm to sort is a smoothly growing function of the size of the sequence and the disorder in the sequence. In other words, the more presorted the input is, the faster it should be sorted.
+This is an attractive feature for a sorting algorithm because sequences that nearly sorted are common in practice. Thus, the performance of existing sorting algorithms can be improved by taking into account the existing order in the input.
+Most worst-case sorting algorithms that do optimally well in the worst-case, notably heap sort and merge sort, do not take existing order within their input into account, although this deficiency is easily rectified in the case of merge sort by checking if the last element of the left-hand group is less than (or equal) to the first element of the righthand group, in which case a merge operation may be replaced by simple concatenation – a modification that is well within the scope of making an algorithm adaptive.
+Examples
+A classic example of an adaptive sorting algorithm is insertion sort.[1] In this sorting algorithm, the input is scanned from left to right, repeatedly finding the position of the current item, and inserting it into an array of previously sorted items.
+Pseudo-code for the insertion sort algorithm follows (array X is zero-based):
+procedure Insertion Sort (X):
+    for j = 1 to length(X) - 1 do
+        t ← X[j]
+        i ← j
+        while i > 0 and X[i - 1] > t do
+            X[i] ← X[i - 1]
+            i ← i - 1
+        end
+        X[i] ← t
+    end
+The performance of this algorithm can be described in terms of the number of inversions in the input, and then $T(n)$ will be roughly equal to $I(A) + (n - 1)$, where $I(A)$ is the number of inversions. Using this measure of presortedness – being relative to the number of inversions – insertion sort takes less time to sort the closer the array of data is to being sorted.
+Other examples of adaptive sorting algorithms are adaptive heap sort, adaptive merge sort, patience sort,[2] Shellsort, smoothsort, splaysort, Timsort, and Cartesian tree sorting.[3]
+```
+
+</details>
+
+**Talimat:**
+
+Bu insertion sort sözde kodunu yazdım ancak küçük bir test dizisinde yanlış döngü aralığı yüzünden hata veriyor, hata nerede?
+```
+procedure Insertion Sort (X):
+    for j = 0 to length(X) do
+        t ← X[j]
+        i ← j
+        while i > 0 and X[i - 1] > t do
+            X[i] ← X[i - 1]
+            i ← i - 1
+        end
+        X[i] ← t
+    end
+```
+
+**Cevap:**
+
+Hatalı satır `for j = 0 to length(X) do`: döngü başlangıç ve bitiş sınırları yanlış belirlenmiştir. `j` sıfırdan başlarsa `X[i - 1]` ifadesi dizinin sınırlarının dışına (negatif indekse) erişmeye çalışır. Ayrıca `length(X)` üst sınırı sıfır tabanlı (zero-based) dizilerde dizi sınırını aşarak hata üretir. `j` 1'den başlamalı ve `length(X) - 1` değerine kadar gitmelidir. Düzeltilmiş satır şu şekildedir: `for j = 1 to length(X) - 1 do`.
+
+## 74. karsilastirma — bağlamsız (DOC_000219:1:karsilastirma)
+
+Kaynak: DOC_000219 — Adjacency matrix, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Variations
+An (a, b, c)-adjacency matrix A of a simple graph has A_{i,j} = a if (i, j) is an edge, b if it is not, and c on the diagonal. The Seidel adjacency matrix is a (−1, 1, 0)-adjacency matrix. This matrix is used in studying strongly regular graphs and two-graphs.[3]
+The distance matrix has in position (i, j) the distance between vertices v_i and v_j. The distance is the length of a shortest path connecting the vertices. Unless lengths of edges are explicitly provided, the length of a path is the number of edges in it. The distance matrix resembles a high power of the adjacency matrix, but instead of telling only whether or not two vertices are connected (i.e., the connection matrix, which contains Boolean values), it gives the exact distance between them.
+Examples
+Undirected graphs
+The convention followed here (for undirected graphs) is that each edge adds 1 to the appropriate cell in the matrix, and each loop (an edge from a vertex to itself) adds 2 to the appropriate cell on the diagonal in the matrix.[4] This allows the degree of a vertex to be easily found by taking the sum of the values in either its respective row or column in the adjacency matrix.
+Directed graphs
+The adjacency matrix of a directed graph can be asymmetric. One can define the adjacency matrix of a directed graph either such that
+- a non-zero element A_{ij} indicates an edge from i to j or
+- it indicates an edge from j to i.
+The former definition is commonly used in graph theory and social network analysis (e.g., sociology, political science, economics, psychology).[5] The latter is more common in other applied sciences (e.g., dynamical systems, physics, network science) where A is sometimes used to describe linear dynamics on graphs.[6]
+Using the first definition, the in-degrees of a vertex can be computed by summing the entries of the corresponding column and the out-degree of vertex by summing the entries of the corresponding row. When using the second definition, the in-degree of a vertex is given by the corresponding row sum and the out-degree is given by the corresponding column sum.
+Trivial graphs
+The adjacency matrix of a complete graph contains all ones except along the diagonal where there are only zeros. The adjacency matrix of an empty graph is a zero matrix.
+```
+
+</details>
+
+**Talimat:**
+
+Yönlendirilmiş graflarda adjacency matrix tanımlanırken kullanılan iki farklı tanımı karşılaştırabilir misin?
+
+**Cevap:**
+
+Yönlendirilmiş graf komşuluk matrisinin iki tanımını şu açılardan karşılaştırabiliriz: Anlam: İlk tanımda sıfırdan farklı A_{ij} elemanı i'den j'ye bir kenar olduğunu gösterirken, ikinci tanımda j'den i'ye bir kenar olduğunu belirtir. Kullanım alanı: İlk tanım graf teorisi ve sosyal ağ analizinde yaygınken, ikinci tanım dinamik sistemler ve fizik gibi uygulamalı bilimlerde lineer dinamikleri betimlemek için daha çok tercih edilir. Derece hesaplama: İlk tanımda sütun toplamları in-degree (giriş derecesi), satır toplamları out-degree (çıkış derecesi) verirken; ikinci tanımda bu durum tam tersidir, satır toplamı in-degree'yi, sütun toplamı out-degree'yi verir.
+
+## 75. konu_ozeti_anlatim — bağlamsız (DOC_000219:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000219 — Adjacency matrix, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Variations
+An (a, b, c)-adjacency matrix A of a simple graph has A_{i,j} = a if (i, j) is an edge, b if it is not, and c on the diagonal. The Seidel adjacency matrix is a (−1, 1, 0)-adjacency matrix. This matrix is used in studying strongly regular graphs and two-graphs.[3]
+The distance matrix has in position (i, j) the distance between vertices v_i and v_j. The distance is the length of a shortest path connecting the vertices. Unless lengths of edges are explicitly provided, the length of a path is the number of edges in it. The distance matrix resembles a high power of the adjacency matrix, but instead of telling only whether or not two vertices are connected (i.e., the connection matrix, which contains Boolean values), it gives the exact distance between them.
+Examples
+Undirected graphs
+The convention followed here (for undirected graphs) is that each edge adds 1 to the appropriate cell in the matrix, and each loop (an edge from a vertex to itself) adds 2 to the appropriate cell on the diagonal in the matrix.[4] This allows the degree of a vertex to be easily found by taking the sum of the values in either its respective row or column in the adjacency matrix.
+Directed graphs
+The adjacency matrix of a directed graph can be asymmetric. One can define the adjacency matrix of a directed graph either such that
+- a non-zero element A_{ij} indicates an edge from i to j or
+- it indicates an edge from j to i.
+The former definition is commonly used in graph theory and social network analysis (e.g., sociology, political science, economics, psychology).[5] The latter is more common in other applied sciences (e.g., dynamical systems, physics, network science) where A is sometimes used to describe linear dynamics on graphs.[6]
+Using the first definition, the in-degrees of a vertex can be computed by summing the entries of the corresponding column and the out-degree of vertex by summing the entries of the corresponding row. When using the second definition, the in-degree of a vertex is given by the corresponding row sum and the out-degree is given by the corresponding column sum.
+Trivial graphs
+The adjacency matrix of a complete graph contains all ones except along the diagonal where there are only zeros. The adjacency matrix of an empty graph is a zero matrix.
+```
+
+</details>
+
+**Talimat:**
+
+Graf komşuluk matrisinde (adjacency matrix) mesafe matrisi (distance matrix) ile bağlantı matrisi (connection matrix) arasındaki farkı anlatır mısın?
+
+**Cevap:**
+
+Mesafe matrisi, komşuluk matrisinin yüksek bir gücüne benzese de bağlantı matrisinden farklıdır. Bağlantı matrisi yalnızca iki köşe arasında bir bağlantı olup olmadığını Boolean değerlerle söylerken, mesafe matrisi köşeler v_i ve v_j arasındaki en kısa yolun uzunluğunu yani tam mesafeyi verir. Kenar uzunlukları ayrıca verilmediği sürece bir yolun uzunluğu içerisindeki kenar sayısıdır.
+
+## 76. kavram_aciklama — bağlamsız (DOC_000223:2:kavram_aciklama)
+
+Kaynak: DOC_000223 — Algorithmic efficiency, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Measuring performance
+For new versions of software or to provide comparisons with competitive systems, benchmarks are sometimes used, which assist with gauging an algorithms relative performance. If a new sort algorithm is produced, for example, it can be compared with its predecessors to ensure that at least it is efficient as before with known data, taking into consideration any functional improvements. Benchmarks can be used by customers when comparing various products from alternative suppliers to estimate which product will best suit their specific requirements in terms of functionality and performance. For example, in the mainframe world certain proprietary sort products from independent software companies such as Syncsort compete with products from the major suppliers such as IBM for speed.
+Some benchmarks provide opportunities for producing an analysis comparing the relative speed of various compiled and interpreted languages for example[4][5] and The Computer Language Benchmarks Game compares the performance of implementations of typical programming problems in several programming languages.
+Even creating "do it yourself" benchmarks can demonstrate the relative performance of different programming languages, using a variety of user specified criteria. This is quite simple, as a "Nine language performance roundup" by Christopher W. Cowell-Shah demonstrates by example.[6]
+Implementation concerns
+Implementation issues can also have an effect on efficiency, such as the choice of programming language, or the way in which the algorithm is actually coded,[7] or the choice of a compiler for a particular language, or the compilation options used, or even the operating system being used. In many cases a language implemented by an interpreter may be much slower than a language implemented by a compiler.[4] See the articles on just-in-time compilation and interpreted languages.
+There are other factors which may affect time or space issues, but which may be outside of a programmer's control; these include data alignment, data granularity, cache locality, cache coherency, garbage collection, instruction-level parallelism, multi-threading (at either a hardware or software level), simultaneous multitasking, and subroutine calls.[8]
+Some processors have capabilities for vector processing, which allow a single instruction to operate on multiple operands; it may or may not be easy for a programmer or compiler to use these capabilities. Algorithms designed for sequential processing may need to be completely redesigned to make use of parallel processing, or they could be easily reconfigured. As parallel and distributed computing grow in importance in the late 2010s, more investments are being made into efficient high-level APIs for parallel and distributed computing systems such as CUDA, TensorFlow, Hadoop, OpenMP and MPI.
+```
+
+</details>
+
+**Talimat:**
+
+Algoritma verimliliğini değerlendirmede kullanılan kıyaslama (benchmark) nedir ve ne amaçla kullanılır?
+
+**Cevap:**
+
+Kıyaslama (benchmark), yeni yazılım sürümlerinin performansını ölçmek veya rekabet eden sistemlerle karşılaştırma yapmak amacıyla kullanılan araçlardır. Bu araçlar, yeni bir sıralama algoritmasının performansını bilinen verilerle ve işlevsel iyileştirmeleri dikkate alarak önceki sürümleriyle kıyaslamayı sağlar. Ayrıca müşteriler, farklı tedarikçilerin ürünlerini işlevsellik ve performans açısından kendi özel gereksinimlerine göre değerlendirmek için bu kıyaslamalardan yararlanırlar.
+
+## 77. kod_okuma — bağlamlı (DOC_000225:2:kod_okuma)
+
+Kaynak: DOC_000225 — All nearest smaller values, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+S = new empty stack data structure
+for x in the input sequence do
+    while S is nonempty and the top element of S is greater than or equal to x do
+        pop S
+    if S is empty then
+        x has no preceding smaller value
+    else
+        the nearest smaller value to x is the top element of S
+    push x onto S
+Despite having a nested loop structure, the running time of this algorithm is linear, because every iteration of the inner loop removes an item that had been added in some previous iteration of the outer loop. It is closely related to an algorithm of Knuth for sorting with a stack (for inputs that can be sorted in this way).[7]
+An even simpler linear-time sequential algorithm  does not even need a stack; it assumes that the input sequence is given as an array A[1,n] of size n, and stores the index j of the preceding smaller value of the i^{th} value A[i] in P[i]. We assume an artificial overall minimum at A[0]:[8]
+for i from 1 to n:
+    j = i-1
+    while A[j] >= A[i]:
+        j = P[j]
+    P[i] = j
+Parallel algorithms
+Berkman, Schieber & Vishkin (1993) showed how to solve the all nearest smaller values problem efficiently on a concurrent-read concurrent-write Parallel Random Access Machine. For a sequence of n values, stored as an array, they use a doubly logarithmic tree to show that the problem may be solved in time O(log log n) using a linear amount of total work.[1] For sequences where all values are integers in the interval [1,s], Berkman, Matias & Ragde (1998) improved this bound to O(log log log s); they also showed that, for sufficiently large values of s, the previous doubly logarithmic time bound is the best that can be achieved for the problem.[9] Since this work, parallel algorithms for the all nearest smaller values problem have also been developed on other models of parallel computation, including parallel computers with a hypercube-structured communications network,[2] and the bulk synchronous parallel model.[3]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, bir yığıt (stack) kullanarak girdi dizisindeki tüm en yakın küçük değerleri (all nearest smaller values) bulan algoritmanın iç döngüsü ve koşulu ne şekildedir?
+```
+while S is nonempty and the top element of S is greater than or equal to x do
+    pop S
+```
+
+**Cevap:**
+
+Bu kod parçası, yığıt (stack) boş olmadığı sürece ve yığıtın en üstündeki eleman işlenen x değerinden büyük veya eşit olduğunda çalışır. Bu koşul sağlandığı sürece yığıttan eleman çıkarılır (pop yapılır). Amaç, x değerinden büyük ya da eşit olan ve artık bir en yakın küçük değer adayı olmaktan çıkan gereksiz elemanları yığıttan temizlemektir.
+
+## 78. kod_okuma — bağlamlı (DOC_000226:1:kod_okuma)
+
+Kaynak: DOC_000226 — American flag sort, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Counts <- zeros(Radix)
+        for object X in Array:
+            Counts[digit D of object X in base Radix] += 1
+        # compute bucket offsets
+        Offsets <- [ sum(Counts[0..i]) for i in 1..Radix]
+        # swap objects into place
+        for object X in Array:
+            swap X to the bucket starting at Offsets[digit D of X in base Radix]
+        for each Bucket:
+            american_flag_sort(Bucket, Radix)
+Sample implementation in Python
+This example written in the Python programming language will perform American flag sort for any radix of 2 or greater. Simplicity of exposition is chosen over clever programming, and so the log function is used instead of bit shifting techniques.
+import copy
+import math
+def get_radix_val(x: int, digit: int, radix: int) -> int:
+    return int(math.floor(x / radix ** digit)) % radix
+def compute_offsets(numbers: list[int], start: int, end: int, digit: int, radix: int) -> list[int]:
+    counts: list[int] = [0 for _ in range(radix)]
+    for i in range(start, end):
+        val = get_radix_val(numbers[i], digit, radix)
+        counts[val] += 1
+    offset: int = start
+    offsets: list[int] = [start]
+    for i in range(radix):
+        offset += counts[i]
+        offsets.append(offset)
+    return offsets
+def swap(numbers: list[int], offsets: list[int], start: int, end: int, digit: int, radix: int) -> None:
+    next_free: list[int] = copy.copy(offsets)
+    cur_block: int = 0
+    while cur_block < radix:
+        i: int = next_free[cur_block]
+        if i >= offsets[cur_block + 1]:
+            cur_block += 1
+            continue
+        radix_val: int = get_radix_val(numbers[i], digit, radix)
+        if radix_val != cur_block:
+            swap_to: int = next_free[radix_val]
+            numbers[i], numbers[swap_to] = numbers[swap_to], numbers[i]
+        next_free[radix_val] += 1
+def american_flag_sort_helper(numbers: list[int], start: int, end: int, digit: int, radix: int) -> None:
+    offsets: list[int] = compute_offsets(numbers, start, end, digit, radix)
+    swap(numbers, offsets, start, end, digit, radix)
+    if digit == 0:
+        return
+    for i in range(len(offsets) - 1):
+        american_flag_sort_helper(numbers, offsets[i], offsets[i + 1], digit - 1, radix)
+def american_flag_sort(numbers: list[int], radix: int) -> None:
+    for x in numbers:
+        assert isinstance(x, int)
+    max_val: int = max(numbers)
+    max_digit: int = int(math.floor(math.log(max_val, radix)))
+    american_flag_sort_helper(numbers, 0, len(numbers), max_digit, radix)
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki fonksiyon ne yapar ve `get_radix_val(29, 0, 10)` çağrısı ne döndürür?
+```python
+def get_radix_val(x: int, digit: int, radix: int) -> int:
+    return int(math.floor(x / radix ** digit)) % radix
+```
+
+**Cevap:**
+
+Fonksiyon, verilen bir sayının belirtilen basamaktaki (digit) değerini, seçilen tabana (radix) göre hesaplar ve döndürür. `get_radix_val(29, 0, 10)` çağrısı için 29 sayısının 10 tabanındaki 0. basamağı (birler basamağı) hesaplanır: 29 / (10 ** 0) = 29, 29'un 10 ile bölümünden kalan 9'dur. Dolayısıyla fonksiyon 9 döndürür.
+
+## 79. karmasiklik_analizi — bağlamsız (DOC_000228:4:karmasiklik_analizi)
+
+Kaynak: DOC_000228 — Analysis of algorithms, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- $\begin{align} & T_5 \left[ 1+2+3+\cdots + (n-1) + n + (n + 1) \right] - T_5 \\ ={}& \left[ \frac{1}{2} (n^2 + n) \right] T_5 + (n + 1)T_5 - T_5 \\ ={}& \left[ \frac{1}{2} (n^2 + n) \right] T_5 + n T_5 \\ ={}& \left[ \frac{1}{2} (n^2 + 3n) \right] T_5 \end{align}$
+Therefore, the total run-time for this algorithm is:
+- $f(n) = T_1 + T_2 + T_3 + T_7 + (n + 1)T_4 + \left[ \frac{1}{2} (n^2 + n) \right] T_6 + \left[ \frac{1}{2} (n^2+3n) \right] T_5$
+which reduces to
+- $f(n) = \left[ \frac{1}{2} (n^2 + n) \right] T_6 + \left[ \frac{1}{2} (n^2 + 3n) \right] T_5 + (n + 1)T_4 + T_1 + T_2 + T_3 + T_7$
+As a rule-of-thumb, one can assume that the highest-order term in any given function dominates its rate of growth and thus defines its run-time order. In this example, n^2 is the highest-order term, so one can conclude that f(n) = O(n^2). Formally this can be proven as follows:
+Prove that $\left[ \frac{1}{2} (n^2 + n) \right] T_6 + \left[ \frac{1}{2} (n^2 + 3n) \right] T_5 + (n + 1)T_4 + T_1 + T_2 + T_3 + T_7 \le cn^2,\ n \ge n_0$
+- $\begin{align} &\left[ \frac{1}{2} (n^2 + n) \right] T_6 + \left[ \frac{1}{2} (n^2 + 3n) \right] T_5 + (n + 1)T_4 + T_1 + T_2 + T_3 + T_7\\ \le {} &( n^2 + n )T_6 + ( n^2 + 3n )T_5 + (n + 1)T_4 + T_1 + T_2 + T_3 + T_7 \ (\text{for } n \ge 0 ) \end{align}$
+Let k be a constant greater than or equal to [T_1..T_7]
+```
+
+</details>
+
+**Talimat:**
+
+Verilen bir f(n) algoritma çalışma zamanı fonksiyonu için zaman karmaşıklığının O(n^2) olduğu biçimsel olarak nasıl kanıtlanır?
+
+**Cevap:**
+
+Biçimsel kanıt için f(n) <= cn^2 eşitsizliğinin n >= n_0 koşulunu sağlayan uygun c ve n_0 sabitleri için geçerli olduğunu göstermek gerekir. Bu süreçte eşitsizliğin sol tarafındaki terimler üstten sınırlandırılarak nihayetinde cn^2 formuna ulaştırılır. Örneğin, katsayılar uygun bir k sabitiyle ele alınarak ifade n^2 teriminin katı olan bir üst sınıra indirgenir.
+
+## 80. karmasiklik_analizi — bağlamsız (DOC_000228:6:karmasiklik_analizi)
+
+Kaynak: DOC_000228 — Analysis of algorithms, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Constant factors
+Analysis of algorithms typically focuses on the asymptotic performance, particularly at the elementary level, but in practical applications constant factors are important, and real-world data is in practice always limited in size. The limit is typically the size of addressable memory, so on 32-bit machines 2^{32} = 4 GiB (greater if segmented memory is used) and on 64-bit machines 2^{64} = 16 EiB. Thus given a limited size, an order of growth (time or space) can be replaced by a constant factor, and in this sense all practical algorithms are O(1) for a large enough constant, or for small enough data.
+This interpretation is primarily useful for functions that grow extremely slowly: (binary) iterated logarithm (log^*) is less than 5 for all practical data (2^{65536} bits); (binary) log-log (log log n) is less than 6 for virtually all practical data (2^{64} bits); and binary log (log n) is less than 64 for virtually all practical data (2^{64} bits). An algorithm with non-constant complexity may nonetheless be more efficient than an algorithm with constant complexity on practical data if the overhead of the constant time algorithm results in a larger constant factor, e.g., one may have $K > k \log \log n$ so long as $K/k > 6$ and $n < 2^{2^6} = 2^{64}$.
+For large data linear or quadratic factors cannot be ignored, but for small data an asymptotically inefficient algorithm may be more efficient. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
+```
+
+</details>
+
+**Talimat:**
+
+Gerçek dünya verilerinin sınırlı boyutta olması algoritmaların karmaşıklığına nasıl etki eder?
+
+**Cevap:**
+
+Gerçek dünya verileri pratikte her zaman sınırlı boyuttadır; bu sınır genellikle adreslenebilir belleğin boyutudur (örneğin 32-bit makinelerde 4 GiB, 64-bit makinelerde 16 EiB). Bu sınırlı boyut nedeniyle herhangi bir büyüme mertebesi zaman veya uzay açısından sabit bir faktörle değiştirilebilir ve bu anlamda yeterince büyük bir sabit için veya küçük veriler için pratikteki tüm algoritmalar O(1) karmaşıklığına sahiptir. Özellikle log n veya log log n gibi aşırı yavaş büyüyen fonksiyonlarda, pratik verilerin tamamı için bu değerler çok küçük sabit üst sınırların altında kalır.
+
+## 81. kod_okuma — bağlamsız (DOC_000242:2:kod_okuma)
+
+Kaynak: DOC_000242 — Bead sort, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+for (int i = 1; i < a.length; i++) {
+            if (a[i] > max) {
+                max = a[i];
+            }
+        }
+
+        // allocating memory
+        int[][] beads = new int[a.length][max];
+
+        // mark the beads
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i]; j++) {
+                beads[i][j] = 1;
+            }
+        }
+
+        // move down the beads
+        for (int j = 0; j < max; j++) {
+            int sum = 0;
+            for (int i = 0; i < a.length; i++) {
+                sum += beads[i][j];
+                beads[i][j] = 0;
+            }
+
+            for (int i = a.length - 1; i >= a.length - sum;
+                 i--) {
+                a[i] = j + 1;
+            }
+        }
+    }
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki kod parçası ne işe yarar ve `beads` dizisini nasıl oluşturur?
+```java
+for (int i = 1; i < a.length; i++) {
+    if (a[i] > max) {
+        max = a[i];
+    }
+}
+
+// allocating memory
+int[][] beads = new int[a.length][max];
+
+// mark the beads
+for (int i = 0; i < a.length; i++) {
+    for (int j = 0; j < a[i]; j++) {
+        beads[i][j] = 1;
+    }
+}
+```
+
+**Cevap:**
+
+Bu kod, boncuk sıralaması (Bead sort) algoritmasının ilk aşamalarını gerçekleştirir. İlk olarak dizideki en büyük elemanı (`max`) bulur. Ardından `a.length` satır ve `max` sütundan oluşan iki boyutlu bir `beads` dizisi (bellek tahsisi) oluşturur. Son adımda ise her bir satırda `a[i]` değerine kadar olan sütunları 1 ile işaretleyerek boncukları temsil eder.
+
+## 82. kavram_aciklama — bağlamsız (DOC_000244:0:kavram_aciklama)
+
+Kaynak: DOC_000244 — Bellman–Ford algorithm, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.[1] It is slower than Dijkstra's algorithm for the same problem, but more versatile, as it is capable of handling graphs in which some of the edge weights are negative numbers.[2] The algorithm was first proposed by Alfonso Shimbel (1955), but is instead named after Richard Bellman and Lester Ford Jr., who published it in 1958 and 1956, respectively.[3] Edward F. Moore also published a variation of the algorithm in 1959, and for this reason it is also sometimes called the Bellman–Ford–Moore algorithm.[1]
+Negative edge weights are found in various applications of graphs. This is why this algorithm is useful.[4] If a graph contains a "negative cycle" (i.e. a cycle whose edges sum to a negative value) that is reachable from the source, then there is no cheapest path: any path that has a point on the negative cycle can be made cheaper by one more walk around the negative cycle. In such a case, the Bellman–Ford algorithm can detect and report the negative cycle.[1][5]
+Algorithm
+Like Dijkstra's algorithm, Bellman–Ford proceeds by relaxation, in which approximations to the correct distance are replaced by better ones until they eventually reach the solution. In both algorithms, the approximate distance to each vertex is always an overestimate of the true distance, and is replaced by the minimum of its old value and the length of a newly found path.[6]
+However, Dijkstra's algorithm uses a priority queue to greedily select the closest vertex that has not yet been processed, and performs this relaxation process on all of its outgoing edges; by contrast, the Bellman–Ford algorithm simply relaxes all the edges, and does this $|V|-1$ times, where $|V|$ is the number of vertices in the graph.[6]
+In each of these repetitions, the number of vertices with correctly calculated distances grows, from which it follows that eventually all vertices will have their correct distances. This method allows the Bellman–Ford algorithm to be applied to a wider class of inputs than Dijkstra's algorithm. The intermediate answers and the choices among equally short paths depend on the order of edges relaxed, but the final distances remain the same.[6]
+Bellman–Ford runs in $O(|V|\cdot |E|)$ time, where $|V|$ and $|E|$ are the number of vertices and edges respectively.
+function BellmanFord(list vertices, list edges, vertex source) is
+    // This implementation takes in a graph, represented as
+    // lists of vertices (represented as integers [0..n-1]) and
+    // edges, and fills two arrays (distance and predecessor)
+    // holding the shortest path from the source to each vertex
+    distance := list of size n
+    predecessor := list of size n
+    // Step 1: initialize graph
+    for each vertex v in vertices do
+        // Initialize the distance to all vertices to infinity
+        distance[v] := inf
+        // And having a null predecessor
+        predecessor[v] := null
+
+    // The distance from the source to itself is zero
+```
+
+</details>
+
+**Talimat:**
+
+Bellman–Ford algoritması nedir ve negatif kenar ağırlıkları olan durumlarda neden tercih edilir?
+
+**Cevap:**
+
+Bellman–Ford algoritması, ağırlıklı bir yönlü graf üzerinde tek bir kaynak düğümden diğer tüm düğümlere olan en kısa yolları hesaplayan bir algoritmadır. Dijkstra algoritmasına göre daha yavaştır ancak bazı kenar ağırlıkları negatif sayı olan grafiklerle başa çıkabildiği için çok daha işlevseldir. Ayrıca grafikte ulaşılamayan veya ulaşılan negatif döngüleri tespit edip raporlayabilir.
+
+## 83. karsilastirma — bağlamsız (DOC_000249:0:karsilastirma)
+
+Kaynak: DOC_000249 — Bidirectional search, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Bidirectional search is a graph search algorithm that finds a shortest path from an initial vertex to a goal vertex in a directed graph. It runs two simultaneous searches: one forward from the initial state, and one backward from the goal, stopping when the two meet. The reason for this approach is that in many cases it is faster: for instance, in a simplified model of search problem complexity in which both searches expand a tree with branching factor b, and the distance from start to goal is d, each of the two searches has complexity O(b^{d/2}) (in Big O notation), and the sum of these two search times is much less than the O(b^d) complexity that would result from a single search from the beginning to the goal.
+Andrew Goldberg and others explained the correct termination conditions for the bidirectional version of Dijkstra’s Algorithm.[1]
+As in A* search, bi-directional search can be guided by a heuristic estimate of the remaining distance to the goal (in the forward tree) or from the start (in the backward tree).
+Ira Pohl was the first one to design and implement a bi-directional heuristic search algorithm.[2] Search trees emanating from the start and goal nodes failed to meet in the middle of the solution space. The BHFFA algorithm of de Champeaux fixed this defect.[3]
+A solution found by the uni-directional A* algorithm using an admissible heuristic has a shortest path length; the same property holds for the BHFFA2 bidirectional heuristic version described by de Champeaux .[4] BHFFA2 has, among others, more careful termination conditions than BHFFA.
+```
+
+</details>
+
+**Talimat:**
+
+Tek yönlü A* algoritması ile BHFFA2 gibi çift yönlü sezgisel arama versiyonlarını karşılaştırır mısın?
+
+**Cevap:**
+
+Bu iki yöntemi çözüm kalitesi ve arama yapısı açısından karşılaştırabiliriz. Çözüm kalitesi: Kabul edilebilir (admissible) bir sezgisel kullanan tek yönlü A* algoritması ile çift yönlü sezgisel BHFFA2 versiyonu en kısa yol uzunluğunu bulma özelliğine sahiptir. Arama yapısı: Tek yönlü A* başlangıçtan hedefe tek bir arama ağacı yürütürken, çift yönlü arama hem başlangıçtan ileriye hem de hedeften geriye eş zamanlı iki ağaç oluşturur. Ayrıca BHFFA2, orijinal BHFFA algoritmasına kıyasla daha dikkatli durdurma koşullarına sahiptir.
+
+## 84. kavram_aciklama — bağlamsız (DOC_000249:0:kavram_aciklama)
+
+Kaynak: DOC_000249 — Bidirectional search, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Bidirectional search is a graph search algorithm that finds a shortest path from an initial vertex to a goal vertex in a directed graph. It runs two simultaneous searches: one forward from the initial state, and one backward from the goal, stopping when the two meet. The reason for this approach is that in many cases it is faster: for instance, in a simplified model of search problem complexity in which both searches expand a tree with branching factor b, and the distance from start to goal is d, each of the two searches has complexity O(b^{d/2}) (in Big O notation), and the sum of these two search times is much less than the O(b^d) complexity that would result from a single search from the beginning to the goal.
+Andrew Goldberg and others explained the correct termination conditions for the bidirectional version of Dijkstra’s Algorithm.[1]
+As in A* search, bi-directional search can be guided by a heuristic estimate of the remaining distance to the goal (in the forward tree) or from the start (in the backward tree).
+Ira Pohl was the first one to design and implement a bi-directional heuristic search algorithm.[2] Search trees emanating from the start and goal nodes failed to meet in the middle of the solution space. The BHFFA algorithm of de Champeaux fixed this defect.[3]
+A solution found by the uni-directional A* algorithm using an admissible heuristic has a shortest path length; the same property holds for the BHFFA2 bidirectional heuristic version described by de Champeaux .[4] BHFFA2 has, among others, more careful termination conditions than BHFFA.
+```
+
+</details>
+
+**Talimat:**
+
+Çift yönlü arama (bidirectional search) nedir ve temel çalışma mantığı nasıldır?
+
+**Cevap:**
+
+Çift yönlü arama, yönlendirilmiş bir graf üzerinde başlangıç düğümü ile hedef düğüm arasındaki en kısa yolu bulmak için kullanılan bir arama algoritmasıdır. Algoritma eş zamanlı olarak iki arama yürütür: biri başlangıç durumundan ileriye doğru, diğeri ise hedeften geriye doğru çalışır ve bu iki arama karşılaştığı anda durur. Bu yaklaşım, her iki aramanın da dallanma faktörüne sahip bir ağacı genişlettiği durumlarda arama süresini önemli ölçüde kısaltır.
+
+## 85. karmasiklik_analizi — bağlamlı (DOC_000255:3:karmasiklik_analizi)
+
+Kaynak: DOC_000255 — Binary tree, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- A degenerate (or pathological) tree is a tree where each parent node has only one associated child node.[25] This means that the tree behaves like a linked list data structure. In this case, an advantage of using a binary tree is significantly reduced, because it is essentially a linked list where searching has time complexity O(n) (with n being the number of nodes and 'O()' being Big O notation), whereas searching a balanced binary search tree has time complexity O(log n). A degenerate tree also requires more memory space than the linked list due to having two pointers per node.
+Properties of binary trees
+- The number of nodes n in a full binary tree is at least $2h+1$ and at most $2^{h+1}-1$ (i.e., the number of nodes in a perfect binary tree), where h is the height of the tree. A tree consisting of only a root node has a height of 0. The least number of nodes is obtained by adding only two children nodes per adding height so $2h+1$ (1 for counting the root node). The maximum number of nodes is obtained by fully filling nodes at each level, i.e., it is a perfect tree. For a perfect tree, the number of nodes is $1 + 2 + 4 + \ldots + 2^h = 2^{h + 1} - 1$, where the last equality is from the geometric series sum.
+- The number of leaf nodes l in a perfect binary tree is $l = (n + 1) / 2$ (where n is the number of nodes in the tree) because $n={{2}^{h+1}}-1$ (by using the above property) and the number of leaves is $2^h$ so $n=2\cdot {{2}^{h}}-1=2l-1\to l=\left( n+1 \right)/2$. It also means that $n = 2l - 1$. In terms of the tree height h, $l = (2^{h+1}-1 + 1) / 2 = 2^h$.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, kötücül bir ağaçta arama işleminin zaman karmaşıklığı nedir, nedeni nedir?
+
+**Cevap:**
+
+Kötücül ağaçta aramanın zaman karmaşıklığı O(n)'dir (burada n düğüm sayısını ifade eder). Bunun nedeni, her ebeveyn düğümün yalnızca bir çocuk düğüme sahip olması ve ağacın özünde bir bağlı liste veri yapısı gibi davranmasıdır; bu da dengeli bir ikili arama ağacındaki O(log n) süresinin aksine tüm elemanların taranmasını gerektirebilir.
+
+## 86. kavram_aciklama — bağlamsız (DOC_000255:3:kavram_aciklama)
+
+Kaynak: DOC_000255 — Binary tree, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- A degenerate (or pathological) tree is a tree where each parent node has only one associated child node.[25] This means that the tree behaves like a linked list data structure. In this case, an advantage of using a binary tree is significantly reduced, because it is essentially a linked list where searching has time complexity O(n) (with n being the number of nodes and 'O()' being Big O notation), whereas searching a balanced binary search tree has time complexity O(log n). A degenerate tree also requires more memory space than the linked list due to having two pointers per node.
+Properties of binary trees
+- The number of nodes n in a full binary tree is at least $2h+1$ and at most $2^{h+1}-1$ (i.e., the number of nodes in a perfect binary tree), where h is the height of the tree. A tree consisting of only a root node has a height of 0. The least number of nodes is obtained by adding only two children nodes per adding height so $2h+1$ (1 for counting the root node). The maximum number of nodes is obtained by fully filling nodes at each level, i.e., it is a perfect tree. For a perfect tree, the number of nodes is $1 + 2 + 4 + \ldots + 2^h = 2^{h + 1} - 1$, where the last equality is from the geometric series sum.
+- The number of leaf nodes l in a perfect binary tree is $l = (n + 1) / 2$ (where n is the number of nodes in the tree) because $n={{2}^{h+1}}-1$ (by using the above property) and the number of leaves is $2^h$ so $n=2\cdot {{2}^{h}}-1=2l-1\to l=\left( n+1 \right)/2$. It also means that $n = 2l - 1$. In terms of the tree height h, $l = (2^{h+1}-1 + 1) / 2 = 2^h$.
+```
+
+</details>
+
+**Talimat:**
+
+Kötücül ağaç (degenerate tree) nedir?
+
+**Cevap:**
+
+Kötücül ağaç (degenerate tree), her ebeveyn düğümün yalnızca tek bir çocuk düğüme sahip olduğu bir ikili ağaç türüdür. Bu yapı, özünde bir bağlı liste gibi davranır. Düğümlerin iki gösterici tutması gereğinden ötürü bağlı listeye kıyasla daha fazla bellek alanı harcar ve arama işlemi O(n) zaman karmaşıklığıyla çalışır.
+
+## 87. hata_bulma — bağlamlı (DOC_000255:8:hata_bulma)
+
+Kaynak: DOC_000255 — Binary tree, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+EncodeSuccinct(n.left, structure, data);
+        EncodeSuccinct(n.right, structure, data);
+}
+The string structure has only $2n + 1$ bits in the end, where $n$ is the number of (internal) nodes; we don't even have to store its length. To show that no information is lost, we can convert the output back to the original tree like this:
+function DecodeSuccinct(bitstring structure, array data) {
+    remove first bit of structure and put it in b
+    if b = 1 then
+        create a new node n
+        remove first element of data and put it in n.data
+        n.left = DecodeSuccinct(structure, data)
+        n.right = DecodeSuccinct(structure, data)
+        return n
+    else
+        return nil
+}
+More sophisticated succinct representations allow not only compact storage of trees but even useful operations on those trees directly while they're still in their succinct form.
+Encoding ordered trees as binary trees
+There is a natural one-to-one correspondence between ordered trees and binary trees. It allows any ordered tree to be uniquely represented as a binary tree, and vice versa:
+Let T be a node of an ordered tree, and let B denote T's image in the corresponding binary tree. Then B's left child represents T's first child, while the B's right child represents T's next sibling.
+For example, the ordered tree on the left and the binary tree on the right correspond:
+In the pictured binary tree, the black, left, edges represent first child, while the blue, right, edges represent next sibling.
+This representation is called a left-child right-sibling binary tree.
+Common operations
+There are a variety of different operations that can be performed on binary trees. Some are mutator operations, while others simply return useful information about the tree.
+Insertion
+Nodes can be inserted into binary trees in between two other nodes or added after a leaf node. In binary trees, a node that is inserted is specified as to whose child it will be.
+Leaf nodes
+To add a new node after leaf node A, A assigns the new node as one of its children and the new node assigns node A as its parent.
+Internal nodes
+Insertion on internal nodes is slightly more complex than on leaf nodes. Say that the internal node is node A and that node B is the child of A. (If the insertion is to insert a right child, then B is the right child of A, and similarly with a left child insertion.) A assigns its child to the new node and the new node assigns its parent to A. Then the new node assigns its child to B and B assigns its parent as the new node.
+Deletion
+Deletion is the process whereby a node is removed from the tree. Only certain nodes in a binary tree can be removed unambiguously.[33]
+Node with zero or one children
+Suppose that the node to delete is node A. If A has no children, deletion is accomplished by setting the child of A's parent to null. If A has one child, set the parent of A's child to A's parent and set the child of A's parent to A's child.
+```
+
+</details>
+
+**Talimat:**
+
+Bu silme fonksiyonunda kök düğümün ya da çocukların güncellenmesinde bir sorun var gibi görünüyor, A düğümünün hiç çocuğu yoksa ne eksik ya da yanlış?
+```
+function Sil(node A) {
+    if A has no children then
+        return nil
+    else if A has one child then
+        set the parent of A's child to A's parent
+        set the child of A's parent to A's child
+    end if
+}
+```
+
+**Cevap:**
+
+Hatalı satır `return nil`: düğümün hiç çocuğu olmadığında sadece `return nil` denilerek fonksiyon sonlandırılmış ancak A'nın ebeveyninin ilgili çocuğu (sol veya sağ bağı) `null` olarak güncellenmemiştir. Düğümün hiç çocuğu yoksa silme işlemi, A'nın ebeveyninin A'yı gösteren çocuk işaretçisinin `null` yapılmasıyla gerçekleştirilmelidir. Düzeltilmiş satır: `set the child of A's parent to null` olmalıdır.
+
+## 88. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000262:6:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000262 — Bloom filter, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Approximating the number of items in a Bloom filter
+The number of items in a Bloom filter can be approximated with the following formula,
+- $n^* = -\frac{m}{k} \ln \left[ 1 - \frac{X}{m} \right],$
+where $n^*$ is an estimate of the number of items in the filter, m is the length (size) of the filter, k is the number of hash functions, and X is the number of bits set to one.[11]
+The union and intersection of sets
+Bloom filters are a way of compactly representing a set of items. It is common to try to compute the size of the intersection or union between two sets. Bloom filters can be used to approximate the size of the intersection and union of two sets. For two Bloom filters of length m, their counts, respectively can be estimated as
+- $n(A^*) = -\frac{m}{k} \ln \left[ 1 - \frac{|A|} m \right]$
+and
+- $n(B^*) = -\frac{m}{k} \ln \left[ 1 - \frac{|B|} m \right].$
+The size of their union can be estimated as
+- $n(A^*\cup B^*) = -\frac{m}{k} \ln \left[ 1 - \frac{|A \cup B|} m \right],$
+where $n(A \cup B)$ is the number of bits set to one in either of the two Bloom filters. Finally, the intersection can be estimated as
+- $n(A^*\cap B^*) = n(A^*) + n(B^*) - n(A^* \cup B^*),$
+using the three formulas together.[11]
+Properties
+- Unlike a standard hash table using open addressing for collision resolution, a Bloom filter of a fixed size can represent a set with an arbitrarily large number of elements; adding an element never fails due to the data structure "filling up". However, the false positive rate increases steadily as elements are added until all bits in the filter are set to 1, at which point all queries yield a positive result. With open addressing hashing, false positives are never produced, but performance steadily deteriorates until it approaches linear search.
+- Union and intersection of Bloom filters with the same size and set of hash functions can be implemented with bitwise OR and AND operations, respectively. The union operation on Bloom filters is lossless in the sense that the resulting Bloom filter is the same as the Bloom filter created from scratch using the union of the two sets. The intersect operation satisfies a weaker property: the false positive probability in the resulting Bloom filter is at most the false-positive probability in one of the constituent Bloom filters, but may be larger than the false positive probability in the Bloom filter created from scratch using the intersection of the two sets.
+- Some kinds of superimposed code can be seen as a Bloom filter implemented with physical edge-notched cards. An example is Zatocoding, invented by Calvin Mooers in 1947, in which the set of categories associated with a piece of information is represented by notches on a card, with a random pattern of four notches for each category.
+```
+
+</details>
+
+**Talimat:**
+
+Bloom filtrelerinin kesişim ve birleşim özellikleri hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Aynı boyuta ve aynı hash fonksiyonu kümesine sahip iki Bloom filtresinin birleşim (union) ve kesişim (intersection) işlemleriyle ilgili aşağıdakilerden hangisi doğrudur?
+A) Birleşim işlemi kayıpsızdır, yani elde edilen Bloom filtresi iki kümenin birleşiminden sıfırdan oluşturulanla aynıdır.
+B) Kesişim işlemi her zaman sıfırdan oluşturulan kesişim filtresiyle birebir aynı sonuç verir ve yanlış pozitif olasılığı her iki filtreden de büyüktür.
+C) Birleşim işlemi bitwise AND, kesişim işlemi ise bitwise OR operasyonuyla gerçekleştirilir.
+D) Bloom filtrelerinin kesişimi alınırken filtre uzunluğu m yarıya düşer.
+Doğru şık: A
+Açıklama: Birleşim operasyonu Bloom filtreleri üzerinde kayıpsızdır; sonuçta elde edilen filtre, iki kümenin birleşimiyle sıfırdan yapılan filtreyle aynıdır. C şıkkı yanlıştır çünkü birleşim OR, kesişim AND ile yapılır. B şıkkı yanlıştır çünkü kesişim işleminde yanlış pozitif olasılığı bileşen filtrelerden en az birininkinden küçüktür veya eşittir, sıfırdan oluşturulandan büyük olabilir.
+
+## 89. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000267:3:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000267 — Branch and bound, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+We choose the variable with the maximum fractional part, in this case $x_2$ becomes the parameter for the branch and bound method. We branch to $x_2\leq26$ and obtain 276 at $\langle 24,26\rangle$. We have reached an integer solution so we move to the other branch $x_2\geq27$. We obtain 275.75 at $\langle 22.75, 27\rangle$. We have a decimal, so we branch $x_1$ to $x_1\leq22$ and we find 274.571 at $\langle 22,27.4286\rangle$. We try the other branch $x_1\geq23$ and there are no feasible solutions. Therefore, the maximum is 276 with $x_1 = 24$ and $x_2 = 26$.
+```
+
+</details>
+
+**Talimat:**
+
+Dal ve sınır algoritmasındaki dallandırma ve çözüm adımları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Verilen bilgilere göre, maksimum çözüm değerine ve bu değeri sağlayan parametre çiftine nasıl ulaşıldı?
+A) x_2 için 27 değerinden büyük dallar incelendiğinde 276 değeri elde edilmiştir.
+B) x_2leq26 dalında 276 tamsayı çözümü elde edilmiş ve bu değer maksimum olarak belirlenmiştir.
+C) x_1 için 23'ten büyük dallarda geçerli çözümler bulunarak maksimum değere ulaşıldı.
+D) x_1leq22 dalında doğrudan maksimum değer olan 276 bulunmuştur.
+Doğru şık: B
+Açıklama: Metne göre x_2leq26 dalında 276 tamsayı çözümüne ulaşılmış ve bu en yüksek değer olarak belirlenmiştir. A seçeneği yanlıştır çünkü x_2geq27 dalında 275.75 elde edilmiştir; D seçeneği yanlıştır çünkü x_1leq22 dalında 274.571 bulunmuştur.
+
+## 90. kavram_aciklama — bağlamlı (DOC_000270:5:kavram_aciklama)
+
+Kaynak: DOC_000270 — Brodal queue, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Maintaining the sons of a root
+When we add and remove sons of a root, we want to keep the $\text{ROOT-RANK}$ invariant true. For this purpose, we use 4 guides, two for each roots $t_1$ and $t_2$. To have constant time access to the son of $t_1$ we create an extendible array of pointed that has for each rank $i \in \{0, \dots, \text{rank}(t_1)-1\}$ a pointer to a son of $t_1$ of rank $i$. One guide will maintain the condition that $\text{arity}_i(t_1) \leqslant 7$ and the other maintains $\text{arity}_i(t_1) \geqslant 2$ both for $i \in \{0, \dots, \text{rank}(t_1)-3 \}$. The sons of $t_1$of rank $\text{rank}(t_1)-1$ and $\text{rank}(t_1)-2$ are treated separately in a straight forward way to maintant their number between 2 and 7. The equivalent to the $x'_i$ variable in the definition of the guide will have the values $\{5, 6, 7\}$ for the higher bound guide and $\{4, 3, 2\}$ for the lower bound.
+In this context, when we add a child of rank $i$ to the root, we increase $x'_i$ by one, and apply the $\text{REDUCE}$ operations. The $\text{RECUCE}(i)$ operation here consists of linking three trees of rank $i$ which creates a new child of rank $i+1$. Therefore, we decrease $\text{arity}_i(t_1)$ by three and increase $\text{arity}_{i+1}(t_1)$ by one. If this increase results in too many sons of rank $\text{rank}(t_1)-2$ or $\text{rank}(t_1)-1$ we link some of these sons together and possibly increase the rank of $t_1$. If we increase the rank of $t_1$, we have to increase the length of the extendible array managed by the guides.
+Cutting off a son from $t_1$ is very similar, except here the $\text{REDUCE}$ operation corresponds to the delinking of a tree.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Brodie kuyruğunda (Brodal queue) kök düğümlerin çocukları (sons of a root) nasıl yönetilir?
+
+**Cevap:**
+
+Brodal kuyruğunda bir kökün çocuklarını ekleyip çıkarırken ROOT-RANK değişmezini korumak için kökler üzerinde dörder kılavuz (guide) kullanılır. Sabit zamanlı erişim sağlamak için, her rütbe için ilgili çocuğa işaretçi tutan genişletilebilir bir dizi oluşturulur. Kılavuzlar, rütbe koşullarını korumak için çocuk sayılarını alt ve üst sınır kurallarına göre denetler. Örneğin, arity kısıtlamalarını sağlamak amacıyla REDUCE işlemleri uygulanarak ağaçlar birbirine bağlanır veya ayrılır; rütbe artış durumunda ise kılavuzların yönettiği genişletilebilir dizinin boyutu artırılır.
+
+## 91. algoritma_izleme — bağlamsız (DOC_000272:2:algoritma_izleme)
+
+Kaynak: DOC_000272 — Bubble sort, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Step-by-step example
+Take an array of numbers "5 1 4 2 8", and sort the array from lowest number to greatest number using bubble sort. In each step, elements written in bold are being compared. Three passes will be required:
+- First pass
+- ( 5 1 4 2 8 ) → ( 1 5 4 2 8 ), Here, algorithm compares the first two elements, and swaps since 5 > 1.
+- ( 1 5 4 2 8 ) → ( 1 4 5 2 8 ), Swap since 5 > 4
+- ( 1 4 5 2 8 ) → ( 1 4 2 5 8 ), Swap since 5 > 2
+- ( 1 4 2 5 8 ) → ( 1 4 2 5 8 ), Now, since these elements are already in order (8 > 5), algorithm does not swap them.
+- Second pass
+- ( 1 4 2 5 8 ) → ( 1 4 2 5 8 )
+- ( 1 4 2 5 8 ) → ( 1 2 4 5 8 ), Swap since 4 > 2
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+Now, the array is already sorted, but the algorithm does not know if it is completed. The algorithm needs one additional whole pass without any swap to know it is sorted.
+- Third pass
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+- ( 1 2 4 5 8 ) → ( 1 2 4 5 8 )
+Implementation
+Pseudocode implementation
+In pseudocode the algorithm can be expressed as (0-based array):
+procedure bubbleSort(A : list of sortable items)
+    n := length(A)
+    repeat
+        swapped := false
+        for i := 1 to n-1 inclusive do
+            { if this pair is out of order }
+            if A[i-1] > A[i] then
+                { swap them and remember something changed }
+                swap(A[i-1], A[i])
+                swapped := true
+            end if
+        end for
+    until not swapped
+end procedure
+Optimizing bubble sort
+The bubble sort algorithm can be optimized by observing that the n-th pass finds the n-th largest element and puts it into its final place. So, the inner loop can avoid looking at the last n − 1 items when running for the n-th time:
+procedure bubbleSort(A : list of sortable items)
+    n := length(A)
+    repeat
+        swapped := false
+```
+
+</details>
+
+**Talimat:**
+
+Bubble sort algoritmasını [5, 1, 4, 2, 8] dizisi üzerinde ilk geçiş (first pass) boyunca adım adım uygular mısın?
+
+**Cevap:**
+
+Bubble sort algoritması komşu elemanları karşılaştırıp yanlış sırada iseler yer değiştirerek çalışır.
+1. Adım: (5, 1, 4, 2, 8) -> İlk iki eleman karşılaştırılır, 5 > 1 olduğu için yer değiştirir -> (1, 5, 4, 2, 8)
+2. Adım: (1, 5, 4, 2, 8) -> Sonraki iki eleman karşılaştırılır, 5 > 4 olduğu için yer değiştirir -> (1, 4, 5, 2, 8)
+3. Adım: (1, 4, 5, 2, 8) -> Sonraki iki eleman karşılaştırılır, 5 > 2 olduğu için yer değiştirir -> (1, 4, 2, 5, 8)
+4. Adım: (1, 4, 2, 5, 8) -> Son iki eleman karşılaştırılır, 8 > 5 olduğu için yer değiştirmez -> (1, 4, 2, 5, 8)
+İlk geçiş sonucunda dizi: [1, 4, 2, 5, 8]
+
+## 92. karsilastirma — bağlamsız (DOC_000280:4:karsilastirma)
+
+Kaynak: DOC_000280 — Cartesian tree, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The same range minimization problem may also be given an alternative interpretation in terms of two dimensional range searching. A collection of finitely many points in the Cartesian plane can be used to form a Cartesian tree, by sorting the points by their $x$-coordinates and using the $y$-coordinates in this order as the sequence of values from which this tree is formed. If $S$ is the subset of the input points within some vertical slab defined by the inequalities $L\le x\le R$, $p$ is the leftmost point in $S$ (the one with minimum $x$-coordinate), and $q$ is the rightmost point in $S$ (the one with maximum $x$-coordinate) then the lowest common ancestor of $p$ and $q$ in the Cartesian tree is the bottommost point in the slab. A three-sided range query, in which the task is to list all points within a region bounded by the three inequalities $L\le x\le R$ and $y\le T$, can be answered by finding this bottommost point $b$, comparing its $y$-coordinate to $T$, and (if the point lies within the three-sided region) continuing recursively in the two slabs bounded between $p$ and $b$ and between $b$ and $q$. In this way, after the leftmost and rightmost points in the slab are identified, all points within the three-sided region can be listed in constant time per point.[3]
+The same construction, of lowest common ancestors in a Cartesian tree, makes it possible to construct a data structure with linear space that allows the distances between pairs of points in any ultrametric space to be queried in constant time per query. The distance within an ultrametric is the same as the minimax path weight in the minimum spanning tree of the metric.[12] From the minimum spanning tree, one can construct a Cartesian tree, the root node of which represents the heaviest edge of the minimum spanning tree. Removing this edge partitions the minimum spanning tree into two subtrees, and Cartesian trees recursively constructed for these two subtrees form the children of the root node of the Cartesian tree. The leaves of the Cartesian tree represent points of the metric space, and the lowest common ancestor of two leaves in the Cartesian tree is the heaviest edge between those two points in the minimum spanning tree, which has weight equal to the distance between the two points. Once the minimum spanning tree has been found and its edge weights sorted, the Cartesian tree can be constructed in linear time.[13]
+As a binary search tree
+The Cartesian tree of a sorted sequence is just a path graph, rooted at its leftmost endpoint. Binary searching in this tree degenerates to sequential search in the path. However, a different construction uses Cartesian trees to generate binary search trees of logarithmic depth from sorted sequences of values. This can be done by generating priority numbers for each value, and using the sequence of priorities to generate a Cartesian tree. This construction may equivalently be viewed in the geometric framework described above, in which the $x$-coordinates of a set of points are the values in a sorted sequence and the $y$-coordinates are their priorities.[14]
+```
+
+</details>
+
+**Talimat:**
+
+Sıralı bir dizinin Cartesian ağacı ile öncelik numaraları kullanılarak oluşturulan Cartesian ağacı arasındaki fark nedir?
+
+**Cevap:**
+
+İki yapıyı iki açıdan karşılaştırabiliriz. Yapı: Sıralı bir dizinin doğrudan Cartesian ağacı, sol ucundan köklenen bir yol grafiğidir ve bu yapıda ikili arama sıradal aramaya dönüşür. Buna karşılık, değerler için öncelik numaraları üretilip bu öncelikler kullanılarak kurulan Cartesian ağacı ise logaritmik derinliğe sahip ikili arama ağaçları üretmek için kullanılır. Amaç: İlk yöntem bir yol grafiği oluştururken, öncelik tabanlı ikinci yöntem arama işlemlerini hızlandırmak amacıyla logaritmik derinlikte ikili arama ağaçları elde etmeyi sağlar.
+
+## 93. algoritma_izleme — bağlamlı (DOC_000287:0:algoritma_izleme)
+
+Kaynak: DOC_000287 — Cocktail shaker sort, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Cocktail shaker sort,[1] also known as bidirectional bubble sort,[2] cocktail sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort,[3] or shuttle sort, is an extension of bubble sort. The algorithm extends bubble sort by operating in two directions. While it improves on bubble sort by more quickly moving items to the beginning of the list, it provides only marginal performance improvements.
+Like most variants of bubble sort, cocktail shaker sort is used primarily as an educational tool. More efficient algorithms such as quicksort, merge sort, or timsort are used by the sorting libraries built into popular programming languages such as Python and Java.[4][5]
+Pseudocode
+The simplest form goes through the whole list each time:
+procedure cocktailShakerSort(A : list of sortable items) is
+    do
+        swapped := false
+        for each i in 0 to length(A) − 2 do:
+            if A[i] > A[i + 1] then // test whether the two elements are in the wrong order
+                swap(A[i], A[i + 1]) // let the two elements change places
+                swapped := true
+            end if
+        end for
+        if not swapped then
+            // we can exit the outer loop here if no swaps occurred.
+            break do-while loop
+        end if
+        swapped := false
+        for each i in length(A) − 2 to 0 do:
+            if A[i] > A[i + 1] then
+                swap(A[i], A[i + 1])
+                swapped := true
+            end if
+        end for
+    while swapped // if no elements have been swapped, then the list is sorted
+end procedure
+The first rightward pass will shift the largest element to its correct place at the end, and the following leftward pass will shift the smallest element to its correct place at the beginning. The second complete pass will shift the second largest and second smallest elements to their correct places, and so on. After i passes, the first i and the last i elements in the list are in their correct positions, and do not need to be checked. By shortening the part of the list that is sorted each time, the number of operations can be halved (see bubble sort).
+This is an example of the algorithm in MATLAB/OCTAVE with the optimization of remembering the last swap index and updating the bounds.
+function A = cocktailShakerSort(A)
+% `beginIdx` and `endIdx` marks the first and last index to check
+beginIdx = 1;
+endIdx = length(A) - 1;
+while beginIdx <= endIdx
+    newBeginIdx = endIdx;
+    newEndIdx = beginIdx;
+    for ii = beginIdx:endIdx
+        if A(ii) > A(ii + 1)
+            [A(ii+1), A(ii)] = deal(A(ii), A(ii+1));
+            newEndIdx = ii;
+        end
+    end
+    % decreases `endIdx` because the elements after `newEndIdx` are in correct order
+    endIdx = newEndIdx - 1;
+    for ii = endIdx:-1:beginIdx
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre sözde kodu verilen cocktail shaker sort algoritmasını `[3, 2, 1]` dizisi üzerinde adım adım çalıştırır mısın?
+
+**Cevap:**
+
+Cocktail shaker sort algoritması iki yönlü çalışarak listeyi sıralar.
+1. Sağ yönlü geçiş (i = 0'dan uzunluk-2'ye):
+   - `i = 0` için `A[0]` (3) ve `A[1]` (2) karşılaştırılır; 3 > 2 olduğu için yer değiştirilir. Dizi: `[2, 3, 1]`, `swapped = true`.
+   - `i = 1` için `A[1]` (3) ve `A[2]` (1) karşılaştırılır; 3 > 1 olduğu için yer değiştirilir. Dizi: `[2, 1, 3]`, `swapped = true`.
+2. Sol yönlü geçiş (i = uzunluk-2'den 0'a):
+   - `i = 1` için `A[1]` (1) ve `A[2]` (3) karşılaştırılır; 1 > 3 yanlış, yer değiştirme yok.
+   - `i = 0` için `A[0]` (2) ve `A[1]` (1) karşılaştırılır; 2 > 1 olduğu için yer değiştirilir. Dizi: `[1, 2, 3]`, `swapped = true`.
+3. İkinci sağ yönlü geçişte hiçbir takas yapılmaz (`swapped = false`), böylece döngü sonlanır.
+Sonuç: `[1, 2, 3]`.
+
+## 94. kavram_aciklama — bağlamlı (DOC_000300:8:kavram_aciklama)
+
+Kaynak: DOC_000300 — Cycle detection, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- Nivasch[12] describes an algorithm that does not use a fixed amount of memory, but for which the expected amount of memory used (under the assumption that the input function is random) is logarithmic in the sequence length. An item is stored in the memory table, with this technique, when no later item has a smaller value. As Nivasch shows, the items with this technique can be maintained using a stack data structure, and each successive sequence value need be compared only to the top of the stack. The algorithm terminates when the repeated sequence element with smallest value is found. Running the same algorithm with multiple stacks, using random permutations of the values to reorder the values within each stack, allows a time–space tradeoff similar to the previous algorithms. However, even the version of this algorithm with a single stack is not a pointer algorithm, due to the comparisons needed to determine which of two values is smaller.
+Any cycle detection algorithm that stores at most M values from the input sequence must perform at least $(\lambda+\mu)\left(1+\frac{1}{M-1}\right)$ function evaluations.[18][19]
+Applications
+Cycle detection has been used in many applications.
+- Determining the cycle length of a pseudorandom number generator is one measure of its strength. This is the application cited by Knuth in describing Floyd's method.[3] Brent[8] describes the results of testing a linear congruential generator in this fashion; its period turned out to be significantly smaller than advertised. For more complex generators, the sequence of values in which the cycle is to be found may not represent the output of the generator, but rather its internal state.
+- Several number-theoretic algorithms are based on cycle detection, including Pollard's rho algorithm for integer factorization[20] and his related kangaroo algorithm for the discrete logarithm problem.[21]
+- In cryptographic applications, the ability to find two distinct values x_{μ−1} and x_{λ+μ−1} mapped by some cryptographic function ƒ to the same value x_μ may indicate a weakness in ƒ. For instance, Quisquater and Delescaille[17] apply cycle detection algorithms in the search for a message and a pair of Data Encryption Standard keys that map that message to the same encrypted value; Kaliski, Rivest, and Sherman[22] also use cycle detection algorithms to attack DES. The technique may also be used to find a collision in a cryptographic hash function.[23]
+- Cycle detection may be helpful as a way of discovering infinite loops in certain types of computer programs.[24]
+- Periodic configurations in cellular automaton simulations may be found by applying cycle detection algorithms to the sequence of automaton states.[12]
+- Shape analysis of linked list data structures is a technique for verifying the correctness of an algorithm using those structures. If a node in the list incorrectly points to an earlier node in the same list, the structure will form a cycle that can be detected by these algorithms.[25] In Common Lisp, the S-expression printer, under control of the *print-circle* variable, detects circular list structure and prints it compactly.
+```
+
+</details>
+
+**Talimat:**
+
+Ders içeriğinde bahsedilen döngü bulma (cycle detection) algoritmalarından Nivasch algoritması nasıl çalışır ve bellek kullanımı nasıldır?
+
+**Cevap:**
+
+Nivasch algoritması, sabit miktarda bellek kullanmak yerine, dizi uzunluğuna göre logaritmik düzeyde beklenen bellek miktarı kullanan bir döngü bulma algoritmasıdır. Bu teknikle, kendisinden sonra daha küçük bir değere sahip başka bir öğe bulunmayan öğeler bir bellek tablosunda saklanır. Algoritma, öğeleri tutmak için bir yığıt (stack) veri yapısı kullanır ve her yeni dizi değeri yalnızca yığıtın tepesindeki değerle karşılaştırılır. En küçük değere sahip tekrar eden dizi elemanı bulunduğunda algoritma sonlanır.
+
+## 95. konu_ozeti_anlatim — bağlamsız (DOC_000308:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000308 — Depth-first search, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Example
+For the following graph:
+A depth-first search starting at the node A, assuming that the left edges in the shown graph are chosen before right edges, and assuming the search remembers previously visited nodes and will not repeat them (since this is a small graph), will visit the nodes in the following order: A, B, D, F, E, C, G. The edges traversed in this search form a Trémaux tree, a structure with important applications in graph theory. Performing the same search without remembering previously visited nodes results in visiting the nodes in the order A, B, D, F, E, A, B, D, F, E, etc. forever, caught in the A, B, D, F, E cycle and never reaching C or G.
+Iterative deepening is one technique to avoid this infinite loop and would reach all nodes.
+Output of a depth-first search
+The result of a depth-first search of a graph can be conveniently described in terms of a spanning tree of the vertices reached during the search. Based on this spanning tree, the edges of the original graph can be divided into three classes: forward edges, which point from a node of the tree to one of its descendants, back edges, which point from a node to one of its ancestors, and cross edges, which do neither. Sometimes tree edges, edges which belong to the spanning tree itself, are classified separately from forward edges. If the original graph is undirected then all of its edges are tree edges or back edges.
+```
+
+</details>
+
+**Talimat:**
+
+Derinlemesine öncelikli aramanın (depth-first search) sonuçları ve kenar sınıfları hakkında bilgi verir misin?
+
+**Cevap:**
+
+Derinlemesine öncelikli arama sonucunda ulaşılan tepeler bir kapsayan ağaç (spanning tree) yardımıyla betimlenebilir.
+- Bu kapsayan ağaca dayanarak orijinal grafın kenarları ileri kenarlar, geri kenarlar ve çapraz kenarlar olmak üzere üçe ayrılır.
+- İleri kenarlar düğümden torununa, geri kenarlar ise düğümden atasına yöneliktir.
+- Orijinal graf yönlendirilmemiş (undirected) bir yapıya sahipse, tüm kenarlar ya ağaç kenarı ya da geri kenar olarak sınıflandırılır.
+- Ziyaret edilen düğümlerin hatırlanmaması durumunda algoritma döngüye girebilir, bu sorunu çözmek için iteratif derinleştirme gibi teknikler uygulanabilir.
+
+## 96. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000311:11:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000311 — Dijkstra's algorithm, passage 11
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Unlike Dijkstra's algorithm, the Bellman–Ford algorithm can be used on graphs with negative edge weights, as long as the graph contains no negative cycle reachable from the source vertex s. The presence of such cycles means that no shortest path can be found, since the label becomes lower each time the cycle is traversed. (This statement assumes that a "path" is allowed to repeat vertices. In graph theory that is normally not allowed. In theoretical computer science it often is allowed.) It is possible to adapt Dijkstra's algorithm to handle negative weights by combining it with the Bellman-Ford algorithm (to remove negative edges and detect negative cycles): Johnson's algorithm.
+The A* algorithm is a generalization of Dijkstra's algorithm that reduces the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the distance to the target.
+The process that underlies Dijkstra's algorithm is similar to the greedy process used in Prim's algorithm. Prim's purpose is to find a minimum spanning tree that connects all nodes in the graph; Dijkstra is concerned with only two nodes. Prim's does not evaluate the total weight of the path from the starting node, only the individual edges.
+Breadth-first search can be viewed as a special-case of Dijkstra's algorithm on unweighted graphs, where the priority queue degenerates into a FIFO queue.
+The fast marching method can be viewed as a continuous version of Dijkstra's algorithm which computes the geodesic distance on a triangle mesh.
+Dynamic programming perspective
+From a dynamic programming point of view, Dijkstra's algorithm is a successive approximation scheme that solves the dynamic programming functional equation for the shortest path problem by the Reaching method.[39][40][41]
+In fact, Dijkstra's explanation of the logic behind the algorithm:[42]
+Problem 2. Find the path of minimum total length between two given nodes P and Q. We use the fact that, if R is a node on the minimal path from P to Q, knowledge of the latter implies the knowledge of the minimal path from P to R.
+is a paraphrasing of Bellman's principle of optimality in the context of the shortest path problem.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak Dijkstra algoritması ile ilgili bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Ağırlıksız graflarda çalışan ve öncelik kuyruğunun FIFO kuyruğuna dönüştüğü özel bir durum olarak görülebilen algoritma aşağıdakilerden hangisidir?
+A) Prim algoritması
+B) Genişlik öncelikli arama (Breadth-first search)
+C) Bellman-Ford algoritması
+D) A* algoritması
+Doğru şık: B
+Açıklama: Genişlik öncelikli arama, ağırlıksız graflarda öncelik kuyruğunun bir FIFO kuyruğuna indirgendiği Dijkstra algoritmasının özel bir durumu olarak görülebilir. A seçeneğindeki Prim algoritması ise minimum yayan ağaç bulmakla ilgilidir.
+
+## 97. kavram_aciklama — bağlamsız (DOC_000312:8:kavram_aciklama)
+
+Kaynak: DOC_000312 — Directed acyclic graph, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The Price model is too simple to be a realistic model of a citation network but it is simple enough to allow for analytic solutions for some of its properties. Many of these can be found by using results derived from the undirected version of the Price model, the Barabási–Albert model. However, since Price's model gives a directed acyclic graph, it is a useful model when looking for analytic calculations of properties unique to directed acyclic graphs. For instance, the length of the longest path, from the n-th node added to the network to the first node in the network, scales as[55] $\ln(n)$.
+Data compression
+Directed acyclic graphs may also be used as a compact representation of a collection of sequences. In this type of application, one finds a DAG in which the paths form the given sequences. When many of the sequences share the same subsequences, these shared subsequences can be represented by a shared part of the DAG, allowing the representation to use less space than it would take to list out all of the sequences separately. For example, the directed acyclic word graph is a data structure in computer science formed by a directed acyclic graph with a single source and with edges labeled by letters or symbols; the paths from the source to the sinks in this graph represent a set of strings, such as English words.[56] Any set of sequences can be represented as paths in a tree, by forming a tree vertex for every prefix of a sequence and making the parent of one of these vertices represent the sequence with one fewer element; the tree formed in this way for a set of strings is called a trie.
+Similarly, a binary search tree can be viewed as a rooted DAG where paths represent sorted orderings of keys, though it lacks the path-merging compression found in more complex DAGs.[57] A directed acyclic word graph saves space over a trie by allowing paths to diverge and rejoin, so that a set of words with the same possible suffixes can be represented by a single tree vertex.[58]
+The same idea of using a DAG to represent a family of paths occurs in the binary decision diagram,[59][60] a DAG-based data structure for representing binary functions. In a binary decision diagram, each non-sink vertex is labeled by the name of a binary variable, and each sink and each edge is labeled by a 0 or 1. The function value for any truth assignment to the variables is the value at the sink found by following a path, starting from the single source vertex, that at each non-sink vertex follows the outgoing edge labeled with the value of that vertex's variable. Just as directed acyclic word graphs can be viewed as a compressed form of tries, binary decision diagrams can be viewed as compressed forms of decision trees that save space by allowing paths to rejoin when they agree on the results of all remaining decisions.[61]
+```
+
+</details>
+
+**Talimat:**
+
+Yönlü döngüsel olmayan grafiklerin (DAG) veri sıkıştırma amacıyla nasıl kullanıldığını açıklar mısın?
+
+**Cevap:**
+
+Yönlü döngüsel olmayan grafikler, bir dizi koleksiyonunu daha az alan kullanarak saklamak için sıkıştırılmış bir temsil olarak kullanılabilir. Pek çok dizi aynı alt dizileri paylaştığında, bu paylaşılan kısımlar grafik içinde ortak bir parça olarak temsil edilir ve tüm dizileri ayrı ayrı listelemekten daha az alan harcanır. Örneğin, yönlü döngüsel kelime grafiği (directed acyclic word graph) tek bir kaynağa sahip olup yolların kelimeleri temsil ettiği, yolların ayrılarak tekrar birleşebildiği bir veri yapısıdır. Bu sayede aynı olası son eklere sahip kelime kümeleri tek bir ağaç düğümüyle temsil edilerek alandan tasarruf sağlanır.
+
+## 98. karsilastirma — bağlamlı (DOC_000313:0:karsilastirma)
+
+Kaynak: DOC_000313 — Directed graph, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In mathematics, and more specifically in graph theory, a directed graph (or digraph) is a graph that is made up of a set of vertices connected by directed edges, often called arcs.
+Definition
+In formal terms, a directed graph is an ordered pair G = (V, A) where[1]
+- V is a set whose elements are called vertices, nodes, or points;
+- A is a set of ordered pairs of vertices, called arcs, directed edges (sometimes simply edges with the corresponding set named E instead of A), arrows, or directed lines.
+It differs from an ordinary or undirected graph, in that the latter is defined in terms of unordered pairs of vertices, which are usually called edges, links or lines.
+The aforementioned definition does not allow a directed graph to have multiple arrows with the same source and target nodes, but some authors consider a broader definition that allows directed graphs to have such multiple arcs (namely, they allow the arc set to be a multiset). Sometimes these entities are called directed multigraphs (or multidigraphs).
+On the other hand, the aforementioned definition allows a directed graph to have loops (that is, arcs that directly connect nodes with themselves), but some authors consider a narrower definition that does not allow directed graphs to have loops.[2]
+Directed graphs without loops may be called simple directed graphs, while directed graphs with loops may be called loop-digraphs (see section Types of directed graph).
+```
+
+</details>
+
+**Talimat:**
+
+Yönlü çizge (directed graph) ile sıradan (yönsüz) çizgeyi karşılaştırır mısın?
+
+**Cevap:**
+
+İki kavramı kenar yapısı açısından karşılaştırabiliriz. Kenar tanımı: sıradan çizge, düğümleri bağlayan sırasız çiftlerden oluşan kenarlara sahipken; yönlü çizgedeki kenarlar (yaylar), kaynak ve hedef düğümleri belirten sıralı ikililerden oluşur. Döngü ve çoklu kenar durumları: her iki çizge türü de yapılarına ve kabul edilen ek tanımlara göre farklı özellikler (halkalar veya çoklu yaylar gibi) barındırabilir. Yön ilişkisinin önem taşıdığı durumlarda yönlü çizge tercih edilirken, karşılıklı bağların yönsüz olduğu durumlarda sıradan çizge kullanılır.
+
+## 99. kavram_aciklama — bağlamsız (DOC_000314:3:kavram_aciklama)
+
+Kaynak: DOC_000314 — Disjoint-set data structure, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Finding set representatives
+The Find operation follows the chain of parent pointers from a specified query node x until it reaches a root element. This root element represents the set to which x belongs and may be x itself. Find returns the root element it reaches.
+Performing a Find operation presents an important opportunity for improving the forest. The time in a Find operation is spent chasing parent pointers, so a flatter tree leads to faster Find operations. When a Find is executed, there is no faster way to reach the root than by following each parent pointer in succession. However, the parent pointers visited during this search can be updated to point closer to the root. Because every element visited on the way to a root is part of the same set, this does not change the sets stored in the forest. But it makes future Find operations faster, not only for the nodes between the query node and the root, but also for their descendants. This updating is an important part of the disjoint-set forest's amortized performance guarantee.
+There are several algorithms for Find that achieve the asymptotically optimal time complexity. One family of algorithms, known as path compression, makes every node between the query node and the root point to the root. Path compression can be implemented using a simple recursion as follows:
+function Find(x) is
+    if x.parent ≠ x then
+        x.parent := Find(x.parent)
+        return x.parent
+    else
+        return x
+    end if
+end function
+This implementation makes two passes, one up the tree and one back down. It requires enough scratch memory to store the path from the query node to the root (in the above pseudocode, the path is implicitly represented using the call stack). This can be decreased to a constant amount of memory by performing both passes in the same direction. The constant memory implementation walks from the query node to the root twice, once to find the root and once to update pointers:
+function Find(x) is
+    root := x
+    while root.parent ≠ root do
+        root := root.parent
+    end while
+    while x.parent ≠ root do
+        parent := x.parent
+        x.parent := root
+        x := parent
+    end while
+    return root
+end function
+Tarjan and Van Leeuwen also developed one-pass Find algorithms that retain the same worst-case complexity but are more efficient in practice.[4] These are called path splitting and path halving. Both of these update the parent pointers of nodes on the path between the query node and the root. Path splitting replaces every parent pointer on that path by a pointer to the node's grandparent:
+function Find(x) is
+    while x.parent ≠ x do
+        (x, x.parent) := (x.parent, x.parent.parent)
+    end while
+    return x
+end function
+Path halving works similarly but replaces only every other parent pointer:
+function Find(x) is
+    while x.parent ≠ x do
+        x.parent := x.parent.parent
+        x := x.parent
+    end while
+    return x
+end function
+Merging two sets
+```
+
+</details>
+
+**Talimat:**
+
+Ayrık küme ormanlarında kullanılan path compression (yol sıkıştırma) kavramı nedir ve nasıl çalışır?
+
+**Cevap:**
+
+Path compression (yol sıkıştırma), bir Find işlemi sırasında kök elemana ulaşana kadar ziyaret edilen tüm düğümlerin doğrudan köke bağlanmasını sağlayan bir optimizasyon tekniğidir. Find işlemi zaten ebeveyn işaretçilerini takip ederek köke ulaştığı için, bu yol üzerindeki düğümlerin işaretçileri güncellenerek ağaç düzleştirilir. Bu işlem veri kümelerini değiştirmez ancak hem sorgulanan düğümlerin hem de onların alt düğümlerinin gelecekteki Find işlemlerini önemli ölçüde hızlandırarak amorti edilmiş performans garantisine katkı sağlar.
+
+## 100. karmasiklik_analizi — bağlamlı (DOC_000324:15:karmasiklik_analizi)
+
+Kaynak: DOC_000324 — Dynamic programming, passage 15
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Faster DP solution using a different parametrization
+Notice that the above solution takes $O( n k^2 )$ time with a DP solution. This can be improved to $O( n k \log k )$ time by binary searching on the optimal $x$ in the above recurrence, since $W(n-1,x-1)$ is increasing in $x$ while $W(n,k-x)$ is decreasing in $x$, thus a local minimum of $\max(W(n-1,x-1),W(n,k-x))$ is a global minimum. Also, by storing the optimal $x$ for each cell in the DP table and referring to its value for the previous cell, the optimal $x$ for each cell can be found in constant time, improving it to $O( n k )$ time. However, there is an even faster solution that involves a different parametrization of the problem:
+Let $k$ be the total number of floors such that the eggs break when dropped from the $k$th floor (The example above is equivalent to taking $k=37$).
+Let $m$ be the minimum floor from which the egg must be dropped to be broken.
+Let $f(t,n)$ be the maximum number of values of $m$ that are distinguishable using $t$ tries and $n$ eggs.
+Then $f(t,0) = f(0,n) = 1$ for all $t,n \geq 0$.
+Let $a$ be the floor from which the first egg is dropped in the optimal strategy.
+If the first egg broke, $m$ is from $1$ to $a$ and distinguishable using at most $t-1$ tries and $n-1$ eggs.
+If the first egg did not break, $m$ is from $a+1$ to $k$ and distinguishable using $t-1$ tries and $n$ eggs.
+Therefore, $f(t,n) = f(t-1,n-1) + f(t-1,n)$.
+Then the problem is equivalent to finding the minimum $x$ such that $f(x,n) \geq k$.
+To do so, we could compute $\{ f(t,i) : 0 \leq i \leq n \}$ in order of increasing $t$, which would take $O( n x )$ time.
+Thus, if we separately handle the case of $n=1$, the algorithm would take $O( n \sqrt{k} )$ time.
+But the recurrence relation can in fact be solved, giving $f(t,n) = \sum_{i=0}^{n}{ \binom{t}{i} }$, which can be computed in $O(n)$ time using the identity $\binom{t}{i+1} = \binom{t}{i} \frac{t-i}{i+1}$ for all $i \geq 0$.
+Since $f(t,n) \leq f(t+1,n)$ for all $t \geq 0$, we can binary search on $t$ to find $x$, giving an $O( n \log k )$ algorithm.[17]
+Matrix chain multiplication
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, f(t,n) = sum_{i=0}^{n} C(t, i) eşitliği ve ikili arama kullanılarak x değerini bulma algoritmasının zaman karmaşıklığı nedir, neden?
+
+**Cevap:**
+
+Algoritmanın zaman karmaşıklığı O(n log k)'dir. Yinelenen bağıntının çözümü olan f(t,n) ifadesi c(t,i) kombinasyon kimlikleri yardımıyla O(n) sürede hesaplanabilir. f(t,n) değeri t'ye göre artan olduğundan, x değerini bulmak için t üzerinde ikili arama yapılabilir ve bu da toplam karmaşıklığı O(n log k) yapar.
+
+## 101. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000326:1:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000326 — Edit distance, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Formal definition and properties
+Given two strings a and b on an alphabet Σ (e.g. the set of ASCII characters, the set of bytes [0..255], etc.), the edit distance d(a, b) is the minimum-weight series of edit operations that transforms a into b. One of the simplest sets of edit operations is that defined by Levenshtein in 1966:[2]
+- Insertion of a single symbol. If a = uv, then inserting the symbol x produces uxv. This can also be denoted ε→x, using ε to denote the empty string.
+- Deletion of a single symbol changes uxv to uv (x→ε).
+- Substitution of a single symbol x for a symbol y ≠ x changes uxv to uyv (x→y).
+In Levenshtein's original definition, each of these operations has unit cost (except that substitution of a character by itself has zero cost), so the Levenshtein distance is equal to the minimum number of operations required to transform a to b. A more general definition associates non-negative weight functions w_{ins}(x), w_{del}(x) and w_{sub}(x, y) with the operations.[2]
+Additional primitive operations have been suggested. Damerau–Levenshtein distance counts as a single edit a common mistake: transposition of two adjacent characters, formally characterized by an operation that changes uxyv into uyxv.[3][4] For the task of correcting OCR output, merge and split operations have been used which replace a single character into a pair of them or vice versa.[4]
+Other variants of edit distance are obtained by restricting the set of operations. Longest common subsequence (LCS) distance is edit distance with insertion and deletion as the only two edit operations, both at unit cost.[1]: 37 Similarly, by only allowing substitutions (again at unit cost), Hamming distance is obtained; this must be restricted to equal-length strings.[1] Jaro–Winkler distance can be obtained from an edit distance where only transpositions are allowed.
+Example
+The Levenshtein distance between "kitten" and "sitting" is 3. A minimal edit script that transforms the former into the latter is:
+- kitten → sitten (substitute "s" for "k")
+- sitten → sittin (substitute "i" for "e")
+- sittin → sitting (insert "g" at the end)
+LCS distance (insertions and deletions only) gives a different distance and minimal edit script:
+- kitten → itten (delete "k" at 0)
+- itten → sitten (insert "s" at 0)
+- sitten → sittn (delete "e" at 4)
+- sittn → sittin (insert "i" at 4)
+- sittin → sitting (insert "g" at 6)
+for a total cost/distance of 5 operations.
+```
+
+</details>
+
+**Talimat:**
+
+Düzen mesafesi ve varyantları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Aşağıdaki düzen mesafesi varyantlarından hangisi yalnızca ekleme ve silme işlemlerini kullanır?
+A) Levenshtein distance
+B) Hamming distance
+C) Longest common subsequence (LCS) distance
+D) Jaro–Winkler distance
+Doğru şık: C
+Açıklama: Longest common subsequence (LCS) distance, yalnızca ekleme ve silme işlemlerini birim maliyetle kullanan bir düzen mesafesi varyantıdır. Hamming distance yalnızca değişiklik (substitution) işlemlerini kullanırken, Jaro–Winkler distance yalnızca yer değiştirmelere (transposition) dayanır.
+
+## 102. kavram_aciklama — bağlamsız (DOC_000329:4:kavram_aciklama)
+
+Kaynak: DOC_000329 — Eulerian path, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+BEST theorem is first stated in this form in a "note added in proof" to the Aardenne-Ehrenfest and de Bruijn paper (1951). The original proof was bijective and generalized the de Bruijn sequences. It is a variation on an earlier result by Smith and Tutte (1941).
+Counting the number of Eulerian circuits on undirected graphs is much more difficult. This problem is known to be #P-complete.[12] In a positive direction, a Markov chain Monte Carlo approach, via the Kotzig transformations (introduced by Anton Kotzig in 1968) is believed to give a sharp approximation for the number of Eulerian circuits in a graph, though as yet there is no proof of this fact (even for graphs of bounded degree).
+Special cases
+An asymptotic formula for the number of Eulerian circuits in the complete graphs was determined by McKay and Robinson (1995):[13]
+- $\operatorname{ec}(K_n) = 2^{\frac{(n+1)}{2}}\pi^{\frac{1}{2}} e^{\frac{-n^2}{2}+\frac{11}{12}} n^{\frac{(n-2)(n+1)}{2}} \bigl(1+O(n^{-\frac{1}{2}+\epsilon})\bigr).$
+A similar formula was later obtained by M.I. Isaev (2009) for complete bipartite graphs:[14]
+- $\operatorname{ec}(K_{n,n}) = \left(\frac{n}{2}-1\right)!^{2n} 2^{n^2-n+\frac{1}{2}}\pi^{-n+\frac{1}{2}} n^{n-1} \bigl(1+O(n^{-\frac{1}{2}+\epsilon})\bigr).$
+Applications
+Eulerian trails are used in bioinformatics to reconstruct the DNA sequence from its fragments.[15] They are also used in CMOS circuit design to find an optimal logic gate ordering.[16] There are some algorithms for processing trees that rely on an Euler tour of the tree (where each edge is treated as a pair of arcs).[17][18] The de Bruijn sequences can be constructed as Eulerian trails of de Bruijn graphs.[19]
+In infinite graphs
+In an infinite graph, the corresponding concept to an Eulerian trail or Eulerian cycle is an Eulerian line, a doubly-infinite trail that covers all of the edges of the graph. It is not sufficient for the existence of such a trail that the graph be connected and that all vertex degrees be even; for instance, the infinite Cayley graph shown, with all vertex degrees equal to four, has no Eulerian line. The infinite graphs that contain Eulerian lines were characterized by Erdős, Grünwald & Weiszfeld (1936). For an infinite graph or multigraph G to have an Eulerian line, it is necessary and sufficient that all of the following conditions be met:[20][21]
+- G is connected.
+- G has countable sets of vertices and edges.
+- G has no vertices of (finite) odd degree.
+```
+
+</details>
+
+**Talimat:**
+
+Euler yolu (Eulerian trail) nerelerde ve ne amaçla kullanılmaktadır?
+
+**Cevap:**
+
+Euler yolları, biyoinformatikte DNA dizilerinin parçalarından yeniden oluşturulmasında kullanılır. Ayrıca CMOS devre tasarımı aşamasında en uygun mantık kapısı sıralamasını bulmak için tercih edilir. Bunun yanı sıra de Bruijn dizileri, de Bruijn grafiklerinin Euler yolları olarak inşa edilebilir.
+
+## 103. kavram_aciklama — bağlamsız (DOC_000335:0:kavram_aciklama)
+
+Kaynak: DOC_000335 — External sorting, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+External sorting is a class of sorting algorithms that can handle massive amounts of data. External sorting is required when the data being sorted do not fit into the main memory of a computing device (usually RAM) and instead they must reside in the slower external memory, usually a disk drive. Thus, external sorting algorithms are external memory algorithms and thus applicable in the external memory model of computation.
+External sorting algorithms generally fall into two types, distribution sorting, which resembles quicksort, and external merge sort, which resembles merge sort. External merge sort typically uses a hybrid sort-merge strategy. In the sorting phase, chunks of data small enough to fit in main memory are read, sorted, and written out to a temporary file. In the merge phase, the sorted subfiles are combined into a single larger file.
+Model
+External sorting algorithms can be analyzed in the external memory model. In this model, a cache or internal memory of size M and an unbounded external memory are divided into blocks of size B, and the running time of an algorithm is determined by the number of memory transfers between internal and external memory. Like their cache-oblivious counterparts, asymptotically optimal external sorting algorithms achieve a running time (in Big O notation) of $O \left(\tfrac{N}{B}\log_{\tfrac{M}{B}} \tfrac{N}{B} \right)$.
+```
+
+</details>
+
+**Talimat:**
+
+Dış sıralama (external sorting) nedir ve ne zaman gereklidir?
+
+**Cevap:**
+
+Dış sıralama, çok büyük miktardaki verileri işleyebilen bir sıralama algoritması sınıfıdır. Sıralanacak veriler ana belleğe (genellikle RAM) sığmayacak kadar büyük olduğunda ve bunun yerine daha yavaş olan dış bellekte (genellikle disk sürücüsü) saklanması gerektiğinde dış sıralama gerekir. Bu algoritma türü dış bellek modelinde çalışır ve hesaplama modeli olarak dış belleği kullanır.
+
+## 104. konu_ozeti_anlatim — bağlamsız (DOC_000336:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000336 — Fenwick tree, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Motivation
+Given an array of values, it is sometimes desirable to calculate the running total of values up to each index according to some associative binary operation (addition on integers being by far the most common). Fenwick trees provide a method to query the running total at any index, or prefix sum, while allowing changes to the underlying value array and having all further queries reflect those changes.
+Fenwick trees are particularly designed to implement adaptive arithmetic coding, which maintains counts of each symbol produced and needs to convert those to the cumulative probability of a symbol less than a given symbol. Development of operations it supports were primarily motivated by use in that case.[citation needed]
+Description
+A Fenwick tree is an implicit tree where nodes are consecutively numbered, and parent-child relationships are determined by arithmetic on the node indexes.
+An important function in this index arithmetic is the least significant set bit. This is the greatest power of two which divides an index $i$. This is the power of two (1, 2, 4, 8, ...) and not the exponent (0, 1, 2, 3, ...). It can be efficiently computed in two's complement arithmetic as $\operatorname{lsb}(i) = i\mathbin\& -i$ (where & denotes bitwise AND).
+A Fenwick tree is most easily understood using a one-based array $A[n]$ with $n$ values. Using half-open interval syntax, let $A(i,j] = \{ A[k] \}_{k=i+1}^j,$ the range from $i$ (exclusive) to $j$ (inclusive). The corresponding Fenwick array $F[n]$ stores the range sums $\textstyle F[i] = \sum A(i-\operatorname{lsb}(i),i]$. That is, the sum of $\operatorname{lsb}(i)$ values ending with and including $A[i]$.
+A fictitious node 0 is used in some descriptions, but is never actually accessed and need not be explicitly stored. $\operatorname{lsb}(0) = \infty,$ but the value is never actually needed. $F[0]$ may be considered to contain the sum of the empty range $A(0,0] = \{\}$ with value 0.
+A "Fenwick tree" is actually three implicit trees over the same array: the interrogation tree used for translating indexes to prefix sums, the update tree used for updating elements, and the search tree for translating prefix sums to indexes (rank queries).[4] The first two are normally walked upwards, while the third is usually walked downwards.
+```
+
+</details>
+
+**Talimat:**
+
+Fenwick ağaçlarında en az anlamlı set bitinin (least significant set bit) rolünü ve hesaplanmasını özetler misin?
+
+**Cevap:**
+
+En az anlamlı set bit, bir i indeksini bölen en büyük 2'nin kuvvetidir ve Fenwick ağaçlarındaki indeks aritmetiğinin temelini oluşturur. Bu değer, 0 dışındaki sayılar için 1, 2, 4, 8 gibi 2'nin kuvvetleri şeklinde ifade edilir. İkişerli tümleyen (two's complement) aritmetiğinde lsb(i) = i & -i formülü ile verimli bir şekilde hesaplanır. Fenwick dizisindeki her bir F[i] elemanı, A[i] dahil olmak üzere geriye doğru lsb(i) adet değerin aralık toplamını saklar.
+
+## 105. kod_okuma — bağlamlı (DOC_000343:1:kod_okuma)
+
+Kaynak: DOC_000343 — Floyd–Rivest algorithm, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Pseudocode version
+The following pseudocode rearranges the elements between left and right, such that for some value k, where left ≤ k ≤ right, the kth element in the list will contain the (k − left + 1)th smallest value, with the ith element being less than or equal to the kth for all left ≤ i ≤ k and the jth element being larger or equal to for k ≤ j ≤ right:
+// left is the left index for the interval
+// right is the right index for the interval
+// k is the desired index value, where array[k] is the (k+1)th smallest element when left = 0
+function select(array, left, right, k) is
+    while right > left do
+        // Use select recursively to sample a smaller set of size s
+        // the arbitrary constants 600 and 0.5 are used in the original
+        // version to minimize execution time.
+        if right − left > 600 then
+            n := right − left + 1
+            i := k − left + 1
+            z := ln(n)
+            s := 0.5 × exp(2 × z/3)
+            sd := 0.5 × sqrt(z × s × (n − s)/n) × sign(i − n/2)
+            newLeft := max(left, k − i × s/n + sd)
+            newRight := min(right, k + (n − i) × s/n + sd)
+            select(array, newLeft, newRight, k)
+        // partition the elements between left and right around t
+        t := array[k] 
+        i := left
+        j := right
+        swap array[left] and array[k]
+        if array[right] > t then
+            swap array[right] and array[left]
+        while i < j do
+            swap array[i] and array[j]
+            i := i + 1
+            j := j − 1
+            while array[i] < t do
+                i := i + 1
+            while array[j] > t do
+                j := j − 1
+        if array[left] = t then
+            swap array[left] and array[j]
+        else
+            j := j + 1
+            swap array[j] and array[right]
+        // Adjust left and right towards the boundaries of the subset
+        // containing the (k − left + 1)th smallest element.
+        if j ≤ k then
+            left := j + 1
+        if k ≤ j then
+            right := j − 1
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metinde verilen Floyd-Rivest algoritmasının sözde kodunda yer alan aşağıdaki `select` fonksiyon parçası ne amaçla kullanılmaktadır?
+```
+if right − left > 600 then
+    n := right − left + 1
+    i := k − left + 1
+    z := ln(n)
+    s := 0.5 × exp(2 × z/3)
+    sd := 0.5 × sqrt(z × s × (n − s)/n) × sign(i − n/2)
+    newLeft := max(left, k − i × s/n + sd)
+    newRight := min(right, k + (n − i) − s/n + sd)
+    select(array, newLeft, newRight, k)
+end if
+```
+
+**Cevap:**
+
+Bu kod bloğu, alt dizinin boyutu 600 elemandan büyük olduğunda özyinelemeli (recursive) olarak çalışarak daha küçük `s` boyutunda bir örneklem seti seçmek için kullanılır. Amaç, orijinal versiyonda yürütme süresini (execution time) en aza indirmek ve arama aralığını daraltmaktır.
+
+## 106. kod_okuma — bağlamlı (DOC_000344:4:kod_okuma)
+
+Kaynak: DOC_000344 — Floyd–Warshall algorithm, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Pseudocode
+The array prev[u][v] holds the penultimate vertex on the path from u to v (except in the case of prev[v][v], where it always contains v even if there is no self-loop on v):[12]
+let dist be a $|V| \times |V|$ array of minimum distances initialized to $\infty$ (infinity)
+let prev be a $|V| \times |V|$ array of vertex indices initialized to null
+procedure FloydWarshallWithPathReconstruction() is
+    for each edge (u, v) do
+        dist[u][v] = w(u, v)  // The weight of the edge (u, v)
+        prev[u][v] = u
+    for each vertex v do
+        dist[v][v] = 0
+        prev[v][v] = v
+    for k from 1 to |V| do // standard Floyd-Warshall implementation
+        for i from 1 to |V|
+            for j from 1 to |V|
+                if dist[i][j] > dist[i][k] + dist[k][j] then
+                    dist[i][j] = dist[i][k] + dist[k][j]
+                    prev[i][j] = prev[k][j]
+procedure Path(u, v) is
+    if prev[u][v] = null then
+        return []
+    path = [v]
+    while u ≠ v do
+        v = prev[u][v]
+        path.prepend(v)
+    return path
+Time complexity
+Let $n$ be $|V|$, the number of vertices. To find all $n^2$ of $\mathrm{shortestPath}(i,j,k)$ (for all $i$ and $j$) from those of $\mathrm{shortestPath}(i,j,k-1)$ requires $\Theta(n^2)$ operations. Since we begin with $\mathrm{shortestPath}(i,j,0) = \mathrm{edgeCost}(i,j)$ and compute the sequence of $n$ matrices $\mathrm{shortestPath}(i,j,1)$, $\mathrm{shortestPath}(i,j,2)$, $\ldots$, $\mathrm{shortestPath}(i,j,n)$, each having a cost of $\Theta(n^2)$, the total time complexity of the algorithm is $n \cdot \Theta(n^2) = \Theta(n^3)$.[9][13]
+Applications and generalizations
+The Floyd–Warshall algorithm can be used to solve the following problems:
+- Transitive closure of directed graphs (Warshall's algorithm). In Warshall's original formulation of the algorithm, the graph is unweighted and represented by a Boolean adjacency matrix. Then the addition operation is replaced by logical conjunction (AND) and the minimum operation by logical disjunction (OR).
+- Finding a regular expression denoting the regular language accepted by a finite automaton (Kleene's algorithm, a closely related generalization of the Floyd–Warshall algorithm)[14]
+- Inversion of real matrices (Gauss–Jordan algorithm)[15]
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki sözde koda göre `Path(u, v)` fonksiyonu ne yapar?
+```
+procedure Path(u, v) is
+    if prev[u][v] = null then
+        return []
+    path = [v]
+    while u ≠ v do
+        v = prev[u][v]
+        path.prepend(v)
+    return path
+```
+
+**Cevap:**
+
+Fonksiyon, Floyd-Warshall algoritması çalıştırıldıktan sonra u düğümünden v düğümüne giden en kısa yol üzerindeki düğümleri sırasıyla bulup bir liste olarak döndürür. Eğer u ile v arasında hiçbir yol yoksa (`prev[u][v]` değeri `null` ise) boş bir liste döndürür. Yol varsa, hedef düğüm v ile başlar, `prev` dizisini geriye doğru takip ederek başlangıç düğümü u'ya ulaşana kadar önceki düğümleri listenin başına ekler.
+
+## 107. konu_ozeti_anlatim — bağlamlı (DOC_000352:4:konu_ozeti_anlatim)
+
+Kaynak: DOC_000352 — Graph (discrete mathematics), passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Connected graph
+In an undirected graph, an unordered pair of vertices {x, y} is called connected if a path leads from x to y. Otherwise, the unordered pair is called disconnected.
+A connected graph is an undirected graph in which every unordered pair of vertices in the graph is connected. Otherwise, it is called a disconnected graph.
+In a directed graph, an ordered pair of vertices (x, y) is called strongly connected if a directed path leads from x to y. Otherwise, the ordered pair is called weakly connected if an undirected path leads from x to y after replacing all of its directed edges with undirected edges. Otherwise, the ordered pair is called disconnected.
+A strongly connected graph is a directed graph in which every ordered pair of vertices in the graph is strongly connected. Otherwise, it is called a weakly connected graph if every ordered pair of vertices in the graph is weakly connected. Otherwise it is called a disconnected graph.
+A k-vertex-connected graph or k-edge-connected graph is a graph in which no set of k − 1 vertices (respectively, edges) exists that, when removed, disconnects the graph. A k-vertex-connected graph is often called simply a k-connected graph.
+Bipartite graph
+A bipartite graph is a simple graph in which the vertex set can be partitioned into two sets, W and X, so that no two vertices in W share a common edge and no two vertices in X share a common edge. Alternatively, it is a graph with a chromatic number of 2.
+In a complete bipartite graph, the vertex set is the union of two disjoint sets, W and X, so that every vertex in W is adjacent to every vertex in X but there are no edges within W or X.
+Path graph
+A path graph or linear graph of order n ≥ 2 is a graph in which the vertices can be listed in an order v_1, v_2, …, v_n such that the edges are the {v_i, v_{i+1}} where i = 1, 2, …, n − 1. Path graphs can be characterized as connected graphs in which the degree of all but two vertices is 2 and the degree of the two remaining vertices is 1. If a path graph occurs as a subgraph of another graph, it is a path in that graph.
+Planar graph
+A planar graph is a graph whose vertices and edges can be drawn in a plane such that no two of the edges intersect.
+Cycle graph
+A cycle graph or circular graph of order n ≥ 3 is a graph in which the vertices can be listed in an order v_1, v_2, …, v_n such that the edges are the {v_i, v_{i+1}} where i = 1, 2, …, n − 1, plus the edge {v_n, v_1}. Cycle graphs can be characterized as connected graphs in which the degree of all vertices is 2. If a cycle graph occurs as a subgraph of another graph, it is a cycle or circuit in that graph.
+```
+
+</details>
+
+**Talimat:**
+
+Bu bölümdeki yol grafı (path graph) ve çember grafı (cycle graph) tanımlarını ve temel özelliklerini açıklar mısın?
+
+**Cevap:**
+
+Yol grafı, n >= 2 mertebeli olan ve düğümleri v_1, v_2, ..., v_n şeklinde sıralanabilen, kenarları {v_i, v_{i+1}} biçiminde olan bir graflardır. Bu tür bağlı graflarda uçlardaki iki düğümün derecesi 1, diğer tüm iç düğümlerin derecesi ise 2'dir. Çember grafı ise n >= 3 mertebeli, düğümleri v_1, v_2, ..., v_n şeklinde sıralanan ve yol grafındaki kenarlara ek olarak {v_n, v_1} kenarını da içeren dairesel bir graftır. Çember graflarında tüm düğümlerin derecesi 2'dir ve başka bir grafın alt grafı olarak karşılaşıldıklarında devre (circuit) veya çember adını alırlar.
+
+## 108. algoritma_izleme — bağlamlı (DOC_000356:0:algoritma_izleme)
+
+Kaynak: DOC_000356 — Greedy coloring, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In the study of graph coloring problems in mathematics and computer science, a greedy coloring or sequential coloring[1] is a coloring of the vertices of a graph formed by a greedy algorithm that considers the vertices of the graph in sequence and assigns each vertex its first available color. Greedy colorings can be found in linear time, but they do not, in general, use the minimum number of colors possible.
+Different choices of the sequence of vertices will typically produce different colorings of the given graph, so much of the study of greedy colorings has concerned how to find a good ordering. There always exists an ordering that produces an optimal coloring, but although such orderings can be found for many special classes of graphs, they are hard to find in general. Commonly used strategies for vertex ordering involve placing higher-degree vertices earlier than lower-degree vertices, or choosing vertices with fewer available colors in preference to vertices that are less constrained.
+Variations of greedy coloring choose the colors in an online manner, without any knowledge of the structure of the uncolored part of the graph, or choose other colors than the first available in order to reduce the total number of colors. Greedy coloring algorithms have been applied to scheduling and register allocation problems, the analysis of combinatorial games, and the proofs of other mathematical results including Brooks' theorem on the relation between coloring and degree. Other concepts in graph theory derived from greedy colorings include the Grundy number of a graph (the largest number of colors that can be found by a greedy coloring), and the well-colored graphs, graphs for which all greedy colorings use the same number of colors.
+Algorithm
+The greedy coloring for a given vertex ordering can be computed by an algorithm that runs in linear time. The algorithm processes the vertices in the given ordering, assigning a color to each one as it is processed. The colors may be represented by the numbers $0,1,2,\dots$ and each vertex is given the color with the smallest number that is not already used by one of its neighbors. To find the smallest available color, one may use an array to count the number of neighbors of each color (or alternatively, to represent the set of colors of neighbors), and then scan the array to find the index of its first zero.[2]
+In Python, the algorithm can be expressed as:
+def first_available(colors):
+    """Return smallest non-negative integer not in the given set of colors.
+    """
+    color = 0
+    while color in colors:
+        color += 1
+    return color
+def greedy_coloring(G, order):
+    """Find the greedy coloring of G in the given order.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki içerikte yer alan `first_available` fonksiyonuna `{0, 1, 3}` kümesi argüman olarak verilirse fonksiyon adım adım nasıl çalışır?
+
+**Cevap:**
+
+1. Başlangıçta `color` değeri 0 olarak atanır.
+2. 1. Adım: `color` (0) küme içinde (`{0, 1, 3}`) var mı diye kontrol edilir. Var olduğu için `color` 1 arttırılır ve yeni değeri 1 olur.
+3. 2. Adım: `color` (1) küme içinde var mı diye kontrol edilir. Var olduğu için `color` 1 arttırılır ve yeni değeri 2 olur.
+4. 3. Adım: `color` (2) küme içinde var mı diye kontrol edilir. Kümede 2 olmadığı için `while` döngüsü sona erer.
+5. Sonuç: Fonksiyon 2 değerini döndürür.
+
+## 109. kavram_aciklama — bağlamsız (DOC_000360:2:kavram_aciklama)
+
+Kaynak: DOC_000360 — Hash function, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Specialized uses
+Hash functions are also used to build caches for large data sets stored in slow media. A cache is generally simpler than a hashed search table, since any collision can be resolved by discarding or writing back the older of the two colliding items.[4]
+Hash functions are an essential ingredient of the Bloom filter, a space-efficient probabilistic data structure that is used to test whether an element is a member of a set.
+A special case of hashing is known as geometric hashing or the grid method. In these applications, the set of all inputs is some sort of metric space, and the hashing function can be interpreted as a partition of that space into a grid of cells. The table is often an array with two or more indices (called a grid file, grid index, bucket grid, and similar names), and the hash function returns an index tuple. This principle is widely used in computer graphics, computational geometry, and many other disciplines, to solve many proximity problems in the plane or in three-dimensional space, such as finding closest pairs in a set of points, similar shapes in a list of shapes, similar images in an image database, and so on.
+Hash tables are also used to implement associative arrays and dynamic sets.[5]
+Properties
+Uniformity
+A good hash function should map the expected inputs as evenly as possible over its output range. That is, every hash value in the output range should be generated with roughly the same probability. The reason for this requirement is that the cost of hashing-based methods goes up sharply as the number of collisions — pairs of inputs that are mapped to the same hash value — increases. If some hash values are more likely to occur than others, then a larger fraction of the lookup operations will have to search through a larger set of colliding table entries.
+This criterion only requires the value to be uniformly distributed, not random in any sense. A good randomizing function is (barring computational efficiency concerns) generally a good choice as a hash function, but the converse need not be true.
+Hash tables often contain only a small subset of the valid inputs. For instance, a club membership list may contain only a hundred or so member names, out of the very large set of all possible names. In these cases, the uniformity criterion should hold for almost all typical subsets of entries that may be found in the table, not just for the global set of all possible entries.
+In other words, if a typical set of m records is hashed to n table slots, then the probability of a bucket receiving many more than m/n records should be vanishingly small. In particular, if m < n, then very few buckets should have more than one or two records. A small number of collisions is virtually inevitable, even if n is much larger than m—see the birthday problem.
+```
+
+</details>
+
+**Talimat:**
+
+Geometric hashing yöntemi nedir ve nasıl çalışır?
+
+**Cevap:**
+
+Geometric hashing veya grid yöntemi, girdilerin bir metrik uzayda olduğu durumlarda kullanılan özel bir hashing türüdür. Bu yöntemde hash fonksiyonu, uzayı hücrelerden oluşan bir grid yapısına böler ve sonuç olarak bir indeks demeti döndürür. Tablo genellikle iki veya daha fazla indekse sahip bir dizidir. Bilgisayar grafikleri ve hesaplamalı geometri gibi alanlarda düzlem veya üç boyutlu uzaydaki yakınlık problemlerini çözmek için yaygın olarak kullanılır.
+
+## 110. karmasiklik_analizi — bağlamlı (DOC_000360:4:karmasiklik_analizi)
+
+Kaynak: DOC_000360 — Hash function, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Computational complexity varies with the number of instructions required and latency of individual instructions, with the simplest being the bitwise methods (folding), followed by the multiplicative methods, and the most complex (slowest) are the division-based methods.
+Because collisions should be infrequent, and cause a marginal delay but are otherwise harmless, it is usually preferable to choose a faster hash function over one that needs more computation but saves a few collisions.
+Division-based implementations can be of particular concern because a division requires multiple cycles on nearly all processor microarchitectures. Division (modulo) by a constant can be inverted to become a multiplication by the word-size multiplicative-inverse of that constant. This can be done by the programmer, or by the compiler. Division can also be reduced directly into a series of shift-subtracts and shift-adds, though minimizing the number of such operations required is a daunting problem; the number of machine-language instructions resulting may be more than a dozen and swamp the pipeline. If the microarchitecture has hardware multiply functional units, then the multiply-by-inverse is likely a better approach.
+We can allow the table size n to not be a power of 2 and still not have to perform any remainder or division operation, as these computations are sometimes costly. For example, let n be significantly less than 2^b. Consider a pseudorandom number generator function P(key) that is uniform on the interval [0, 2^b − 1]. A hash function uniform on the interval [0, n − 1] is n P(key) / 2^b. We can replace the division by a (possibly faster) right bit shift: n P(key) >> b.
+If keys are being hashed repeatedly, and the hash function is costly, then computing time can be saved by precomputing the hash codes and storing them with the keys. Matching hash codes almost certainly means that the keys are identical. This technique is used for the transposition table in game-playing programs, which stores a 64-bit hashed representation of the board position.
+Universality
+A universal hashing scheme is a randomized algorithm that selects a hash function h among a family of such functions, in such a way that the probability of a collision of any two distinct keys is 1/m, where m is the number of distinct hash values desired—independently of the two keys. Universal hashing ensures (in a probabilistic sense) that the hash function application will behave as well as if it were using a random function, for any distribution of the input data. It will, however, have more collisions than perfect hashing and may require more operations than a special-purpose hash function.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre hash fonksiyonlarında tablolama boyutunu n = 2^b yerine b'den küçük seçip bölme işlemi yerine sağa bit kaydırma (>> b) yapmanın zaman karmaşıklığı açısından avantajı nedir?
+
+**Cevap:**
+
+Bu işlemin zaman karmaşıklığı düşüktür çünkü işlem maliyetli olan bölme veya kalanı bulma (modulo) işlemlerini ortadan kaldırır. Bölme işlemi işlemci mikro mimarilerinde çoklu çevrim (cycle) gerektirdiğinden maliyetlidir; bunun yerine sağa bit kaydırma (>> b) gibi daha hızlı bitwise yöntemler kullanılarak hesaplama süresinden tasarruf edilir.
+
+## 111. karsilastirma — bağlamlı (DOC_000370:2:karsilastirma)
+
+Kaynak: DOC_000370 — Huffman coding, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Example
+We give an example of the result of Huffman coding for a code with five characters and given weights. We will not verify that it minimizes L over all codes, but we will compute L and compare it to the Shannon entropy H of the given set of weights; the result is nearly optimal.
+For any code that is biunique, meaning that the code is uniquely decodeable, the sum of the probability budgets across all symbols is always less than or equal to one. In this example, the sum is strictly equal to one; as a result, the code is termed a complete code. If this is not the case, one can always derive an equivalent code by adding extra symbols (with associated null probabilities), to make the code complete while keeping it biunique.
+As defined by Shannon (1948), the information content h (in bits) of each symbol a_i with non-null probability is
+- $h(a_i) = \log_2{1 \over w_i}.$
+The entropy H (in bits) is the weighted sum, across all symbols a_i with non-zero probability w_i, of the information content of each symbol:
+- $$H(A) = \sum_{w_i > 0} w_i h(a_i) = \sum_{w_i > 0} w_i \log_2 {1 \over w_i} = - \sum_{w_i > 0} w_i \log_2 w_i.$$
+(Note: A symbol with zero probability has zero contribution to the entropy, since $\lim_{w \to 0^+} w \log_2 w = 0$. So for simplicity, symbols with zero probability can be left out of the formula above.)
+As a consequence of Shannon's source coding theorem, the entropy is a measure of the smallest codeword length that is theoretically possible for the given alphabet with associated weights. In this example, the weighted average codeword length is 2.25 bits per symbol, only slightly larger than the calculated entropy of 2.205 bits per symbol. So not only is this code optimal in the sense that no other feasible code performs better, but it is very close to the theoretical limit established by Shannon.
+In general, a Huffman code need not be unique. Thus the set of Huffman codes for a given probability distribution is a non-empty subset of the codes minimizing $L(C)$ for that probability distribution. (However, for each minimizing codeword length assignment, there exists at least one Huffman code with those lengths.)
+Basic technique
+Compression
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki içeriğe dayanarak Shannon entropisi ile Huffman kodlamasının ortalama kod sözcüğü uzunluğunu karşılaştırır mısın?
+
+**Cevap:**
+
+İki kavramı iki eksende karşılaştırabiliriz. Tanım ve Anlam: Shannon entropisi (H) teorik olarak ulaşılabilir en küçük ortalama codeword uzunluğunun alt sınırını verirken, Huffman kodlaması bu sınıra çok yaklaşan pratik bir kodlama uzunluğu (L) sağlar. Değer Karşılaştırması: Metindeki örnekte ağırlıklı ortalama kod sözcüğü uzunluğu 2.25 bit iken hesaplanan Shannon entropisi 2.205 bit çıkmıştır. Sonuç olarak, Huffman kodlaması tam olmasa da entropi sınırına oldukça yakın performans göstererek optimal bir sonuç üretir.
+
+## 112. kavram_aciklama — bağlamsız (DOC_000376:1:kavram_aciklama)
+
+Kaynak: DOC_000376 — Incidence matrix, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The discrete Laplacian (or Kirchhoff matrix) is obtained from the oriented incidence matrix B(G) by the formula
+- $B(G) B(G)^\textsf{T}.$
+The integral cycle space of a graph is equal to the null space of its oriented incidence matrix, viewed as a matrix over the integers or real or complex numbers. The binary cycle space is the null space of its oriented or unoriented incidence matrix, viewed as a matrix over the two-element field.
+Signed and bidirected graphs
+The incidence matrix of a signed graph is a generalization of the oriented incidence matrix. It is the incidence matrix of any bidirected graph that orients the given signed graph. The column of a positive edge has a 1 in the row corresponding to one endpoint and a −1 in the row corresponding to the other endpoint, just like an edge in an ordinary (unsigned) graph. The column of a negative edge has either a 1 or a −1 in both rows. The line graph and Kirchhoff matrix properties generalize to signed graphs.
+Multigraphs
+The definitions of incidence matrix apply to graphs with loops and multiple edges. The column of an oriented incidence matrix that corresponds to a loop is all zero, unless the graph is signed and the loop is negative; then the column is all zero except for ±2 in the row of its incident vertex.
+Weighted graphs
+A weighted graph can be represented using the weight of the edge in place of a 1. For example, the incidence matrix of the graph to the right is:
+Hypergraphs
+Because the edges of ordinary graphs can only have two vertices (one at each end), the column of an incidence matrix for graphs can only have two non-zero entries. By contrast, a hypergraph can have multiple vertices assigned to one edge; thus, a general matrix of non-negative integers describes a hypergraph.
+Incidence structures
+The incidence matrix of an incidence structure C is a p × q matrix B (or its transpose), where p and q are the number of points and lines respectively, such that B_{i,j} = 1 if the point p_i and line L_j are incident and 0 otherwise. In this case, the incidence matrix is also a biadjacency matrix of the Levi graph of the structure. As there is a hypergraph for every Levi graph, and vice versa, the incidence matrix of an incidence structure describes a hypergraph.
+Finite geometries
+An important example is a finite geometry. For instance, in a finite plane, X is the set of points and Y is the set of lines. In a finite geometry of higher dimension, X could be the set of points and Y could be the set of subspaces of dimension one less than the dimension of the entire space (hyperplanes); or, more generally, X could be the set of all subspaces of one dimension d and Y the set of all subspaces of another dimension e, with incidence defined as containment.
+```
+
+</details>
+
+**Talimat:**
+
+İnsidans matrisi (incidence matrix) nedir, graf teorisinde ne amaçla kullanılır?
+
+**Cevap:**
+
+İnsidans matrisi, bir grafın köşeleri ile ayrıtları arasındaki ilişkileri gösteren iki boyutlu bir matristir. Yönlendirilmiş çizimlerde yönelimli insidans matrisi kullanılır ve bu matris üzerinden diskret Laplace matrisi (Kirchhoff matrisi) elde edilebilir. Ayrıca grafın integral döngü uzayı, yönlendirilmiş insidans matrisinin sıfır uzayına eşittir. Çoklu ayrıtlar, döngüler ve ağırlıklı graflar gibi farklı yapılar için de insidans matrisi tanımları genişletilebilir.
+
+## 113. kavram_aciklama — bağlamlı (DOC_000378:2:kavram_aciklama)
+
+Kaynak: DOC_000378 — Integer sorting, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Practical algorithms
+Pigeonhole sort or counting sort can both sort n data items having keys in the range from 0 to K − 1 in time O(n + K). In pigeonhole sort (often called bucket sort), pointers to the data items are distributed to a table of buckets, represented as collection data types such as linked lists, using the keys as indices into the table. Then, all of the buckets are concatenated together to form the output list.[12] Counting sort uses a table of counters in place of a table of buckets, to determine the number of items with each key. Then, a prefix sum computation is used to determine the range of positions in the sorted output at which the values with each key should be placed. Finally, in a second pass over the input, each item is moved to its key's position in the output array.[13] Both algorithms involve only simple loops over the input data (taking time O(n)) and over the set of possible keys (taking time O(K)), giving their O(n + K) overall time bound.
+Radix sort is a sorting algorithm that works for larger keys than pigeonhole sort or counting sort by performing multiple passes over the data. Each pass sorts the input using only part of the keys, by using a different sorting algorithm (such as pigeonhole sort or counting sort) that is suited only for small keys. To break the keys into parts, the radix sort algorithm computes the positional notation for each key, according to some chosen radix; then, the part of the key used for the ith pass of the algorithm is the ith digit in the positional notation for the full key, starting from the least significant digit and progressing to the most significant. For this algorithm to work correctly, the sorting algorithm used in each pass over the data must be stable: items with equal digits should not change positions with each other. For greatest efficiency, the radix should be chosen to be near the number of data items, n. Additionally, using a power of two near n as the radix allows the keys for each pass to be computed quickly using only fast binary shift and mask operations. With these choices, and with pigeonhole sort or counting sort as the base algorithm, the radix sorting algorithm can sort n data items having keys in the range from 0 to K − 1 in time O(n log_n K).[14]
+Theoretical algorithms
+Many integer sorting algorithms have been developed whose theoretical analysis shows them to behave better than comparison sorting, pigeonhole sorting, or radix sorting for large enough combinations of the parameters defining the number of items to be sorted, range of keys, and machine word size. Which algorithm has the best performance depends on the values of these parameters. However, despite their theoretical advantages, these algorithms are not an improvement for the typical ranges of these parameters that arise in practical sorting problems.[9]
+Algorithms for small keys
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre radix sort (tabanlı sıralama) algoritması nasıl çalışır ve hangi temel koşula ihtiyaç duyar?
+
+**Cevap:**
+
+Radix sort, büyük anahtarları olan verileri birden fazla geçiş yaparak sıralayan bir algoritmadır. Her geçişte, tam anahtarın sayısal gösterimindeki basamaklar en düşük basamaktan en yüksek basamağa doğru işlenir ve bu sırada küçük anahtarlar için uygun olan pigeonhole sort veya counting sort gibi temel bir sıralama algoritması kullanılır. Algoritmanın doğru çalışabilmesi için her geçişte kullanılan temel sıralama algoritmasının kararlı (stable) olması, yani eşit basamaklı öğelerin birbirine göre konumlarını değiştirmemesi gerekir.
+
+## 114. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000378:3:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000378 — Integer sorting, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A Van Emde Boas tree may be used as a priority queue to sort a set of n keys, each in the range from 0 to K − 1, in time O(n log log K). This is a theoretical improvement over radix sorting when K is sufficiently large. However, in order to use a Van Emde Boas tree, one either needs a directly addressable memory of K words, or one needs to simulate it using a hash table, reducing the space to linear but making the algorithm randomized. Another priority queue with similar performance (including the need for randomization in the form of hash tables) is the Y-fast trie of Willard (1983).
+A more sophisticated technique with a similar flavor and with better theoretical performance was developed by Kirkpatrick & Reisch (1984). They observed that each pass of radix sort can be interpreted as a range reduction technique that, in linear time, reduces the maximum key size by a factor of n; instead, their technique reduces the key size to the square root of its previous value (halving the number of bits needed to represent a key), again in linear time. As in radix sort, they interpret the keys as two-digit base-b numbers for a base b that is approximately √. They then group the items to be sorted into buckets according to their high digits, in linear time, using either a large but uninitialized direct addressed memory or a hash table. Each bucket has a representative, the item in the bucket with the largest key; they then sort the list of items using as keys the high digits for the representatives and the low digits for the non-representatives. By grouping the items from this list into buckets again, each bucket may be placed into sorted order, and by extracting the representatives from the sorted list the buckets may be concatenated together into sorted order. Thus, in linear time, the sorting problem is reduced to another recursive sorting problem in which the keys are much smaller, the square root of their previous magnitude. Repeating this range reduction until the keys are small enough to bucket sort leads to an algorithm with running time O(n log log_n K).
+A complicated randomized algorithm of Han & Thorup (2002) in the word RAM model of computation allows these time bounds to be reduced even farther, to O(n√).
+```
+
+</details>
+
+**Talimat:**
+
+Kirkpatrick ve Reisch (1984) tarafından geliştirilen aralık indirgeme tekniği ve karmaşıklığı hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Kirkpatrick & Reisch (1984) tarafından geliştirilen teknik, her adımda anahtar boyutunu nasıl küçültmektedir?
+A) Anahtar boyutunu yarıya indirir ve kalan bit sayısını korur.
+B) Anahtar boyutunu önceki değerinin kareköküne düşürerek temsil için gereken bit sayısını yarıya indirir.
+C) Anahtarları doğrudan K kelimelik bir bellekte saklayarak sabit zamana indirger.
+D) Anahtar boyutunu her adımda n faktör kadar azaltır.
+Doğru şık: B
+Açıklama: Metne göre bu teknik, anahtar boyutunu önceki değerinin kareköküne düşürerek bir anahtarı temsil etmek için gereken bit sayısını yarıya indirmektedir. A şıkkı sadece bit sayısını yarıya indirmeden bahsettiği için eksiktir, C şıkkı Van Emde Boas ağacının bellek ihtiyacını karıştırmaktadır, D şıkkı ise radix sıralamasının doğrusal zamanda anahtar boyutunu n faktörküçültme özelliğidir.
+
+## 115. kod_okuma — bağlamsız (DOC_000381:3:kod_okuma)
+
+Kaynak: DOC_000381 — Interpolation sort, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Interpolation tag sort algorithm
+- Set a tag array equal to the original array size and initialize to a false value.
+- [Main Sort] Determines whether all buckets of the original array have been sorted. If the sorting is not completed, the [Divide function] is executed.
+- [Divide function] Find the maximum and minimum values in the bucket. If the maximum value is equal to the minimum value, the sorting is completed and the division is stopped.
+- Set up a two-dimensional array as all the empty buckets. Divide into the bucket according to the interpolation number.
+- After dividing into the bucket, mark the starting position of the bucket as a true value in the tag array. And put the items back into the original array one by one from all the buckets that are not empty.
+- Return to [Main Sort].
+Practice
+JavaScript code:
+Array.prototype.InterpolaionTagSort = function()
+{// Whale Chen agrees to "Wikipedia CC BY-SA 3.0 License". Sign date: 2019-06-21 //
+  var end = this.length; 
+  if (end > 1) { 
+    var start = 0 ; 
+    var Tag = new Array(end);          // Algorithm step-1 
+    for (var i = 0; i < end; i++) { Tag[i] = false; } 
+    Divide(this); 
+  } 
+  while (end > 1) {                     // Algorithm step-2  
+    while (Tag[--start] == false) { } // Find the next bucket's start
+    Divide(this); 
+  }
+  function Divide(A) {   
+    var min = A[start]; 
+    var max = A[start];
+    for (var i = start + 1; i < end; i++) { 
+      if (A[i] < min) { min = A[i]; } 
+      else { if (A[i] > max) { max = A[i]; } } }
+    if ( min == max) { end = start; }    // Algorithm step-3 Start to be the next bucket's end
+    else {                                          
+      var interpolation = 0; 
+      var size = end - start; 
+      var Bucket = new Array( size );    // Algorithm step-4         
+      for (var i = 0; i < size; i++) { Bucket[i] = new Array(); }  
+      for (var i = start; i < end; i++) {  
+         interpolation = Math.floor (((A[i] - min) / (max - min)) * (size - 1));
+         Bucket[interpolation].push(A[i]); 
+      } 
+      for (var i = 0; i < size; i++) {
+        if (Bucket[i].length > 0) {    // Algorithm step-5      
+          Tag[start] = true; 
+          for (var j = 0; j < Bucket[i].length; j++) { A[start++] = Bucket[i][j]; } 
+        } 
+      }  
+    }
+  } // Algorithm step-6 
+};
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki JavaScript fonksiyonu ne yapar?
+```javascript
+Array.prototype.InterpolaionTagSort = function()
+{
+  var end = this.length;
+  if (end > 1) { 
+    var start = 0;
+    var Tag = new Array(end);
+    for (var i = 0; i < end; i++) { Tag[i] = false; }
+    Divide(this);
+  }
+}
+```
+
+**Cevap:**
+
+Bu fonksiyon, Interpolation tag sort algoritmasının başlangıç hazırlıklarını yapar. Dizi uzunluğu 1'den büyükse, orijinal diziyle aynı boyutta ve başlangıçta hepsi `false` değerine sahip olan bir `Tag` (etiket) dizisi oluşturur ve ardından `Divide` fonksiyonunu çağırarak sıralama/bölme işlemini başlatır.
+
+## 116. algoritma_izleme — bağlamsız (DOC_000383:5:algoritma_izleme)
+
+Kaynak: DOC_000383 — Interval tree, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Membership queries
+Some performance may be gained if the tree avoids unnecessary traversals. These can occur when adding intervals that already exist or removing intervals that don't exist.
+A total order can be defined on the intervals by ordering them first by their lower bounds and then by their upper bounds. Then, a membership check can be performed in $O(\log n)$ time, versus the $O(k + \log n)$ time required to find duplicates if $k$ intervals overlap the interval to be inserted or removed. This solution has the advantage of not requiring any additional structures. The change is strictly algorithmic. The disadvantage is that membership queries take $O(\log n)$ time.
+Alternately, at the rate of $O(n)$ memory, membership queries in expected constant time can be implemented with a hash table, updated in lockstep with the interval tree. This may not necessarily double the total memory requirement, if the intervals are stored by reference rather than by value.
+Java example: Adding a new interval to the tree
+The key of each node is the interval itself, hence nodes are ordered first by low value and finally by high value, and the value of each node is the end point of the interval:
+public void add(Interval i) {
+    put(i, i.getEnd());
+}
+Java example: Searching a point or an interval in the tree
+To search for an interval, one walks the tree, using the key (n.getKey()) and high value (n.getValue()) to omit any branches that cannot overlap the query. The simplest case is a point query:
+// Search for all intervals containing "p", starting with the
+// node "n" and adding matching intervals to the list "result"
+public void search(IntervalNode n, Point p, List<Interval> result) {
+    // Don't search nodes that don't exist
+    if (n == null)
+        return;
+    // If p is to the right of the rightmost point of any interval
+    // in this node and all children, there won't be any matches.
+    if (p.compareTo(n.getValue()) > 0)
+        return;
+    // Search left children
+    search(n.getLeft(), p, result);
+    // Check this node
+    if (n.getKey().contains(p))
+        result.add(n.getKey());
+    // If p is to the left of the start of this interval,
+    // then it can't be in any child to the right.
+    if (p.compareTo(n.getKey().getStart()) < 0)
+        return;
+    // Otherwise, search right children
+    search(n.getRight(), p, result);
+}
+where
+- a.compareTo(b) returns a negative value if a < b
+- a.compareTo(b) returns zero if a = b
+- a.compareTo(b) returns a positive value if a > b
+The code to search for an interval is similar, except for the check in the middle:
+// Check this node
+if (n.getKey().overlapsWith(i))
+    result.add (n.getKey());
+overlapsWith() is defined as:
+public boolean overlapsWith(Interval other) {
+    return start.compareTo(other.getEnd()) <= 0 &&
+           end.compareTo(other.getStart()) >= 0;
+}
+Higher dimensions
+```
+
+</details>
+
+**Talimat:**
+
+overlapsWith() fonksiyonunu kullanarak start ve end değerlerine sahip iki aralığın kesişip kesişmediğini nasıl test ederiz? Örneğin start=5, end=10 olan bir aralık ile start=8, end=15 olan diğer bir aralık için bu fonksiyon nasıl çalışır?
+
+**Cevap:**
+
+Aralıkların kesişip kesişmediğini kontrol eden overlapsWith() fonksiyonu şu mantıkla çalışır: return start.compareTo(other.getEnd()) <= 0 && end.compareTo(other.getStart()) >= 0;
+1. Birinci aralığın başlangıcı (5), ikinci aralığın bitişi (15) ile karşılaştırılır: 5.compareTo(15) negatif bir değer döner, yani 5 <= 15 koşulu doğrudur.
+2. Birinci aralığın bitişi (10), ikinci aralığın başlangıcı (8) ile karşılaştırılır: 10.compareTo(8) pozitif bir değer döner, yani 10 >= 8 koşulu doğrudur.
+3. Her iki koşul da sağlandığı için fonksiyon true döner.
+Sonuç: Bu iki aralık kesişmektedir.
+
+## 117. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000385:1:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000385 — Introsort, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Analysis
+In quicksort, one of the critical operations is choosing the pivot: the element around which the list is partitioned. The simplest pivot selection algorithm is to take the first or the last element of the list as the pivot, causing poor behavior for the case of sorted or nearly sorted input. Niklaus Wirth's variant uses the middle element to prevent these occurrences, degenerating to O(n^2) for contrived sequences. The median-of-3 pivot selection algorithm takes the median of the first, middle, and last elements of the list; however, even though this performs well on many real-world inputs, it is still possible to contrive a median-of-3 killer list that will cause dramatic slowdown of a quicksort based on this pivot selection technique.
+Musser reported that on a median-of-3 killer sequence of 100,000 elements, introsort's running time was 1/200 that of median-of-3 quicksort. Musser also considered the effect on caches of Sedgewick's delayed small sorting, where small ranges are sorted at the end in a single pass of insertion sort. He reported that it could double the number of cache misses, but that its performance with double-ended queues was significantly better and should be retained for template libraries, in part because the gain in other cases from doing the sorts immediately was not great.
+```
+
+</details>
+
+**Talimat:**
+
+Quicksort'ta pivot seçimi ve pivot seçme algoritmaları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Quicksort algoritmasında en basit pivot seçimi yönteminin ilk veya son elemanı seçmesi hangi durumda zayıf (poor) davranışa yol açar?
+A) Listede rastgele ve karmaşık elemanlar bulunduğunda
+B) Girdi sıralı veya sıralıya yakın olduğunda
+C) Liste yalnızca tek bir elemandan oluştuğunda
+D) Eleman sayısı 100.000'i aştığında
+Doğru şık: B
+Açıklama: En basit pivot seçimi olan ilk veya son elemanı seçmek, sıralı veya sıralıya yakın girdilerde algoritmanın performansını olumsuz etkiler. A şıkkındaki rastgele elemanlar tam tersine bu basit yaklaşımın daha iyi çalışmasını sağlar, bu yüzden B şıkkı doğrudur.
+
+## 118. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000386:0:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000386 — Inversion (discrete mathematics), passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science and discrete mathematics, an inversion in a sequence is a pair of elements that are out of their natural order.
+Definitions
+Inversion
+Let $\pi$ be a permutation. There is an inversion of $\pi$ between $i$ and $j$ if $i < j$ and $\pi(i) > \pi(j)$. The inversion is indicated by an ordered pair containing either the places $(i, j)$[1][2] or the elements $\bigl(\pi(i), \pi(j)\bigr)$.[3][4][5]
+The inversion set is the set of all inversions. A permutation's inversion set using place-based notation is the same as the inverse permutation's inversion set using element-based notation with the two components of each ordered pair exchanged. Likewise, a permutation's inversion set using element-based notation is the same as the inverse permutation's inversion set using place-based notation with the two components of each ordered pair exchanged.[6]
+Inversions are usually defined for permutations, but may also be defined for sequences:
+Let $S$ be a sequence (or multiset permutation[7]). If $i < j$ and $S(i) > S(j)$, either the pair of places $(i, j)$[7][8] or the pair of elements $\bigl(S(i), S(j)\bigr)$[9] is called an inversion of $S$.
+For sequences, inversions according to the element-based definition are not unique, because different pairs of places may have the same pair of values.
+```
+
+</details>
+
+**Talimat:**
+
+Permütasyonlarda inversion (tersinir) kavramı hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Bir permütasyonda inversion (tersinir) varlığından söz edebilmek için hangi koşul sağlanmalıdır?
+A) i < j iken S(i) > S(j) olması
+B) i > j iken S(i) < S(j) olması
+C) i < j iken S(i) < S(j) olması
+D) i = j iken S(i) = S(j) olması
+Doğru şık: A
+Açıklama: Metne göre bir permütasyon veya dizide i < j iken S(i) > S(j) olması durumunda bir inversion (tersinir) oluşur. B şıkkı tam tersi bir sıralamayı ifade eder, C şıkkı ise doğal sıralamadır.
+
+## 119. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000389:2:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000389 — Iterative deepening depth-first search, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Proof
+In an iterative deepening search, the nodes at depth $d$ are expanded once, those at depth $d - 1$ are expanded twice, and so on up to the root of the search tree, which is expanded $d+1$ times.[1]: 5 So the total number of expansions in an iterative deepening search is
+- $b^{d} + 2b^{d-1} + 3b^{d-2} + \cdots + (d-1)b^{2} + db + (d + 1) = \sum_{i=0}^d (d+1-i)b^i$
+where $b^{d}$ is the number of expansions at depth $d$, $2b^{d - 1}$ is the number of expansions at depth $d - 1$, and so on. Factoring out $b^{d}$ gives
+- $b^{d}(1 + 2b^{-1} + 3b^{-2} + \cdots + (d-1)b^{2 - d} + db^{1 - d} + (d + 1)b^{-d})$
+Now let $x = \frac{1}{b} = b^{-1}$. Then we have
+- $b^{d}(1 + 2x + 3x^2 + \cdots + (d-1)x^{d - 2} + dx^{d - 1} + (d + 1)x^d)$
+This is less than the infinite series
+- $b^{d}(1 + 2x + 3x^2 + 4x^3 + \cdots ) = b^{d} \left( \sum^{\infty}_{n=1}n x^{n-1} \right)$
+which converges to
+- $b^d (1 - x)^{-2} = b^d \frac{1}{(1-x)^2}$, for $abs(x) < 1$
+That is, we have
+$b^{d}(1 + 2x + 3x^2 + \cdots + (d-1)x^{d - 2} + dx^{d - 1} + (d + 1)x^d) \leq b^d (1 - x)^{-2}$, for $abs(x) < 1$
+Since $(1 - x)^{-2}$ or $\left(1 - \frac{1}{b} \right)^{-2}$ is a constant independent of $d$ (the depth), if $b > 1$ (i.e., if the branching factor is greater than 1), the running time of the depth-first iterative deepening search is $O(b^d)$.
+```
+
+</details>
+
+**Talimat:**
+
+Yinelemeli derinleştirmeli derinlik öncelikli aramada düğüm genişletme sayıları ve zaman karmaşıklığı hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Yinelemeli derinleştirmeli derinlik öncelikli aramada arama ağacının kökü d derinliğindeki bir arama için kaç kez genişletilir?
+A) 1 kez
+B) d kez
+C) d + 1 kez
+D) b^d kez
+Doğru şık: C
+Açıklama: Ders içeriğine göre kök düğüm d+1 kez genişletilir. d derinliğindeki düğümler bir kez, d-1 derinliğindekiler iki kez genişletilir. B şıkkını seçenler kökün d kez genişletildiğini varsaymıştır, D şıkkı ise d derinliğindeki genişletme sayısını ifade eder.
+
+## 120. algoritma_izleme — bağlamlı (DOC_000389:6:algoritma_izleme)
+
+Kaynak: DOC_000389 — Iterative deepening depth-first search, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Depth-Limited-Search-Forward(child, Δ − 1, F, V)
+function Depth-Limited-Search-Backward(u, Δ, B, F, V) is
+    if u ∈ V then
+        return nil
+    Push(B, u)
+    if Δ = 0 then
+        if u ∈ F  then
+            return u (Reached the marked node, use it as a relay node)
+        Pop(B)
+        return nil
+    V := V ∪ {u}
+    foreach parent of u do
+        μ := Depth-Limited-Search-Backward(parent, Δ − 1, B, F, V)
+        if μ $\neq$ nil then
+            return μ
+    Pop(B)
+    return nil
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, Depth-Limited-Search-Backward algoritması için u düğümü başlangıçta V kümesinde değilken, Δ = 0 olduğunda ve u düğümü F kümesinde yer aldığında adım adım nasıl çalışır?
+
+**Cevap:**
+
+Algoritmanın bu özel durumdaki adımları şu şekildedir:
+1. `u ∈ V` kontrolü yapılır; u kümede olmadığı için işlem devam eder.
+2. `Push(B, u)` komutu ile u düğümü yığıta (stack) B eklenir.
+3. `Δ = 0` koşulu sağlanır.
+4. `u ∈ F` kontrolü yapılır; u hedef kümesinde olduğu için koşul sağlanır.
+5. Fonksiyon u düğümünü (röle düğüm olarak kullanılmak üzere) geri döndürür.
+
+## 121. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000399:1:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000399 — Karatsuba algorithm, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- $y = y_1 B^m + y_0,$
+where $x_0$ and $y_0$ are less than $B^m$ and $x_1$ and $y_1$ are less than $B^{n-m}$. The product is then
+$\begin{align} xy &= (x_1 B^m + x_0)(y_1 B^m + y_0) \\ &= x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^m + x_0 y_0 \\ &= z_2 B^{2m} + z_1 B^m + z_0, \\ \end{align}$
+where
+- $z_2 = x_1 y_1,$
+- $z_1 = x_1 y_0 + x_0 y_1,$
+- $z_0 = x_0 y_0.$
+These formulae require four multiplications and were known to Charles Babbage.[4] Karatsuba observed that $xy$ can be computed in only three multiplications, at the cost of a few extra additions. With $z_0$ and $z_2$ as before and $z_3=(x_1 + x_0) (y_1 + y_0),$ one observes that
+- $\begin{alignat}{2} z_1 &= x_1 y_0 + x_0 y_1 \\ &= x_1 y_0 + x_0 y_1 + x_1 y_1 + x_0 y_0 &&- x_1 y_1 - x_0 y_0 \\ &= (x_1 + x_0) (y_1 + y_0) &&- x_1 y_1 - x_0 y_0 \\ &= z_3 - z_2 - z_0. \\ \end{alignat}$
+Thus only three multiplications are required for computing $z_0, z_1$ and $z_2,$ and thus $xy.$
+An alternative form uses $z_4 = (x_1 - x_0)(y_1 - y_0)$ instead:
+- $\begin{align} z_1 &= \phantom{x_1 y_1 + x_0 y_0 - (x_1 y_1 - x_0 y_0 + {}} x_1 y_0 + x_0 y_1 \\ &= x_1 y_1 + x_0 y_0 - \phantom{(}x_1 y_1 - x_0 y_0 + x_1 y_0 + x_0 y_1 \\ &= x_1 y_1 + x_0 y_0 - (x_1 y_1 + x_0 y_0 - x_1 y_0 - x_0 y_1) \\ &= x_1 y_1 + x_0 y_0 - (x_1 - x_0) (y_1 - y_0)\\ &= z_2 + z_0 - z_4. \\ \end{align}$
+Example
+```
+
+</details>
+
+**Talimat:**
+
+Karatsuba algoritmasının çarpım sayısı ve formülleri hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Karatsuba algoritmasında z_1 terimini üç çarpma ile hesaplayabilmek için kullanılan z_3 ifadesi aşağıdakilerden hangisidir?
+A) (x_1 - x_0) (y_1 - y_0)
+B) (x_1 + x_0) (y_1 + y_0)
+C) x_1 y_1 + x_0 y_0
+D) x_1 y_0 + x_0 y_1
+Doğru şık: B
+Açıklama: Karatsuba algoritmasında z_3 = (x_1 + x_0)(y_1 + y_0) olarak tanımlanır ve z_1 terimi z_3 - z_2 - z_0 şeklinde hesaplanarak çarpma sayısı dörtten üçe düşürülür. A şıkkındaki ifade alternatif formda kullanılan z_4 değeridir.
+
+## 122. algoritma_izleme — bağlamsız (DOC_000402:5:algoritma_izleme)
+
+Kaynak: DOC_000402 — Knapsack problem, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A similar dynamic programming solution for the 0-1 knapsack problem also runs in pseudo-polynomial time. Assume $w_1,\,w_2,\,\ldots,\,w_n,\, W$ are strictly positive integers. Define $m[i,w]$ to be the maximum value that can be attained with weight less than or equal to $w$ using items up to $i$ (first $i$ items).
+We can define $m[i,w]$ recursively as follows: (Definition A)
+- $m[0,\,w]=0$
+- $m[i,\,w]=m[i-1,\,w]$ if $w_i > w\,\!$ (the new item is more than the current weight limit)
+- $m[i,\,w]=\max(m[i-1,\,w],\,m[i-1,w-w_i]+v_i)$ if $w_i \leqslant w$.
+The solution can then be found by calculating $m[n,W]$. To do this efficiently, we can use a table to store previous computations.
+The following is pseudocode for the dynamic program:
+// Input:
+// Values (stored in array v)
+// Weights (stored in array w)
+// Number of distinct items (n)
+// Knapsack capacity (W)
+// NOTE: The array "v" and array "w" are assumed to store all relevant values starting at index 1.
+array m[0..n, 0..W];
+for j from 0 to W do:
+    m[0, j] := 0
+for i from 1 to n do:
+    m[i, 0] := 0
+for i from 1 to n do:
+    for j from 1 to W do:
+        if w[i] > j then:
+            m[i, j] := m[i-1, j]
+        else:
+            m[i, j] := max(m[i-1, j], m[i-1, j-w[i]] + v[i])
+This solution will therefore run in $O(nW)$ time and $O(nW)$ space. (If we only need the value m[n,W], we can modify the code so that the amount of memory required is O(W) which stores the recent two lines of the array "m".)
+However, if we take it a step or two further, we should know that the method will run in the time between $O(nW)$ and $O(2^n)$. From Definition A, we know that there is no need to compute all the weights when the number of items and the items themselves that we chose are fixed. That is to say, the program above computes more than necessary because the weight changes from 0 to W often. From this perspective, we can program this method so that it runs recursively.
+// Input:
+// Values (stored in array v)
+// Weights (stored in array w)
+// Number of distinct items (n)
+// Knapsack capacity (W)
+// NOTE: The array "v" and array "w" are assumed to store all relevant values starting at index 1.
+```
+
+</details>
+
+**Talimat:**
+
+0-1 sırt çantası problemi için verilen dinamik programlama sözde kodunu; n=2, W=3, eşya ağırlıkları w = [0, 2, 1] (indeks 1'den başlıyor, w[1]=2, w[2]=1) ve değerleri v = [0, 3, 2] için tablo doldurma mantığına göre adım adım izler misin?
+
+**Cevap:**
+
+Dinamik programlama tablosu m[0..2, 0..3] üzerinde çalışır.
+1. Başlangıç: Tüm j'ler (0'dan 3'e) için m[0, j] = 0 ve tüm i'ler (1'den 2'ye) için m[i, 0] = 0 yapılır.
+2. i = 1 eşyası için (ağırlık w[1] = 2, değer v[1] = 3):
+- j = 1 için w[1] > j (2 > 1) olduğundan m[1, 1] = m[0, 1] = 0.
+- j = 2 için w[1] <= j (2 <= 2) olduğundan m[1, 2] = max(m[0, 2], m[0, 0] + 3) = max(0, 3) = 3.
+- j = 3 için w[1] <= j (2 <= 3) olduğundan m[1, 3] = max(m[0, 3], m[0, 1] + 3) = max(0, 3) = 3.
+3. i = 2 eşyası için (ağırlık w[2] = 1, değer v[2] = 2):
+- j = 1 için w[2] <= j (1 <= 1) olduğundan m[2, 1] = max(m[1, 1], m[1, 0] + 2) = max(0, 2) = 2.
+- j = 2 için w[2] <= j (1 <= 2) olduğundan m[2, 2] = max(m[1, 2], m[1, 1] + 2) = max(3, 2) = 3.
+- j = 3 için w[2] <= j (1 <= 3) olduğundan m[2, 3] = max(m[1, 3], m[1, 2] + 2) = max(3, 3 + 2) = 5.
+Sonuç: m[2, 3] değeri 5 olarak bulunur.
+
+## 123. konu_ozeti_anlatim — bağlamsız (DOC_000404:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000404 — Knuth's Algorithm X, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The algorithm moves to the first branch at level 1…
+- Level 1: Select Row A
+- Step 4—Row A is included in the partial solution.
+- Step 5—Row A has a 1 in columns 1, 4, and 7:
+- Column 1 has a 1 in rows A and B; column 4 has a 1 in rows A, B, and C; and column 7 has a 1 in rows A, C, E, and F. Thus, rows A, B, C, E, and F are to be removed and columns 1, 4 and 7 are to be removed:
+- Row D remains and columns 2, 3, 5, and 6 remain:
+- Step 1—The matrix is not empty, so the algorithm proceeds.
+- Step 2—The lowest number of 1s in any column is zero and column 2 is the first column with zero 1s:
+- Thus this branch of the algorithm terminates unsuccessfully.
+- The algorithm moves to the next branch at level 1…
+- Level 1: Select Row B
+- Step 4—Row B is included in the partial solution.
+- Row B has a 1 in columns 1 and 4:
+- Column 1 has a 1 in rows A and B; and column 4 has a 1 in rows A, B, and C. Thus, rows A, B, and C are to be removed and columns 1 and 4 are to be removed:
+- Rows D, E, and F remain and columns 2, 3, 5, 6, and 7 remain:
+- Step 1—The matrix is not empty, so the algorithm proceeds.
+- Step 2—The lowest number of 1s in any column is one. Column 5 is the first column with one 1 and thus is selected (deterministically):
+- Step 3—Row D has a 1 in column 5 and thus is selected (nondeterministically).
+- The algorithm moves to the first branch at level 2…
+  - Level 2: Select Row D
+  - Step 4—Row D is included in the partial solution.
+  - Step 5—Row D has a 1 in columns 3, 5, and 6:
+  - Column 3 has a 1 in rows D and E; column 5 has a 1 in row D; and column 6 has a 1 in rows D and E. Thus, rows D and E are to be removed and columns 3, 5, and 6 are to be removed:
+  - Row F remains and columns 2 and 7 remain:
+  - Step 1—The matrix is not empty, so the algorithm proceeds.
+  - Step 2—The lowest number of 1s in any column is one. Column 2 is the first column with one 1 and thus is selected (deterministically):
+  - Row F has a 1 in column 2 and thus is selected (nondeterministically).
+  - The algorithm moves to the first branch at level 3…
+    - Level 3: Select Row F
+```
+
+</details>
+
+**Talimat:**
+
+Knuth'un Algoritma X'inin matris üzerinde adım adım ilerleyişini özetler misin?
+
+**Cevap:**
+
+Knuth'un Algoritma X'i matris üzerinde şu adımlarla ilerler:
+- Algoritma bir seviyede bir satır seçerek kısmi çözüme dâhil eder.
+- Seçilen satırdaki 1'lerin bulunduğu sütunlar ve bu sütunlarda 1 içeren diğer satırlar matristen kaldırılır.
+- Matrisin boş olup olmadığı kontrol edilir; boş değilse en az 1 içeren sütunlar incelenir.
+- Eğer bir sütun hiç 1 içermiyorsa o dal başarısızlıkla sonlanır, aksi takdirde bir sütun ve uygun bir satır seçilerek sonraki seviyedeki dallara geçilir.
+
+## 124. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000405:3:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000405 — Knuth–Morris–Pratt algorithm, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+i: 0123456
+This search at the new position fails immediately because W[2] (a 'C') does not match S[10] (a ' '). As in the first trial, the mismatch causes the algorithm to return to the beginning of W and begins searching at the mismatched character position of S: m = 10, reset i = 0.
+             1 2
+m: 01234567890123456789012
+S: ABC ABCDAB ABCDABCDABDE
+W: ABCDABD
+i: 0123456
+The match at m=10 fails immediately, so the algorithm next tries m = 11 and i = 0.
+             1 2
+m: 01234567890123456789012
+S: ABC ABCDAB ABCDABCDABDE
+W: ABCDABD
+i: 0123456
+Once again, the algorithm matches "ABCDAB", but the next character, 'C', does not match the final character 'D' of the word W. Reasoning as before, the algorithm sets m = 15, to start at the two-character string "AB" leading up to the current position, set i = 2, and continue matching from the current position.
+             1 2
+m: 01234567890123456789012
+S: ABC ABCDAB ABCDABCDABDE
+W: ABCDABD
+i: 0123456
+This time the match is complete, and the first character of the match is S[15].
+```
+
+</details>
+
+**Talimat:**
+
+Knuth-Morris-Pratt algoritmasının eşleşmeme durumlarındaki konumsal ilerleyişi hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Metin (S) üzerinde yapılan bir aramada W[2] karakteri S[10] ile eşleşmeyip başarısız olduğunda, Knuth-Morris-Pratt algoritması sonraki adımda m ve i değerlerini nasıl ayarlar?
+A) m = 10 ve i = 0 olarak ayarlar.
+B) m = 11 ve i = 5 olarak ayarlar.
+C) m = 0 ve i = 10 olarak ayarlar.
+D) m = 10 ve i = 2 olarak ayarlar.
+Doğru şık: A
+Açıklama: Metne göre W[2] karakterinin S[10] ile eşleşmemesi durumunda algoritma, arama konumunu S'in eşleşmeyen karakter pozisyonuna yani m = 10 yapar ve i değerini sıfırlayarak i = 0 ile yeniden başlatır. B seçeneği gibi farklı indis atamaları o anki uyumsuzluk durumunu yansıtmaz.
+
+## 125. yanlis_cevap_aciklama — bağlamsız (DOC_000405:9:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000405 — Knuth–Morris–Pratt algorithm, passage 9
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Efficiency of the KMP algorithm
+Since the two portions of the algorithm have, respectively, complexities of O(k) and O(n), the complexity of the overall algorithm is O(n + k).
+These complexities are independent of how many repetitive patterns are in W or S.
+It is known that the delay, that is the number of times a symbol of the text is compared to symbols of the pattern, is less than $\lfloor \log_\Phi(k+1)\rfloor$, where Φ is the golden ratio $(1+\sqrt 5)/2$. In 1993, an algorithm was given that has a delay bounded by $\min(1+\lfloor \log_2 k\rfloor,|\Sigma|)$ where Σ is the size of the alphabet (of the pattern).[7][8]
+Variants
+A real-time version of KMP can be implemented using a separate failure function table for each character in the alphabet. If a mismatch occurs on character $x$ in the text, the failure function table for character $x$ is consulted for the index $i$ in the pattern at which the mismatch took place. This will return the length of the longest substring ending at $i$ matching a prefix of the pattern, with the added condition that the character after the prefix is $x$. With this restriction, character $x$ in the text need not be checked again in the next phase, and so only a constant number of operations are executed between the processing of each index of the text[citation needed]. This satisfies the real-time computing restriction.
+Booth's algorithm uses a modified version of the KMP preprocessing function to find the lexicographically minimal string rotation. The failure function is progressively calculated as the string is rotated.
+```
+
+</details>
+
+**Talimat:**
+
+Soru: KMP algoritmasının overall (genel) zaman karmaşıklığı nedir? Ben O(n * k) dedim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap O(n + k)'dir. O(n * k) karmaşıklığı, iki dizgideki her karakteri tek tek olası tüm konumlarda karşılaştıran saf (brute-force) yaklaşımlar için geçerlidir. KMP algoritması ise kalıp içindeki tekrarlardan kaçınmak için önişleme aşaması (O(k)) ve arama aşaması (O(n)) kullanır; bu iki kısım toplanarak toplam karmaşıklık O(n + k) olur, yani terimler birbiriyle çarpılmaz.
+
+## 126. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000406:0:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000406 — Kosaraju's algorithm, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, Kosaraju-Sharir's algorithm (also known as Kosaraju's algorithm) is a linear time algorithm to find the strongly connected components of a directed graph. Aho, Hopcroft and Ullman credit it to S. Rao Kosaraju and Micha Sharir.[1][2] Kosaraju suggested it in 1978 but did not publish it, while Sharir independently discovered it and published it in 1981.[3] It makes use of the fact that the transpose graph (the same graph with the direction of every edge reversed) has exactly the same strongly connected components as the original graph.
+The algorithm
+The primitive graph operations that the algorithm uses are to enumerate the vertices of the graph, to store data per vertex (if not in the graph data structure itself, then in some table that can use vertices as indices), to enumerate the out-neighbours of a vertex (traverse edges in the forward direction), and to enumerate the in-neighbours of a vertex (traverse edges in the backward direction); however the last can be done without, at the price of constructing a representation of the transpose graph during the forward traversal phase. The only additional data structure needed by the algorithm is an ordered list L of graph vertices, that will grow to contain each vertex once.
+If strong components are to be represented by appointing a separate root vertex for each component, and assigning to each vertex the root vertex of its component, then Kosaraju's algorithm can be stated as follows.
+- For each vertex u of the graph, mark u as unvisited. Let L be empty.
+- For each vertex u of the graph do Visit(u), where Visit(u) is the recursive subroutine:
+  - If u is unvisited then:
+    - Mark u as visited.
+    - For each out-neighbour v of u, do Visit(v).
+    - Prepend u to L.
+  - Otherwise do nothing.
+- For each element u of L in order, do Assign(u,u) where Assign(u,root) is the recursive subroutine:
+  - If u has not been assigned to a component then:
+    - Assign u as belonging to the component whose root is root.
+    - For each in-neighbour v of u, do Assign(v,root).
+  - Otherwise do nothing.
+Trivial variations are to instead assign a component number to each vertex, or to construct per-component lists of the vertices that belong to it. The unvisited/visited indication may share storage location with the final assignment of root for a vertex.
+The key point of the algorithm is that during the first (forward) traversal of the graph edges, vertices are prepended to the list L in post-order relative to the search tree being explored. This means it does not matter whether a vertex v was first visited because it appeared in the enumeration of all vertices or because it was the out-neighbour of another vertex u that got visited; either way v will be prepended to L before u is, so if there is a forward path from u to v then u will appear before v on the final list L (unless u and v both belong to the same strong component, in which case their relative order in L is arbitrary).
+```
+
+</details>
+
+**Talimat:**
+
+Kosaraju algoritmasının temel adımları ve özellikleri hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Kosaraju algoritmasında ilk (ileri yönlü) tarama aşamasında düğümler L listesine hangi sırada eklenir?
+A) Arama ağacına göre ön-sırada (pre-order)
+B) Arama ağacına göre son-sırada (post-order)
+C) Artan etiket numaralarına göre rastgele
+D) Giriş derecesi en yüksek olan düğüm önce gelecek şekilde
+Doğru şık: B
+Açıklama: Metne göre ilk (forward) tarama sırasında düğümler, arama ağacına göre son-sırada (post-order) L listesinin başına eklenir (prepend to L). Ön-sırada (pre-order) diyenler veya rastgele seçenler metnin bu detayını karıştırmıştır.
+
+## 127. kavram_aciklama — bağlamlı (DOC_000408:3:kavram_aciklama)
+
+Kaynak: DOC_000408 — LCP array, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Find the number of occurrences of a pattern
+In order to find the number of occurrences of a given string $P$ (length $m$) in a text $T$ (length $N$),[3]
+- We use binary search against the suffix array of $T$ to find the starting and end position of all occurrences of $P$.
+- Now to speed up the search, we use LCP array, specifically a special version of the LCP array (LCP-LR below).
+The issue with using standard binary search (without the LCP information) is that in each of the $O(\log N)$ comparisons needed to be made, we compare P to the current entry of the suffix array, which means a full string comparison of up to m characters. So the complexity is $O(m\log N)$.
+The LCP-LR array helps improve this to $O(m+\log N)$, in the following way:
+At any point during the binary search algorithm, we consider, as usual, a range $(L,\dots,R)$ of the suffix array and its central point $M$, and decide whether we continue our search in the left sub-range $(L,\dots,M)$ or in the right sub-range $(M,\dots,R)$. In order to make the decision, we compare $P$ to the string at $M$. If $P$ is identical to $M$, our search is complete. But if not, we have already compared the first $k$ characters of $P$ and then decided whether $P$ is lexicographically smaller or larger than $M$. Let's assume the outcome is that $P$ is larger than $M$. So, in the next step, we consider $(M,\dots,R)$ and a new central point $M'$ in the middle:
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre son ek dizisi (suffix array) üzerinde desen arama işleminde standart ikili arama (binary search) neden yavaştır ve LCP dizisi bu sorunu nasıl çözer?
+
+**Cevap:**
+
+Standart ikili arama yaparken her O(log N) karşılaştırma adımında P deseni son ek dizisinin o anki girdisiyle tam string olarak karşılaştırılır ve m karaktere kadar tam eşleşme kontrolü yapılır; bu durum O(m log N) karmaşıklığına yol açar. Metinde bahsedilen LCP-LR dizisi ise bu süreci hızlandırmak için özel bir LCP sürümü kullanır. Arama sırasında P ile orta nokta M karşılaştırıldığında zaten ilk k karakterin karşılaştırılmış olduğu bilgisi kullanılır ve karmaşıklık O(m + log N) seviyesine indirilir.
+
+## 128. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000408:5:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000408 — LCP array, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The key to this is to realize that only certain ranges $(L,\dots,R)$ will ever occur during the binary search: It always starts with $(0, \dots,N)$ and divides that at the center, and then continues either left or right and divide that half again and so forth. Another way of looking at it is : every entry of the suffix array occurs as central point of exactly one possible range during binary search. So there are exactly N distinct ranges $(L\dots M\dots R)$ that can possibly play a role during binary search, and it suffices to precompute $\mathrm{lcp}(L,M)$ and $\mathrm{lcp}(M,R)$ for those $N$ possible ranges. So that is $2N$ distinct precomputed values, hence LCP-LR is $O(N)$ in size.
+Moreover, there is a straightforward recursive algorithm to compute the $2N$ values of LCP-LR in $O(N)$ time from the standard LCP array.
+To sum up:
+- It is possible to compute LCP-LR in $O(N)$ time and $O(2N)=O(N)$ space from LCP.
+- Using LCP-LR during binary search helps accelerate the search procedure from $O(M\log N)$ to $O(M+\log N)$.
+- We can use two binary searches to determine the left and right end of the match range for $P$, and the length of the match range corresponds with the number of occurrences for P.
+```
+
+</details>
+
+**Talimat:**
+
+LCP-LR ve ikili arama performans optimizasyonu hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: LCP-LR veri yapısının ikili arama (binary search) işlemine sağladığı temel performans avantajı aşağıdakilerden hangisidir?
+A) Arama süresini O(M log N) karmaşıklığından O(M + log N) karmaşıklığına hızlandırır.
+B) Arama süresini O(1) sabit zamanına indirger.
+C) Sonek dizisi (suffix array) oluşturma maliyetini tamamen ortadan kaldırır.
+D) Bellek kullanımını O(N log N) seviyesine düşürür.
+Doğru şık: A
+Açıklama: LCP-LR kullanımı ikili arama prosedürünü O(M log N) karmaşıklığından O(M + log N) süresine hızlandırır. B şıkkı yanlıştır çünkü arama tamamen O(1) olmaz; C şıkkı yanlıştır çünkü LCP-LR sonek dizisini değil, arama süresini hızlandırır; D şıkkı yanlıştır çünkü LCP-LR zaten O(N) boyutundadır, O(N log N) değildir.
+
+## 129. kavram_aciklama — bağlamlı (DOC_000408:5:kavram_aciklama)
+
+Kaynak: DOC_000408 — LCP array, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The key to this is to realize that only certain ranges $(L,\dots,R)$ will ever occur during the binary search: It always starts with $(0, \dots,N)$ and divides that at the center, and then continues either left or right and divide that half again and so forth. Another way of looking at it is : every entry of the suffix array occurs as central point of exactly one possible range during binary search. So there are exactly N distinct ranges $(L\dots M\dots R)$ that can possibly play a role during binary search, and it suffices to precompute $\mathrm{lcp}(L,M)$ and $\mathrm{lcp}(M,R)$ for those $N$ possible ranges. So that is $2N$ distinct precomputed values, hence LCP-LR is $O(N)$ in size.
+Moreover, there is a straightforward recursive algorithm to compute the $2N$ values of LCP-LR in $O(N)$ time from the standard LCP array.
+To sum up:
+- It is possible to compute LCP-LR in $O(N)$ time and $O(2N)=O(N)$ space from LCP.
+- Using LCP-LR during binary search helps accelerate the search procedure from $O(M\log N)$ to $O(M+\log N)$.
+- We can use two binary searches to determine the left and right end of the match range for $P$, and the length of the match range corresponds with the number of occurrences for P.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre LCP-LR veri yapısı nedir ve ne amaçla kullanılır?
+
+**Cevap:**
+
+LCP-LR, ikili arama (binary search) sırasında ortaya çıkan belirli aralıkların LCP (en uzun ortak önek) değerlerini önceden hesaplayarak tutan ve O(N) boyutunda olan bir veri yapısıdır. Standart LCP dizisinden özyinelemeli bir algoritmayla O(N) sürede elde edilir. İkili arama sırasında kullanılarak arama prosedürünün süresini O(M log N) değerinden O(M + log N) karmaşıklığına hızlandırmayı sağlar.
+
+## 130. karsilastirma — bağlamsız (DOC_000411:0:karsilastirma)
+
+Kaynak: DOC_000411 — Left-leaning red–black tree, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree, introduced by Robert Sedgewick. It is a variant of the red–black tree and guarantees the same asymptotic complexity for operations, but is designed to be easier to implement.[1]
+Properties
+A left-leaning red-black tree satisfies all the properties of a red-black tree:
+- Every node is either red or black.
+- A NIL node is considered black.
+- A red node does not have a red child.
+- Every path from a given node to any of its descendant NIL nodes goes through the same number of black nodes.
+- The root is black (by convention).
+Additionally, the left-leaning property states that:
+- If a node has only one red child, it must be the left child.
+The left-leaning property reduces the number of cases that must be considered when implementing search tree operations.
+Relation to 2–3 and 2–3–4 trees
+LLRB trees are isomorphic 2–3–4 trees. Unlike conventional red-black trees, the 3-nodes always lean left, making this relationship a 1 to 1 correspondence. This means that for every LLRB tree, there is a unique corresponding 2–3–4 tree, and vice versa.
+If we impose the additional requirement that a node may not have two red children, LLRB trees become isomorphic to 2–3 trees, since 4-nodes are now prohibited. Sedgewick remarks that the implementations of LLRB 2–3 trees and LLRB 2–3–4 trees differ only in the position of a single line of code.[1]
+Analysis
+All of the red-black tree algorithms that have been proposed are characterized by a worst-case search time bounded by a small constant multiple of log N in a tree of N keys, and the behavior observed in practice is typically that same multiple faster than the worst-case bound, close to the optimal log N nodes examined that would be observed in a perfectly balanced tree.
+Specifically, in a left-leaning red-black 2–3 tree built from N random keys, Sedgewick's experiments suggest that:
+- A random successful search examines log_2 N − 0.5 nodes.
+- The average tree height is about 2 ln N.
+- The average size of left subtree exhibits log-oscillating behavior.
+```
+
+</details>
+
+**Talimat:**
+
+Sol eğilimli kırmızı-siyah ağaçlar (left-leaning red-black tree) ile klasik kırmızı-siyah ağaçlar arasındaki farkları açıklar mısın?
+
+**Cevap:**
+
+İki ağaç türünü iki açıdan karşılaştırabiliriz. Uygulama karmaşıklığı: sol eğilimli kırmızı-siyah ağaçlar (LLRB), klasik kırmızı-siyah ağaçların tüm özelliklerini sağlamakla birlikte, arama ağacı işlemlerini uygularken göz önüne alınması gereken durum sayısını azaltarak daha kolay uygulanacak şekilde tasarlanmıştır. Sol eğilimli olma kuralı: klasik kırmızı-siyah ağaçlardan farklı olarak LLRB ağaçlarda bir düğümün tek bir kırmızı çocuğu varsa bu mutlaka sol çocuk olmak zorundadır. Asimptotik karmaşıklık açısından her iki ağaç da işlemler için aynı garantiyi sunar; ancak uygulama kolaylığı ve durum azlığı gerektiğinde sol eğilimli kırmızı-siyah ağaçlar tercih edilir.
+
+## 131. algoritma_izleme — bağlamlı (DOC_000415:0:algoritma_izleme)
+
+Kaynak: DOC_000415 — Library sort, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Library sort or gapped insertion sort is a sorting algorithm that uses an insertion sort, but with gaps in the array to accelerate subsequent insertions. The name comes from an analogy:
+Suppose a librarian were to store their books alphabetically on a long shelf, starting with the As at the left end, and continuing to the right along the shelf with no spaces between the books until the end of the Zs. If the librarian acquired a new book that belongs to the B section, once they find the correct space in the B section, they will have to move every book over, from the middle of the Bs all the way down to the Zs in order to make room for the new book. This is an insertion sort. However, if they were to leave a space after every letter, as long as there was still space after B, they would only have to move a few books to make room for the new one. This is the basic principle of the Library Sort.
+The algorithm was proposed by Michael A. Bender, Martín Farach-Colton, and Miguel Mosteiro in 2004[1] and was published in 2006.[2]
+Like the insertion sort it is based on, library sort is a comparison sort; however, it was shown to have a high probability of running in O(n log n) time (comparable to quicksort), rather than an insertion sort's O(n^2). There is no full implementation given in the paper, nor the exact algorithms of important parts, such as insertion and rebalancing. Further information would be needed to discuss how the efficiency of library sort compares to that of other sorting methods in reality.
+Compared to basic insertion sort, the drawback of library sort is that it requires extra space for the gaps. The amount and distribution of that space would depend on implementation. In the paper the size of the needed array is (1 + ε)n,[2] but with no further recommendations on how to choose ε. Moreover, it is neither adaptive nor stable. In order to warrant the high-probability time bounds, it must randomly permute the input, which changes the relative order of equal elements and shuffles any presorted input. Also, the algorithm uses binary search to find the insertion point for each element, which does not take advantage of presorted input.
+Another drawback is that it cannot be run as an online algorithm, because it is not possible to randomly shuffle the input. If used without this shuffling, it could easily degenerate into quadratic behaviour.
+One weakness of insertion sort is that it may require a high number of swap operations and be costly if memory write is expensive. Library sort may improve that somewhat in the insertion step, as fewer elements need to move to make room, but also adds an extra cost in the rebalancing step. In addition, locality of reference will be poor compared to mergesort, as each insertion from a random data set may access memory that is no longer in cache, especially with large data sets.
+```
+
+</details>
+
+**Talimat:**
+
+Library sort algoritmasının temel prensibini göstermek için boşluklu araya sokma adımını örnekler misin? Örneğin aralarında boşluklar olan [A, _, C, _, E] gibi bir yapıda B elemanını eklerken süreç nasıl işler?
+
+**Cevap:**
+
+Library sort, araya sokma sıralamasına (insertion sort) benzer ancak elemanlar arasında arama ve eklemeyi hızlandırmak için boşluklar bırakır.
+1. Başlangıç durumu: Harflerin arasında boşluklar olan [A, _, C, _, E] dizisi ele alınır.
+2. Ekleme noktası bulma: Eklenecek olan B elemanı, A ile C arasında uygun olan boş konuma (ilk boşluk) yerleştirilir.
+3. Yerleştirme: B harfi uygun olan boşluğa yerleştirilir ve sadece birkaç komşu eleman hareket ettirilerek işlem tamamlanır.
+Sonuç: [A, B, C, _, E] durumuna ulaşılır.
+
+## 132. karsilastirma — bağlamsız (DOC_000417:5:karsilastirma)
+
+Kaynak: DOC_000417 — Linear probing, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+History
+The idea of an associative array that allows data to be accessed by its value rather than by its address dates back to the mid-1940s in the work of Konrad Zuse and Vannevar Bush,[22] but hash tables were not described until 1953, in an IBM memorandum by Hans Peter Luhn. Luhn used a different collision resolution method, chaining, rather than linear probing.[23]
+Knuth (1963) summarizes the early history of linear probing. It was the first open addressing method, and was originally synonymous with open addressing. According to Knuth, it was first used by Gene Amdahl, Elaine M. McGraw (née Boehme), and Arthur Samuel in 1954, in an assembler program for the IBM 701 computer.[9] The first published description of linear probing is by Peterson (1957),[9] who also credits Samuel, Amdahl, and Boehme but adds that "the system is so natural, that it very likely may have been conceived independently by others either before or since that time".[24] Another early publication of this method was by Soviet researcher Andrey Ershov, in 1958.[25]
+The first theoretical analysis of linear probing, showing that it takes constant expected time per operation with random hash functions, was given by Knuth.[9] Sedgewick calls Knuth's work "a landmark in the analysis of algorithms".[11] Knuth's original analysis was never formally published, and the first published analysis was due to Konheim and Weiss in 1966.[26]
+Knuth's analysis[9] disproved an earlier conjecture by Peterson[9] that, at load factor $\alpha = 1 - \varepsilon$, the expected time per insertion should be $\Theta(1 + \varepsilon^{-1})$. Knuth showed instead that the time per operation grows as at a rate of $\Theta(1 + \varepsilon^{-2})$. This effect, in which the insertion time grows quadratically faster than one might intuitively guess, became known as primary clustering. Subsequent work has introduced several algorithmic techniques to reduce primary clustering,[27][28][29] including a variation of linear probing known as graveyard hashing[27][29][30] that achieves the ideal bound of $\Theta(1 + \varepsilon^{-1})$.
+Other later developments include a more detailed analysis of the probability distribution of the running time,[31][32] amortized analyses for workloads with both insertions and deletions,[27][28][29] and analyses of linear probing using explicit families of hash functions.[19][20]
+```
+
+</details>
+
+**Talimat:**
+
+Çakışma çözme yöntemlerinden zincirleme ile doğrusal aramayı karşılaştırır mısın?
+
+**Cevap:**
+
+Zincirleme ve doğrusal arama yöntemlerini tarihsel ve teknik açıdan iki açıdan karşılaştırabiliriz. Tarihçe: Hash tablolarını anlatan Hans Peter Luhn, 1953 tarihli memorandumunda çakışma çözümü olarak zincirleme yöntemini kullanmıştır. Doğrusal arama ise açık adresleme yöntemlerinin ilki olup ilk kez Gene Amdahl, Elaine M. McGraw ve Arthur Samuel tarafından bir IBM 701 bilgisayarı için yazılan derleyici programında kullanılmıştır. Zaman ve Performans: Doğrusal arama rastgele hash fonksiyonları ile işlem başına sabit zaman alırken, yük faktörüne bağlı olarak birincil kümelenme problemi nedeniyle ekleme süresi kuadratik olarak artabilmektedir. Doğrusal arama aynı zamanda ilk açık adresleme yöntemi olarak bilinmektedir.
+
+## 133. kavram_aciklama — bağlamsız (DOC_000421:5:kavram_aciklama)
+
+Kaynak: DOC_000421 — Linked list, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Linked lists vs. dynamic arrays
+A dynamic array is a data structure that allocates all elements contiguously in memory, and keeps a count of the current number of elements. If the space reserved for the dynamic array is exceeded, it is reallocated and (possibly) copied, which is an expensive operation.
+Linked lists have several advantages over dynamic arrays. Insertion or deletion of an element at a specific point of a list, assuming that a pointer is indexed to the node (before the one to be removed, or before the insertion point) already, is a constant-time operation (otherwise without this reference it is O(n)), whereas insertion in a dynamic array at random locations will require moving half of the elements on average, and all the elements in the worst case. While one can "delete" an element from an array in constant time by somehow marking its slot as "vacant", this causes fragmentation that impedes the performance of iteration.
+Moreover, arbitrarily many elements may be inserted into a linked list, limited only by the total memory available; while a dynamic array will eventually fill up its underlying array data structure and will have to reallocate—an expensive operation, one that may not even be possible if memory is fragmented, although the cost of reallocation can be averaged over insertions, and the cost of an insertion due to reallocation would still be amortized O(1). This helps with appending elements at the array's end, but inserting into (or removing from) middle positions still carries prohibitive costs due to data moving to maintain contiguity. An array from which many elements are removed may also have to be resized in order to avoid wasting too much space.
+On the other hand, dynamic arrays (as well as fixed-size array data structures) allow constant-time random access, while linked lists allow only sequential access to elements. Singly linked lists, in fact, can be easily traversed in only one direction. This makes linked lists unsuitable for applications where it's useful to look up an element by its index quickly, such as heapsort. Sequential access on arrays and dynamic arrays is also faster than on linked lists on many machines, because they have optimal locality of reference and thus make good use of data caching.
+Another disadvantage of linked lists is the extra storage needed for references, which often makes them impractical for lists of small data items such as characters or Boolean values, because the storage overhead for the links may exceed by a factor of two or more the size of the data. In contrast, a dynamic array requires only the space for the data itself (and a very small amount of control data).[note 1] It can also be slow, and with a naïve allocator, wasteful, to allocate memory separately for each new element, a problem generally solved using memory pools.
+Some hybrid solutions try to combine the advantages of the two representations. Unrolled linked lists store several elements in each list node, increasing cache performance while decreasing memory overhead for references. CDR coding does both these as well, by replacing references with the actual data referenced, which extends off the end of the referencing record.
+```
+
+</details>
+
+**Talimat:**
+
+Bağlı liste (linked list) ile dinamik diziler arasındaki temel farklar nelerdir?
+
+**Cevap:**
+
+Bağlı liste, elemanların bellekte ardışık olarak tutulmadığı, düğümlerin birbirine işaretçilerle bağlandığı bir veri yapısıdır; dinamik diziler ise elemanları bellekte bitişik (kontigü) olarak saklar. Dinamik diziler sabit zamanda rasgele erişim sağlarken, bağlı listeler yalnızca sıralı erişime izin verir. Ayrıca bağlı listelere bellek yeteneğince istenildiği kadar eleman eklenebilir ve ekleme/silme işlemleri belirli bir düğüm referansı varsa O(1) sürede yapılır; dinamik dizilerde ise kapasite aşımında yeniden tahsis (reallocation) maliyeti vardır ve araya ekleme işlemleri veri taşımayı gerektirdiği için masraflıdır.
+
+## 134. kod_okuma — bağlamsız (DOC_000430:1:kod_okuma)
+
+Kaynak: DOC_000430 — Loop invariant, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Informal example
+The following C subroutine max() returns the maximum value in its argument array a[], provided its length n is at least 1.
+Comments are provided at lines 3, 6, 9, 11, and 13. Each comment makes an assertion about the values of one or more variables at that stage of the function.
+The highlighted assertions within the loop body, at the beginning and end of the loop (lines 6 and 11), are exactly the same. They thus describe an invariant property of the loop.
+When line 13 is reached, this invariant still holds, and it is known that the loop condition i!=n from line 5 has become false. Both properties together imply that m equals the maximum value in a[0...n-1], that is, that the correct value is returned from line 14.
+int max(int n, const int a[]) {
+    int m = a[0];
+    // m equals the maximum value in a[0...0]
+    int i = 1;
+    while (i != n) {
+        // m equals the maximum value in a[0...i-1]
+        if (m < a[i])
+            m = a[i];
+        // m equals the maximum value in a[0...i]
+        ++i;
+        // m equals the maximum value in a[0...i-1]
+    }
+    // m equals the maximum value in a[0...i-1], and i==n
+    return m;
+}
+Following a defensive programming paradigm, the loop condition i!=n in line 5 should better be modified to i<n, in order to avoid endless looping for illegitimate negative values of n. While this change in code intuitively shouldn't make a difference, the reasoning leading to its correctness becomes somewhat more complicated, since then only i>=n is known in line 13. In order to obtain that also i<=n holds, that condition has to be included in the loop invariant. It is easy to see that i<=n, too, is an invariant of the loop, since i<n in line 6 can be obtained from the (modified) loop condition in line 5, and hence i<=n holds in line 11 after i has been incremented in line 10. However, when loop invariants have to be manually provided for formal program verification, such intuitively too obvious properties like i<=n are often overlooked.
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki fonksiyon ne yapar ve `max(4, [5, 2, 8, 1])` çağrısı ne döndürür?
+```c
+int max(int n, const int a[]) {
+    int m = a[0];
+    int i = 1;
+    while (i != n) {
+        if (m < a[i])
+            m = a[i];
+        ++i;
+    }
+    return m;
+}
+```
+
+**Cevap:**
+
+Fonksiyon, argüman olarak verilen a dizisindeki en büyük değeri bulur ve döndürür. `max(4, [5, 2, 8, 1])` çağrısı için `m` başlangıçta 5'tir. Döngü `i` 1'den 4'e kadar ilerler; sırasıyla elemanlar kontrol edilir. 2 ve 1 değerleri 5'ten küçük olduğu için `m` değişmez, ancak 8 karşılaştırıldığında `m` değeri 8 olarak güncellenir. Döngü bittiğinde fonksiyon 8 döndürür.
+
+## 135. karmasiklik_analizi — bağlamlı (DOC_000433:1:karmasiklik_analizi)
+
+Kaynak: DOC_000433 — Master theorem (analysis of algorithms), passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Generic form
+The master theorem always yields asymptotically tight bounds to recurrences from divide and conquer algorithms that partition an input into smaller subproblems of equal sizes, solve the subproblems recursively, and then combine the subproblem solutions to give a solution to the original problem. The time for such an algorithm can be expressed by adding the work that they perform at the top level of their recursion (to divide the problems into subproblems and then combine the subproblem solutions) together with the time made in the recursive calls of the algorithm. If $T(n)$ denotes the total time for the algorithm on an input of size $n$, and $f(n)$ denotes the amount of time taken at the top level of the recurrence then the time can be expressed by a recurrence relation that takes the form:
+- $T(n) = a \; T\!\left(\frac{n}{b}\right) + f(n)$
+Here $n$ is the size of an input problem, $a$ is the number of subproblems in the recursion, and $b$ is the factor by which the subproblem size is reduced in each recursive call ($b > 1$). Crucially, $a$ and $b$ must not depend on $n$. The theorem below also assumes that, as a base case for the recurrence, $T(n)=\Theta(1)$ when $n$ is less than some bound $\kappa > 0$, the smallest input size that will lead to a recursive call.
+Recurrences of this form often satisfy one of the three following regimes, based on how the work to split/recombine the problem $f(n)$ relates to the critical exponent $c_{\operatorname{crit}}=\log_b a$. (The table below uses standard big O notation). Throughout, $(\log n)^k$ is used for clarity, though in textbooks this is usually rendered $\log^k n$.
+- $c_{\operatorname{crit}} = \log_b a = \log(\#\text{subproblems})/\log(\text{relative subproblem size})$
+A useful extension of Case 2 handles all values of $k$:[3]
+Examples
+Case 1 example
+- $T(n) = 8 T\left(\frac{n}{2}\right) + 1000n^2$
+As one can see from the formula above:
+- $a = 8, \, b = 2, \, f(n) = 1000n^2$, so
+- $f(n) = O\left(n^c\right)$, where $c = 2$
+Next, we see if we satisfy the case 1 condition:
+- $\log_b a = \log_2 8 = 3>c$.
+It follows from the first case of the master theorem that
+- $T(n) = \Theta\left( n^{\log_b a} \right) = \Theta\left( n^{3} \right)$
+(This result is confirmed by the exact solution of the recurrence relation, which is $T(n) = 1001 n^3 - 1000 n^2$, assuming $T(1) = 1$).
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak T(n) = 8 T(n/2) + 1000n^2 yineleme bağıntısının zaman karmaşıklığı analizi nasıl yapılır?
+
+**Cevap:**
+
+Bağıntının zaman karmaşıklığı Θ(n^3)'tür. Gerekçesi ise şöyledir: Bağıntı parametrelerinden a = 8, b = 2 ve f(n) = 1000n^2 (c = 2) olarak belirlenir. Kritik üs c_crit = log_2 8 = 3 hesaplanır. Kritik üs c_crit, f(n)'in derecesi olan 2'den büyük olduğundan (3 > c) ana teoremin birinci durumu uygulanır ve sonuç Θ(n^(log_b a)) yani Θ(n^3) çıkar.
+
+## 136. kod_okuma — bağlamsız (DOC_000439:1:kod_okuma)
+
+Kaynak: DOC_000439 — Memoization, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Overview
+A memoized function, when called with a given set of inputs for the first time, stores the inputs along with the computed results. Upon subsequent calls with remembered inputs, the function returns the remembered results rather than recomputing them, thus eliminating the cost of a recomputation. The set of remembered associations may be a fixed-size set controlled by a replacement algorithm or a fixed set,[clarification needed] depending on the nature of the function and its use. A function can only be memoized if it is referentially transparent; that is, only if calling the function has exactly the same effect as replacing that function call with its return value. (Special case exceptions to this restriction exist, however.) While related to lookup tables, since memoization often uses such tables in its implementation, memoization populates its cache of results transparently on the fly, rather than needing them to be supplied in advance.
+Memoized functions are optimized for speed in exchange for a higher use of computer memory space. The time/space "cost" of algorithms has a specific name in computing: computational complexity. All functions have a computational complexity in time (i.e. they take time to execute) and in space.
+Although a space–time tradeoff occurs (i.e., space used is speed gained), this differs from some other optimizations that involve time-space trade-off, such as strength reduction, in that memoization is a run-time rather than compile-time optimization. Moreover, strength reduction potentially replaces a costly operation such as multiplication with a less costly operation such as addition, and the results in savings can be highly machine-dependent (non-portable across machines), whereas memoization is a more machine-independent, cross-platform strategy.
+Consider the following pseudocode function to calculate the factorial of n:
+function factorial (n is a non-negative integer)
+    if n is 0 then
+        return 1 [by the convention that 0! = 1]
+    else
+        return factorial(n – 1) times n [recursively invoke factorial 
+                                        with the parameter 1 less than n]
+    end if
+end function
+For every integer n such that n ≥ 0, the final result of the function factorial is invariant; if invoked as x = factorial(3), the result is such that x will always be assigned the value 6. The non-memoized implementation above, given the nature of the recursive algorithm involved, would require n + 1 invocations of factorial to arrive at a result, and each of these invocations, in turn, has an associated cost in the time it takes the function to return the value computed. Depending on the machine, this cost might be the sum of:
+- The cost to set up the functional call stack frame.
+- The cost to compare n to 0.
+- The cost to subtract 1 from n.
+- The cost to set up the recursive call stack frame. (As above.)
+- The cost to multiply the result of the recursive call to factorial by n.
+- The cost to store the return result so that it may be used by the calling context.
+In a non-memoized implementation, every top-level call to factorial includes the cumulative cost of steps 2 through 6 proportional to the initial value of n.
+A memoized version of the factorial function follows:
+function factorial (n is a non-negative integer)
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki sözde kod fonksiyonu ne yapar?
+```
+function factorial (n is a non-negative integer)
+    if n is 0 then
+        return 1
+    else
+        return factorial(n – 1) times n
+    end if
+end function
+```
+
+**Cevap:**
+
+Bu fonksiyon, negatif olmayan bir n tam sayısı için faktörizyel hesaplar. Temel durum olarak n 0 olduğunda 1 döndürür; diğer durumlarda ise fonksiyonu n - 1 girdisiyle özyineli (recursive) olarak çağırıp sonucu n ile çarpar.
+
+## 137. kod_okuma — bağlamsız (DOC_000439:4:kod_okuma)
+
+Kaynak: DOC_000439 — Memoization, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+factorial = construct-memoized-functor(factorial)
+Essentially, such techniques involve attaching the original function object to the created functor and forwarding calls to the original function being memoized via an alias when a call to the actual function is required (to avoid endless recursion), as illustrated below:
+function construct-memoized-functor (F is a function object parameter)
+    allocate a function object called memoized-version;
+    let memoized-version(arguments) be
+        if self has no attached array values then [self is a reference to this object]
+            allocate an associative array called values;
+            attach values to self;
+            allocate a new function object called alias;
+            attach alias to self; [for later ability to invoke F indirectly]
+            self.alias = F;
+        end if;
+        if self.values[arguments] is empty then
+            self.values[arguments] = self.alias(arguments); [not a direct call to F]
+        end if;
+        return self.values[arguments];
+    end let;
+    return memoized-version;
+end function
+(Note: Some of the steps shown above may be implicitly managed by the implementation language and are provided for illustration.)
+Parsers
+When a top-down parser tries to parse an ambiguous input with respect to an ambiguous context-free grammar (CFG), it may need an exponential number of steps (with respect to the length of the input) to try all alternatives of the CFG in order to produce all possible parse trees. This eventually would require exponential memory space. Memoization was explored as a parsing strategy in 1991 by Peter Norvig, who demonstrated that an algorithm similar to the use of dynamic programming and state-sets in Earley's algorithm (1970), and tables in the CYK algorithm of Cocke, Younger and Kasami, could be generated by introducing automatic memoization to a simple backtracking recursive descent parser to solve the problem of exponential time complexity.[1] The basic idea in Norvig's approach is that when a parser is applied to the input, the result is stored in a memotable for subsequent reuse if the same parser is ever reapplied to the same input.
+Richard Frost and Barbara Szydlowski also used memoization to reduce the exponential time complexity of parser combinators, describing the result as a memoizing purely functional top-down backtracking language processor.[7] Frost showed that basic memoized parser combinators can be used as building blocks to construct complex parsers as executable specifications of CFGs.[8][9]
+Memoization was again explored in the context of parsing in 1995 by Mark Johnson and Jochen Dörre.[10][11] In 2002, it was examined in considerable depth by Bryan Ford in the form called packrat parsing.[12]
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki sözde kod ne yapar?
+```
+function construct-memoized-functor (F is a function object parameter)
+    allocate a function object called memoized-version;
+    let memoized-version(arguments) be
+        if self has no attached array values then
+            allocate an associative array called values;
+            attach values to self;
+            allocate a new function object called alias;
+            attach alias to self;
+            self.alias = F;
+        end if;
+        if self.values[arguments] is empty then
+            self.values[arguments] = self.alias(arguments);
+        end if;
+        return self.values[arguments];
+    end let;
+    return memoized-version;
+end function
+```
+
+**Cevap:**
+
+Bu fonksiyon, verilen bir fonksiyon nesnesi `F` için memoization (hafızaya alma) yeteneğine sahip yeni bir işlevsel nesne (`memoized-version`) oluşturur. İlk çağrıda bir ilişkisel dizi (`values`) ve orijinal fonksiyona erişmek için bir takma ad (`alias`) oluşturur. Argümanlar daha önce hesaplanmamışsa fonksiyonu çalıştırır ve sonucunu diziye kaydeder; sonraki aynı argümanlı çağrılarda ise yeniden hesaplamak yerine doğrudan dizideki saklanan sonucu döndürür.
+
+## 138. kod_okuma — bağlamlı (DOC_000442:7:kod_okuma)
+
+Kaynak: DOC_000442 — Merge sort, passage 7
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Use with tape drives
+An external merge sort is practical to run using disk or tape drives when the data to be sorted is too large to fit into memory. External sorting explains how merge sort is implemented with disk drives. A typical tape drive sort uses four tape drives. All I/O is sequential (except for rewinds at the end of each pass). A minimal implementation can get by with just two record buffers and a few program variables.
+Naming the four tape drives as A, B, C, D, with the original data on A, and using only two record buffers, the algorithm is similar to the bottom-up implementation, using pairs of tape drives instead of arrays in memory. The basic algorithm can be described as follows:
+- Merge pairs of records from A; writing two-record sublists alternately to C and D.
+- Merge two-record sublists from C and D into four-record sublists; writing these alternately to A and B.
+- Merge four-record sublists from A and B into eight-record sublists; writing these alternately to C and D
+- Repeat until you have one list containing all the data, sorted—in log_2(n) passes.
+Instead of starting with very short runs, usually a hybrid algorithm is used, where the initial pass will read many records into memory, do an internal sort to create a long run, and then distribute those long runs onto the output set. The step avoids many early passes. For example, an internal sort of 1024 records will save nine passes. The internal sort is often large because it has such a benefit. In fact, there are techniques that can make the initial runs longer than the available internal memory. One of them, the Knuth's 'snowplow' (based on a binary min-heap), generates runs twice as long (on average) as a size of memory used.[18]
+With some overhead, the above algorithm can be modified to use three tapes. O(n log n) running time can also be achieved using two queues, or a stack and a queue, or three stacks. In the other direction, using k > two tapes (and O(k) items in memory), we can reduce the number of tape operations in O(log k) times by using a k/2-way merge.
+A more sophisticated merge sort that optimizes tape (and disk) drive usage is the polyphase merge sort.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, dört teyp sürücüsü (A, B, C, D) kullanan harici birleştirme sıralaması (external merge sort) algoritmasının ilk adımı nedir?
+
+**Cevap:**
+
+Algoritmanın ilk adımı, A sürücüsündeki kayıt çiftlerini birleştirmek (merge) ve iki kayıtlı alt listeleri sırayla C ve D sürücülerine yazmaktır.
+
+## 139. karsilastirma — bağlamlı (DOC_000447:3:karsilastirma)
+
+Kaynak: DOC_000447 — Minimum spanning tree, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Classic algorithms
+The first algorithm for finding a minimum spanning tree was developed by Czech scientist Otakar Borůvka in 1926 (see Borůvka's algorithm). Its purpose was an efficient electrical coverage of Moravia. The algorithm proceeds in a sequence of stages. In each stage, called Boruvka step, it identifies a forest F consisting of the minimum-weight edge incident to each vertex in the graph G, then forms the graph G_1 = G \ F as the input to the next step. Here G \ F denotes the graph derived from G by contracting edges in F (by the Cut property, these edges belong to the MST). Each Boruvka step takes linear time. Since the number of vertices is reduced by at least half in each step, Boruvka's algorithm takes O(m log n) time.[4]
+A second algorithm is Prim's algorithm, which was invented by Vojtěch Jarník in 1930 and rediscovered by Prim in 1957 and Dijkstra in 1959. Basically, it grows the MST (T) one edge at a time. Initially, T contains an arbitrary vertex. In each step, T is augmented with a least-weight edge (x,y) such that x is in T and y is not yet in T. By the Cut property, all edges added to T are in the MST. Its run-time is either O(m log n) or O(m + n log n), depending on the data-structures used.
+A third algorithm commonly in use is Kruskal's algorithm, which also takes O(m log n) time.
+A fourth algorithm, not as commonly used, is the reverse-delete algorithm, which is the reverse of Kruskal's algorithm. Its runtime is O(m log n (log log n)^3).
+All four of these are greedy algorithms. Since they run in polynomial time, the problem of finding such trees is in FP, and related decision problems such as determining whether a particular edge is in the MST or determining if the minimum total weight exceeds a certain value are in P.
+Faster algorithms
+Several researchers have tried to find more computationally-efficient algorithms.
+In a comparison model, in which the only allowed operations on edge weights are pairwise comparisons, Karger, Klein & Tarjan (1995) found a linear time randomized algorithm based on a combination of Borůvka's algorithm and the reverse-delete algorithm.[5][6]
+The fastest non-randomized comparison-based algorithm with known complexity, by Bernard Chazelle, is based on the soft heap, an approximate priority queue.[7][8] Its running time is O(m α(m,n)), where α is the classical functional inverse of the Ackermann function. The function α grows extremely slowly, so that for all practical purposes it may be considered a constant no greater than 4; thus Chazelle's algorithm takes very close to linear time.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Bernard Chazelle'in algoritması ile Boruvka algoritmasını karşılaştırır mısın?
+
+**Cevap:**
+
+İki algoritmayı zaman karmaşıklığı ve kullanılan yaklaşımlar açısından karşılaştırabiliriz. Zaman karmaşıklığı: Boruvka algoritması O(m log n) sürede çalışırken, Chazelle'in algoritması yumuşak yığın (soft heap) kullanarak O(m alpha(m,n)) sürede çalışır; burada alpha Ackermann fonksiyonunun tersidir ve pratik olarak 4'ten büyük olmayan bir sabittir, bu nedenle Chazelle'in algoritması neredeyse doğrusal zamanda çalışır. Temel yaklaşım: Boruvka her adımda tepe sayısını yarıya indirerek ilerleyen klasik ve açgözlü bir algoritmadır; Chazelle'in algoritması ise karşılaştırma tabanlı olup yaklaşık öncelik kuyruğu olan yumuşak yığına dayanır ve bilinen en hızlı rastgele olmayan karşılaştırma tabanlı algoritmalardan biridir.
+
+## 140. yanlis_cevap_aciklama — bağlamsız (DOC_000447:7:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000447 — Minimum spanning tree, passage 7
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Other variants
+- The Steiner tree of a subset of the vertices is the minimum tree that spans the given subset. Finding the Steiner tree is NP-complete.[18]
+- The k-minimum spanning tree (k-MST) is the tree that spans some subset of k vertices in the graph with minimum weight.
+- A set of k-smallest spanning trees is a subset of k spanning trees (out of all possible spanning trees) such that no spanning tree outside the subset has smaller weight.[19][20][21] (Note that this problem is unrelated to the k-minimum spanning tree.)
+- The Euclidean minimum spanning tree is a spanning tree of a graph with edge weights corresponding to the Euclidean distance between vertices which are points in the plane (or space).
+- The rectilinear minimum spanning tree is a spanning tree of a graph with edge weights corresponding to the rectilinear distance between vertices which are points in the plane (or space).
+- The distributed minimum spanning tree is an extension of MST to the distributed model, where each node is considered a computer and no node knows anything except its own connected links. The mathematical definition of the problem is the same but there are different approaches for a solution.
+- The capacitated minimum spanning tree is a tree that has a marked node (origin, or root) and each of the subtrees attached to the node contains no more than c nodes. c is called a tree capacity. Solving CMST optimally is NP-hard,[22] but good heuristics such as Esau-Williams and Sharma produce solutions close to optimal in polynomial time.
+- The degree-constrained minimum spanning tree is a MST in which each vertex is connected to no more than d other vertices, for some given number d. The case d = 2 is a special case of the traveling salesman problem, so the degree constrained minimum spanning tree is NP-hard in general.
+- An arborescence is a variant of MST for directed graphs. It can be solved in $O(E + V \log V)$ time using the Chu–Liu/Edmonds algorithm.
+- A maximum spanning tree is a spanning tree with weight greater than or equal to the weight of every other spanning tree. Such a tree can be found with algorithms such as Prim's or Kruskal's after multiplying the edge weights by −1 and solving the MST problem on the new graph. A path in the maximum spanning tree is the widest path in the graph between its two endpoints: among all possible paths, it maximizes the weight of the minimum-weight edge.[23] Maximum spanning trees find applications in parsing algorithms for natural languages[24] and in training algorithms for conditional random fields.
+- The ultrametric backbone is the smallest possible distance backbone of positive weighted directed and undirected graphs.[25] The ultrametric backbone is the union of minimum spanning forests in undirected (positive weight) graphs and provides a generalization of minimum spanning trees to directed graphs that, unlike minimum equivalent graphs and minimum spanning arborescences, preserves all max-min shortest paths and De Morgan's law consistency.[26]
+- The dynamic MST problem concerns the update of a previously computed MST after an edge weight change in the original graph or the insertion/deletion of a vertex.[27][28][29]
+```
+
+</details>
+
+**Talimat:**
+
+Soru: Kapsiteli minimum kapsayan ağaç (CMST) problemini en iyi (optimal) şekilde çözmek her zaman polinom zamanda mümkündür, değil mi? Ben evet diye biliyordum ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap hayır, optimal çözümü bulmak NP-zor sınıfındadır. CMST problemini optimal olarak çözmek polinom zamanda her zaman mümkün değildir; bu yüzden Esau-Williams ve Sharma gibi iyi sezgisel (heuristic) yöntemler kullanılarak polinomal sürede optimuma yakın çözümler elde edilir.
+
+## 141. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000454:3:bilgi_yetersizligi)
+
+Kaynak: DOC_000454 — Needleman–Wunsch algorithm, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Scoring systems
+Basic scoring schemes
+The simplest scoring schemes simply give a value for each match, mismatch and indel. The step-by-step guide above uses match = 1, mismatch = −1, indel = −1. Thus the lower the alignment score the larger the edit distance, for this scoring system one wants a high score. Another scoring system might be:
+- Match = 0
+- Indel = -1
+- Mismatch = -1
+For this system the alignment score will represent the edit distance between the two strings. Different scoring systems can be devised for different situations, for example if gaps are considered very bad for your alignment you may use a scoring system that penalises gaps heavily, such as:
+- Match = 1
+- Indel = -10
+- Mismatch = -1
+Similarity matrix
+More complicated scoring systems attribute values not only for the type of alteration, but also for the letters that are involved. For example, a match between A and A may be given 1, but a match between T and T may be given 4. Here (assuming the first scoring system) more importance is given to the Ts matching than the As, i.e. the Ts matching is assumed to be more significant to the alignment. This weighting based on letters also applies to mismatches.
+In order to represent all the possible combinations of letters and their resulting scores a similarity matrix is used. The similarity matrix for the most basic system is represented as:
+Each score represents a switch from one of the letters the cell matches to the other. Hence this represents all possible matches and mismatches (for an alphabet of ACGT). Note all the matches go along the diagonal, also not all the table needs to be filled, only this triangle because the scores are reciprocal.= (Score for A → C = Score for C → A). If implementing the T-T = 4 rule from above the following similarity matrix is produced:
+Different scoring matrices have been statistically constructed which give weight to different actions appropriate to a particular scenario. Having weighted scoring matrices is particularly important in protein sequence alignment due to the varying frequency of the different amino acids. There are two broad families of scoring matrices, each with further alterations for specific scenarios:
+Gap penalty
+When aligning sequences there are often gaps (i.e. indels), sometimes large ones. Biologically, a large gap is more likely to occur as one large deletion as opposed to multiple single deletions. Hence two small indels should have a worse score than one large one. The simple and common way to do this is via a large gap-start score for a new indel and a smaller gap-extension score for every letter which extends the indel. For example, new-indel may cost -5 and extend-indel may cost -1. In this way an alignment such as:
+GAAAAAAT
+G--A-A-T
+which has multiple equal alignments, some with multiple small alignments will now align as:
+GAAAAAAT
+GAA----T
+or any alignment with a 4 long gap in preference over multiple small gaps.
+Advanced presentation of algorithm
+Scores for aligned characters are specified by a similarity matrix. Here, S(a, b) is the similarity of characters a and b. It uses a linear gap penalty, here called d.
+For example, if the similarity matrix was
+then the alignment:
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, Needleman–Wunsch algoritmasında protein dizi hizalaması için en çok tercih edilen spesifik skorlama matrisi hangisidir ve bu matrisin boyutu nedir?
+
+**Cevap:**
+
+Bu metin spesifik bir skorlama matrisinin adını ya da matrisin boyutunu vermiyor. Metin yalnızca, farklı amino asit frekansları nedeniyle protein dizi hizalamasında ağırlıklı skorlama matrislerinin önemli olduğunu ve iki geniş aile bulunduğunu belirtiyor. Kesin bir matris adı veya boyutu söylemek metne dayanarak mümkün değildir.
+
+## 142. hata_bulma — bağlamsız (DOC_000454:5:hata_bulma)
+
+Kaynak: DOC_000454 — Needleman–Wunsch algorithm, passage 5
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+AlignmentA ← ""
+AlignmentB ← ""
+i ← length(A)
+j ← length(B)
+while (i > 0 or j > 0)
+{
+    if (i > 0 and j > 0 and F(i, j) == F(i−1, j−1) + S(A_i, B_j))
+    {
+        AlignmentA ← A_i + AlignmentA
+        AlignmentB ← B_j + AlignmentB
+        i ← i − 1
+        j ← j − 1
+    }
+    else if (i > 0 and F(i, j) == F(i−1, j) + d)
+    {
+        AlignmentA ← A_i + AlignmentA
+        AlignmentB ← "−" + AlignmentB
+        i ← i − 1
+    }
+    else
+    {
+        AlignmentA ← "−" + AlignmentA
+        AlignmentB ← B_j + AlignmentB
+        j ← j − 1
+    }
+}
+Complexity
+Computing the score $F_{ij}$ for each cell in the table is an $O(1)$ operation. Thus the time complexity of the algorithm for two sequences of length $n$ and $m$ is $O(mn)$.[3] It has been shown that it is possible to improve the running time to $O(mn/ \log n)$ using the Method of Four Russians.[3][4] Since the algorithm fills an $n \times m$ table the space complexity is $O(mn).$[3]
+Historical notes and algorithm development
+The original purpose of the algorithm described by Needleman and Wunsch was to find similarities in the amino acid sequences of two proteins.[1]
+Needleman and Wunsch describe their algorithm explicitly for the case when the alignment is penalized solely by the matches and mismatches, and gaps have no penalty (d=0). The original publication from 1970 suggests the recursion $F_{ij} = \max_{h<i,k<j} \{ F_{h,j-1}+S(A_{i},B_{j}), F_{i-1,k}+S(A_i,B_j) \}$.
+The corresponding dynamic programming algorithm takes cubic time. The paper also points out that the recursion can accommodate arbitrary gap penalization formulas:
+A penalty factor, a number subtracted for every gap made, may be assessed as a barrier to allowing the gap. The penalty factor could be a function of the size and/or direction of the gap. [page 444]
+A better dynamic programming algorithm with quadratic running time for the same problem (no gap penalty) was introduced later[5] by David Sankoff in 1972. Similar quadratic-time algorithms were discovered independently by T. K. Vintsyuk[6] in 1968 for speech processing ("time warping"), and by Robert A. Wagner and Michael J. Fischer[7] in 1974 for string matching.
+Needleman and Wunsch formulated their problem in terms of maximizing similarity. Another possibility is to minimize the edit distance between sequences, introduced by Vladimir Levenshtein. Peter H. Sellers showed[8] in 1974 that the two problems are equivalent.
+```
+
+</details>
+
+**Talimat:**
+
+Needleman–Wunsch algoritmasının geri izleme döngüsünün aşağıdaki uyarlamasında mantıksal bir hata var ve döngü erken sonlanıyor veya yanlış yola giriyor. Hata nerede?
+```
+i ← length(A)
+j ← length(B)
+while (i > 0 and j > 0)
+{
+    if (i > 0 and j > 0 and F(i, j) == F(i−1, j−1) + S(A_i, B_j))
+    {
+        AlignmentA ← A_i + AlignmentA
+        AlignmentB ← B_j + AlignmentB
+        i ← i − 1
+        j ← j − 1
+    }
+    else if (i > 0 and F(i, j) == F(i−1, j) + d)
+    {
+        AlignmentA ← A_i + AlignmentA
+        AlignmentB ← "−" + AlignmentB
+        i ← i − 1
+    }
+    else
+    {
+        AlignmentA ← "−" + AlignmentA
+        AlignmentB ← B_j + AlignmentB
+        j ← j − 1
+    }
+}
+```
+
+**Cevap:**
+
+Hatalı satır `while (i > 0 and j > 0)`: döngü koşulunda `and` bağlacı kullanılması yanlıştır çünkü dizilerden biri diğerinden önce bitse bile (örneğin i sıfırlanıp j pozitif kaldığında) döngü hemen sonlanır ve geri izleme eksik kalır. Dizilerden herhangi biri bitene kadar devam etmesi gerekir. Doğru satır şu olmalıdır: `while (i > 0 or j > 0)`.
+
+## 143. yanlis_cevap_aciklama — bağlamsız (DOC_000454:6:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000454 — Needleman–Wunsch algorithm, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The Needleman–Wunsch algorithm is still widely used for optimal global alignment, particularly when the quality of the global alignment is of the utmost importance. However, the algorithm is expensive with respect to time and space, proportional to the product of the length of two sequences and hence is not suitable for long sequences.
+Recent development has focused on improving the time and space cost of the algorithm while maintaining quality. For example, in 2013, a Fast Optimal Global Sequence Alignment Algorithm (FOGSAA),[9] suggested alignment of nucleotide/protein sequences faster than other optimal global alignment methods, including the Needleman–Wunsch algorithm. The paper claims that when compared to the Needleman–Wunsch algorithm, FOGSAA achieves a time gain of 70–90% for highly similar nucleotide sequences (with > 80% similarity), and 54–70% for sequences having 30–80% similarity.
+Applications outside bioinformatics
+Computer stereo vision
+Stereo matching is an essential step in the process of 3D reconstruction from a pair of stereo images. When images have been rectified, an analogy can be drawn between aligning nucleotide and protein sequences and matching pixels belonging to scan lines, since both tasks aim at establishing optimal correspondence between two strings of characters.
+Although in many applications image rectification can be performed, e.g. by camera resectioning or calibration, it is sometimes impossible or impractical since the computational cost of accurate rectification models prohibit their usage in real-time applications. Moreover, none of these models is suitable when a camera lens displays unexpected distortions, such as those generated by raindrops, weatherproof covers or dust. By extending the Needleman–Wunsch algorithm, a line in the 'left' image can be associated to a curve in the 'right' image by finding the alignment with the highest score in a three-dimensional array (or matrix). Experiments demonstrated that such extension allows dense pixel matching between unrectified or distorted images.[10]
+Artificial neural networks
+The Needleman–Wunsch algorithm has also been applied to the comparison of artificial neural network architectures. Inspired by how global sequence alignment identifies similarities in the aforementioned biological sequences, this approach represents neural networks as sequences of computational layers or blocks. By aligning these sequences, architectural similarity can be quantified in a principled manner.
+This method has been successfully used in neural architecture search (NAS), particularly in approaches based on evolutionary algorithms. Architectural similarity can be assessed without requiring model training, enabling more efficient guidance of diversity during population-based search, preventing premature convergence.[11]
+```
+
+</details>
+
+**Talimat:**
+
+Soru: Needleman–Wunsch algoritması uzun sekanslar için neden uygundur ve zaman-uzay maliyeti nedir? Ben uzun sekanslarda en iyi sonucu verir dedim ama yanlış kabul edildi. Neden?
+
+**Cevap:**
+
+Doğru cevap Needleman–Wunsch algoritmasının uzun sekanslar için uygun olmadığıdır. Öğrencinin düştüğü yanılgı, algoritmanın kalitesinin yüksek olması ile uzun sekanslardaki performansını karıştırmaktır. Metne göre bu algoritma en uygun küresel hizzalama için yaygın olarak kullanılsa da, zaman ve uzay maliyeti iki sekansın uzunluğunun çarpımı ile orantılı olarak pahalıdır ve bu nedenle uzun sekanslar için uygun değildir.
+
+## 144. kavram_aciklama — bağlamlı (DOC_000460:0:kavram_aciklama)
+
+Kaynak: DOC_000460 — Optimal substructure, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a problem is said to have optimal substructure if an optimal solution can be constructed from optimal solutions of its subproblems. This property is used to determine the usefulness of greedy algorithms for a problem.[1]
+Typically, a greedy algorithm is used to solve a problem with optimal substructure if it can be proven by induction that this is optimal at each step.[1] Otherwise, provided the problem exhibits overlapping subproblems as well, divide-and-conquer methods or dynamic programming may be used. If there are no appropriate greedy algorithms and the problem fails to exhibit overlapping subproblems, often a lengthy but straightforward search of the solution space is the best alternative.
+In the application of dynamic programming to mathematical optimization, Richard Bellman's Principle of Optimality is based on the idea that in order to solve a dynamic optimization problem from some starting period t to some ending period T, one implicitly has to solve subproblems starting from later dates s, where t<s<T. This is an example of optimal substructure. The Principle of Optimality is used to derive the Bellman equation, which shows how the value of the problem starting from t is related to the value of the problem starting from s.
+Example
+Consider finding a shortest path for traveling between two cities by car, as illustrated in Figure 1. Such an example is likely to exhibit optimal substructure. That is, if the shortest route from Seattle to Los Angeles passes through Portland and then Sacramento, then the shortest route from Portland to Los Angeles must pass through Sacramento too. That is, the problem of how to get from Portland to Los Angeles is nested inside the problem of how to get from Seattle to Los Angeles. (The wavy lines in the graph represent solutions to the subproblems.)
+As an example of a problem that is unlikely to exhibit optimal substructure, consider the problem of finding the cheapest airline ticket from Buenos Aires to Moscow. Even if that ticket involves stops in Miami and then London, we can't conclude that the cheapest ticket from Miami to Moscow stops in London, because the price at which an airline sells a multi-flight trip is usually not the sum of the prices at which it would sell the individual flights in the trip.
+Definition
+A slightly more formal definition of optimal substructure can be given. Let a "problem" be a collection of "alternatives", and let each alternative have an associated cost, c(a). The task is to find a set of alternatives that minimizes c(a). Suppose that the alternatives can be partitioned into subsets, i.e. each alternative belongs to only one subset. Suppose each subset has its own cost function. The minima of each of these cost functions can be found, as can the minima of the global cost function, restricted to the same subsets. If these minima match for each subset, then it's almost obvious that a global minimum can be picked not out of the full set of alternatives, but out of only the set that consists of the minima of the smaller, local cost functions we have defined. If minimizing the local functions is a problem of "lower order", and (specifically) if, after a finite number of these reductions, the problem becomes trivial, then the problem has an optimal substructure.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre optimal alt yapı (optimal substructure) kavramı nedir ve açgözlü (greedy) algoritmalarla ilişkisi nasıldır?
+
+**Cevap:**
+
+Optimal alt yapı, bir problemin en optimal çözümünün, onun alt problemlerinin en optimal çözümlerinden inşa edilebilmesi durumudur. Bu özellik, bir problem için açgözlü algoritmaların kullanışlı olup olmadığını belirlemek amacıyla kullanılır. Genellikle, her adımda optimal olduğu tümevarımla kanıtlanabiliyorsa, optimal alt yapıya sahip bir problemi çözmek için açgözlü bir algoritma tercih edilir. Aksi takdirde, problem çakışan alt problemler de içeriyorsa dinamik programlama veya böl ve yönet yöntemleri kullanılabilir.
+
+## 145. hata_bulma — bağlamlı (DOC_000466:1:hata_bulma)
+
+Kaynak: DOC_000466 — Pairing heap, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Structure
+A pairing heap is either an empty heap, or a pairing tree consisting of a root element and a possibly empty list of pairing trees. The heap ordering property requires that parent of any node is no greater than the node itself. The following description assumes a purely functional heap that does not support the decrease-key operation.
+type PairingTree[Elem] = Heap(elem: Elem, subheaps: List[PairingTree[Elem]])
+type PairingHeap[Elem] = Empty | PairingTree[Elem]
+A pointer-based implementation for RAM machines, supporting decrease-key, can be achieved using three pointers per node, by representing the children of a node by a doubly-linked list: a pointer to the node's first child, one to its next sibling, and one to its previous sibling (or, for the leftmost sibling, to its parent). It can also be viewed as a variant of a Left-child right-sibling binary tree with an additional pointer to a node's parent (which represents its previous sibling or actual parent for the leftmost sibling). Alternatively, the previous-pointer can be omitted by letting the last child point back to the parent, if a single Boolean flag is added to indicate "end of list". This achieves a more compact structure at the expense of a constant overhead factor per operation.[1]
+Operations
+Meld
+Melding with an empty heap returns the other heap, otherwise a new heap is returned that has the minimum of the two root elements as its root element and just adds the heap with the larger root to the list of subheaps:
+function meld(heap1, heap2: PairingHeap[Elem]) -> PairingHeap[Elem]
+    if heap1 is Empty
+        return heap2
+    elsif heap2 is Empty
+        return heap1
+    elsif heap1.elem < heap2.elem
+        return Heap(heap1.elem, heap2 :: heap1.subheaps)
+    else
+        return Heap(heap2.elem, heap1 :: heap2.subheaps)
+Insert
+The easiest way to insert an element into a heap is to meld the heap with a new heap containing just this element and an empty list of subheaps:
+function insert(elem: Elem, heap: PairingHeap[Elem]) -> PairingHeap[Elem]
+    return meld(Heap(elem, []), heap)
+Find-min
+The function find-min simply returns the root element of the heap:
+function find-min(heap: PairingHeap[Elem]) -> Elem
+    if heap is Empty
+        error
+    else
+        return heap.elem
+Delete-min
+The only non-trivial fundamental operation is the deletion of the minimum element from the heap. This requires performing repeated melds of its children until only one tree remains. The standard strategy first melds the subheaps in pairs (this is the step that gave this data structure its name) from left to right and then melds the resulting list of heaps from right to left:
+function delete-min(heap: PairingHeap[Elem]) -> PairingHeap[Elem]
+    if heap is Empty
+        error
+    else
+        return merge-pairs(heap.subheaps)
+This uses the auxiliary function merge-pairs:
+function merge-pairs(list: List[PairingTree[Elem]]) -> PairingHeap[Elem]
+    if length(list) == 0
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne ve meld fonksiyonuna göre, bu kod heap1 boş olduğunda yanlış sonuç veriyor, hata nerede?
+```
+function meld(heap1, heap2: PairingHeap[Elem]) -> PairingHeap[Elem]
+    if heap1 is Empty
+        return heap1
+    elsif heap2 is Empty
+        return heap1
+    elsif heap1.elem < heap2.elem
+        return Heap(heap1.elem, heap2 :: heap1.subheaps)
+    else
+        return Heap(heap2.elem, heap1 :: heap2.subheaps)
+```
+
+**Cevap:**
+
+Hatalı satır `return heap1` (ilk `if` bloğu içinde): heap1 boş olduğunda diğer heap olan `heap2` döndürülmelidir, ancak kod yanlışlıkla `heap1`'i döndürmektedir. Düzeltilmiş satır `return heap2` olmalıdır. Böylece ilk heap boş olduğunda doğrudan ikinci heap sonuç olarak döner.
+
+## 146. konu_ozeti_anlatim — bağlamlı (DOC_000469:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000469 — Parallel array, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- They can save a substantial amount of space in some cases by avoiding alignment issues. For example, some architectures work best if 4-byte integers are always stored beginning at memory locations that are multiple of 4. If the previous field was a single byte, 3 bytes might be wasted. Many modern compilers can automatically avoid such problems, though in the past some programmers would explicitly declare fields in order of decreasing alignment restrictions.
+- If the number of items is small, array indices can occupy significantly less space than full pointers, particularly on some architectures.
+- Sequentially examining a single field of each record in the array is very fast on modern machines, since this amounts to a linear traversal of a single array, exhibiting ideal locality of reference and cache behaviour.
+- They may allow efficient processing with SIMD instructions in certain instruction set architectures
+Several of these advantages depend strongly on the particular programming language and implementation in use.
+However, parallel arrays also have several strong disadvantages, which serves to explain why they are not generally preferred:
+- They have significantly worse locality of reference when visiting the records non-sequentially and examining multiple fields of each record, because the various arrays may be stored arbitrarily far apart.
+- They obscure the relationship between fields of a single record (e.g. no type information relates the index between them, an index may be used erroneously).
+- They have little direct language support (the language and its syntax typically express no relationship between the arrays in the parallel array, and cannot catch errors).
+- Since the bundle of fields is not a "thing", passing it around is tedious and error-prone. For example, rather than calling a function to do something to one record (or structure or object), the function must take the fields as separate arguments. When a new field is added or changed, many parameter lists must change, where passing objects as whole would avoid such changes entirely.
+- They are expensive to grow or shrink, since each of several arrays must be reallocated. Multi-level arrays can ameliorate this problem, but impacts performance due to the additional indirection needed to find the desired elements.
+- Perhaps worst of all, they greatly raise the possibility of errors. Any insertion, deletion, or move must always be applied consistently to all of the arrays, or the arrays will no longer be synchronized with each other, leading to bizarre outcomes.
+The bad locality of reference can be alleviated in some cases: if a structure can be divided into groups of fields that are generally accessed together, an array can be constructed for each group, and its elements are records containing only these subsets of the larger structure's fields. (see data-oriented design). This is a valuable way of speeding up access to very large structures with many members, while keeping the portions of the structure tied together. An alternative to tying them together using array indexes is to use references to tie the portions together, but this can be less efficient in time and space.
+```
+
+</details>
+
+**Talimat:**
+
+Paralel dizilerin (parallel array) avantajlarını ve dezavantajlarını bu bölüme göre özetler misin?
+
+**Cevap:**
+
+Paralel diziler, bir nesnenin alanlarını tek bir yapı içinde tutmak yerine her alan için ayrı bir dizi kullanma yaklaşımıdır.
+- Avantajları: Hizalama sorunlarını önleyerek alan kazandırabilir, küçük veri setlerinde dizinler göstergelerden az yer kaplar, tek bir alanın doğrusal taranması önbellek davranışı ve başvuru yerelliği açısından çok hızlıdır ve bazı durumlarda SIMD talimatlarıyla verimli çalışmayı sağlar.
+- Dezavantajları: Alanlara rastgele erişildiğinde başvuru yerelliği kötüleşir, alanlar arasındaki ilişki dil tarafından desteklenmediği için hata riski yüksektir, parametre aktarımı zahmetlidir ve dizilerin boyutunu değiştirmek veya eşitlemek zordur.
+- Çözüm olarak, sık erişilen alan grupları için alt diziler oluşturularak (veri odaklı tasarım) kötü başvuru yerelliği kısmen iyileştirilebilir.
+
+## 147. kavram_aciklama — bağlamsız (DOC_000477:2:kavram_aciklama)
+
+Kaynak: DOC_000477 — Persistent data structure, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A combination
+Driscoll, Sarnak, Sleator, Tarjan came up[1] with a way to combine the techniques of fat nodes and path copying, achieving O(1) access slowdown and O(1) amortized overhead in space and time per modification. Their method assumes a linked data structure with at most d incoming pointers to each node, where d is a known constant.
+In each node, one modification box is stored. This box can hold one modification to the node—either a modification to one of the pointers, or to the node's key, or to some other piece of node-specific data—and a timestamp for when that modification was applied. Initially, every node's modification box is empty.
+Whenever a node is accessed, the modification box is checked, and its timestamp is compared against the access time. (The access time specifies the version of the data structure being considered.) If the modification box is empty, or the access time is before the modification time, then the modification box is ignored and only the normal part of the node is considered. On the other hand, if the access time is after the modification time, then the value in the modification box is used, overriding that value in the node.
+Modifying a node works like this. (It is assumed that each modification touches one pointer or similar field.) If the node's modification box is empty, then it is filled with the modification. Otherwise, the modification box is full. A copy of the node is made, but using only the latest values. The modification is performed directly on the new node, without using the modification box. (One of the new node's fields is overwritten and its modification box stays empty.) Finally, this change is cascaded to the node's parent, just like path copying. (This may involve filling the parent's modification box, or making a copy of the parent recursively. If the node has no parent—it's the root—it is added the new root to a sorted array of roots.)
+With this algorithm, given any time t, at most one modification box exists in the data structure with time t. Thus, a modification at time t splits the tree into three parts: one part contains the data from before time t, one part contains the data from after time t, and one part was unaffected by the modification.
+```
+
+</details>
+
+**Talimat:**
+
+Fat nodes ve path copying tekniklerini birleştiren yaklaşımda modification box nedir ve ne amaçla kullanılır?
+
+**Cevap:**
+
+Modification box, bağlı veri yapısındaki her düğümde saklanan ve o düğüme ait tek bir değişiklik ile bu değişikliğin uygulandığı zaman damgasını tutan bir kutudur. Bu kutu, işaretçilerden birine, anahtara veya düğüme özgü başka bir veriye yapılan değişiklikleri barındırabilir. Başlangıçta her düğümün kutusu boştur. Veriye erişildiğinde veya düğüm değiştirildiğinde bu kutu kontrol edilerek versiyonlama işlemleri verimli bir şekilde gerçekleştirilir.
+
+## 148. kavram_aciklama — bağlamlı (DOC_000479:4:kavram_aciklama)
+
+Kaynak: DOC_000479 — Polyphase merge sort, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+"Optimal" distribution algorithms require knowing the number of runs in advance. Otherwise, in the more common case where the number of runs is not known in advance, "near optimal" distribution algorithms are used. Some distribution algorithms include rearranging runs.[5] If the number of runs is known in advance, only a partial distribution is needed before starting the merge phases. For example, consider the 3 file case, starting with n runs in File_1. Define F_i = F_{i−1} + F_{i−2} as the ith Fibonacci number. If n = F_i, then move F_{i−2} runs to File_2, leaving F_{i−1} runs remaining on File_1, a perfect run distribution. If F_i < n < F_{i+1}, move n−F_i runs to File_2 and F_{i+1}−n runs to File_3. The first merge iteration merges n−F_i runs from File_1 and File_2, appending the n−F_i merged runs to the F_{i+1}−n runs already moved to File_3. File_1 ends up with F_{i−2} runs remaining, File_2 is emptied, and File_3 ends up with F_{i−1} runs, again a perfect run distribution. For 4 or more files, the math is more complicated, but the concept is the same.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, polyphase merge sort için koşu (run) sayısının önceden bilinip bilinmeme durumu sıralama sürecini nasıl etkiler?
+
+**Cevap:**
+
+Sıralama algoritmasının optimal dağılım yapabilmesi için koşu (run) sayısının önceden bilinmesi gerekir. Ancak gerçek hayatta koşu sayısının önceden bilinmediği daha yaygın durumlarda "optimal" olmasa da "özel/yakın optimal" dağılım algoritmaları tercih edilir. Eğer koşu sayısı önceden biliniyorsa, birleştirme (merge) aşamalarına geçilmeden önce yalnızca kısmi bir dağılım yapılması yeterlidir.
+
+## 149. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000483:0:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000483 — Prefix sum, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, the prefix sum, cumulative sum, inclusive scan, or simply scan of a sequence of numbers x_0, x_1, x_2, ... is a second sequence of numbers y_0, y_1, y_2, ..., the sums of prefixes (running totals) of the input sequence:
+- y_0 = x_0
+- y_1 = x_0 + x_1
+- y_2 = x_0 + x_1+ x_2
+- ...
+For instance, the prefix sums of the natural numbers are the triangular numbers:
+Prefix sums are trivial to compute in sequential models of computation, by using the formula y_i = y_{i − 1} + x_i to compute each output value in sequence order. However, despite their ease of computation, prefix sums are a useful primitive in certain algorithms such as counting sort,[1][2] and they form the basis of the scan higher-order function in functional programming languages. Prefix sums have also been much studied in parallel algorithms, both as a test problem to be solved and as a useful primitive to be used as a subroutine in other parallel algorithms.[3][4][5]
+Abstractly, a prefix sum requires only a binary associative operator ⊕, making it useful for many applications from calculating well-separated pair decompositions of points to string processing.[6][7]
+Mathematically, the operation of taking prefix sums can be generalized from finite to infinite sequences; in that context, a prefix sum is known as a partial sum of a series. Prefix summation or partial summation form linear operators on the vector spaces of finite or infinite sequences; their inverses are finite difference operators.
+Scan higher order function
+In functional programming terms, the prefix sum may be generalized to any binary operation (not just the addition operation); the higher order function resulting from this generalization is called a scan, and it is closely related to the fold operation. Both the scan and the fold operations apply the given binary operation to the same sequence of values, but differ in that the scan returns the whole sequence of results from the binary operation, whereas the fold returns only the final result. For instance, the sequence of factorial numbers may be generated by a scan of the natural numbers using multiplication instead of addition:
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne dayanarak prefix sum (önek toplamı) ve scan fonksiyonu hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Aşağıdakilerden hangisi scan ve fold fonksiyonları arasındaki temel farkı doğru ifade eder?
+A) Scan fonksiyonu sadece toplama işlemi yaparken, fold fonksiyonu çıkarma işlemi yapar.
+B) Scan fonksiyonu ikili işlemin ara sonuçlarının tamamını içeren diziyi döndürürken, fold fonksiyonu yalnızca final sonucu döndürür.
+C) Fold fonksiyonu paralel algoritmalarda kullanılırken, scan fonksiyonu sadece sıralı modellerde çalışır.
+D) Scan fonksiyonu yalnızca sonlu dizilerde çalışır, fold ise sonsuz dizilerde geçerlidir.
+Doğru şık: B
+Açıklama: Metne göre scan ve fold işlemleri aynı veri dizisine ikili bir işlemi uygular; ancak scan, ikili işlemden elde edilen sonuçların tüm dizisini döndürürken fold yalnızca son sonucu döndürür. A şıkkı yanlıştır çünkü scan herhangi bir ikili işlemle (sadece toplama değil) genelleştirilebilir.
+
+## 150. algoritma_izleme — bağlamsız (DOC_000487:0:algoritma_izleme)
+
+Kaynak: DOC_000487 — Priority search tree, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a priority search tree is a tree data structure for storing points in two dimensions. It was originally introduced by Edward M. McCreight.[1] It is effectively an extension of the priority queue with the purpose of improving the search time from O(n) to O(s + log n) time, where n is the number of points in the tree and s is the number of points returned by the search.
+Description
+The priority search tree is used to store a set of 2-dimensional points ordered by priority and by a key value. This is accomplished by creating a hybrid of a priority queue and a binary search tree.
+The result is a tree where each node represents a point in the original dataset. The point contained by the node is the one with the lowest priority. In addition, each node also contains a key value used to divide the remaining points (usually the median of the keys, excluding the point of the node) into a left and right subtree. The points are divided by comparing their key values to the node key, delegating the ones with lower keys to the left subtree, and the ones strictly greater to the right subtree.[2]
+Operations
+Construction
+The construction of the tree requires O(n log n) time and O(n) space. A construction algorithm is proposed below:
+tree construct_tree(data) {
+    if length(data) > 1 {
+        node_point = find_point_with_minimum_priority(data) // Select the point with the lowest priority
+        reduced_data = remove_point_from_data(data, node_point)
+        node_key = calculate_median(reduced_data) // calculate median, excluding the selected point
+
+        // Divide the points
+        left_data = []
+        right_data = []        
+
+        for (point in reduced_data) {
+            if point.key <= node_key
+                left_data.append(point)
+            else
+                right_data.append(point)
+        }
+        left_subtree = construct_tree(left_data)
+        right_subtree = construct_tree(right_data)
+        return node // Node containing the node_key, node_point and the left and right subtrees
+    } else if length(data) == 1 {
+         return leaf node // Leaf node containing the single remaining data point
+    } else if length(data) == 0 {
+        return null // This node is empty
+    }
+}
+However, if the points are sorted by their key values then the tree can be constructed in linear time.[3] This can easily be done by constructing a balanced binary tree over the key values (as leaves) in linear time. Each internal node stores a pointer to the lowest priority node and count of number of items in the subtree rooted at that node. Thus, the node with minimum priority can be identified in constant time. The median of remaining points and the item with next smallest priority can be identified in O(log n) time. Thus, the recurrence relation is T(n)=2T(n/2)+O(log n)=O(n).
+```
+
+</details>
+
+**Talimat:**
+
+Priority search tree oluşturma algoritmasındaki bölme adımını, anahtar değerleri sırasıyla [2, 5, 8, 12, 15] olan ve en düşük önceliğe sahip düğüm seçildikten sonra kalan (reduced_data) kümesi için median değeri 8 kabul ederek adım adım uygular mısın?
+
+**Cevap:**
+
+Bölme adımında her bir noktanın anahtar değeri düğümün anahtarı (node_key = 8) ile karşılaştırılır; küçük veya eşit olanlar sol alt ağaca (`left_data`), kesinlikle büyük olanlar sağ alt ağaca (`right_data`) eklenir.
+1. Nokta (anahtar: 2): 2 <= 8 olduğu için left_data içine eklenir.
+2. Nokta (anahtar: 5): 5 <= 8 olduğu için left_data içine eklenir.
+3. Nokta (anahtar: 12): 12 > 8 olduğu için right_data içine eklenir.
+4. Nokta (anahtar: 15): 15 > 8 olduğu için right_data içine eklenir.
+Sonuç olarak left_data [2, 5] elemanlarını, right_data ise [12, 15] elemanlarını içerir.
+
+## 151. kavram_aciklama — bağlamlı (DOC_000493:0:kavram_aciklama)
+
+Kaynak: DOC_000493 — Quadratic probing, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Quadratic probing is an open addressing scheme in computer programming for resolving hash collisions in hash tables. Quadratic probing operates by taking the original hash index and adding successive values of an arbitrary quadratic polynomial until an open slot is found.
+An example sequence using quadratic probing is:
+$H + 1^2 , H + 2^2 , H + 3^2 , H + 4^2 , ... , H + k^2$
+Quadratic probing is often recommended as an alternative to linear probing because it incurs less clustering.[1] Quadratic probing exhibits better locality of reference than many other hash table such as chaining; however, for queries, quadratic probing does not have as good locality as linear probing, causing the latter to be faster in some settings.[2]
+History
+Quadratic probing was first introduced by Ward Douglas Maurer in 1968.[3] Several subsequent variations of the data structure were proposed in the 1970s in order to guarantee that the probe sequence hits every slot without cycling prematurely.[4][5] Quadratic probing is widely believed to avoid the clustering effects that make linear probing slow at high load factors. It serves as the basis for many widely used high-performance hash-tables,[6][7][8] including Google's open-source Abseil[9] hash table.[10]
+It is conjectured[3][11] that quadratic probing, when filled to $1 - \epsilon$ full, supports insertions in expected time $O(\epsilon^{-1})$. Proving this, or even proving any non-trivial time bound for quadratic probing remains open.[11] The closest result, due to Kuszmaul and Xi, shows that, at load factors of less than $\approx 0.089$, insertions take $O(1)$ expected time.[11]
+Quadratic function
+Let h(k) be a hash function that maps an element k to an integer in [0, m−1], where m is the size of the table. Let the i^{th} probe position for a value k be given by the function
+- $h(k,i) = h(k) + c_1 i + c_2 i^2 \pmod{m}$
+where c_2 ≠ 0 (If c_2 = 0, then h(k,i) degrades to a linear probe). For a given hash table, the values of c_1 and c_2 remain constant.
+Examples:
+- If $h(k,i) = (h(k) + i + i^2) \pmod{m}$, then the probe sequence will be $h(k), h(k)+2, h(k)+6, ...$
+- For m = 2^n, a good choice for the constants are c_1 = c_2 = 1/2, as the values of h(k,i) for i in [0, m−1] are all distinct (in fact, it is a permutation on [0, m−1][12]). This leads to a probe sequence of $h(k), h(k)+1, h(k)+3, h(k)+6, ...$ (the triangular numbers) where the values increase by 1, 2, 3, ...
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre quadratic probing nedir ve linear probing'e göre avantajı nedir?
+
+**Cevap:**
+
+Quadratic probing, hash tablolarındaki hash çakışmalarını çözmek için kullanılan açık adresleme (open addressing) yöntemlerinden biridir. Orijinal hash indeksine rastgele bir karesel polinomun ardışık değerlerini ekleyerek boş bir slot bulunana kadar arama yapar. Linear probing yöntemine göre daha az kümelenme (clustering) eğilimi göstermesi nedeniyle genellikle alternatif olarak önerilir.
+
+## 152. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000495:0:bilgi_yetersizligi)
+
+Kaynak: DOC_000495 — Queap, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a queap is a priority queue data structure. The data structure allows insertions and deletions of arbitrary elements, as well as retrieval of the highest-priority element. Each deletion takes amortized time logarithmic in the number of items that have been in the structure for a longer time than the removed item. Insertions take constant amortized time.
+The data structure consists of a doubly linked list and a 2–4 tree data structure, each modified to keep track of its minimum-priority element. The basic operation of the structure is to keep newly inserted elements in the doubly linked list, until a deletion would remove one of the list items, at which point they are all moved into the 2–4 tree. The 2–4 tree stores its elements in insertion order, rather than the more conventional priority-sorted order.
+Both the data structure and its name were devised by John Iacono and Stefan Langerman.[1]
+Description
+A queap is a priority queue that inserts elements in O(1) amortized time, and removes the minimum element in O(log(k + 2)) if there are k items that have been in the heap for a longer time than the element to be extracted. The queap has a property called the queueish property: the time to search for element x is O(lg q(x)) where q(x) is equal to n − 1 − w(x) and w(x) is the number of distinct items that has been accessed by operations such as searching, inserting, or deleting. q(x) is defined as how many elements have not been accessed since x's last access. Indeed, the queueish property is the complement of the splay tree working set property: the time to search for element x is O(lg w(x)).
+A queap can be represented by two data structures: a doubly linked list and a modified version of 2–4 tree. The doubly linked list, L, is used for a series of insert and locate-min operations. The queap keeps a pointer to the minimum element stored in the list. To add element x to list l, the element x is added to the end of the list and a bit variable in element x is set to one. This operation is done to determine if the element is either in the list or in a 2–4 tree.
+A 2–4 tree is used when a delete operation occurs. If the item x is already in tree T, the item is removed using the 2–4 tree delete operation. Otherwise, the item x is in list L (done by checking if the bit variable is set). All the elements stored in list L are then added to the 2–4 tree, setting the bit variable of each element to zero. x is then removed from T.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre queap veri yapısını John Iacono ve Stefan Langerman hangi yıl geliştirmiştir?
+
+**Cevap:**
+
+Bu metin veri yapısının geliştirildiği yılı belirtmiyor. Metin yalnızca yapının ve adının John Iacono ile Stefan Langerman tarafından tasarlandığını ifade ediyor. Tam yayın yılını söylemek metne dayanarak mümkün değildir.
+
+## 153. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000496:3:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000496 — Queue (abstract data type), passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Real-time queue
+The real-time queue achieves $O(1)$ time for all operations, without amortization. This discussion will be technical, so recall that, for $l$ a list, $|l|$ denotes its length, that $\texttt{null}$ represents an empty list and $\texttt{cons}(h,t)$ represents the list whose head is $h$ and whose tail is $t$.
+The data structure used to implement our queues consists of three singly-linked lists $(f,r,s)$ where $f$ is the front of the queue and $r$ is the rear of the queue in reverse order. The invariant of the structure is that $s$ is the rear of $f$ without its $|r|$ first elements, that is $|s|=|f|-|r|$. The tail of the queue $(\texttt{cons}(x,f),r,s)$ is then almost $(f,r,s)$ and inserting an element $x$ to $(f,r,s)$ is almost $(f,\texttt{cons}(x,r),s)$. It is said almost, because in both of those results, $|s|=|f|-|r|+1$. An auxiliary function $\texttt{aux}$ must then be called for the invariant to be satisfied. Two cases must be considered, depending on whether $s$ is the empty list, in which case $|r|=|f|+1$, or not. The formal definition is $\texttt{aux}(f,r,\texttt{cons}(\_,s))=(f,r,s)$ and $\texttt{aux}(f,r,\texttt{null})=(f',\texttt{null},f')$ where $f'$ is $f$ followed by $r$ reversed.
+Let us call $\texttt{reverse}(f,r)$ the function which returns $f$ followed by $r$ reversed. Let us furthermore assume that $|r|=|f|+1$, since it is the case when this function is called. More precisely, we define a lazy function $\texttt{rotate}(f,r,a)$ which takes as input three lists such that $|r|=|f|+1$, and return the concatenation of $f$, of $r$ reversed and of $a$. Then $\texttt{reverse}(f,r)=\texttt{rotate}(f,r,\texttt{null})$. The inductive definition of rotate is $\texttt{rotate}(\texttt{null},\texttt{cons}(y,\texttt{null}),a)=\texttt{cons}(y,a)$ and $\texttt{rotate}(\texttt{CONS}(x,f),\texttt{cons}(y,r),a)=\texttt{cons}(x,\texttt{rotate}(f,r,\texttt{null}(y,a)))$. Its running time is $O(r)$, but, since lazy evaluation is used, the computation is delayed until the results are forced by the computation.
+```
+
+</details>
+
+**Talimat:**
+
+Gerçek zamanlı kuyruklarda kullanılan rotate fonksiyonu ve zaman karmaşıklığı hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Gerçek zamanlı kuyruk yapısında kullanılan rotate fonksiyonu ile ilgili aşağıdaki ifadelerden hangisi doğrudur?
+A) Çalışma zamanı O(1)'dir ve hesaplama asla ertelenmez.
+B) Çalışma zamanı O(r)'dir ve tembel değerlendirme (lazy evaluation) kullanıldığı için hesaplama sonuçlar zorlanana kadar ertelenir.
+C) Yalnızca boş listeler üzerinde O(n^2) sürede çalışır.
+D) Herhangi bir ek parametre almadan yalnızca tek bir listeyi ters çevirir.
+Doğru şık: B
+Açıklama: rotate fonksiyonu üç liste alır ve çalışma zamanı O(r)'dir; tembel değerlendirme (lazy evaluation) kullanıldığı için hesaplama ertelenir. A şıkkı yanlıştır çünkü O(1) değildir ve hesaplama ertelenir. C ve D şıkları ise içeriğe uymayan uydurma çeldiricilerdir.
+
+## 154. karmasiklik_analizi — bağlamlı (DOC_000497:0:karmasiklik_analizi)
+
+Kaynak: DOC_000497 — Quickselect, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, quickselect is a selection algorithm to find the kth smallest element in an unordered list, also known as the kth order statistic. Like the related quicksort sorting algorithm, it was developed by Tony Hoare, and thus is also known as Hoare's selection algorithm.[1] Like quicksort, it is efficient in practice and has good average-case performance, but has poor worst-case performance. Quickselect and its variants are the selection algorithms most often used in efficient real-world implementations.
+Quickselect uses the same overall approach as quicksort, choosing one element as a pivot and partitioning the data in two based on the pivot, accordingly as less than or greater than the pivot. However, instead of recursing into both sides, as in quicksort, quickselect only recurses into one side – the side with the element it is searching for. This reduces the average complexity from $O(n\log n)$ to $O(n)$, with a worst case of $O(n^2)$.
+As with quicksort, quickselect is generally implemented as an in-place algorithm, and beyond selecting the kth element, it also partially sorts the data. See selection algorithm for further discussion of the connection with sorting.
+```
+
+</details>
+
+**Talimat:**
+
+Bu bölümde bahsedilen quickselect algoritmasının zaman karmaşıklığı ortalama ve en kötü durumda nedir, quiksort ile arasındaki fark bu karmaşıklığı nasıl etkiler?
+
+**Cevap:**
+
+Quickselect algoritmasının ortalama zaman karmaşıklığı O(n), en kötü durumda ise O(n^2)'dir. Quicksort algoritması her iki tarafa da özyinelemeli (recursive) olarak çağrı yaparken, quickselect sadece aradığı elemanın bulunduğu tek bir tarafa çağrı yapar. Bu tek taraflı ilerleme yaklaşımı, ortalama karmaşıklığı quicksort'un O(n log n) değerinden O(n) seviyesine düşürür.
+
+## 155. karsilastirma — bağlamlı (DOC_000498:2:karsilastirma)
+
+Kaynak: DOC_000498 — Quicksort, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Robert Sedgewick's PhD thesis in 1975 is considered a milestone in the study of Quicksort where he resolved many open problems related to the analysis of various pivot selection schemes including Samplesort, adaptive partitioning by Van Emden[9] as well as derivation of expected number of comparisons and swaps.[8] Jon Bentley and Doug McIlroy in 1993 incorporated various improvements for use in programming libraries, including a technique to deal with equal elements and a pivot scheme known as pseudomedian of nine, where a sample of nine elements is divided into groups of three and then the median of the three medians from three groups is chosen.[8] Bentley described another simpler and compact partitioning scheme in his book Programming Pearls that he attributed to Nico Lomuto. Later Bentley wrote that he used Hoare's version for years but never really understood it but Lomuto's version was simple enough to prove correct.[10] Bentley described Quicksort as the "most beautiful code I had ever written" in the same essay. Lomuto's partition scheme was also popularized by the textbook Introduction to Algorithms although it is inferior to Hoare's scheme because it does three times more swaps on average and degrades to O(n^2) runtime when all elements are equal.[11][self-published source?] McIlroy would further produce an AntiQuicksort (aqsort) function in 1998, which consistently drives even his 1993 variant of Quicksort into quadratic behavior by producing adversarial data on-the-fly.[12]
+Algorithm
+Quicksort is a type of divide-and-conquer algorithm for sorting an array, based on a partitioning routine; the details of this partitioning can vary somewhat, so that quicksort is really a family of closely related algorithms. Applied to a range of at least two elements, partitioning produces a division into two consecutive non-empty sub-ranges, in such a way that no element of the first sub-range is greater than any element of the second sub-range. After applying this partition, quicksort then recursively sorts the sub-ranges, possibly after excluding from them an element at the point of division that is at this point known to be already in its final location. Due to its recursive nature, quicksort (like the partition routine) has to be formulated so as to be callable for a range within a larger array, even if the ultimate goal is to sort a complete array. The steps for in-place quicksort are:
+- If the range has fewer than two elements, return immediately as there is nothing to do.
+- (Optional) If the range is very short, use a special-purpose sorting method, and return. For example, ranges of two elements can be sorted with a single comparison.
+- Otherwise select a value, called a pivot, which occurs in the range. (The way the pivot is chosen greatly affects performance, but not correctness.)
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Lomuto ve Hoare bölme şemaları arasındaki farklar nelerdir, hangisi daha avantajlıdır?
+
+**Cevap:**
+
+Lomuto ve Hoare bölme şemalarını iki açıdan karşılaştırabiliriz. Uygulama ve kanıt: Lomuto'nun versiyonu çok daha basit olduğu için doğruluğunu kanıtlamak kolaydır ve Introduction to Algorithms kitabıyla popülerleşmiştir. Performans: Lomuto şeması, Hoare şemasına kıyasla ortalamada üç kat daha fazla takas (swap) yapar ve tüm elemanlar eşit olduğunda O(n^2) performans düşüşü yaşar. Bu dezavantajlarından dolayı Lomuto şeması Hoare şemasına göre daha zayıftır.
+
+## 156. kavram_aciklama — bağlamsız (DOC_000498:2:kavram_aciklama)
+
+Kaynak: DOC_000498 — Quicksort, passage 2
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Robert Sedgewick's PhD thesis in 1975 is considered a milestone in the study of Quicksort where he resolved many open problems related to the analysis of various pivot selection schemes including Samplesort, adaptive partitioning by Van Emden[9] as well as derivation of expected number of comparisons and swaps.[8] Jon Bentley and Doug McIlroy in 1993 incorporated various improvements for use in programming libraries, including a technique to deal with equal elements and a pivot scheme known as pseudomedian of nine, where a sample of nine elements is divided into groups of three and then the median of the three medians from three groups is chosen.[8] Bentley described another simpler and compact partitioning scheme in his book Programming Pearls that he attributed to Nico Lomuto. Later Bentley wrote that he used Hoare's version for years but never really understood it but Lomuto's version was simple enough to prove correct.[10] Bentley described Quicksort as the "most beautiful code I had ever written" in the same essay. Lomuto's partition scheme was also popularized by the textbook Introduction to Algorithms although it is inferior to Hoare's scheme because it does three times more swaps on average and degrades to O(n^2) runtime when all elements are equal.[11][self-published source?] McIlroy would further produce an AntiQuicksort (aqsort) function in 1998, which consistently drives even his 1993 variant of Quicksort into quadratic behavior by producing adversarial data on-the-fly.[12]
+Algorithm
+Quicksort is a type of divide-and-conquer algorithm for sorting an array, based on a partitioning routine; the details of this partitioning can vary somewhat, so that quicksort is really a family of closely related algorithms. Applied to a range of at least two elements, partitioning produces a division into two consecutive non-empty sub-ranges, in such a way that no element of the first sub-range is greater than any element of the second sub-range. After applying this partition, quicksort then recursively sorts the sub-ranges, possibly after excluding from them an element at the point of division that is at this point known to be already in its final location. Due to its recursive nature, quicksort (like the partition routine) has to be formulated so as to be callable for a range within a larger array, even if the ultimate goal is to sort a complete array. The steps for in-place quicksort are:
+- If the range has fewer than two elements, return immediately as there is nothing to do.
+- (Optional) If the range is very short, use a special-purpose sorting method, and return. For example, ranges of two elements can be sorted with a single comparison.
+- Otherwise select a value, called a pivot, which occurs in the range. (The way the pivot is chosen greatly affects performance, but not correctness.)
+```
+
+</details>
+
+**Talimat:**
+
+Quicksort algoritması kısaca nasıl çalışır, temel mantığı nedir?
+
+**Cevap:**
+
+Quicksort, böl ve yönet (divide-and-conquer) yaklaşımına dayanan bir sıralama algoritmasıdır. Temel mantığı, bir pivot eleman seçerek diziyi bu pivota göre iki alt aralığa bölmektir; öyle ki ilk alt aralıktaki hiçbir eleman ikinci alt aralıktakinden büyük olmaz. Bu bölme işlemi sonrasında alt aralıklar özyineli (recursive) olarak tekrar sıralanır. Algoritmanın performansı pivotun nasıl seçildiğine bağlı olarak değişiklik gösterebilir.
+
+## 157. yanlis_cevap_aciklama — bağlamsız (DOC_000503:3:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000503 — Random binary tree, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+- Modeling the parse trees of algebraic expressions in compiler design.[18] Here the internal nodes of the tree represent binary operations in an expression and the external nodes represent the variables or constants on which the expressions operate. The bound on Strahler number translates into the number of registers needed to evaluate an expression.[19]
+- Modeling river networks, the original application for which the Strahler number was developed.[20]
+- Modeling possible evolutionary trees for a fixed number of species. In this application, an extended binary tree is used, with the species at its external nodes.[21]
+An algorithm of Jean-Luc Rémy generates a uniformly random binary tree of a specified size in time linear in the size, by the following process. Start with a tree consisting of a single external node. Then, while the current tree has not reached the target size, repeatedly choose one of its nodes (internal or external) uniformly at random. Replace the chosen node by a new internal node, having the chosen node as one of its children (equally likely left or right), and having a new external node as its other child. Stop when the target size is reached.[22]
+Branching processes
+The Galton–Watson process describes a family of distributions on trees in which the number of children at each node is chosen randomly, independently of other nodes. For binary trees, two versions of the Galton–Watson process are in use, differing only in whether an extended binary tree with only one node, an external root node, is allowed:
+- In the version where the root node may be external, it is chosen to be internal with some specified probability $p$ or external with probability $1-p$. If it is internal, its two children are trees generated recursively by the same process.
+- In the version where the root node must be internal, its left and right children are determined to be internal with probability $p$ or external with probability $1-p$, independently of each other. In the case where they are internal, they are the roots of trees that are generated recursively by the same process.
+Trees generated in this way have been called binary Galton–Watson trees. In the special case where $p=\tfrac12$ they are called critical binary Galton–Watson trees.[23]
+Analysis
+The probability $p=\tfrac12$ marks a phase transition for the binary Galton–Watson process: for $p\le\tfrac12$ the resulting tree is almost certainly finite, whereas for $p>\tfrac12$ it is infinite with positive probability. More precisely, for any $p$, the probability that the tree remains finite is
+Another way to generate the same trees is to make a sequence of coin flips, with probability $p$ of heads and probability $1-p$ of tails, until the first flip at which the number of tails exceeds the number of heads (for the model in which an external root is allowed) or exceeds one plus the number of heads (when the root must be internal), and then use this sequence of coin flips to determine the choices made by the recursive generation process, in depth-first order.[25]
+```
+
+</details>
+
+**Talimat:**
+
+Soru: p = 1/2 olasılığının ikili Galton-Watson süreci için önemi nedir? Ben p = 1/2 durumunda ağacın kesinlikle sonsuz büyüklükte olduğunu söyledim ama yanlış çıktı, neden?
+
+**Cevap:**
+
+Doğru cevap p <= 1/2 için ağacın neredeyse kesinlikle sonlu olacağı, p > 1/2 için ise pozitif olasılıkla sonsuz olacağıdır. p = 1/2 değeri aslında süreç için bir faz geçişini (phase transition) işaret eder. p <= 1/2 durumunda ağaç sonsuza kadar büyümez, aksine sonlu kalma eğilimindedir. Sonsuz olasılığın pozitif olabilmesi için p değerinin 1/2'den büyük olması gerekir.
+
+## 158. karsilastirma — bağlamlı (DOC_000508:10:karsilastirma)
+
+Kaynak: DOC_000508 — Range query (computer science), passage 10
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Each query between two nodes $u$ and $v$ can be answered by using the decomposability property (as explained above) of range $\tau$-majority queries and by breaking the query path between $u$ and $v$ into four subpaths. Let $z$ be the lowest common ancestor of $u$ and $v$, with $x$ and $y$ being the nearest marked ancestors of $u$ and $v$ respectively. The path from $u$ to $v$ is decomposed into the paths from $u$ and $v$ to $x$ and $y$ respectively (the size of these paths are smaller than $2\lceil 1 / \tau\rceil$ by definition, all of which are considered as candidates), and the paths from $x$ and $y$ to $z$ (by finding the suitable $C_i(x)$ as explained above and considering all of its labels as candidates). Please note that, boundary nodes have to be handled accordingly so that all of these subpaths are disjoint and from all of them a set of $O(1/\tau)$ candidates is derived. Each of these candidates is then verified using a combination of the $labelanc (x, \ell)$ query which returns the lowest ancestor of node $x$ that has label $\ell$ and the $count(x)$ fields of each node. On a $w$-bit RAM and an alphabet of size $\sigma$, the $labelanc (x, \ell)$ query can be answered in $O\left(\log \log _{w} \sigma\right)$ time whilst having linear space requirements.[17] Therefore, verifying each of the $O(1/\tau)$ candidates in $O\left(\log \log _{w} \sigma\right)$ time results in $O\left((1/\tau)\log \log _{w} \sigma\right)$ total query time for returning the set of all $\tau$-majorities on the path from $u$ to $v$.
+Related problems
+All the problems described above have been studied for higher dimensions as well as their dynamic versions. On the other hand, range queries might be extended to other data structures like trees,[8] such as the level ancestor problem. A similar family of problems are orthogonal range queries, also known as counting queries.
+```
+
+</details>
+
+**Talimat:**
+
+Metinde geçen labelanc(x, l) sorgusu ile count(x) alanlarının rolü doğrulama aşamasında nasıl farklılık gösterir?
+
+**Cevap:**
+
+Doğrulama aşamasında iki farklı bileşen birlikte kullanılır. labelanc(x, l) sorgusu, x düğümünün l etiketine sahip en düşük atasını O(log log_w sigma) sürede bulmak için kullanılırken, count(x) alanları her bir düğümün sayım bilgilerini sağlamak üzere devreye girer. Bu iki unsurun kombinasyonu, adayların doğrulanması sürecinde ortaklaşa çalışır.
+
+## 159. karmasiklik_analizi — bağlamsız (DOC_000508:9:karmasiklik_analizi)
+
+Kaynak: DOC_000508 — Range query (computer science), passage 9
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+for $0\leq i \leq \log(depth(x))$ where $\operatorname{par}(x)$ returns the label of the direct parent of node $x$. Put another way, for each marked node, the set of all paths with a power of two length (plus one for the node itself) towards the root is stored. Moreover, for each $P_i(x)$, the set of all majority candidates $C_i(x)$ are stored. More specifically, $C_i(x)$ contains the set of all $(\tau/2)$-majorities in $P_i(x)$ or labels that appear more than $(\tau/2).(2^i+1)$ times in $P_i(x)$. It is easy to see that the set of candidates $C_i(x)$ can have at most $2/\tau$ distinct labels for each $i$. Gagie et al.[16] then note that the set of all $\tau$-majorities in the path from any marked node $x$ to one of its ancestors $z$ is included in some $C_i(x)$ (Lemma 2 in [16]) since the length of $P_i(x)$ is equal to $(2^i+1)$ thus there exists a $P_i(x)$ for $0\leq i \leq \log(depth(x))$ whose length is between $d_{xz} \text{ and } 2 d_{xz}$ where $d_{xz}$ is the distance between x and z. The existence of such $P_i(x)$ implies that a $\tau$-majority in the path from $x$ to $z$ must be a $(\tau/2)$-majority in $P_i(x)$, and thus must appear in $C_i(x)$. It is easy to see that this data structure require $O(n \log n)$ words of space, because as mentioned above in the construction phase $O(\tau n)$ nodes are marked and for each marked node some candidate sets are stored. By definition, for each marked node $O(\log n)$ of such sets are stores, each of which contains $O(1/\tau)$ candidates. Therefore, this data structure requires $O(\log n \times (1/\tau) \times \tau n)=O(n \log n)$ words of space. Please note that each node $x$ also stores $count(x)$ which is equal to the number of instances of $label(x)$ on the path from $x$ to the root of $T$, this does not increase the space complexity since it only adds a constant number of words per node.
+```
+
+</details>
+
+**Talimat:**
+
+Bu veri yapısının bellek (space) karmaşıklığı nedir, hesaplaması nasıl yapılır?
+
+**Cevap:**
+
+Veri yapısının bellek karmaşıklığı O(n log n) kelimedir. İnşa aşamasında O(tau n) düğüm işaretlenir ve her işaretli düğüm için O(log n) adet yol kümesi tutulur. Her bir küme ise O(1/tau) kadar aday barındırır. Bu değerlerin çarpımı olan O(log n * (1/tau) * tau n), tau değerleri sadeleştiğinde toplam bellek karmaşıklığını O(n log n) yapar. Ek olarak her düğümde tutulan count(x) değeri sadece sabit sayıda kelime eklediği için genel bellek karmaşıklığını etkilemez.
+
+## 160. karsilastirma — bağlamsız (DOC_000513:16:karsilastirma)
+
+Kaynak: DOC_000513 — Red–black tree, passage 16
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Join-based
+This approach can be applied to every sorted sequence data structure that supports efficient join- and split-operations.[36] The general idea is to split I and T in multiple parts and perform the insertions on these parts in parallel.
+- First the bulk I of elements to insert must be sorted.
+- After that, the algorithm splits I into $k \in \mathbb{N}^+$ parts $\langle I_1, \cdots, I_k \rangle$ of about equal sizes.
+- Next the tree T must be split into k parts $\langle T_1, \cdots, T_k \rangle$ in a way, so that the ranges of $I_m$ and $T_n$ overlap for corresponding parts only ($m=n$); in other words, thanks to the ordering, for every $j \in \mathbb{N}^+ | \, 1 \leq j < k$ following constraints hold:
+  - $\text{last}(I_j) < \text{first}(T_{j + 1})$
+  - $\text{last}(T_j) < \text{first}(I_{j + 1})$
+- Now the algorithm inserts each element of $I_j$ into $T_j$ sequentially. This step must be performed for every j, which can be done by up to k processors in parallel.
+- Finally, the resulting trees will be joined to form the final result of the entire operation.
+Note that in Step 3 the constraints for splitting I assure that in Step 5 the trees can be joined again and the resulting sequence is sorted.
+- initial tree
+- split I and T
+- insert into the split T
+- join T
+The pseudo code shows a simple divide-and-conquer implementation of the join-based algorithm for bulk-insert. Both recursive calls can be executed in parallel. The join operation used here differs from the version explained in this article, instead join2 is used, which misses the second parameter k.
+bulkInsert(T, I, k):
+```
+
+</details>
+
+**Talimat:**
+
+Join-based algoritmada kullanılan standart join işlemi ile bulk-insert içinde kullanılan join2 işlemini karşılaştırır mısın?
+
+**Cevap:**
+
+Join-based yaklaşımda kullanılan iki join türünü iki açıdan karşılaştırabiliriz. Parametre yapısı: Bu makalede anlatılan standart join işlemi ikinci bir k parametresine sahipken, bulk-insert içinde kullanılan join2 işlemi ikinci parametre olan k'yi içermez. Kullanım yeri: Standart join genel ağaç birleştirme senaryolarında tercih edilirken, join2 join-based yaklaşımın bölme ve birleştirme aşamalarındaki özel gereksinimleri karşılamak üzere kullanılır.
+
+## 161. yanlis_cevap_aciklama — bağlamsız (DOC_000513:8:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000513 — Red–black tree, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Insert case 4
+The parent P is red and the root. Because N is also red, requirement 3 is violated. But after switching P
+Insert case 5
+The parent P is red but the uncle U is black. The ultimate goal is to rotate the parent node P to the grandparent position, but this will not work if N is an "inner" grandchild of G (i.e., if N is the left child of the right child of G or the right child of the left child of G). A dir-rotation at P switches the roles of the current node N and its parent P. The rotation adds paths through N (those in the subtree labeled 2, see diagram) and removes paths through P (those in the subtree labeled 4). But both P and N are red, so requirement 4 is preserved. Requirement 3 is restored in case 6.
+Insert case 6
+The current node N is now certain to be an "outer" grandchild of G (left of left child or right of right child). Now (1-dir)-rotate at G, putting P in place of G and making P the parent of N and G. G is black and its former child P is red, since requirement 3 was violated. After switching the colors of P and G the resulting tree satisfies requirement 3. Requirement 4 also remains satisfied, since all paths that went through the black G now go through the black P.
+Because the algorithm transforms the input without using an auxiliary data structure and using only a small amount of extra storage space for auxiliary variables it is in-place.
+Removal
+Simple cases
+- When the deleted node has 2 children (non-NULL), then we can swap its value with its in-order successor (the leftmost child of the right subtree), and then delete the successor instead. Since the successor is leftmost, it can only have a right child (non-NULL) or no child at all.
+- When the deleted node has only 1 child (non-NULL). In this case, just replace the node with its child, and color it black.
+  - The single child (non-NULL) must be red according to conclusion 5, and the deleted node must be black according to requirement 3.
+- When the deleted node has no children (both NULL) and is the root, replace it with NULL. The tree is empty.
+- When the deleted node has no children (both NULL), and is red, simply remove the leaf node.
+- When the deleted node has no children (both NULL), and is black, deleting it will create an imbalance, and requires a rebalance, as covered in the next section.
+```
+
+</details>
+
+**Talimat:**
+
+Soru: Kırmızı-siyah ağaçta (Red–black tree) sadece 1 çocuklu (NULL olmayan) bir düğüm silindiğinde tek çocuk hangi renkte olmalıdır? Ben siyah olur diye cevaplamıştım ama yanlış çıktı, neden?
+
+**Cevap:**
+
+Doğru cevap kırmızı olmalıdır. Tek çocuklu bir düğüm silindiğinde, bu tek çocuk (NULL olmayan) 5 numaralı sonuca göre mutlaka kırmızı olmalı, silinen düğüm ise 3 numaralı kural gereği siyah olmalıdır. Senin siyah olduğunu düşünmen, ağaçtaki tüm yolların siyah düğüm sayısı kuralından kaynaklanmış olabilir; ancak silme işleminde tek çocuğun rengi kuralları sağlamak adına kırmızı olarak belirlenmiştir.
+
+## 162. hata_bulma — bağlamsız (DOC_000513:9:hata_bulma)
+
+Kaynak: DOC_000513 — Red–black tree, passage 9
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Removal of a black non-root leaf
+The complex case is when N is not the root, colored black and has no proper child (⇔ only NULL children). In the first iteration, N is replaced by NULL.
+void remove(Tree* tree, Node* node) {
+	Node* parent = node->parent;
+	Node* sibling;
+	Node* close_nephew;
+	Node* distant_nephew;
+	Direction dir = direction(node);
+	parent->child[dir] = NULL;
+	goto start_balance;
+	do {
+		dir = direction(node);
+start_balance:
+		sibling = parent->child[1 - dir];
+		distant_nephew = sibling->child[1 - dir];
+		close_nephew = sibling->child[dir];
+		if (sibling->color == RED) {
+			// Case #3
+			rotate_subtree(tree, parent, dir);
+			parent->color = RED;
+			sibling->color = BLACK;
+			sibling = close_nephew;
+			distant_nephew = sibling->child[1 - dir];
+			if (distant_nephew && distant_nephew->color == RED) {
+				goto case_6;
+            }
+			close_nephew = sibling->child[dir];
+			if (close_nephew && close_nephew->color == RED) {
+				goto case_5;
+            }
+			// Case #4
+			sibling->color = RED;
+			parent->color = BLACK;
+			return;
+		}
+		if (distant_nephew && distant_nephew->color == RED) {
+			goto case_6;
+        }
+		if (close_nephew && close_nephew->color == RED) {
+			goto case_5;
+        }
+		if (parent->color == RED) {
+			// Case #4
+			sibling->color = RED;
+			parent->color = BLACK;
+			return;
+		}
+		// Case #2
+		sibling->color = RED;
+		node = parent;
+	} while (parent = node->parent);
+
+	// Case #1
+    return;
+
+case_5:
+	rotate_subtree(tree, sibling, 1 - dir);
+	sibling->color = RED;
+	close_nephew->color = BLACK;
+	distant_nephew = sibling;
+	sibling = close_nephew;
+case_6:
+	rotate_subtree(tree, parent, dir);
+	sibling->color = parent->color;
+	parent->color = BLACK;
+	distant_nephew->color = BLACK;
+	return;
+}
+The rebalancing loop of the delete operation has the following invariant:
+- At the beginning of each iteration the black height of N equals the iteration number minus one, which means that in the first iteration it is zero and that N is a true black node in higher iterations.
+- The number of black nodes on the paths through N is one less than before the deletion, whereas it is unchanged on all other paths, so that there is a black-violation at P if other paths exist.
+```
+
+</details>
+
+**Talimat:**
+
+Bu kırmızı-siyah ağaç silme dengeleme kodu, uzak yeğenin rengi kırmızı olduğunda bazen yanlış dallanıyor veya dengesizlik yaratıyor. Hata nerede?
+```c
+if (distant_nephew && distant_nephew->color == RED) {
+    goto case_5;
+}
+```
+
+**Cevap:**
+
+Hatalı satır `goto case_5;`: uzak yeğen (distant_nephew) kırmızı olduğunda gidilmesi gereken etiket Case #5 değil Case #6 olmalıdır. Kodda uzak yeğen kontrolünde `goto case_5;` yazıldığı için yanlış duruma dallanır ve ağaç dengesi bozulur. Doğru satır `goto case_6;` olmalıdır.
+
+## 163. konu_ozeti_anlatim — bağlamlı (DOC_000514:1:konu_ozeti_anlatim)
+
+Kaynak: DOC_000514 — Reservoir sampling, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+History and Algorithm R
+Reservoir sampling was introduced as early as 1962 by Fan, Muller, and Rezucha, who described a sampling algorithm which did not need to know the population size n in advance.[2] A simpler algorithm, known as Algorithm R, was discovered independently by Alan G. Waterman[3][4] and McLeod & Bellhouse;[5] it can also be viewed as a variant of the Fisher–Yates shuffle.[6] Algorithm R works as follows.
+- Initialize an array $R$ indexed from $1$ to $k$, containing the first k items of the input $x_1, ..., x_k$. This is the reservoir.
+- For each new input $x_i$, generate a random number j uniformly in $\{1, ..., i\}$. If $j \in \{1,..., k\}$, then set $R[j] := x_i.$ Otherwise, discard $x_i$.
+- Return $R$ after all inputs are processed.
+The correctness proof shows by induction on i that after the i'th step of the algorithm, the reservoir contains a uniformly random sample of the inputs $x_1, \ldots, x_j$.
+When $i = k$, Algorithm R returns all inputs, so this is the base case of the induction.
+For the inductive step, it is given that just before the $(i+1)$-th input is processed, the reservoir forms a uniformly random sample of $x_1, \ldots, x_i$. We must show that just after the $(i+1)$-th input is processed, the reservoir forms a uniformly random sample of $x_1, \dots, x_{i+1}$.
+Apply Algorithm R to the $(i+1)$-th input. Input $x_{i+1}$ is included with probability $\frac{k}{i+1}$ by definition of the algorithm. For any other input $x_r \in \{x_1, ..., x_i\}$ the probability that it is included in the reservoir just before the $(i+1)$-th input is processed is $\frac{k}{i}$ according to the inductive hypothesis. The probability that it is still included in the reservoir after $x_{i+1}$ is processed (in other words, that $x_r$ is not replaced by $x_{i+1}$) is $\frac{k}{i} \times \left( 1- \frac{1}{i+1} \right)= \frac{k}{i+1}$ as desired. Thus, all inputs have an equal probability $\frac{k}{i+1}$ of being included in the reservoir. By induction, Algorithm R produces a uniform random sample of the inputs.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Algoritma R'nin çalışma mantığını ve adımlarını açıklar mısın?
+
+**Cevap:**
+
+Algoritma R, popülasyon boyutu önceden bilinmeyen akış verisinden rastgele k elemanlık bir örneklem seçmek için kullanılır. İlk olarak k boyutunda R adında bir dizi oluşturulur ve girişin ilk k elemanı bu rezervuara doldurulur. Ardından gelen her yeni x_i girdisi için 1 ile i arasında düzgün dağılımlı rastgele bir j sayısı üretilir. Eğer j, 1 ile k arasında bir değerse R[j] elemanı yeni x_i girdisiyle değiştirilir, aksi halde yeni girdi atılır. Tüm girişler işlendikten sonra rezervuar dizisi döndürülür ve tümevarımla tüm elemanların eşit olasılıkla örneklemde kalması sağlanır.
+
+## 164. kod_okuma — bağlamsız (DOC_000517:1:kod_okuma)
+
+Kaynak: DOC_000517 — Rope (data structure), passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Collect leaves
+- Definition: Create a stack S and a list L. Traverse down the left-most spine of the tree until reaching a leaf l', adding each node n to S. Add l' to L. The parent of l' (p) is at the top of the stack. Repeat the procedure for p's right subtree.
+package org.wikipedia.example;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
+import jakarta.annotation.NonNull;
+class RopeLike {
+    private RopeLike left;
+    private RopeLike right;
+    public RopeLike(RopeLike left, RopeLike right) {
+        this.left = left;
+        this.right = right;
+    }
+    public RopeLike getLeft() {
+        return left;
+    }
+    public RopeLike getRight() {
+        return right;
+    }
+}
+public final class InOrderRopeIterator implements Iterator<RopeLike> {
+    private final Deque<RopeLike> stack;
+    public InOrderRopeIterator(@NonNull RopeLike root) {
+        stack = new ArrayDeque<>();
+        RopeLike c = root;
+        while (c != null) {
+            stack.push(c);
+            c = c.getLeft();
+        }
+    }
+    @Override
+    public boolean hasNext() {
+        return stack.size() > 0;
+    }
+    @Override
+    public RopeLike next() {
+        RopeLike result = stack.pop();
+        if (!stack.isEmpty()) {
+            RopeLike parent = stack.pop();
+            RopeLike right = parent.getRight();
+            if (right != null) {
+                stack.push(right);
+                RopeLike cleft = right.getLeft();
+                while (cleft != null) {
+                    stack.push(cleft);
+                    cleft = cleft.getLeft();
+                }
+            }
+        }
+        return result;
+    }
+}
+Rebalance
+- Definition: Collect the set of leaves L and rebuild the tree from the bottom-up.
+import java.util.List;
+static boolean isBalanced(RopeLike r) {
+    int depth = r.depth();
+    if (depth >= FIBONACCI_SEQUENCE.length - 2) {
+        return false;
+    }
+    return FIBONACCI_SEQUENCE[depth + 2] <= r.weight();
+}
+static RopeLike rebalance(RopeLike r) {
+    if (!isBalanced(r)) {
+        List<RopeLike> leaves = Ropes.collectLeaves(r);
+        return merge(leaves, 0, leaves.size());
+    }
+    return r;
+}
+static RopeLike merge(List<RopeLike> leaves) {
+    return merge(leaves, 0, leaves.size());
+}
+static RopeLike merge(List<RopeLike> leaves, int start, int end) {
+    int range = end - start;
+    switch (range) {
+        case 1:
+            return leaves.get(start);
+        case 2:
+            return new RopeLikeTree(leaves.get(start), leaves.get(start + 1));
+        default:
+            int mid = start + (range / 2);
+```
+
+</details>
+
+**Talimat:**
+
+Aşağıdaki Java kodu ne yapar?
+```java
+class RopeLike {
+    private RopeLike left;
+    private RopeLike right;
+    public RopeLike(RopeLike left, RopeLike right) {
+        this.left = left;
+        this.right = right;
+    }
+    public RopeLike getLeft() {
+        return left;
+        return left;
+    }
+    public RopeLike getRight() {
+        return right;
+    }
+}
+```
+
+**Cevap:**
+
+Bu kod, ip (rope) veri yapısının düğümlerini temsil eden `RopeLike` sınıfını tanımlar. Sınıfın sol (`left`) ve sağ (`right`) çocuk düğümleri tutan alanları vardır. Kurucu metot (`constructor`) ile bu düğümler başlangıçta atanır ve `getLeft` ile `getRight` metotları sayesinde çocuk düğümlere erişim sağlanır.
+
+## 165. kavram_aciklama — bağlamlı (DOC_000521:0:kavram_aciklama)
+
+Kaynak: DOC_000521 — Scapegoat tree, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a scapegoat tree is a self-balancing binary search tree, invented by Arne Andersson in 1989[2] and rediscovered by Igal Galperin and Ronald L. Rivest in 1993.[1] It provides worst-case $O(\log n)$ lookup time (as expressed in big O notation, with $n$ as the number of entries) and $O(\log n)$ amortized insertion and deletion time.
+Unlike most other self-balancing binary search trees which also provide worst case $O(\log n)$ lookup time, scapegoat trees have no additional per-node memory overhead compared to a regular binary search tree: besides key and value, a node stores only two pointers to the child nodes. This makes scapegoat trees easier to implement and, due to data structure alignment, can reduce node overhead by up to one-third.
+Instead of the small incremental rebalancing operations used by most balanced tree algorithms, scapegoat trees rarely but expensively choose a "scapegoat" and completely rebuilds the subtree rooted at the scapegoat into a complete binary tree. Thus, scapegoat trees have $O(n)$ worst-case update performance.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre scapegoat tree nedir ve diğer ağaçlardan farkı nedir?
+
+**Cevap:**
+
+Scapegoat tree (günah keçisi ağacı), en kötü durumda O(log n) arama süresi ve O(log n) amorti edilmiş ekleme ile silme süresi sunan kendi kendini dengeleyen bir ikili arama ağacıdır. Çoğu dengeli ağaç algoritmasının aksine düğüm başına fazladan bellek maliyeti yoktur; anahtar ve değer dışında sadece çocuk düğümlere iki işaretçi saklar. Bu özellik yapının uygulanmasını kolaylaştırır ve düğüm ek yükünü azaltır. Küçük artımlı yeniden dengeleme işlemleri yerine, nadiren ama maliyetli bir şekilde bir günah keçisi seçer ve bu düğümün kök olduğu alt ağacı tamamen yeniden oluşturarak tam bir ikili ağaca dönüştürür.
+
+## 166. kavram_aciklama — bağlamsız (DOC_000523:0:kavram_aciklama)
+
+Kaynak: DOC_000523 — Search data structure, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a search data structure[citation needed] is any data structure that allows the efficient retrieval of specific items from a set of items, such as a specific record from a database.
+The simplest, most general, and least efficient search structure is merely an unordered sequential list of all the items. Locating the desired item in such a list, by the linear search method, inevitably requires a number of operations proportional to the number n of items, in the worst case as well as in the average case. Useful search data structures allow faster retrieval; however, they are limited to queries of some specific kind. Moreover, since the cost of building such structures is at least proportional to n, they only pay off if several queries are to be performed on the same database (or on a database that changes little between queries).
+Static search structures are designed for answering many queries on a fixed database; dynamic structures also allow insertion, deletion, or modification of items between successive queries. In the dynamic case, one must also consider the cost of fixing the search structure to account for the changes in the database.
+Classification
+The simplest kind of query is to locate a record that has a specific field (the key) equal to a specified value v. Other common kinds of query are "find the item with smallest (or largest) key value", "find the item with largest key value not exceeding v", "find all items with key values between specified bounds v_{min} and v_{max}".
+In certain databases the key values may be points in some multi-dimensional space. For example, the key may be a geographic position (latitude and longitude) on the Earth. In that case, common kinds of queries are "find the record with a key closest to a given point v", or "find all items whose key lies at a given distance from v", or "find all items within a specified region R of the space".
+A common special case of the latter are simultaneous range queries on two or more simple keys, such as "find all employee records with salary between 50,000 and 100,000 and hired between 1995 and 2007".
+```
+
+</details>
+
+**Talimat:**
+
+Arama veri yapısı (search data structure) nedir ve ne amaçla kullanılır?
+
+**Cevap:**
+
+Arama veri yapısı, bir veri kümesinden belirli öğelerin verimli bir şekilde geri çağrılmasını sağlayan herhangi bir veri yapısıdır. En basit haliyle sıralı olmayan doğrusal bir liste olarak tasarlanabilir ancak daha gelişmiş yapıları birden fazla sorgunun hızlıca yapılabilmesi için kullanılır. Veritabanı kayıtları gibi belirli öğeleri hızlıca bulmak amacıyla tercih edilir ve statik ya da dinamik olarak tasarlanabilir.
+
+## 167. karmasiklik_analizi — bağlamsız (DOC_000523:1:karmasiklik_analizi)
+
+Kaynak: DOC_000523 — Search data structure, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Single ordered keys
+- Array if the key values span a moderately compact interval.
+- Priority-sorted list; see linear search
+- Key-sorted array; see binary search
+- Self-balancing binary search tree
+- Hash table
+Finding the smallest element
+Asymptotic worst-case analysis
+In this table, the asymptotic notation O(f(n)) means "not exceeding some fixed multiple of f(n) in the worst case."
+Note: Insert on an unsorted array is sometimes quoted as being O(n) due to the assumption that the element to be inserted must be inserted at one particular location of the array, which would require shifting all the subsequent elements by one position. However, in a classic array, the array is used to store arbitrary unsorted elements, and hence the exact position of any given element is of no consequence, and insert is carried out by increasing the array size by 1 and storing the element at the end of the array, which is a O(1) operation.[3][4] Likewise, the deletion operation is sometimes quoted as being O(n) due to the assumption that subsequent elements must be shifted, but in a classic unsorted array the order is unimportant (though elements are implicitly ordered by insert-time), so deletion can be carried out by swapping the element to be deleted with the last element in the array and then decrementing the array size by 1, which is a O(1) operation.[5]
+This table is only an approximate summary; for each data structure there are special situations and variants that may lead to different costs. Also two or more data structures can be combined to obtain lower costs.
+```
+
+</details>
+
+**Talimat:**
+
+Sıralı olmayan klasik bir dizide ekleme ve silme işlemlerinin zaman karmaşıklığı neden O(1) olarak gerçekleşir?
+
+**Cevap:**
+
+Klasik sıralı olmayan bir dizide ekleme ve silme işlemlerinin zaman karmaşıklığı O(1)'dir. Sıralı olmayan klasik bir dizide elemanların tam konumu önemli değildir; bu nedenle ekleme işlemi, dizinin boyutunu 1 artırıp yeni elemanı dizinin sonuna yerleştirerek yapılır. Benzer şekilde, silme işleminde de aradaki elemanların kaydırılmasına gerek yoktur; silinecek eleman dizinin son elemanıyla yer değiştirilir ve dizi boyutu 1 azaltılır. Bu işlemler eleman sayısından bağımsız olarak sabit sürede biter.
+
+## 168. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000525:0:bilgi_yetersizligi)
+
+Kaynak: DOC_000525 — Segment tree, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, the segment tree is a data structure used for finding the result of some associative function on a contiguous sub-array (called segment) in just O(log n) time. Commonly, the function used is summation, product, maximum or minimum
+A segment tree for a set I of n intervals uses O(n log n) storage and can be built in O(n log n) time. Segment trees support searching for all the intervals that contain a query point in time O(log n + k), k being the number of retrieved intervals or segments.[1]
+Applications of the segment tree are in the areas of computational geometry, geographic information systems and machine learning.
+The segment tree can be generalized to higher dimension spaces.
+Definition
+Description
+Let I be a set of intervals, or segments. Let p_1, p_2, ..., p_m be the list of distinct interval endpoints, sorted from left to right. Consider the partitioning of the real line induced by those points. The regions of this partitioning are called elementary intervals. Thus, the elementary intervals are, from left to right:
+- $(-\infty, p_1), [p_1,p_1], (p_1, p_2), [p_2, p_2], \dots, (p_{m-1}, p_m), [p_m, p_m], (p_m, +\infty)$
+That is, the list of elementary intervals consists of open intervals between two consecutive endpoints p_i and p_{i+1}, alternated with closed intervals consisting of a single endpoint. Single points are treated themselves as intervals because the answer to a query is not necessarily the same at the interior of an elementary interval and its endpoints.[2]
+Given a set I of intervals, or segments, a segment tree T for I is structured as follows:
+- T is a binary tree.
+- Its leaves correspond to the elementary intervals induced by the endpoints in I, in an ordered way: the leftmost leaf corresponds to the leftmost interval, and so on. The elementary interval corresponding to a leaf v is denoted Int(v).
+- The internal nodes of T correspond to intervals that are the union of elementary intervals: the interval Int(N) corresponding to node N is the union of the intervals corresponding to the leaves of the tree rooted at N. That implies that Int(N) is the union of the intervals of its two children.
+- Each node or leaf v in T stores the interval Int(v) and a set of intervals, in some data structure. This canonical subset of node v contains the intervals [x, x′] from I such that [x, x′] contains Int(v) and does not contain Int(parent(v)). That is, each node in T stores the segments that span through its interval, but do not span through the interval of its parent.[3]
+Construction
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre segment tree yapısının en büyük dezavantajı bellek tüketiminin aşırı yüksek olması mıdır, tam olarak yüzde kaç bellek israfına yol açar?
+
+**Cevap:**
+
+Bu metin segment tree yapısının dezavantajları veya tam bellek israfı yüzdesi hakkında herhangi bir bilgi içermemektedir. Metin yalnızca `O(n log n)` depolama alanı gerektirdiğini belirtir. Kesin bir yüzde değeri vermek metne dayanarak mümkün değildir.
+
+## 169. karmasiklik_analizi — bağlamlı (DOC_000525:3:karmasiklik_analizi)
+
+Kaynak: DOC_000525 — Segment tree, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+For n intervals whose endpoints are in a small integer range (e.g., in the range [1,...,O(n)]), optimal data structures[which?] exist with a linear preprocessing time and query time O(1 + k) for reporting all k intervals containing a given query point.
+Another advantage of the segment tree is that it can easily be adapted to counting queries; that is, to report the number of segments containing a given point, instead of reporting the segments themselves. Instead of storing the intervals in the canonical subsets, it can simply store the number of them. Such a segment tree uses linear storage, and requires an O(log n) query time, so it is optimal.[8]
+Higher dimensional versions of the interval tree and the priority search tree do not exist; that is, there is no clear extension of these structures that solves the analogous problem in higher dimensions. But the structures can be used as associated structure of segment trees.[6]
+History
+The segment tree was invented by Jon Bentley in 1977; in "Solutions to Klee’s rectangle problems".[7]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, aralık sayma sorguları için kullanılan segment ağacının zaman ve bellek karmaşıklığı nedir, neden?
+
+**Cevap:**
+
+Yukarıdaki metne göre, sayma sorguları yapan segment ağacının sorgu süresi O(log n)'dir ve doğrusal depolama alanı (linear storage) kullanır. Bu yapı, kanonik alt kümelerde aralıkların kendilerini depolamak yerine sadece sayılarını saklar ve bu sayede optimal bir şekilde çalışır.
+
+## 170. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000531:4:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000531 — Set (abstract data type), passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Multiset
+A generalization of the notion of a set is that of a multiset or bag, which is similar to a set but allows repeated ("equal") values (duplicates). This is used in two distinct senses: either equal values are considered identical, and are simply counted, or equal values are considered equivalent, and are stored as distinct items. For example, given a list of people (by name) and ages (in years), one could construct a multiset of ages, which simply counts the number of people of a given age. Alternatively, one can construct a multiset of people, where two people are considered equivalent if their ages are the same (but may be different people and have different names), in which case each pair (name, age) must be stored, and selecting on a given age gives all the people of a given age.
+Formally, it is possible for objects in computer science to be considered "equal" under some equivalence relation but still distinct under another relation. Some types of multiset implementations will store distinct equal objects as separate items in the data structure; while others will collapse it down to one version (the first one encountered) and keep a positive integer count of the multiplicity of the element.
+As with sets, multisets can naturally be implemented using hash table or trees, which yield different performance characteristics.
+The set of all bags over type T is given by the expression bag T. If by multiset one considers equal items identical and simply counts them, then a multiset can be interpreted as a function from the input domain to the non-negative integers (natural numbers), generalizing the identification of a set with its indicator function. In some cases a multiset in this counting sense may be generalized to allow negative values, as in Python.
+- C++'s Standard Template Library implements both sorted and unsorted multisets. It provides the multiset class for the sorted multiset, as a kind of associative container, which implements this multiset using a self-balancing binary search tree. It provides the unordered_multiset class for the unsorted multiset, as a kind of unordered associative container, which implements this multiset using a hash table. The unsorted multiset is standard as of C++11; previously SGI's STL provides the hash_multiset class, which was copied and eventually standardized.
+- For Java, third-party libraries provide multiset functionality:
+  - Apache Commons Collections provides the Bag and SortedBag interfaces, with implementing classes like HashBag and TreeBag.
+  - Google Guava provides the Multiset interface, with implementing classes like HashMultiset and TreeMultiset.
+- Apple provides the NSCountedSet class as part of Cocoa, and the CFBag and CFMutableBag types as part of CoreFoundation.
+- Python's standard library includes collections.Counter, which is similar to a multiset.
+- Smalltalk includes the Bag class, which can be instantiated to use either identity or equality as predicate for inclusion test.
+Where a multiset data structure is not available, a workaround is to use a regular set, but override the equality predicate of its items to always return "not equal" on distinct objects (however, such will still not be able to store multiple occurrences of the same object) or use an associative array mapping the values to their integer multiplicities (this will not be able to distinguish between equal elements at all).
+```
+
+</details>
+
+**Talimat:**
+
+Çoklu küme (multiset) veri yapısının dillerdeki kütüphane karşılıkları hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Aşağıdaki programlama dilleri ve standart ya da üçüncü taraf kütüphanelerin sunduğu çoklu küme (multiset) eşleştirmelerinden hangisi yanlıştır?
+A) C++ Standard Template Library, sıralı çoklu küme için multiset sınıfını sağlar.
+B) Python'ın standart kütüphanesinde yer alan collections.Counter sınıfı çoklu kümeye benzer.
+C) Java'da Google Guava kütüphanesi Multiset arayüzünü ve HashMultiset sınıfını sunar.
+D) Apple'ın Cocoa kütüphanesinde yer alan NSCountedSet sınıfı sadece sıralı çoklu kümeleri destekler ve hash tablosu kullanmaz.
+Doğru şık: D
+Açıklama: NSCountedSet sınıfı Cocoa'nın bir parçasıdır ancak D seçeneğindeki gibi bir kısıtlaması veya hash tablosu kullanmadığına dair metinde bir ifade yoktur. A, B ve C seçenekleri ders içeriğindeki bilgilerle birebir uyuşmaktadır.
+
+## 171. karmasiklik_analizi — bağlamsız (DOC_000536:4:karmasiklik_analizi)
+
+Kaynak: DOC_000536 — Shortest path problem, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Negative cycle detection
+In some cases, the main goal is not to find the shortest path, but only to detect if the graph contains a negative cycle. Some shortest-paths algorithms can be used for this purpose:
+- The Bellman–Ford algorithm can be used to detect a negative cycle in time $O(|V||E|)$.
+- Cherkassky and Goldberg[28] survey several other algorithms for negative cycle detection.
+General algebraic framework on semirings: the algebraic path problem
+Many problems can be framed as a form of the shortest path for some suitably substituted notions of addition along a path and taking the minimum. The general approach to these is to consider the two operations to be those of a semiring. Semiring multiplication is done along the path, and the addition is between paths. This general framework is known as the algebraic path problem.[29][30][31]
+Most of the classic shortest-path algorithms (and new ones) can be formulated as solving linear systems over such algebraic structures.[32]
+More recently, an even more general framework for solving these (and much less obviously related problems) has been developed under the banner of valuation algebras.[33]
+Shortest path in stochastic time-dependent networks
+In real-life, a transportation network is usually stochastic and time-dependent. The travel duration on a road segment depends on many factors such as the amount of traffic (origin-destination matrix), road work, weather, accidents and vehicle breakdowns. A more realistic model of such a road network is a stochastic time-dependent (STD) network.[34][35]
+There is no accepted definition of optimal path under uncertainty (that is, in stochastic road networks). It is a controversial subject, despite considerable progress during the past decade. One common definition is a path with the minimum expected travel time. The main advantage of this approach is that it can make use of efficient shortest path algorithms for deterministic networks. However, the resulting optimal path may not be reliable, because this approach fails to address travel time variability.
+To tackle this issue, some researchers use travel duration distribution instead of its expected value. So, they find the probability distribution of total travel duration using different optimization methods such as dynamic programming and Dijkstra's algorithm .[36] These methods use stochastic optimization, specifically stochastic dynamic programming to find the shortest path in networks with probabilistic arc length.[37] The terms travel time reliability and travel time variability are used as opposites in the transportation research literature: the higher the variability, the lower the reliability of predictions.
+To account for variability, researchers have suggested two alternative definitions for an optimal path under uncertainty. The most reliable path is one that maximizes the probability of arriving on time given a travel time budget. An α-reliable path is one that minimizes the travel time budget required to arrive on time with a given probability.
+```
+
+</details>
+
+**Talimat:**
+
+Negatif çember tespiti için kullanılan Bellman-Ford algoritmasının zaman karmaşıklığı nedir, neden bu şekildedir?
+
+**Cevap:**
+
+Bellman-Ford algoritması ile graf üzerindeki negatif çember tespiti O(|V||E|) zaman karmaşıklığına sahiptir. Bu süre, grafın düğüm sayısı (|V|) ile kenar sayısı (|E|) değerlerinin çarpımına bağlı olarak algoritmanın çalışma adım sayısını belirler.
+
+## 172. kavram_aciklama — bağlamsız (DOC_000539:0:kavram_aciklama)
+
+Kaynak: DOC_000539 — Skew heap, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A skew heap (or self-adjusting heap) is a heap data structure implemented as a binary tree. Skew heaps are advantageous because of their ability to merge more quickly than binary heaps. In contrast with binary heaps, there are no structural constraints, so there is no guarantee that the height of the tree is logarithmic. Only two conditions must be satisfied:
+- The general heap order must be enforced
+- Every operation (add, remove_min, merge) on two skew heaps must be done using a special skew heap merge.
+A skew heap is a self-adjusting form of a leftist heap which attempts to maintain balance by unconditionally swapping all nodes in the merge path when merging two heaps. (The merge operation is also used when adding and removing values.) With no structural constraints, it may seem that a skew heap would be horribly inefficient. However, amortized complexity analysis can be used to demonstrate that all operations on a skew heap can be done in O(log n).[1] In fact, with $\varphi = \frac{1+\sqrt{5}}{2}$ denoting the golden ratio, the exact amortized complexity is known to be log_φ n (approximately 1.44 log_2 n).[2][3]
+Definition
+Skew heaps may be described with the following recursive definition:[citation needed][clarification needed]
+- A heap with only one element is a skew heap.
+- The result of skew merging two skew heaps $sh_1$ and $sh_2$ is also a skew heap.
+```
+
+</details>
+
+**Talimat:**
+
+Eğri yığın (skew heap) nedir, temel özellikleri nelerdir?
+
+**Cevap:**
+
+Eğri yığın (skew heap), ikili ağaç olarak gerçeklenen ve ikili yığınlara (binary heap) kıyasla çok daha hızlı birleştirilebilen kendini ayarlayan bir yığın veri yapısıdır. Diğer yığınların aksine ağacın yüksekliğinin logaritmik olmasını garanti eden yapısal kısıtlamaları yoktur; yalnızca genel yığın düzeni korunur. İki eğri yığını birleştirmek, ekleme ve çıkarma gibi tüm temel işlemler özel bir eğri yığın birleştirme algoritmasıyla gerçekleştirilir. Yapısal kısıtlaması olmamasına rağmen, amortize analizler tüm işlemlerin O(log n) sürede yapılabileceğini göstermektedir.
+
+## 173. karmasiklik_analizi — bağlamlı (DOC_000542:3:karmasiklik_analizi)
+
+Kaynak: DOC_000542 — Smoothsort, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Shrinking the heap region by separating the rightmost element from it
+During this phase, the form of the sequence of stretches goes through the changes of the growing phase in reverse. No work at all is needed when separating off a leaf node, but for a non-leaf node its two children become roots of new stretches, and need to be moved to their proper place in the sequence of roots of stretches. This can be obtained by applying sift-down twice: first for the left child, and then for the right child (whose stepson was the left child).
+Because half of all nodes in a full binary tree are leaves, this performs an average of one sift-down operation per node.
+Optimization
+It is already known that the newly exposed roots are correctly ordered with respect to their normal children; it is only the ordering relative to their stepsons which is in question. Therefore, while shrinking the heap, the first step of sifting down can be simplified to a single comparison with the stepson. If a swap occurs, subsequent steps must do the full four-way comparison.
+Analysis
+Smoothsort takes O(n) time to process a presorted array, O(n log n) in the worst case, and achieves nearly linear performance on many nearly sorted inputs. However, it does not handle all nearly sorted sequences optimally. Using the count of inversions as a measure of un-sortedness (the number of pairs of indices i and j with i < j and A[i] > A[j]; for randomly sorted input this is approximately n^2/4), there are possible input sequences with O(n log n) inversions which cause it to take Ω(n log n) time, whereas other adaptive sorting algorithms can solve these cases in O(n log log n) time.[2]
+The smoothsort algorithm needs to be able to hold in memory the sizes of all of the trees in the Leonardo heap. Since they are sorted by order and all orders are distinct, this is usually done using a bit vector indicating which orders are present. Moreover, since the largest order is at most O(log n), these bits can be encoded in O(1) machine words, assuming a transdichotomous machine model.
+Note that O(1) machine words is not the same thing as one machine word. A 32-bit vector would only suffice for sizes less than L(32) = 7049155. A 64-bit vector will do for sizes less than L(64) = 34335360355129 ≈ 2^{45}. In general, it takes 1/log_2(φ) ≈ 1.44 bits of vector per bit of size.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Smoothsort algoritmasının zaman karmaşıklığı nedir?
+
+**Cevap:**
+
+Smoothsort algoritması önceden sıralanmış bir diziyi işlemek için O(n) zaman alır. En kötü durumda zaman karmaşıklığı O(n log n)'dir ve birçok neredeyse sıralı girdide neredeyse doğrusal performans gösterir.
+
+## 174. konu_ozeti_anlatim — bağlamlı (DOC_000542:4:konu_ozeti_anlatim)
+
+Kaynak: DOC_000542 — Smoothsort, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Poplar sort
+A simpler algorithm inspired by smoothsort is poplar sort.[3] Named after the rows of trees of decreasing size often seen in Dutch polders, it performs fewer comparisons than smoothsort for inputs that are not mostly sorted, but cannot achieve linear time for sorted inputs.
+The significant change made by poplar sort in that the roots of the various trees are not kept in sorted order; there are no "stepson" links tying them together into a single heap. Instead, each time the heap is shrunk in the second phase, the roots are searched to find the maximum entry.
+Because there are n shrinking steps, each of which must search O(log n) tree roots for the maximum, the best-case run time for poplar sort is O(n log n).
+The authors also suggest using perfect binary trees rather than Leonardo trees to provide further simplification, but this is a less significant change.
+The same structure has been proposed as a general-purpose priority queue under the name post-order heap,[4] achieving O(1) amortized insertion time in a structure simpler than an implicit binomial heap.
+Applications
+The musl C library uses smoothsort for its implementation of qsort().[5][6]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metinde anlatılan poplar sort algoritmasını ve uygulama alanlarını kısaca özetler misin?
+
+**Cevap:**
+
+Poplar sort, smoothsort'tan esinlenen ancak köklerin sıralı tutulmadığı bir sıralama algoritmasıdır. İkinci aşamada yığın küçültülürken ağaç kökleri taranarak maksimum değer bulunur ve n adet küçültme adımı nedeniyle en iyi durum zaman karmaşıklığı O(n log n) olur. Yazarlar daha da basitleştirmek için Leonardo ağaçları yerine mükemmel ikili ağaçlar kullanılmasını önermiştir. Ayrıca aynı yapı post-order heap adıyla genel amaçlı öncelik kuyruğu olarak önerilmiş ve O(1) amorti edilmiş ekleme süresi sağlamıştır. smoothsort ise musl C kütüphanesinin qsort uygulamasında kullanılmaktadır.
+
+## 175. algoritma_izleme — bağlamlı (DOC_000544:0:algoritma_izleme)
+
+Kaynak: DOC_000544 — Sorted array, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A sorted array is an array data structure in which each element is sorted in numerical, alphabetical, or some other order, and placed at equally spaced addresses in computer memory. It is typically used in computer science to implement static lookup tables to hold multiple values which have the same data type. Sorting an array is useful in organising data in ordered form and recovering them rapidly.
+Overview
+Sorted arrays are the most space-efficient data structure with the best locality of reference for sequentially stored data.[citation needed]
+Elements within a sorted array are found using a binary search, in O(log n); thus sorted arrays are suited for cases when one needs to be able to look up elements quickly, e.g. as a set or multiset data structure. This complexity for lookups is the same as for self-balancing binary search trees.
+In some data structures, an array of structures is used. In such cases, the same sorting methods can be used to sort the structures according to some key as a structure element; for example, sorting records of students according to roll numbers or names or grades.
+If one is using a sorted dynamic array, then it is possible to insert and delete elements. The insertion and deletion of elements in a sorted array executes at O(n), due to the need to shift all the elements following the element to be inserted or deleted; in comparison a self-balancing binary search tree inserts and deletes at O(log n). In the case where elements are deleted or inserted at the end, a sorted dynamic array can do this in amortized O(1) time while a self-balancing binary search tree always operates at O(log n).
+Elements in a sorted array can be looked up by their index (random access) at O(1) time, an operation taking O(log n) or O(n) time for more complex data structures.
+History
+John von Neumann wrote the first array sorting program (merge sort) in 1945, when the first stored-program computer was still being built.[1][2]
+```
+
+</details>
+
+**Talimat:**
+
+Sıralı dinamik bir dizi olan [10, 20, 30, 40] dizisinin ortasına 25 elemanını eklemek istersek sıralı dizi kuralını korumak için dizi elemanları nasıl kaydırılır ve adım adım işlem nasıl gerçekleşir?
+
+**Cevap:**
+
+Sıralı bir diziye aradan eleman eklerken, eklenecek elemanın yerini açmak için ondan sonra gelen tüm elemanların bir sağa (sonraki indekse) kaydırılması gerekir. Bu ekleme ve kaydırma işlemi O(n) sürede gerçekleşir.
+1. Başlangıç durumu: [10, 20, 30, 40]. 25 sayısı 20 ile 30 arasına yerleştirilmelidir.
+2. 25'ten büyük olan elemanları sağa kaydırmak için sondan başlanır; son eleman olan 40 bir sağdaki boş konuma taşınır → [10, 20, 30, _, 40].
+3. Sıradaki eleman 30, bir sağa kaydırılır → [10, 20, _, 30, 40].
+4. Açılan boş konuma 25 yerleştirilir → [10, 20, 25, 30, 40].
+Sonuç: [10, 20, 25, 30, 40].
+
+## 176. yanlis_cevap_aciklama — bağlamlı (DOC_000546:3:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000546 — Sorting network, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A more recent construction called the zig-zag sorting network of size O(n log n) was discovered by Goodrich in 2014.[8] While its size is much smaller than that of AKS networks, its depth O(n log n) makes it unsuitable for a parallel implementation.
+Optimal sorting networks
+For small, fixed numbers of inputs n, optimal sorting networks can be constructed, with either minimal depth (for maximally parallel execution) or minimal size (number of comparators). These networks can be used to increase the performance of larger sorting networks resulting from the recursive constructions of, e.g., Batcher, by halting the recursion early and inserting optimal nets as base cases.[9] The following table summarizes the optimality results for small networks for which the optimal depth is known:
+For larger networks neither the optimal depth nor the optimal size are currently known. The bounds known so far are provided in the table below:
+The first sixteen depth-optimal networks are listed in Knuth's Art of Computer Programming,[1] and have been since the 1973 edition; however, while the optimality of the first eight was established by Floyd and Knuth in the 1960s, this property wasn't proven for the final six until 2014[16] (the cases nine and ten having been decided in 1991[9]).
+For one to twelve inputs, minimal (i.e. size-optimal) sorting networks are known, and for higher values, lower bounds on their sizes S(n) can be derived inductively using a lemma due to Van Voorhis[1] (p. 240): S(n) ≥ S(n − 1) + ⌈log_2n⌉. The first ten optimal networks have been known since 1969, with the first eight again being known as optimal since the work of Floyd and Knuth, but optimality of the cases n = 9 and n = 10 took until 2014 to be resolved.[11] The optimality of the smallest known sorting networks for n = 11 and n = 12 was resolved in 2020.[17][1]
+Some work in designing optimal sorting network has been done using genetic algorithms: D. Knuth mentions that the smallest known sorting network for n = 13 was found by Hugues Juillé in 1995 "by simulating an evolutionary process of genetic breeding"[1] (p. 226), and that the minimum depth sorting networks for n = 9 and n = 11 were found by Loren Schwiebert in 2001 "using genetic methods"[1] (p. 229).
+Complexity of testing sorting networks
+Unless P=NP, the problem of testing whether a candidate network is a sorting network is likely to remain difficult for networks of large sizes, due to the problem being co-NP-complete.[18]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, aday bir sıralama ağının sıralama ağı olup olmadığını test etme probleminin büyük boyutlu ağlar için neden zor olduğunu sordular ve ben P=NP olduğu için zor dedim, neden yanlış?
+
+**Cevap:**
+
+Doğru cevap, P=NP olmadıkça zor olmasıdır. Öğrencinin düştüğü yanılgı, P=NP olduğunu varsaymaktır; oysa metne göre problem, P=NP olmaması durumunda co-NP-complete olmasından dolayı büyük boyutlu ağlar için zorluk taşımaya devam etmektedir.
+
+## 177. karsilastirma — bağlamsız (DOC_000548:0:karsilastirma)
+
+Kaynak: DOC_000548 — Space–time tradeoff, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A space–time trade-off (also known as time–memory trade-off or the algorithmic space-time continuum) in computer science is a trade-off where an algorithm or program increased space usage with decreased time. Here, space refers to the data storage consumed in performing a given task (RAM, HDD, etc.), and time refers to the time consumed in performing a given task (computation time or response time).
+The utility of a given space–time tradeoff is affected by related fixed and variable costs (of, e.g., CPU speed, storage space), and is subject to diminishing returns.
+History
+Biological usage of time–memory tradeoffs can be seen in the earlier stages of animal behavior. Using stored knowledge or encoding stimuli reactions as "instincts" in the DNA avoids the need for "calculation" in time-critical situations. More specific to computers, lookup tables have been implemented since the very earliest operating systems.[citation needed]
+In 1980 Martin Hellman first proposed using a time–memory tradeoff for cryptanalysis.[1]
+Types of tradeoff
+Lookup tables vs. recalculation
+A common situation is an algorithm involving a lookup table: an implementation can include the entire table, which reduces computing time, but increases the amount of memory needed, or it can compute table entries as needed, increasing computing time, but reducing memory requirements.
+Database indexes vs. table scans
+Database Management Systems offer the capability to create database index data structures. Indexes improve the speed of lookup operations at the cost of additional space. Without indexes, time-consuming full table scan operations are sometimes required to locate desired data.
+Compressed vs. uncompressed data
+A space–time trade off can be applied to the problem of data storage. If data is stored uncompressed, it takes more space but access takes less time than if the data were stored compressed (since compressing the data reduces the amount of space it takes, but it takes time to run the decompression algorithm). Depending on the particular instance of the problem, either way is practical. There are also rare instances where it is possible to directly work with compressed data, such as in the case of compressed bitmap indices, where it is faster to work with compression than without compression.
+Re-rendering vs. stored images
+Storing only the SVG source of a vector image and rendering it as a bitmap image every time the page is requested would be trading time for space; more time used, but less space. Rendering the image when the page is changed and storing the rendered images would be trading space for time; more space used, but less time. This technique is more generally known as caching.
+Smaller code vs. loop unrolling
+Larger code size can be traded for higher program speed when applying loop unrolling. This technique makes the code longer for each iteration of a loop, but saves the computation time required for jumping back to the beginning of the loop at the end of each iteration.
+```
+
+</details>
+
+**Talimat:**
+
+Veri depolamada sıkıştırılmış ve sıkıştırılmamış veri kullanımını alan-zaman değiş-tokuşu bağlamında karşılaştırır mısın?
+
+**Cevap:**
+
+Sıkıştırılmış ve sıkıştırılmamış veri kullanımı iki temel eksende karşılaştırılabilir: depolama alanı ve erişim süresi. Sıkıştırılmamış veri daha fazla depolama alanı kaplar ancak veriye erişim ve okuma işlemi daha az zaman alır. Sıkıştırılmış veri ise daha az yer kaplayarak alan tasarrufu sağlar, fakat veriyi okumak veya kullanmak için sıkıştırma açma algoritmasının çalıştırılması gerektiğinden erişim süresi uzar. Problem durumuna göre her iki yöntem de pratik olarak tercih edilebilir.
+
+## 178. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000551:4:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000551 — Sparse matrix, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+To extract the row 1 (the second row) of this matrix we set row_start=1 and row_end=2. Then we make the slices V[1:2] = [8] and COL_INDEX[1:2] = [1]. We now know that in row 1 we have one element at column 1 with value 8.
+In this case the CSR representation contains 13 entries, compared to 16 in the original matrix. The CSR format saves on memory only when NNZ < (m (n − 1) − 1) / 2.
+Another example, the matrix $$\begin{pmatrix} 10 & 20 & 0 & 0 & 0 & 0 \\ 0 & 30 & 0 & 40 & 0 & 0 \\ 0 & 0 & 50 & 60 & 70 & 0 \\ 0 & 0 & 0 & 0 & 0 & 80 \\ \end{pmatrix}$$ is a 4 × 6 matrix (24 entries) with 8 nonzero elements, so
+V = [ 10 20 30 40 50 60 70 80 ]
+COL_INDEX = [ 0 1 1 3 2 3 4 5 ]
+ROW_INDEX = [ 0 2 4 7 8 ]
+The whole matrix is stored as 21 entries: 8 in V, 8 in COL_INDEX, and 5 in ROW_INDEX.
+- ROW_INDEX splits the array V into rows: (10, 20) (30, 40) (50, 60, 70) (80), indicating the index of V (and COL_INDEX) where each row starts and ends;
+- COL_INDEX aligns values in columns: (10, 20, ...) (0, 30, 0, 40, ...)(0, 0, 50, 60, 70, 0) (0, 0, 0, 0, 0, 80).
+Note that in this format, the first value of ROW_INDEX is always zero and the last is always NNZ, so they are in some sense redundant (although in programming languages where the array length needs to be explicitly stored, NNZ would not be redundant). Nonetheless, this does avoid the need to handle an exceptional case when computing the length of each row, as it guarantees the formula ROW_INDEX[i + 1] − ROW_INDEX[i] works for any row i. Moreover, the memory cost of this redundant storage is likely insignificant for a sufficiently large matrix.
+The (old and new) Yale sparse matrix formats are instances of the CSR scheme. The old Yale format works exactly as described above, with three arrays; the new format combines ROW_INDEX and COL_INDEX into a single array and handles the diagonal of the matrix separately.[9]
+For logical adjacency matrices, the data array can be omitted, as the existence of an entry in the row array is sufficient to model a binary adjacency relation.
+```
+
+</details>
+
+**Talimat:**
+
+Seyrek matrisler ve CSR (sıkıştırılmış satır depolama) formatı hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Metinde anlatılan CSR (sıkıştırılmış satır depolama) formatı için ROW_INDEX dizisinin özellikleri hakkında aşağıdakilerden hangisi doğrudur?
+A) İlk değeri her zaman sıfırdır ve son değeri her zaman sıfır dışındaki eleman sayısıdır (NNZ).
+B) Sadece matrisin köşegen üzerindeki elemanlarının indislerini saklar.
+C) Boyutu matrisin sütun sayısı ile her zaman aynıdır.
+D) Matrisin tüm sıfır elemanlarının değerlerini doğrudan içinde tutar.
+Doğru şık: A
+Açıklama: Metne göre CSR formatında ROW_INDEX dizisinin ilk değeri her zaman sıfır, son değeri ise sıfır olmayan eleman sayısı olan NNZ'dir. B seçeneği yeni Yale formatının köşegeni ayrı tutmasıyla karıştırılmıştır, C ve D seçenekleri ise ROW_INDEX dizisinin tanımıyla uyuşmamaktadır.
+
+## 179. yanlis_cevap_aciklama — bağlamsız (DOC_000554:1:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000554 — Spreadsort, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Performance
+The worst-case performance of spreadsort is O(n log n) for small data sets, as it uses introsort as a fallback. In the case of distributions where the size of the key in bits k times 2 is roughly the square of the log of the list size n or smaller (2k < (log n)^2), it does better in the worst case, achieving O(n √) worst-case time for the originally published version, and O(n·((k/s) + s)) for the cache aware version. For many real sorting problems with over 1000 items, including string sorting, this asymptotic worst-case is better than O(n log n).
+Experiments were done comparing an optimized version of spreadsort to the highly optimized C++ std::sort, implemented with introsort. On lists of integers and floats spreadsort shows a roughly 2–7× runtime improvement for random data on various operating systems.
+In space performance, spreadsort is worse than most in-place algorithms: in its simplest form, it is not an in-place algorithm, using O(n) extra space; in experiments, about 20% more than quicksort using a c of 4–8. With a cache-aware form (as included in Boost.Sort), less memory is used and there is an upper bound on memory usage of the maximum bin count times the maximum number of recursions, which ends up being a few kilobytes times the size of the key in bytes. Although it uses asymptotically more space than the O(log n) overhead of quicksort or the O(1) overhead of heapsort, it uses considerably less space than the basic form of mergesort, which uses auxiliary space equal to the space occupied by the list.
+```
+
+</details>
+
+**Talimat:**
+
+Spreadsort algoritmasının en kötü durum bellek karmaşıklığı quicksort ile aynı mıdır? Ben quicksort gibi O(log n) ek alan kullandığını düşünmüştüm ama neden yanlış?
+
+**Cevap:**
+
+Doğru cevap spreadsort için en basit halinde O(n) ek alan kullanılmasıdır. Öğrencinin quicksort'un O(log n) ek alan (bellek) yığını kullandığını düşünmesi doğrudur ancak spreadsort quicksort gibi in-place (yerinde) çalışan bir algoritma değildir; en basit formunda O(n) kadar ekstra bellek harcar. Eksiksiz ifade etmek gerekirse önbellek uyumlu (cache-aware) versiyonunda ise bellek kullanımı üst sınıra sahiptir ancak yine de quicksort'un O(log n) ek alanından veya heapsort'un O(1) ek alanından asimptotik olarak daha fazla bellek tüketir.
+
+## 180. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000559:7:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000559 — Strict Fibonacci heap, passage 7
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Operations
+Merge
+Let $h_1$ and $h_2$ be strict Fibonacci heaps. If either is empty, return the other. Otherwise, let $n_1$ and $n_2$ be their corresponding sizes. Without loss of generality, assume that $n_1 \le n_2$. Since the sizes of the fix-list and rank-list of each heap are logarithmic with respect to the heap size, it is not possible to merge these auxiliary structures in constant time. Instead, we throw away the structure of the smaller heap $h_1$ by discarding its fix-list and rank-list, and converting all of its nodes into passive nodes.[6] This can be done in constant time, using a shared flag, as shown above. Link $h_1$ and $h_2$, letting the root with the smaller key become the parent of the other. Let $Q_1$ and $Q_2$ be the queues of $h_1$ and $h_2$ respectively. The queue of resulting heap is set to$Q_{\mathrm{merged}} = Q_1 + \{r_\mathrm{larger}\} + Q_2$, where $r_\mathrm{larger}$ is the root with the larger key.
+The only possible structural violation is the root degree. This is solved by performing 1 active root reduction, and 1 root degree reduction, if each transformation is possible.
+```
+
+</details>
+
+**Talimat:**
+
+Strict Fibonacci heap veri yapısında birleştirme (merge) işlemi sırasında küçük yığına ne yapılır?
+
+**Cevap:**
+
+Soru: İki strict Fibonacci heap birleştirilirken daha küçük olan h1 yığınına hangi işlem uygulanır?
+A) fix-list ve rank-list yapıları atılır ve tüm düğümleri pasif düğümlere dönüştürülür
+B) Boyutları sabit zamanda büyütülerek büyük yığınla eşitlenir
+C) Kuyruğu tamamen silinerek ağaç yapısı sıfırdan oluşturulur
+D) Düğümleri aktif düğüm olarak tutulmaya devam eder
+Doğru şık: A
+Açıklama: Metne göre, sabit zamanda birleştirme yapabilmek için küçük yığının fix-list ve rank-list yapıları atılır ve düğümleri pasif düğümlere dönüştürülür. D seçeneği yanlıştır çünkü düğümler aktif değil pasif yapılır.
+
+## 181. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000562:1:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000562 — Strongly connected component, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Algorithms
+DFS-based linear-time algorithms
+Several algorithms based on depth-first search compute strongly connected components in linear time.
+- Kosaraju's algorithm uses two passes of depth-first search. The first, in the original graph, is used to choose the order in which the outer loop of the second depth-first search tests vertices for having been visited already and recursively explores them if not. The second depth-first search is on the transpose graph of the original graph, and each recursive exploration finds a single new strongly connected component.[2][3] It is named after S. Rao Kosaraju, who described it (but did not publish his results) in 1978; Micha Sharir later published it in 1981.[4]
+- Tarjan's strongly connected components algorithm, published by Robert Tarjan in 1972,[5] performs a single pass of depth-first search. It maintains a stack of vertices that have been explored by the search but not yet assigned to a component, and calculates "low numbers" of each vertex (an index number of the highest ancestor reachable in one step from a descendant of the vertex) which it uses to determine when a set of vertices should be popped off the stack into a new component.
+- The path-based strong component algorithm uses a depth-first search, like Tarjan's algorithm, but with two stacks. One of the stacks is used to keep track of the vertices not yet assigned to components, while the other keeps track of the current path in the depth-first search tree. The first linear time version of this algorithm was published by Edsger W. Dijkstra in 1976.[6]
+Although Kosaraju's algorithm is conceptually simple, Tarjan's and the path-based algorithm require only one depth-first search rather than two.
+```
+
+</details>
+
+**Talimat:**
+
+Kuvvetli bağlantılı bileşenleri doğrusal zamanda bulan algoritmalar hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Orijinal graf üzerinde bir geçiş ve devrik graf üzerinde ikinci bir geçiş olmak üzere iki derinlemesine arama (depth-first search) geçişi kullanan kuvvetli bağlantılı bileşen algoritması hangisidir?
+A) Tarjan algoritması
+B) Yol tabanlı kuvvetli bileşen algoritması
+C) Kosaraju algoritması
+D) Dijkstra'nın doğrusal zamanlı algoritması
+Doğru şık: C
+Açıklama: Kosaraju algoritması, biri orijinal diğer devrik graf üzerinde olmak üzere iki derinlemesine arama geçişi kullanır. Tarjan ve yol tabanlı algoritmalar ise tek bir derinlemesine arama geçişi gerektirir. Bu nedenle A ve B şıkları yanlıştır.
+
+## 182. karmasiklik_analizi — bağlamsız (DOC_000564:1:karmasiklik_analizi)
+
+Kaynak: DOC_000564 — Suffix array, passage 1
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Correspondence to suffix trees
+Suffix arrays are closely related to suffix trees:
+- Suffix arrays can be constructed by performing a depth-first traversal of a suffix tree. The suffix array corresponds to the leaf-labels given in the order in which these are visited during the traversal, if edges are visited in the lexicographical order of their first character.
+- A suffix tree can be constructed in linear time by using a combination of suffix array and LCP array. For a description of the algorithm, see the corresponding section in the LCP array article.
+It has been shown that every suffix tree algorithm can be systematically replaced with an algorithm that uses a suffix array enhanced with additional information (such as the LCP array) and solves the same problem in the same time complexity.[1] Advantages of suffix arrays over suffix trees include improved space requirements, simpler linear time construction algorithms (e.g., compared to Ukkonen's algorithm) and improved cache locality.[3]
+Space efficiency
+Suffix arrays were introduced by Manber & Myers (1990) in order to improve over the space requirements of suffix trees: Suffix arrays store $n$ integers. Assuming an integer requires $4$ bytes, a suffix array requires $4n$ bytes in total. This is significantly less than the $20n$ bytes which are required by a careful suffix tree implementation.[4]
+However, in certain applications, the space requirements of suffix arrays may still be prohibitive. Analyzed in bits, a suffix array requires $\mathcal{O}(n \log n)$ space, whereas the original text over an alphabet of size $\sigma$ only requires $\mathcal{O}(n \log \sigma)$ bits. For a human genome with $\sigma = 4$ and $n = 3.4 \times 10^9$ the suffix array would therefore occupy about 16 times more memory than the genome itself.
+Such discrepancies motivated a trend towards compressed suffix arrays and BWT-based compressed full-text indices such as the FM-index. These data structures require only space within the size of the text or even less.
+```
+
+</details>
+
+**Talimat:**
+
+İnsan genomu gibi verilerde son ek dizisinin bellek karmaşıklığı metne kıyasla nasıldır?
+
+**Cevap:**
+
+Bit olarak analiz edildiğinde, son ek dizisi O(n log n) alan gerektirirken, sigma büyüklüğündeki bir alfabe üzerindeki orijinal metin O(n log sigma) bit yer kaplar. Örneğin, sigma = 4 ve n = 3.4 x 10^9 olan bir insan genomunda, son ek dizisi genomun kendisinden yaklaşık 16 kat daha fazla bellek kaplar. Bu durum sıkıştırılmış son ek dizilerine ve FM-index gibi BWT tabanlı sıkıştırılmış metin indekslerine olan yönelimi tetiklemiştir.
+
+## 183. karsilastirma — bağlamlı (DOC_000565:4:karsilastirma)
+
+Kaynak: DOC_000565 — Suffix tree, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The insertion cost is amortised, and that the costs for hashing are given for perfect hashing.
+The large amount of information in each edge and node makes the suffix tree very expensive, consuming about 10 to 20 times the memory size of the source text in good implementations. The suffix array reduces this requirement to a factor of 8 (for array including LCP values built within 32-bit address space and 8-bit characters.) This factor depends on the properties and may reach 2 with usage of 4-byte wide characters (needed to contain any symbol in some UNIX-like systems, see wchar_t) on 32-bit systems.[citation needed] Researchers have continued to find smaller indexing structures.
+Parallel construction
+Various parallel algorithms to speed up suffix tree construction have been proposed.[28][29][30][31][32] Recently, a practical parallel algorithm for suffix tree construction with $O(n)$ work (sequential time) and $O(\log^2 n)$ span has been developed. The algorithm achieves good parallel scalability on shared-memory multicore machines and can index the human genome – approximately 3GB – in under 3 minutes using a 40-core machine.[33]
+External construction
+Though linear, the memory usage of a suffix tree is significantly higher than the actual size of the sequence collection. For a large text, construction may require external memory approaches.
+There are theoretical results for constructing suffix trees in external memory. The algorithm by Farach-Colton, Ferragina & Muthukrishnan (2000) is theoretically optimal, with an I/O complexity equal to that of sorting. However the overall intricacy of this algorithm has prevented, so far, its practical implementation.[34]
+On the other hand, there have been practical works for constructing disk-based suffix trees which scale to (few) GB/hours. The state of the art methods are TDD,[35] TRELLIS,[36] DiGeST,[37] and B^2ST.[38]
+TDD and TRELLIS scale up to the entire human genome resulting in a disk-based suffix tree of a size in the tens of gigabytes.[35][36] However, these methods cannot handle efficiently collections of sequences exceeding 3 GB.[37] DiGeST performs significantly better and is able to handle collections of sequences in the order of 6 GB in about 6 hours.[37]
+All these methods can efficiently build suffix trees for the case when the tree does not fit in main memory, but the input does. The most recent method, B^2ST,[38] scales to handle inputs that do not fit in main memory. ERA is a recent parallel suffix tree construction method that is significantly faster. ERA can index the entire human genome in 19 minutes on an 8-core desktop computer with 16 GB RAM. On a simple Linux cluster with 16 nodes (4 GB RAM per node), ERA can index the entire human genome in less than 9 minutes.[39]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre suffix tree ve suffix array veri yapılarını bellek kullanımı ve ölçeklenebilirlik açısından karşılaştırır mısın?
+
+**Cevap:**
+
+İki veri yapısını iki açıdan karşılaştırabiliriz. Bellek kullanımı: Suffix tree, her düğüm ve kenar üzerinde çok fazla bilgi barındırdığı için çok pahalıdır ve iyi uygulamalarda kaynak metin boyutunun 10 ila 20 katı kadar bellek tüketir. Suffix array ise LCP değerlerini içeren dizi 32-bit adres uzayında ve 8-bit karakterlerle kurulduğunda bu gereksinimi 8 katlık bir faktöre düşürür, ayrıca 4 baytlık geniş karakterlerin kullanımıyla bu faktör 2'ye kadar inebilir. Ölçeklenebilirlik ve dış bellek (external memory): Suffix tree büyük metinler için harici bellek yaklaşımları gerektirir ve teorik olarak en optimal algoritma (Farach-Colton, Ferragina & Muthukrishnan) pratik karmaşıklığı nedeniyle henüz uygulanamamıştır; buna karşın TDD ve TRELLIS gibi pratik disk tabanlı suffix tree yöntemleri insan genomu gibi on gigabaytlık boyutlara ölçeklenebilirken 3 GB'ı aşan koleksiyonları veremez, DiGeST ise 6 GB'a kadar olan koleksiyonları yaklaşık 6 saatte işleyebilir.
+
+## 184. konu_ozeti_anlatim — bağlamlı (DOC_000569:0:konu_ozeti_anlatim)
+
+Kaynak: DOC_000569 — Tango tree, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+A tango tree is a type of binary search tree proposed by Erik D. Demaine, Dion Harmon, John Iacono, and Mihai Pătrașcu in 2004.[1] It is named after Buenos Aires, of which the tango is emblematic.
+It is an online binary search tree that achieves an $O(\log \log n)$ competitive ratio relative to the offline optimal binary search tree, while only using $O(\log \log n)$ additional bits of memory per node. This improved upon the previous best known competitive ratio, which was $O(\log n)$.
+Structure
+Tango trees work by partitioning a binary search tree into a set of preferred paths, which are themselves stored in auxiliary trees (so the tango tree is represented as a tree of trees).
+Reference tree
+To construct a tango tree, we simulate a complete binary search tree called the reference tree, which is simply a traditional binary search tree containing all the elements. This tree never shows up in the actual implementation, but is the conceptual basis behind the following pieces of a tango tree.
+In particular, the height of the reference tree is ⌈log_2(n+1)⌉. This equals the length of the longest path, and therefore the size of the largest auxiliary tree. By keeping the auxiliary trees reasonably balanced, the height of the auxiliary trees can be bounded to O(log log n). This is the source of the algorithm's performance guarantees.
+Preferred paths
+First, we define for each node its preferred child, which informally is the most-recently visited child by a traditional binary search tree lookup. More formally, consider a subtree T, rooted at p, with children l (left) and r (right). We set r as the preferred child of p if the most recently accessed node in T is in the subtree rooted at r, and l as the preferred child otherwise. Note that if the most recently accessed node of T is p itself, then l is the preferred child by definition.
+A preferred path is defined by starting at the root and following the preferred children until reaching a leaf node. Removing the nodes on this path partitions the remainder of the tree into a number of subtrees, and we recurse on each subtree (forming a preferred path from its root, which partitions the subtree into more subtrees).
+Auxiliary trees
+To represent a preferred path, we store its nodes in a balanced binary search tree, specifically a red–black tree. For each non-leaf node n in a preferred path P, it has a non-preferred child c, which is the root of a new auxiliary tree. We attach this other auxiliary tree's root (c) to n in P, thus linking the auxiliary trees together. We also augment the auxiliary tree by storing at each node the minimum and maximum depth (depth in the reference tree, that is) of nodes in the subtree under that node.
+```
+
+</details>
+
+**Talimat:**
+
+Tango ağaçlarının yapısını ve temel bileşenlerini bu bölüme dayanarak özetler misin?
+
+**Cevap:**
+
+Tango ağacı, Erik D. Demaine, Dion Harmon, John Iacono ve Mihai Pătrașcu tarafından önerilen çevrimiçi bir ikili arama ağacıdır. Temel olarak bir ikili arama ağacının tercih edilen yollara (preferred paths) bölünmesi ve bunların auxiliary trees adı verilen dengeli ikili arama ağaçlarında saklanmasıyla bir ağaçlar ağacı olarak temsil edilir. Konseptin temelinde referans ağacı adı verilen geleneksel tam ikili arama ağacı bulunur. Her düğüm için son ziyaret edilen çocuk tercih edilen çocuk (preferred child) olarak belirlenir ve kökten yaprağa bu çocuklar izlenerek preferred path oluşturulur. Bu yollardaki düğüm olmayan çocuklar yeni auxiliary ağaçların kökü yapılarak birbirine bağlanır ve bu sayede O(log log n) rekabetçi oran elde edilir.
+
+## 185. bilgi_yetersizligi / metinde_yok — bağlamlı (DOC_000576:3:bilgi_yetersizligi)
+
+Kaynak: DOC_000576 — Time complexity, passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Polylogarithmic time
+An algorithm is said to run in polylogarithmic time if its time $T(n)$ is $O\bigl((\log n)^k\bigr)$ for some constant $k$. Another way to write this is $O(\log^kn)$.
+For example, matrix chain ordering can be solved in polylogarithmic time on a parallel random-access machine,[7] and a graph can be determined to be planar in a fully dynamic way in $O(\log^3n)$ time per insert/delete operation.[8]
+Sub-linear time
+An algorithm is said to run in sub-linear time (often spelled sublinear time) if $T(n)=o(n)$. In particular this includes algorithms with the time complexities defined above.
+The specific term sublinear time algorithm commonly refers to randomized algorithms that sample a small fraction of their inputs and process them efficiently to approximately infer properties of the entire instance.[9] This type of sublinear time algorithm is closely related to property testing and statistics.
+Other settings where algorithms can run in sublinear time include:
+- Parallel algorithms that have linear or greater total work (allowing them to read the entire input), but sub-linear depth.
+- Algorithms that have guaranteed assumptions on the input structure. An important example are operations on data structures, e.g. binary search in a sorted array.
+- Algorithms that search for local structure in the input, for example finding a local minimum in a 1-D array (can be solved in $O(\log(n))$ time using a variant of binary search). A closely related notion is that of Local Computation Algorithms (LCA) where the algorithm receives a large input and queries to local information about some valid large output.[10]
+Linear time
+An algorithm is said to take linear time, or $O(n)$ time, if its time complexity is $O(n)$. Informally, this means that the running time increases at most linearly with the size of the input. More precisely, this means that there is a constant $c$ such that the running time is at most $cn$ for every input of size $n$. For example, a procedure that adds up all elements of a list requires time proportional to the length of the list, if the adding time is constant, or, at least, bounded by a constant.
+Linear time is the best possible time complexity in situations where the algorithm has to sequentially read its entire input. Therefore, much research has been invested into discovering algorithms exhibiting linear time or, at least, nearly linear time. This research includes both software and hardware methods. There are several hardware technologies which exploit parallelism to provide this. An example is content-addressable memory. This concept of linear time is used in string matching algorithms such as the Boyer–Moore string-search algorithm and Ukkonen's algorithm.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre Boyer–Moore algoritması ile Ukkonen algoritmasından hangisi string eşleştirmede ortalama durumda daha az bellek harcar?
+
+**Cevap:**
+
+Bu metin, Boyer–Moore algoritması ile Ukkonen algoritmasının bellek tüketimlerini karşılaştıran bir bilgi içermiyor. Metin yalnızca her iki algoritmanın da doğrusal zaman kavramını kullanan string eşleştirme algoritmaları olduğunu belirtiyor. Bellek kullanımı hakkında tahminde bulunamam, bunun için ilgili algoritmaların detaylı bellek analizlerine bakmalısın.
+
+## 186. karmasiklik_analizi — bağlamsız (DOC_000584:17:karmasiklik_analizi)
+
+Kaynak: DOC_000584 — Travelling salesman problem, passage 17
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Complexity of approximation
+In the general case, finding a shortest travelling salesman tour is NPO-complete.[52] If the distance measure is a metric (and thus symmetric), the problem becomes APX-complete,[53] and the algorithm of Christofides and Serdyukov approximates it within 1.5.[54][55][10]
+If the distances are restricted to 1 and 2 (but still are a metric), then the approximation ratio becomes 8/7.[56] In the asymmetric case with triangle inequality, in 2018, a constant factor approximation was developed by Svensson, Tarnawski, and Végh.[57] An algorithm by Vera Traub and Jens Vygen achieves a performance ratio of $22+\varepsilon$.[58] This factor was further improved to $17+\varepsilon$.[59] The best known inapproximability bound is 75/74.[60]
+The corresponding maximization problem of finding the longest travelling salesman tour is approximable within 63/38.[61] If the distance function is symmetric, then the longest tour can be approximated within 4/3 by a deterministic algorithm[62] and within $(33+\varepsilon)/25$ by a randomized algorithm.[63]
+Human and animal performance
+The TSP, in particular the Euclidean variant of the problem, has attracted the attention of researchers in cognitive psychology. It has been observed that humans are able to produce near-optimal solutions quickly, in a close-to-linear fashion, with performance that ranges from 1% less efficient, for graphs with 10–20 nodes, to 11% less efficient for graphs with 120 nodes.[64][65] The apparent ease with which humans accurately generate near-optimal solutions to the problem has led researchers to hypothesize that humans use one or more heuristics, with the two most popular theories arguably being the convex-hull hypothesis and the crossing-avoidance heuristic.[66][67][68] However, additional evidence suggests that human performance is quite varied, and individual differences as well as graph geometry appear to affect performance in the task.[69][70][71] Nevertheless, results suggest that computer performance on the TSP may be improved by understanding and emulating the methods used by humans for these problems,[72] and have also led to new insights into the mechanisms of human thought.[73] The first issue of the Journal of Problem Solving was devoted to the topic of human performance on TSP,[74] and a 2011 review listed dozens of papers on the subject.[73]
+```
+
+</details>
+
+**Talimat:**
+
+Gezgin satıcı probleminin en uzun turu bulma maksimizasyon versiyonunda simetrik mesafe fonksiyonu kullanılırsa deterministik ve randomize algoritmaların yaklaşıklık oranları nelerdir?
+
+**Cevap:**
+
+Mesafe fonksiyonunun simetrik olduğu durumda, en uzun turu bulma maksimizasyon problemi deterministik bir algoritma ile 4/3 oranında yaklaşıklık sağlar. Randomize bir algoritma kullanıldığında ise bu oran (33+varepsilon)/25 olmaktadır.
+
+## 187. coktan_secmeli_soru_uretimi — bağlamsız (DOC_000586:3:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000586 — Tree (abstract data type), passage 3
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Representations
+There are many different ways to represent trees. In working memory, nodes are typically dynamically allocated records with pointers to their children, their parents, or both, as well as any associated data. If of a fixed size, the nodes might be stored in a list. Nodes and relationships between nodes might be stored in a separate special type of adjacency list. In relational databases, nodes are typically represented as table rows, with indexed row IDs facilitating pointers between parents and children.
+Nodes can also be stored as items in an array, with relationships between them determined by their positions in the array (as in a binary heap).
+A binary tree can be implemented as a list of lists: the head of a list (the value of the first term) is the left child (subtree), while the tail (the list of second and subsequent terms) is the right child (subtree). This can be modified to allow values as well, as in Lisp S-expressions, where the head (value of first term) is the value of the node, the head of the tail (value of second term) is the left child, and the tail of the tail (list of third and subsequent terms) is the right child.
+Ordered trees can be naturally encoded by finite sequences, for example with natural numbers.[5]
+Examples of trees and non-trees
+Type theory
+As an abstract data type, the abstract tree type T with values of some type E is defined, using the abstract forest type F (list of trees), by the functions:
+- value: T → E
+- children: T → F
+- nil: () → F
+- node: E × F → T
+with the axioms:
+- value(node(e, f)) = e
+- children(node(e, f)) = f
+In terms of type theory, a tree is an inductive type defined by the constructors nil (empty forest) and node (tree with root node with given value and children).
+```
+
+</details>
+
+**Talimat:**
+
+Tip teorisinde ağaç veri yapısı ve türleri hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Tip teorisinde soyut bir veri tipi olarak ağaç (T) ve soyut orman (F) tipleri göz önüne alındığında, ağaç yapıları için aşağıdakilerden hangisi doğrudur?
+A) Ağaç, boş orman (nil) ve düğüm (node) kurucuları ile tanımlanan tümevarımsal (inductive) bir tiptir.
+B) Ağaçlar yalnızca ikili ağaçlar (binary tree) olarak listelerin listesi şeklinde tanımlanabilir.
+C) children fonksiyonu ağacın değerini (value) döndürür.
+D) nil fonksiyonu bir ağacı temsil eder ve düğüm değerlerini saklar.
+Doğru şık: A
+Açıklama: Tip teorisi bağlamında ağaç, nil (boş orman) ve node (verilen değere ve çocuklara sahip kök düğüm) kurucuları ile tanımlanan tümevarımsal bir tiptir. C seçeneği yanlıştır çünkü children fonksiyonu ormanı (çocukları) döndürür, değeri value fonksiyonu döndürür. D seçeneği yanlıştır çünkü nil boş ormanı temsil eder.
+
+## 188. coktan_secmeli_soru_uretimi — bağlamlı (DOC_000595:4:coktan_secmeli_soru_uretimi)
+
+Kaynak: DOC_000595 — Universal hashing, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The family of simpler hash functions
+- $h_a(x) = (ax~\bmod~p)~\bmod~m$
+is only approximately universal: $\Pr\{h_a(x) = h_a(y)\} \le 2/m$ for all $x\neq y$.[1] Moreover, this analysis is nearly tight; Carter and Wegman [1] show that $\Pr\{h_a(1) = h_a(m+1)\} \ge 2/(m+1)$ whenever $(p-1)~\bmod~ m = 1$.
+Avoiding modular arithmetic
+The state of the art for hashing integers is the multiply-shift scheme described by Dietzfelbinger et al. in 1997.[8] By avoiding modular arithmetic, this method is much easier to implement and also runs significantly faster in practice (usually by at least a factor of four[9]). The scheme assumes the number of bins is a power of two, $m=2^M$. Let $w$ be the number of bits in a machine word. Then the hash functions are parametrised over odd positive integers $a < 2^w$ (that fit in a word of $w$ bits). To evaluate $h_{a}(x)$, multiply $x$ by $a$ modulo $2^w$ and then keep the high order $M$ bits as the hash code. In mathematical notation, this is
+- $h_a(x) = (a\cdot x\,\, \bmod\, 2^w)\,\, \mathrm{div}\,\, 2^{w-M} .$
+This scheme does not satisfy the uniform difference property and is only $2/m$-almost-universal; for any $x\neq y$, $\Pr\{h_a(x) = h_a(y)\} \le 2/m$.
+```
+
+</details>
+
+**Talimat:**
+
+Ders içeriğindeki multiply-shift hash şeması ve evrensellik özellikleri hakkında bir çoktan seçmeli soru hazırlar mısın?
+
+**Cevap:**
+
+Soru: Modüler aritmetikten kaçınan multiply-shift hash şeması için aşağıdaki ifadelerden hangisi doğrudur?
+A) Uniform difference özelliğini tam olarak sağlar ve evrensel (universal) bir yapıdadır.
+B) Bin sayısı ikinin katı olmasa bile doğrudan uygulanabilir.
+C) Uniform difference özelliğini sağlamaz ve 2/m-almost-universal (neredeyse evrensel) bir yapıdadır.
+D) Çarpma işlemi bittikten sonra düşük sıralı M bitler hash kodu olarak seçilir.
+Doğru şık: C
+Açıklama: Metne göre bu şema uniform difference özelliğini sağlamaz ve 2/m-almost-universal olarak tanımlanır. A şıkkı yanlıştır çünkü uniform difference özelliğini sağlamaz. B şıkkı yanlıştır çünkü şema bin sayısının ikinin kuvveti olmasını (m=2^M) varsayar. D şıkkı yanlıştır çünkü düşük sıralı değil, yüksek sıralı M bitler hash kodu olarak tutulur.
+
+## 189. karsilastirma — bağlamsız (DOC_000595:4:karsilastirma)
+
+Kaynak: DOC_000595 — Universal hashing, passage 4
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+The family of simpler hash functions
+- $h_a(x) = (ax~\bmod~p)~\bmod~m$
+is only approximately universal: $\Pr\{h_a(x) = h_a(y)\} \le 2/m$ for all $x\neq y$.[1] Moreover, this analysis is nearly tight; Carter and Wegman [1] show that $\Pr\{h_a(1) = h_a(m+1)\} \ge 2/(m+1)$ whenever $(p-1)~\bmod~ m = 1$.
+Avoiding modular arithmetic
+The state of the art for hashing integers is the multiply-shift scheme described by Dietzfelbinger et al. in 1997.[8] By avoiding modular arithmetic, this method is much easier to implement and also runs significantly faster in practice (usually by at least a factor of four[9]). The scheme assumes the number of bins is a power of two, $m=2^M$. Let $w$ be the number of bits in a machine word. Then the hash functions are parametrised over odd positive integers $a < 2^w$ (that fit in a word of $w$ bits). To evaluate $h_{a}(x)$, multiply $x$ by $a$ modulo $2^w$ and then keep the high order $M$ bits as the hash code. In mathematical notation, this is
+- $h_a(x) = (a\cdot x\,\, \bmod\, 2^w)\,\, \mathrm{div}\,\, 2^{w-M} .$
+This scheme does not satisfy the uniform difference property and is only $2/m$-almost-universal; for any $x\neq y$, $\Pr\{h_a(x) = h_a(y)\} \le 2/m$.
+```
+
+</details>
+
+**Talimat:**
+
+Basit hash fonksiyonu ailesi ile multiply-shift hash şemasını performans ve uygulama açısından karşılaştırır mısın?
+
+**Cevap:**
+
+İki yöntemi uygulama kolaylığı ve hız açısından karşılaştırabiliriz. Basit hash fonksiyonu ailesi h_a(x) = (ax mod p) mod m biçimindedir ve modüler aritmetik gerektirir; bu yöntem yalnızca yaklaşık olarak evrenseldir. Buna karşın multiply-shift şeması modüler aritmetikten kaçınır, bu sayede uygulaması çok daha kolaydır ve pratikte genellikle en az dört kat daha hızlı çalışır. Hız ve uygulama kolaylığı ön plandaysa multiply-shift şeması tercih edilir.
+
+## 190. karsilastirma — bağlamlı (DOC_000595:8:karsilastirma)
+
+Kaynak: DOC_000595 — Universal hashing, passage 8
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+Consider two strings $\bar{x}, \bar{y}$ and let $\ell$ be length of the longer one; for the analysis, the shorter string is conceptually padded with zeros up to length $\ell$. A collision before applying $h_\mathrm{int}$ implies that $a$ is a root of the polynomial with coefficients $\bar{x} - \bar{y}$. This polynomial has at most $\ell$ roots modulo $p$, so the collision probability is at most $\ell/p$. The probability of collision through the random $h_\mathrm{int}$ brings the total collision probability to $\frac{1}{m} + \frac{\ell}{p}$. Thus, if the prime $p$ is sufficiently large compared to the length of strings hashed, the family is very close to universal (in statistical distance).
+Other universal families of hash functions used to hash unknown-length strings to fixed-length hash values include the Rabin fingerprint and the Buzhash.
+Avoiding modular arithmetic
+To mitigate the computational penalty of modular arithmetic, three tricks are used in practice:[11]
+- One chooses the prime $p$ to be close to a power of two, such as a Mersenne prime. This allows arithmetic modulo $p$ to be implemented without division (using faster operations like addition and shifts). For instance, on modern architectures one can work with $p = 2^{61}-1$, while $x_i$'s are 32-bit values.
+- One can apply vector hashing to blocks. For instance, one applies vector hashing to each 16-word block of the string, and applies string hashing to the $\lceil k/16 \rceil$ results. Since the slower string hashing is applied on a substantially smaller vector, this will essentially be as fast as vector hashing.
+- One chooses a power-of-two as the divisor, allowing arithmetic modulo $2^w$ to be implemented without division (using faster operations of bit masking). The NH hash-function family takes this approach.
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre, modüler aritmetik maliyetini düşürmek için kullanılan Mersenne asal sayısı seçimi ile ikinin kuvveti bölücü seçimi arasındaki farklar nelerdir?
+
+**Cevap:**
+
+İki yöntemi aritmetik yaklaşım ve uygulanan işlemler açısından karşılaştırabiliriz. İşlem türü: Mersenne asal sayısı seçimi, p sayısını ikinin bir kuvvetine yakın seçerek bölme işlemi yapmadan toplama ve kaydırma gibi hızlı işlemlerin kullanılmasını sağlar. Bölücü seçimi: İkinin bir kuvvetinin bölücü olarak seçilmesi ise modulo 2^w aritmetiğinin bölme olmaksızın, bit maskeleme hızlı işlemleriyle uygulanmasına imkan tanır. Tercih durumu: Mersenne asalları gibi sayılara yakın seçimlerde genel asal tabanlı hashlemeler hızlandırılırken, NH hash-family gibi bazı aileler doğrudan ikinci yaklaşım olan ikinin kuvvetini bölücü olarak almayı tercih eder.
+
+## 191. kavram_aciklama — bağlamlı (DOC_000598:6:kavram_aciklama)
+
+Kaynak: DOC_000598 — WAVL tree, passage 6
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+AVL trees
+An AVL tree is a kind of balanced binary search tree in which the two children of each internal node must have heights that differ by at most one.[7] The height of an external node is zero, and the height of any internal node is always one plus the maximum of the heights of its two children. Thus, the height function of an AVL tree obeys the constraints of a WAVL tree, and we may convert any AVL tree into a WAVL tree by using the height of each node as its rank.[1][2]
+The key difference between an AVL tree and a WAVL tree arises when a node has two children with the same rank or height. In an AVL tree, if a node x has two children of the same height h as each other, then the height of x must be exactly h + 1. In contrast, in a WAVL tree, if a node x has two children of the same rank r as each other, then the rank of x can be either r + 1 or r + 2. This is because rank is not strictly equal to height in WAVL tree. This greater flexibility in ranks also leads to a greater flexibility in structures: some WAVL trees cannot be made into AVL trees even by modifying their ranks, because they include nodes whose children's heights differ by more than one.[2] However, we can say that all AVL trees are WAVL trees. AVL trees are WAVL trees without the type of node that has both children of rank difference 2.[1]
+If a WAVL tree is created only using insertion operations, then its structure will be the same as the structure of an AVL tree created by the same insertion sequence, and its ranks will be the same as the ranks of the corresponding AVL tree. It is only through deletion operations that a WAVL tree can become different from an AVL tree. In particular this implies that a WAVL tree created only through insertions has height at most $\log_{\varphi} n\approx 1.44\log_2 n$.[2]
+Red–black trees
+A red–black tree is a balanced binary search tree in which each node has a color (red or black), satisfying the following properties:
+- External nodes are black.
+- If an internal node is red, its two children are both black.
+- All paths from the root to an external node have equal numbers of black nodes.
+Red–black trees can equivalently be defined in terms of a system of ranks, stored at the nodes, satisfying the following requirements (different than the requirements for ranks in WAVL trees):
+- The rank of an external node is always 0 and its parent's rank is always 1.
+- The rank of any non-root node equals either its parent's rank or its parent's rank minus 1.
+- No two consecutive edges on any root-leaf path have rank difference 0.
+The equivalence between the color-based and rank-based definitions can be seen, in one direction, by coloring a node black if its parent has greater rank and red if its parent has equal rank. In the other direction, colors can be converted to ranks by making the rank of a black node equal to the number of black nodes on any path to an external node, and by making the rank of a red node equal to its parent.[8]
+```
+
+</details>
+
+**Talimat:**
+
+Yukarıdaki metne göre WAVL ağacı nedir ve AVL ağaçlarından temel farkı nedir?
+
+**Cevap:**
+
+WAVL ağacı, her iç düğümünün çocuklarının rank (derece) farklarının en fazla bir olabildiği, düğümlerin rank değerlerini kullanan dengeli bir ikili arama ağacıdır. WAVL ağacı ile AVL ağacı arasındaki temel fark, bir düğümün aynı rank veya yükseklikte iki çocuğa sahip olduğu durumda ortaya çıkar. AVL ağacında aynı yükseklikte iki çocuğa sahip bir düğümün yüksekliği kesinlikle h + 1 olmalıyken, WAVL ağacında aynı rankta iki çocuğa sahip bir düğümün rankı r + 1 veya r + 2 olabilir; çünkü rank her zaman yüksekliğe tam olarak eşit değildir. Bu esneklik, bazı WAVL ağaçlarının AVL ağacına dönüştürülememesine neden olur ancak tüm AVL ağaçları aslında WAVL ağacıdır.
+
+## 192. yanlis_cevap_aciklama — bağlamsız (DOC_000604:0:yanlis_cevap_aciklama)
+
+Kaynak: DOC_000604 — X-fast trie, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, an x-fast trie is a data structure for storing integers from a bounded domain. It supports exact and predecessor or successor queries in time O(log log M), using O(n log M) space, where n is the number of stored values and M is the maximum value in the domain. The structure was proposed by Dan Willard in 1982,[1] along with the more complicated y-fast trie, as a way to improve the space usage of van Emde Boas trees, while retaining the O(log log M) query time.
+Structure
+An x-fast trie is a bitwise trie: a binary tree where each subtree stores values whose binary representations start with a common prefix. Each internal node is labeled with the common prefix of the values in its subtree and typically, the left child adds a 0 to the end of the prefix, while the right child adds a 1. The binary representation of an integer between 0 and M − 1 uses ⌈log_2 M⌉ bits, so the height of the trie is O(log M).
+All values in the x-fast trie are stored at the leaves. Internal nodes are stored only if they have leaves in their subtree. If an internal node would have no left child, it stores a pointer to the smallest leaf in its right subtree instead, called a descendant pointer. Likewise, if it would have no right child, it stores a pointer to the largest leaf in its left subtree. Each leaf stores a pointer to its predecessor and successor, thereby forming a doubly linked list. Finally, there is a hash table for each level that contains all the nodes on that level. Together, these hash tables form the level-search structure (LSS). To guarantee the worst-case query times, these hash tables should use dynamic perfect hashing or cuckoo hashing.
+The total space usage is O(n log M), since each element has a root-to-leaf path of length O(log M). [citation needed]
+Operations
+Like van Emde Boas trees, x-fast tries support the operations of an ordered associative array. This includes the usual associative array operations, along with two more order operations, Successor and Predecessor:
+- Find(k): find the value associated with the given key
+- Successor(k): find the key/value pair with the smallest key larger than or equal to the given key
+- Predecessor(k): find the key/value pair with the largest key less than or equal to the given key
+- Insert(k, v): insert the given key/value pair
+- Delete(k): remove the key/value pair with the given key
+Find
+Finding the value associated with a key k that is in the data structure can be done in constant time by looking up k in LSS[0], which is a hash table on all the leaves.[2]
+Successor and predecessor
+```
+
+</details>
+
+**Talimat:**
+
+Soru: X-fast trie veri yapısında bir anahtarın (k) değerini bulmak (Find) için LSS[0] üzerinde arama yapıldığında zaman karmaşıklığı ne olur? Ben O(log log M) demiştim ama yanlış kabul edildi, neden?
+
+**Cevap:**
+
+Doğru cevap sabit zamandır yani O(1)'dir. O(log log M) ifadesi tam, ardıl (successor) veya öncül (predecessor) sorgularının zaman karmaşıklığıdır. Metne göre, X-fast trie yapısında anahtarla ilişkili değeri bulmak için doğrudan tüm yapraklardaki düğümleri içeren LSS[0] hash tablosuna bakılır ve bu arama işlemi sabit sürede gerçekleştirilir.
+
+## 193. karsilastirma — bağlamlı (DOC_000607:0:karsilastirma)
+
+Kaynak: DOC_000607 — Y-fast trie, passage 0
+
+<details><summary>Kaynak metin (passage)</summary>
+
+```text
+In computer science, a y-fast trie is a data structure for storing integers from a bounded domain. It supports exact and predecessor or successor queries in time O(log log M), using O(n) space, where n is the number of stored values and M is the maximum value in the domain. The structure was proposed by Dan Willard in 1983[1] to decrease the O(n log M) space used by an x-fast trie.
+Structure
+A y-fast trie consists of two data structures: the top half is an x-fast trie and the lower half consists of a number of balanced binary trees. The keys are divided into groups of O(log M) consecutive elements and for each group a balanced binary search tree is created. To facilitate efficient insertion and deletion, each group contains at least (log M)/4 and at most 2 log M elements.[2] For each balanced binary search tree a representative r is chosen. These representatives are stored in the x-fast trie. A representative r need not be an element of the tree associated with it, but it does need be an integer smaller than the successor of r and the minimum element of the tree associated with that successor and greater than the predecessor of r and the maximum element of the tree associated with that predecessor. Initially, the representative of a tree will be an integer between the minimum and maximum element in its tree.
+Since the x-fast trie stores O(n / log M) representatives and each representative occurs in O(log M) hash tables, this part of the y-fast trie uses O(n) space. The balanced binary search trees store n elements in total which uses O(n) space. Hence, in total a y-fast trie uses O(n) space.
+```
+
+</details>
+
+**Talimat:**
+
+Y-fast trie, x-fast trie ile karşılaştırıldığında bellek kullanımı açısından ne tür biravantaj sağlar?
+
+**Cevap:**
+
+Bellek kullanımı açısından y-fast trie, x-fast trie'ye kıyasla daha avantajlıdır. X-fast trie O(n log M) bellek kullanırken, y-fast trie anahtarları gruplara ayırıp temsilcileri x-fast trie'de saklayarak bellek tüketimini O(n) seviyesine düşürür. Bu sayede n değeri büyüdüğünde y-fast trie çok daha az yer kaplar.
+
+## 194. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:26:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: hava durumu)
+
+**Talimat:**
+
+Yarın Ankara'da hava nasıl olacak, şemsiye almam gerekir mi?
+
+**Cevap:**
+
+Meteoroloji veya hava durumu tahminleri hakkında bilgi sahibi değilim. Ben Veri Yapıları ve Algoritmalar dersine odaklanan bir yapay zekâ asistanıyım. Hava durumu için ilgili güncel uygulamaları kontrol edebilirsin.
+
+## 195. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:2:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: yemek tarifi)
+
+**Talimat:**
+
+Evde yoğurt mayalarken sütün sıcaklığı tam olarak kaç derece olmalı?
+
+**Cevap:**
+
+Yemek tarifleri ya da mutfak ipuçları konusunda bilgi sahibi değilim çünkü görevim sadece Veri Yapıları ve Algoritmalar dersine destek olmaktır. Bu soru dersin kapsamına girmiyor. Eğer sıralama algoritmalarının çalışma süreleri gibi bir konuyu merak ediyorsan memnuniyetle yardımcı olurum.
+
+## 196. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:41:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: NP-tamlık ispatları ve indirgemeler)
+
+**Talimat:**
+
+3-SAT problemini Vertex Cover problemine polinom zamanda nasıl indirgeyebiliriz?
+
+**Cevap:**
+
+NP-tamlık ispatları ve indirgeme detayları bu asistanın kapsamı dışındadır, çünkü bu konular teorik bilgisayar bilimi dersinin konusudur. Ben Veri Yapıları ve Algoritmalar dersindeki temel veri yapıları ve algoritma analizleri konusunda sana destek sağlayabilirim.
+
+## 197. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:80:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: hava durumu)
+
+**Talimat:**
+
+Yarın Ankara'da hava güneşli mi olacak?
+
+**Cevap:**
+
+Hava durumu hakkında bilgi veremem; ben yalnızca Veri Yapıları ve Algoritmalar dersi konularında yardımcı olmak için tasarlandım. Hava koşullarını öğrenmek için ilgili meteoroloji servislerini inceleyebilirsin. Ders kapsamında sormak istediğin bir veri yapısı veya algoritma sorusu varsa memnuniyetle yardımcı olurum.
+
+## 198. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:88:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: derin öğrenme modeli eğitimi)
+
+**Talimat:**
+
+PyTorch kullanarak sıfırdan bir evrişimli sinir ağı (CNN) nasıl eğitilir?
+
+**Cevap:**
+
+Derin öğrenme modelleri ve makine öğrenmesi eğitimi bu asistanın kapsamı dışındadır; ben Veri Yapıları ve Algoritmalar dersine destek olmak için buradayım. Yapay zeka ve model eğitimi konuları farklı derslerin konusudur. Dersimiz kapsamındaki algoritmalara dair bir sorun varsa yardımcı olabilirim.
+
+## 199. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:90:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: web sitesi tasarımı ve CSS)
+
+**Talimat:**
+
+HTML ve CSS kullanarak modern bir web sitesi arayüzü nasıl tasarlanabilir?
+
+**Cevap:**
+
+Web sitesi tasarımı ve CSS konularında yardımcı olamam; ben yalnızca Veri Yapıları ve Algoritmalar dersi için tasarlanmış bir yapay zekâ asistanıyım. Frontend geliştirme ve web tasarımı bu dersin kapsamı dışındadır. Dilersen veri yapıları ve algoritmalarla ilgili başka bir konuya bakabiliriz.
+
+## 200. bilgi_yetersizligi / alan_disi — bağlamsız (OOD:91:bilgi_yetersizligi)
+
+Kaynak: kaynak yok (alan dışı konu: güncel siyaset)
+
+**Talimat:**
+
+Önümüzdeki seçimlerde adayların oy oranları hakkında ne düşünüyorsun?
+
+**Cevap:**
+
+Güncel siyaset veya seçim tahminleri hakkında yorum yapamam. Ben Veri Yapıları ve Algoritmalar dersi kapsamında öğrencilere destek olmak amacıyla buradayım. Siyasi konular ders alanımın dışındadır. Ders konularıyla ilgili bir yardıma ihtiyacın olursa buradayım.

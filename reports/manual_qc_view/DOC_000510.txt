@@ -1,0 +1,32 @@
+document_id: DOC_000510
+title: Recurrence relation
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Recurrence_relation
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: karmasiklik_analizi
+split: train
+char_count: 17448
+token_count: 4501
+
+===== BAŞ (ilk 1500 karakter) =====
+In mathematics, a recurrence relation is an equation according to which the $n$th term of a sequence is equal to some combination of the previous terms. Often, only $k$ previous terms of the sequence appear in the equation, for a parameter $k$ that is independent of $n$; this number $k$ is called the order of the relation. If the values of the first $k$ numbers in the sequence have been given, the rest of the sequence can be calculated by repeatedly applying the equation.
+In linear recurrences, the nth term is equated to a linear function of the $k$ previous terms. A famous example is the recurrence for the Fibonacci numbers, $$F_n=F_{n-1}+F_{n-2}$$ where the order $k$ is two and the linear function merely adds the two previous terms.
+The sequences that satisfy a recurrence relation are exactly the same as the sequences that satisfy a difference equation. More precisely, a difference equation can be associated to every recurrence relation, and, conversely, a recurrence relation can be associated to every difference equation such that the two processes are inverse one to the other, and the sequences that satisfy one of the equations satisfies the other. Because of the similarity of difference equations with differential equations, the methods of resolution of differential equations may often be applied to difference equations and thus to recurrence relations.
+The above example is a linear recurrence with constant coefficients. For these recurrences, one can express the general
+
+===== ORTA (8724. karakterden 700 karakter) =====
+lations are about sequences (i.e. functions defined on one-dimensional grids). Multi-variable or n-dimensional recurrence relations are about $n$-dimensional grids. Functions defined on $n$-grids can also be studied with partial difference equations.
+Solving
+Solving linear recurrence relations with constant coefficients
+Solving first-order non-homogeneous recurrence relations with variable coefficients
+Moreover, for the general first-order non-homogeneous linear recurrence relation with variable coefficients:
+- $a_{n+1} = f_n a_n + g_n, \qquad f_n \neq 0,$
+there is also a nice method to solve it:
+- $a_{n+1} - f_n a_n = g_n$
+- $\frac{a_{n+1}}{\prod_{k=0}^n f_k} - \frac{f_n a_n}{\prod_{k=0}^n 
+
+===== SON (son 500 karakter) =====
+rence relations, especially linear recurrence relations, are used extensively in both theoretical and empirical economics. In particular, in macroeconomics one might develop a model of various broad sectors of the economy (the financial sector, the goods sector, the labor market, etc.) in which some agents' actions depend on lagged variables. The model would then be solved for current values of key variables (interest rate, real GDP, etc.) in terms of past and current values of other variables.
+

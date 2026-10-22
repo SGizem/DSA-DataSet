@@ -1,0 +1,68 @@
+document_id: DOC_000001
+title: Introduction
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: yigin_ve_kuyruk
+split: train
+char_count: 47716
+token_count: 11849
+
+===== BAŞ (ilk 1500 karakter) =====
+Hinc incipit algorismus. Haec algorismus ars praesens dicitur in qua
+talibus indorum fruimur bis quinque figuris 0. 9. 8. 7. 6. 5. 4. 3. 2. 1.
+— Friar Alexander de Villa Dei, Carmen de Algorismo (c. 1220)
+You are right to demand that an artist engage his work consciously,
+but you confuse two different things:
+solving the problem and correctly posing the question.
+— Anton Chekhov, in a letter to A. S. Suvorin (October 27, 1888)
+The more we reduce ourselves to machines in the lower things,
+the more force we shall set free to use in the higher.
+— Anna C. Brackett, The Technique of Rest (1892)
+And here I am at 2:30 a.m. writing about technique, in spite of a strong conviction
+that the moment a man begins to talk about technique that’s proof that he is fresh
+out of ideas.
+— Raymond Chandler, letter to Erle Stanley Gardner (May 5, 1939)
+Good men don’t need rules.
+Today is not the day to find out why I have so many,
+— The Doctor [Matt Smith], “A Good Man Goes to War”, Doctor Who (2011)
+0
+Introduction
+0.1
+What is an algorithm?
+An algorithm is an explicit, precise, unambiguous, mechanically-executable
+sequence of elementary instructions, usually intended to accomplish a specific
+purpose. For example, here is an algorithm for singing that annoying song “99
+Bottles of Beer on the Wall”, for arbitrary values of 99:
+BottlesOfBeer(n):
+For i ←n down to 1
+Sing “i bottles of beer on the wall, i bottles of beer,”
+Sing “Take one down, pass it around, i −1 bottles of beer on the wall.”
+Sing “No 
+
+===== ORTA (23858. karakterden 700 karakter) =====
+
+to 1911, rediscovered by French mathematician André Sainte-Laguë in 1910, and rediscovered
+again by German physicist Hans Schepers in 1980.
+16Steve Martin, “You Can Be A Millionaire”, Saturday Night Live, January 21, 1978. Also
+appears on Comedy Is Not Pretty, Warner Bros. Records, 1979.
+17Something something secure quantum blockchain deep-learning something.
+Martin’s algorithm, like some of our previous examples, is not the kind
+of algorithm that computer scientists are used to thinking about, because it
+is phrased in terms of operations that are difficult for computers to perform.
+This book focuses (almost!) exclusively on algorithms that can be reasonably
+implemented on a standard digita
+
+===== SON (son 500 karakter) =====
+same allocation Rep[1.. n] for
+both of those divisors.
+(c) Prove that if HHGuess returns the correct value R, it computes the same
+allocation Rep[1.. n] as our earlier algorithm ApportionCongress.
+(d) Prove that a “correct” divisor D does not necessarily exist! That is,
+describe inputs Pop[1.. n] and R, where n ≤R ≤P, such that for every
+real number D > 0, the number of representatives allocated by HHGuess
+is not equal to R. [Hint: What happens if we change < to ≤in the
+fourth line of HHGuess?]
+

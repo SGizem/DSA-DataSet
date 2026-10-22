@@ -1,0 +1,41 @@
+document_id: DOC_000027
+title: Graphs
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/graphs/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: graflar
+split: train
+char_count: 21556
+token_count: 4366
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- understand graphs as a mathematical structure.
+- be able to traverse graphs using well-known algorithms.
+- learn the scope of problems that can be addressed using graphs.
+Introduction
+Graphs are perhaps the most versatile data structure addressed in this book. As discussed in chapter 8, graphs at their simplest are just nodes and edges, with nodes representing things and the edges representing the relationships between those things. However, if we are creative enough, we can apply this concept to the following:
+- roads between cities
+- computer networks
+- business flow charts
+- finite state machines
+- social networks
+- family trees
+- circuit design
+If we can represent a given problem using a graph, then we have access to many well-known algorithms to help us solve that problem. This chapter will introduce us to graphs as well as some of these algorithms.
+Brief Introduction to Graphs
+A formal introduction to graphs may be found in most discrete math textbooks. The purpose of this section is not to provide such an introduction. Rather, we will focus more on the data structures used to represent graphs and the algorithms associated with them. Regardless, some basic vocabulary will prove useful.
+Nodes are the primary objects under consideration in graphs. They are associated with other nodes by means of edges. Each edge is incident to two nodes. We define adjacent nodes of a given node as alternate nodes of incident edges. Adjacent nodes are
+
+===== ORTA (10778. karakterden 700 karakter) =====
+Depth first will instead prioritize B’s neighbors before completing all of A’s neighbors. As a result, depth first reaches F before breadth first does.
+In addition to the order in which we visit neighbors, we must also pay close attention to cycles. Recall that cycles are paths that start and end at the same node. In the depth first example above, what happens when we finally visit C only to find its neighbor is A? If we fail to recognize this as a cycle, we will again traverse A B D F E C and continue to do so indefinitely. We must avoid visiting already visited nodes. We will need to incorporate this into the algorithm as well.
+Below is the pseudocode for a breadth first traversal. The fun
+
+===== SON (son 500 karakter) =====
+?
+- Consider an array of numbers. Devise a way of sorting these numbers using the graph algorithms from this chapter. The challenging part here is to determine how to model the array as a graph. Hint: What if the numbers are nodes, each node is connected to each other node, and the weight is the difference between the two nodes’ values?
+Levin, Ocsar. “Graph Theory.” In Discrete Mathematics: An Open Introduction, 3rd ed., chap. 4. 2019. http://discrete.openmathbooks.org/dmoi3/ch_graphtheory.html
+

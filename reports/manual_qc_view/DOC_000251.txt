@@ -1,0 +1,38 @@
+document_id: DOC_000251
+title: Binary expression tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Binary_expression_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: agaclar
+split: train
+char_count: 2026
+token_count: 431
+
+===== BAŞ (ilk 1500 karakter) =====
+A binary expression tree is a specific kind of a binary tree used to represent expressions. Two common types of expressions that a binary expression tree can represent are algebraic and boolean. These trees can represent expressions that contain both unary and binary operators.
+Like any binary tree, each node of a binary expression tree has zero, one, or two children. This restricted structure simplifies the processing of expression trees.
+Construction of an expression tree
+Example
+The input in postfix notation is: a b + c d e + * * Since the first two symbols are operands, one-node trees are created and pointers to them are pushed onto a stack. For convenience the stack will grow from left to right.
+The next symbol is a '+'. It pops the two pointers to the trees, a new tree is formed, and a pointer to it is pushed onto the stack.
+Next, c, d, and e are read. A one-node tree is created for each and a pointer to the corresponding tree is pushed onto the stack.
+Continuing, a '+' is read, and it merges the last two trees.
+Now, a '*' is read. The last two tree pointers are popped and a new tree is formed with a '*' as the root.
+Finally, the last symbol is read. The two trees are merged and a pointer to the final tree remains on the stack.
+Algebraic expressions
+Algebraic expression trees represent expressions that contain numbers, variables, and unary and binary operators. Some of the common operators are × (multiplication), ÷ (division), + (addition), − (subtraction), ^ (exponenti
+
+===== ORTA (1013. karakterden 700 karakter) =====
+ the last two trees.
+Now, a '*' is read. The last two tree pointers are popped and a new tree is formed with a '*' as the root.
+Finally, the last symbol is read. The two trees are merged and a pointer to the final tree remains on the stack.
+Algebraic expressions
+Algebraic expression trees represent expressions that contain numbers, variables, and unary and binary operators. Some of the common operators are × (multiplication), ÷ (division), + (addition), − (subtraction), ^ (exponentiation), and - (negation). The operators are contained in the internal nodes of the tree, with the numbers and variables in the leaf nodes. The nodes of binary operators have two child nodes, and the unary operator
+
+===== SON (son 500 karakter) =====
+The operators are contained in the internal nodes of the tree, with the numbers and variables in the leaf nodes. The nodes of binary operators have two child nodes, and the unary operators have one child node.
+Boolean expressions
+Boolean expressions are represented very similarly to algebraic expressions, the only difference being the specific values and operators used. Boolean expressions use true and false as constant values, and the operators include $\land$ (AND), $\lor$ (OR), $\neg$ (NOT).
+

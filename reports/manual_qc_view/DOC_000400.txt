@@ -1,0 +1,30 @@
+document_id: DOC_000400
+title: Karger's algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Karger's_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 9453
+token_count: 2645
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science and graph theory, Karger's algorithm is a randomized algorithm to compute a minimum cut of a connected graph. It was invented by David Karger and first published in 1993.
+The idea of the algorithm is based on the concept of contraction of an edge $(u, v)$ in an undirected graph $G = (V, E)$. Informally, the contraction of an edge merges the nodes $u$ and $v$ into one, reducing the total number of nodes of the graph by one. All other edges connecting either $u$ or $v$ are "reattached" to the merged node, effectively producing a multigraph. Karger's basic algorithm iteratively contracts randomly chosen edges until only two nodes remain; those nodes represent a cut in the original graph. By iterating this basic algorithm a sufficient number of times, a minimum cut can be found with high probability.
+The global minimum cut problem
+A cut $(S,T)$ in an undirected graph $G = (V, E)$ is a partition of the vertices $V$ into two non-empty, disjoint sets $S\cup T= V$. The cutset of a cut consists of the edges $\{\, uv \in E \colon u\in S, v\in T\,\}$ between the two parts. The size (or weight) of a cut in an unweighted graph is the cardinality of the cutset, i.e., the number of edges between the two parts,
+  - $w(S,T) = |\{\, uv \in E \colon u\in S, v\in T\,\}|\,.$
+There are $2^{|V|}$ ways of choosing for each vertex whether it belongs to $S$ or to $T$, but two of these choices make $S$ or $T$ empty and do not give rise to cuts. Among the remaining choices, swapping 
+
+===== ORTA (4726. karakterden 700 karakter) =====
+ces, the contraction algorithm returns a minimum cut with polynomially small probability $\binom{n}{2}^{-1}$. Recall that every graph has $2^{n-1} -1$ cuts (by the discussion in the previous section), among which at most $\tbinom{n}{2}$ can be minimum cuts. Therefore, the success probability for this algorithm is much better than the probability for picking a cut at random, which is at most $\frac{\tbinom{n}{2}}{2^{n-1} -1}$.
+For instance, the cycle graph on $n$ vertices has exactly $\binom{n}{2}$ minimum cuts, given by every choice of 2 edges. The contraction procedure finds each of these with equal probability.
+To further establish the lower bound on the success probability, let $C$ denote
+
+===== SON (son 500 karakter) =====
+error probability $O(1/n)$, the algorithm can be repeated $O(\log n/P(n))$ times, for an overall running time of $T(n) \cdot \frac{\log n}{P(n)} = O(n^2\log ^3 n)$. This is an order of magnitude improvement over Karger’s original algorithm.
+Improvement bound
+To determine a min-cut, one has to touch every edge in the graph at least once, which is $\Theta(n^2)$ time in a dense graph. The Karger–Stein's min-cut algorithm takes the running time of $O(n^2\ln ^{O(1)} n)$, which is very close to that.
+

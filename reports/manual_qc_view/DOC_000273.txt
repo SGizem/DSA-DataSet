@@ -1,0 +1,26 @@
+document_id: DOC_000273
+title: Bucket queue
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Bucket_queue
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: yigin_ve_kuyruk
+split: train
+char_count: 15135
+token_count: 3134
+
+===== BAŞ (ilk 1500 karakter) =====
+A bucket queue is a data structure that implements the priority queue abstract data type: it maintains a dynamic collection of elements with numerical priorities and allows quick access to the element with minimum (or maximum) priority. In the bucket queue, the priorities must be integers, and it is particularly suited to applications in which the priorities have a small range. A bucket queue has the form of an array of buckets: an array data structure, indexed by the priorities, whose cells contain collections of items with the same priority as each other. With this data structure, insertion of elements and changes of their priority take constant time. Searching for and removing the minimum-priority element takes time proportional to the number of buckets or, by maintaining a pointer to the most recently found bucket, in time proportional to the difference in priorities between successive operations.
+The bucket queue is the priority-queue analogue of pigeonhole sort (also called bucket sort), a sorting algorithm that places elements into buckets indexed by their priorities and then concatenates the buckets. Using a bucket queue as the priority queue in a selection sort gives a form of the pigeonhole sort algorithm. Bucket queues are also called bucket priority queues or bounded-height priority queues. When used for quantized approximations to real number priorities, they are also called untidy priority queues or pseudo priority queues. They are closely related to the calenda
+
+===== ORTA (7567. karakterden 700 karakter) =====
+t, \emptyset, \emptyset, \emptyset]$. Consider a sequence of operations in which we insert two elements $x$ and $y$ with the same priority 1, insert a third element $z$ with priority 3, change the priority of $x$ to 3, and then perform two extractions of the minimum-priority element.
+- After inserting $x$ with priority 1, $A = [\emptyset, \{x\}, \emptyset, \emptyset]$.
+- After inserting $y$ with priority 1, $A = [\emptyset, \{x,y\}, \emptyset, \emptyset]$.
+- After inserting z with priority 3, $A = [\emptyset, \{x,y\}, \emptyset, \{z\}]$.
+- Changing the priority of x from 1 to three involves removing it from $A[1]$ and adding it to $A[3]$, after which $A = [\emptyset, \{y\}, \emptyset, \{x,z\
+
+===== SON (son 500 karakter) =====
+ continuous version of Dijkstra's algorithm, and its running time is dominated by its priority queue of these points. It can be sped up to linear time by rounding the priorities used in this algorithm to integers, and using a bucket queue for these integers. As in Dijkstra's and Dial's algorithms, the priorities are monotone, so fast marching can use the monotone optimization of the bucket queue and its analysis. However, the discretization introduces some error into the resulting calculations.
+

@@ -1,0 +1,36 @@
+document_id: DOC_000338
+title: Fibonacci search technique
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Fibonacci_search_technique
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: test
+char_count: 5946
+token_count: 1656
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, the Fibonacci search technique is a method of searching a sorted array using a divide and conquer algorithm that narrows down possible locations with the aid of Fibonacci numbers. The technique is conceptually similar to a binary search, which repeatedly splits the search interval into two equal halves. Fibonacci search, however, splits the array into two unequal parts, with sizes that are consecutive Fibonacci numbers.
+This method has a key advantage on older computer hardware where arithmetic division or bit-shifting operations were computationally expensive compared to addition and subtraction. Since the Fibonacci sequence is based on addition, this search method could be implemented more efficiently. While on modern CPUs the performance difference is often negligible, the algorithm remains of theoretical and historical interest. On average, Fibonacci search performs about 4% more comparisons than binary search, and it has an average-case complexity and worst-case complexity of $O(\log n)$ (see Big O notation).
+Fibonacci search can also have an advantage in searching data stored in certain structures, such as on a magnetic tape, where seek times are heavily dependent on the distance from the current head position. It is derived from Golden section search, an algorithm by Jack Kiefer (1953) to search for the maximum or minimum of a unimodal function in an interval.
+Algorithm
+The Fibonacci search technique works by first finding the smallest Fibonacci nu
+
+===== ORTA (2973. karakterden 700 karakter) =====
+(throughout the algorithm, p and q will be consecutive Fibonacci numbers)
+- [Compare] If K < K_i, go to Step 3; if K > K_i go to Step 4; and if K = K_i, the algorithm terminates successfully.
+- [Decrease i] If q=0, the algorithm terminates unsuccessfully. Otherwise set (i, p, q) ← (i − q, q, p − q) (which moves p and q one position back in the Fibonacci sequence); then return to Step 2
+- [Increase i] If p=1, the algorithm terminates unsuccessfully. Otherwise set (i, p, q) ← (i + q, p − q, 2q − p) (which moves p and q two positions back in the Fibonacci sequence); and return to Step 2
+The two variants of the algorithm presented above always divide the current interval into a larger and a smal
+
+===== SON (son 500 karakter) =====
+x 9: array[9] is 90.
+  - Since x = 85 is less than 90, we eliminate the elements from index 9 to the end.
+  - We update the Fibonacci numbers by moving one step down: m = m - 1 = 4 (new step sizes will be $F_3=2$ and $F_2=1$).
+  - The offset remains offset = 7.
+- Fourth comparison:
+  - The next comparison index is i = min(offset + F_2, n-1) = min(7 + 1, 10) = 8.
+  - We compare x with the element at index 8: array[8] is 85.
+  - The item is found at index 8. The algorithm terminates successfully.
+

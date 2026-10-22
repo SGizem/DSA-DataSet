@@ -1,0 +1,34 @@
+document_id: DOC_000608
+title: Yen's algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Yen's_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: graflar
+split: train
+char_count: 8926
+token_count: 2373
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory, Yen's algorithm computes single-source K-shortest loopless paths for a graph with non-negative edge cost. The algorithm was published by Jin Y. Yen in 1971 and employs any shortest path algorithm to find the best path, then proceeds to find K − 1 deviations of the best path.
+Algorithm
+Terminology and notation
+Description
+The algorithm can be broken down into two parts: determining the first k-shortest path, $A^1$, and then determining all other k-shortest paths. It is assumed that the container $A$ will hold the k-shortest path, whereas the container $B$ will hold the potential k-shortest paths. To determine $A^1$, the shortest path from the source to the sink, any efficient shortest path algorithm can be used.
+To find the $A^k$, where $k$ ranges from $2$ to $K$, the algorithm assumes that all paths from $A^1$ to $A^{k-1}$ have previously been found. The $k$ iteration can be divided into two processes: finding all the deviations ${A^k}_i$ and choosing a minimum length path to become $A^k$. Note that in this iteration, $i$ ranges from $1$ to ${Q^k}_k$.
+The first process can be further subdivided into three operations: choosing the ${R^k}_i$, finding ${S^k}_i$, and then adding ${A^k}_i$ to the container $B$. The root path, ${R^k}_i$, is chosen by finding the subpath in $A^{k-1}$ that follows the first $i$ nodes of $A^j$, where $j$ ranges from $1$ to $k - 1$. Then, if a path is found, the cost of edge $d_{i(i+1)}$ of $A^j$ is set to infinity. Next, the spur path
+
+===== ORTA (4463. karakterden 700 karakter) =====
+      A[k] = B[0];
+        // In fact we should rather use shift since we are removing the first element
+        B.pop();
+
+    return A;
+Example
+The example uses Yen's K-Shortest Path Algorithm to compute three paths from $(C)$ to $(H)$. Dijkstra's algorithm is used to calculate the best path from $(C)$ to $(H)$, which is $(C)-(E)-(F)-(H)$ with cost 5. This path is appended to container $A$ and becomes the first k-shortest path, $A^1$.
+Node $(C)$ of $A^1$ becomes the spur node with a root path of itself, ${R^2}_1 = (C)$. The edge, $(C)-(E)$, is removed because it coincides with the root path and a path in container $A$. Dijkstra's algorithm is used to compute the spur path ${S^2}_1$, which i
+
+===== SON (son 500 karakter) =====
+A^{k}$ deviates from $A^{k-1}$ at some node $(i)$. Any spur path, ${S^k}_j$ where $j = 0,\ldots,i$, that is calculated will be a duplicate because they have already been calculated during the $k-1$ iteration. Therefore, only spur paths for nodes that were on the spur path of $A^{k-1}$ must be calculated, i.e. only ${S^k}_h$ where $h$ ranges from $(i+1)^{k-1}$ to $(Q_k)^{k-1}$. To perform this operation for $A^{k}$, a record is needed to identify the node where $A^{k-1}$ branched from $A^{k-2}$.
+

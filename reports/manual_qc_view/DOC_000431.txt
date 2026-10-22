@@ -1,0 +1,31 @@
+document_id: DOC_000431
+title: Lowest common ancestor
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Lowest_common_ancestor
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 11352
+token_count: 2755
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory and computer science, the lowest common ancestor (LCA) (also called least common ancestor) of two nodes v and w in a tree or directed acyclic graph (DAG) T is the lowest (i.e. deepest) node that has both v and w as descendants, where we define each node to be a descendant of itself (so if v has a direct connection from w, w is the lowest common ancestor).
+The LCA of v and w in T is the shared ancestor of v and w that is located farthest from the root. Computation of lowest common ancestors may be useful, for instance, as part of a procedure for determining the distance between pairs of nodes in a tree: the distance from v to w can be computed as the distance from the root to v, plus the distance from the root to w, minus twice the distance from the root to their lowest common ancestor (Djidjev, Pantziou & Zaroliagis 1991).
+In a tree data structure where each node points to its parent, the lowest common ancestor can be easily determined by finding the first intersection of the paths from v and w to the root. In general, the computational time required for this algorithm is O(h) where h is the height of the tree (length of longest path from a leaf to the root). However, there exist several algorithms for processing trees so that lowest common ancestors may be found more quickly. Tarjan's off-line lowest common ancestors algorithm, for example, preprocesses a tree in linear time to provide constant-time LCA queries. In general DAGs, similar algorithms exist, but 
+
+===== ORTA (5676. karakterden 700 karakter) =====
+ that make uses of LCA's properties. This simplified solution can only be used for RMQ reduced from LCA.
+Similar to the solution mentioned above, we divide the sequence into each block $B_i$, where each block $B_i$ has size of $b={1 \over 2}\log n$.
+By splitting the sequence into blocks, the $RMQ(i,j)$ query can be solved by solving two different cases:
+Case 1: if i and j are in different blocks
+To answer the $RMQ(i,j)$ query in case one, there are 3 groups of variables precomputed to help reduce query time.
+First, the minimum element with the smallest index in each block $B_i$ is precomputed and denoted as $y_i$. A set of $y_i$ takes $O(n/b)$ space.
+Second, given the set of $y_i$, the RMQ q
+
+===== SON (son 500 karakter) =====
+a representative lowest common ancestor in a rooted DAG in constant time. Their framework can achieve near-linear preprocessing times for sparse graphs and is available for public use.
+Applications
+The problem of computing lowest common ancestors of classes in an inheritance hierarchy arises in the implementation of object-oriented programming systems (Aït-Kaci et al. 1989). The LCA problem also finds applications in models of complex systems found in distributed computing (Bender et al. 2005).
+

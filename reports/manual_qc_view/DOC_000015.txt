@@ -1,0 +1,71 @@
+document_id: DOC_000015
+title: Open Data Structures: Hash Tables
+source_name: open_data_structures
+url: https://opendatastructures.org/ods-python.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2015
+subtopic: hash_tablolari
+split: train
+char_count: 40440
+token_count: 12264
+
+===== BAŞ (ilk 1500 karakter) =====
+Chapter 5
+Hash tables are an efficient method of storing a small number, n, of integers from a large range U = {0,...,2^w −1}. The term hash table includes a
+broad range of data structures. The first part of this chapter focuses on
+two of the most common implementations of hash tables: hashing with
+chaining and linear probing.
+Very often hash tables store types of data that are not integers. In this
+case, an integer hash code is associated with each data item and is used in
+the hash table. The second part of this chapter discusses how such hash
+codes are generated.
+Some of the methods used in this chapter require random choices of
+integers in some specific range. In the code samples, some of these “random” integers are hard-coded constants. These constants were obtained
+using random bits generated from atmospheric noise.
+5.1
+ChainedHashTable: Hashing with Chaining
+A ChainedHashTable data structure uses hashing with chaining to store
+data as an array, t, of lists. An integer, n, keeps track of the total number
+of items in all lists (see Figure 5.1):
+initialize()
+d ←1
+t ←alloc table(2^d)
+b d c i x h j g a f m e ℓ k 0 1 2 3 4 5 6 7 8
+9 10 11 12 13 14 15
+t
+Figure 5.1: An example of a ChainedHashTable with n = 14 and length(t) = 16. In
+this example hash(x) = 6
+z ←random odd int()
+n ←0
+The hash value of a data item x, denoted hash(x) is a value in the range
+{0,...,length(t)−1}. All items with hash value i are stored in the list at t[i].
+To ensure that lists don’t get too long, we m
+
+===== ORTA (20220. karakterden 700 karakter) =====
+ime. Accounting for the cost of
+resize can be done using the same type of amortized analysis performed
+for the ArrayStack data structure in Section 2.1.
+5.2.2
+Summary
+The following theorem summarizes the performance of the LinearHash-
+Table data structure:
+Theorem 5.2. A LinearHashTable implements the USet interface. Ignoring
+the cost of calls to resize(), a LinearHashTable supports the operations add(x),
+remove(x), and find(x) in O(1) expected time per operation.
+Furthermore, beginning with an empty LinearHashTable, any sequence of
+m add(x) and remove(x) operations results in a total of O(m) time spent during all calls to resize().
+5.2.3
+Tabulation Hashing
+While analyzing the LinearHashTabl
+
+===== SON (son 500 karakter) =====
+ers, x, such that find(x) takes linear time. That is,
+find a set of n integers for which there are cn elements that hash to the
+same table location.
+Depending on how good the implementation is, you may be able to
+do this just by inspecting the code for the implementation, or you may
+have to write some code that does trial insertions and searches, timing
+how long it takes to add and find particular values. (This can be, and has
+been, used to launch denial of service attacks on web servers [17].)
+

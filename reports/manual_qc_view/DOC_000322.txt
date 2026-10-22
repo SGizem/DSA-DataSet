@@ -1,0 +1,37 @@
+document_id: DOC_000322
+title: Dynamic connectivity
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Dynamic_connectivity
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 17075
+token_count: 3982
+
+===== BAŞ (ilk 1500 karakter) =====
+In computing and graph theory, a dynamic connectivity structure is a data structure that dynamically maintains information about the connected components of a graph.
+The set V of vertices of the graph is fixed, but the set E of edges can change. The three cases, in order of difficulty, are:
+- Edges are only added to the graph (this can be called incremental connectivity);
+- Edges are only deleted from the graph (this can be called decremental connectivity);
+- Edges can be either added or deleted (this can be called fully dynamic connectivity).
+After each addition/deletion of an edge, the dynamic connectivity structure should adapt itself such that it can give quick answers to queries of the form "is there a path between x and y?" (equivalently: "do vertices x and y belong to the same connected component?").
+Incremental connectivity
+If edges can only be added, then the dynamic connectivity problem can be solved by a disjoint-set data structure. Each set represents a connected component; there is a path between x and y if and only if they belong to the same set. The amortized time per operation is $\Theta(\alpha(n))$, where n is the number of vertices and α is the inverse Ackermann function.
+Decremental connectivity
+The case in which edges can only be deleted was solved by Shimon Even and Yossi Shiloach.
+The structure uses a table that specifies, for each vertex, the name of the component to which it belongs. Thus a connectivity query takes constant time. The challenge is to up
+
+===== ORTA (8537. karakterden 700 karakter) =====
+rations.
+For each i between 0 and L, define Gi as the subgraph consisting of edges that are at level i or less, and F_i a spanning forest of Gi. Our forest F from before is now called F_L. We will keep a decreasing sequence of forests F_L ⊇ ... ⊇ F_0.
+Operations
+The Query and Insert operations use only the largest forest F_L. The smaller subgraphs are consulted only during a Delete operation, and in particular, deleting an edge which is contained in one of the spanning trees of F_L.
+When such an edge e = x−y is deleted, it is first removed from F_L and from all smaller spanning forests to which it belongs, i.e. from every F_i with i ≥ level(e). Then we look for a replacement edge.
+Start with
+
+===== SON (son 500 karakter) =====
+rove our maximum spanning forest. To do this, we need to quickly check what edge has the smallest removal time on the path from u to v. If this edge's removal time comes after e's removal time, then e cannot improve our maximum spanning forest. Otherwise, the other edge should be deleted and replaced with e.
+This requires us to do the following operations: add an edge, cut an edge, and query the minimum edge on a path which can be done rather easily with a link-cut tree in log(n) per operation.
+

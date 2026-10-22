@@ -1,0 +1,26 @@
+document_id: DOC_000241
+title: Batcher odd–even mergesort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Batcher_odd–even_mergesort
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: siralama_ve_arama
+split: train
+char_count: 1189
+token_count: 335
+
+===== BAŞ (ilk 1500 karakter) =====
+Batcher's odd–even mergesort is a generic construction devised by Ken Batcher for sorting networks of size O(n (log n)^2) and depth O((log n)^2), where n is the number of items to be sorted. Although it is not asymptotically optimal, Knuth concluded in 1998, with respect to the AKS network that "Batcher's method is much better, unless n exceeds the total memory capacity of all computers on earth!"
+It is popularized by the second GPU Gems book, as an easy way of doing reasonably efficient sorts on graphics-processing hardware.
+Pseudocode
+Various recursive and iterative schemes are possible to calculate the indices of the elements to be compared and sorted. This is one iterative technique to generate the indices for sorting n elements:
+# note: the input sequence is indexed from 0 to (n-1)
+for p = 1, 2, 4, 8, ... # as long as p < n
+  for k = p, p/2, p/4, p/8, ... # as long as k >= 1
+    for j = mod(k,p) to (n-1-k) with a step size of 2k
+      for i = 0 to min(k-1, n-j-k-1) with a step size of 1
+        if floor((i+j) / (p*2)) == floor((i+j+k) / (p*2))
+          compare and sort elements (i+j) and (i+j+k)
+Non-recursive calculation of the partner node index is also possible.
+

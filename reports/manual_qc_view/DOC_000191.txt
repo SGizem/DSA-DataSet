@@ -1,0 +1,82 @@
+document_id: DOC_000191
+title: Tarak sıralaması
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Tarak_sıralaması
+language: tr
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: siralama_ve_arama
+split: train
+char_count: 2369
+token_count: 707
+
+===== BAŞ (ilk 1500 karakter) =====
+Tarak Sıralaması, ilk defa 1991 yılının Nisan ayında Stephen Lacey ve Richard Box tarafından Byte dergisinde duyurulmuş yalın bir sıralama algoritmasıdır. Kendisinden önce duyurulmuş kabarcık sıralaması algoritmasından başarılıdır ve karmaşıklıkta hızlı sıralama algoritmasıyla yarışır. Algoritmanın ana fikri listenin sonundaki küçük değerli öğelerin sayısını azaltmaktır. Kabarcık sıralaması algoritmasında sıralanacak listenin sonundaki küçük değerli öğelerin varlığı algoritmayı çok yavaşlattığı için tarak sıralamasında bu değerlerin sayısının azaltılması yoluna gidilmiştir.
+Kabarcık sıralaması algoritmasında iki öğe karşılaştırıldığında aralarındaki mesafe her zaman 1'dir. Başka bir deyişle, kabarcık sıralaması her zaman ardışık iki değeri karşılaştırır. Taraf sıralaması ise bunun aksine aralarındaki mesafe birden çok daha fazla olan öğeleri karşılaştırabilir. (Kabuk Sıralaması da aynı düşünceyle tasarlanmıştır ancak kabuk sıralaması kabarcık sıralamasının değil seçmeli sıralamanın bir türevidir.)
+Sözde Kodu
+function combsort11(array input)
+    gap := input.size //öğeler arasındaki aralığın başlangıç boyutunu belirle
+
+    loop until gap <= 1 or swaps = 0
+        //yeni bir tarama için aralığın boyutunu güncelle
+        if gap > 1
+            gap := gap / 1.3
+            if gap = 10 or gap = 9
+                gap := 11
+            end if
+        end if
+
+i := 0
+        swaps := 0 // Açıklama için kabarcık sıralamasına bakınız
+
+// giriş listesinin üzerinden tek bir "tarama"
+    
+
+===== ORTA (1184. karakterden 700 karakter) =====
+eni bir tarama için aralığın boyutunu güncelle
+        if gap > 1
+            gap := gap / 1.3
+            if gap = 10 or gap = 9
+                gap := 11
+            end if
+        end if
+
+i := 0
+        swaps := 0 // Açıklama için kabarcık sıralamasına bakınız
+
+// giriş listesinin üzerinden tek bir "tarama"
+        loop until i + gap >= array.size //Benzer yaklaşım için kabuk sıralamasına bakınız
+            if array[i] > array[i+gap]
+                swap(array[i], array[i+gap])
+                swaps := 1 // Aritmetik taşma düzeltmesi için
+            end if
+            i := i + 1
+        end loop
+
+end loop
+end function
+C
+void comb_sort(int *input, size_t size) {
+    const float shrink = 
+
+===== SON (son 500 karakter) =====
+float shrink = 1.3f;
+    int swap;
+    size_t i, gap = size;
+    bool swapped = false;
+    while ((gap > 1) || swapped) {
+        if (gap > 1) {
+            gap = (size_t)((float)gap / shrink);
+        }
+        swapped = false;
+        for (i = 0; gap + i < size; ++i) {
+            if (input[i] - input[i + gap] > 0) {
+                swap = input[i];
+                input[i] = input[i + gap];
+                input[i + gap] = swap;
+                swapped = true;
+            }
+        }
+    }
+}
+

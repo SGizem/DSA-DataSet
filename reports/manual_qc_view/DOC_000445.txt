@@ -1,0 +1,48 @@
+document_id: DOC_000445
+title: Min-max heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Min-max_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: agaclar
+split: train
+char_count: 10766
+token_count: 2591
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a min-max heap is a complete binary tree data structure which combines the usefulness of both a min-heap and a max-heap, that is, it provides constant time retrieval and logarithmic time removal of both the minimum and maximum elements in it. This makes the min-max heap a very useful data structure to implement a double-ended priority queue. Like binary min-heaps and max-heaps, min-max heaps support logarithmic insertion and deletion and can be built in linear time. Min-max heaps are often represented implicitly in an array; hence it's referred to as an implicit data structure.
+The min-max heap property is: each node at an even level in the tree is less than all of its descendants, while each node at an odd level in the tree is greater than all of its descendants.
+The structure can also be generalized to support other order-statistics operations efficiently, such as find-median, delete-median,find(k) (determine the kth smallest value in the structure) and the operation delete(k) (delete the kth smallest value in the structure), for any fixed value (or set of values) of k. These last two operations can be implemented in constant and logarithmic time, respectively. The notion of min-max ordering can be extended to other structures based on the max- or min-ordering, such as leftist trees, generating a new (and more powerful) class of data structures. A min-max heap can also be useful when implementing an external quicksort.
+Description
+- A min-max heap is a 
+
+===== ORTA (5383. karakterden 700 karakter) =====
+          else
+                break
+            endif
+        else:
+            m := index of the largest child or grandchild of i
+            if h[m] > h[i] then:
+                swap h[m] and h[i]
+                if m is a grandchild of i then:
+                    if h[m] < h[parent(m)] then:
+                        swap h[m] and h[parent(m)]
+                    endif
+                else
+                    break
+                endif
+            else
+                break
+            endif
+        endif
+    endwhile
+Insertion
+To add an element to a min-max heap perform following operations:
+- Append the required key to (the end of) the array representing the min-max heap. This will like
+
+===== SON (son 500 karakter) =====
+e of removing an arbitrary node with known index. As in the Find Maximum operation, a single comparison is required to identify the maximal child of the root, after which it is replaced with the final element of the array and push-down is then called on the index of the replaced maximum to restore the heap property.
+Extensions
+The min-max-median heap is a variant of the min-max heap, suggested in the original publication on the structure, that supports the operations of an order statistic tree.
+

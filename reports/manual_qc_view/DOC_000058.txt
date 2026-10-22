@@ -1,0 +1,52 @@
+document_id: DOC_000058
+title: kd_node.py
+source_name: thealgorithms_python
+url: https://github.com/TheAlgorithms/Python/blob/3935d286dfa3d258ab77c22d584202141a3eb1b9/data_structures/kd_tree/kd_node.py
+language: code
+document_type: kod
+publication_year: 
+subtopic: agaclar
+split: train
+char_count: 1034
+token_count: 266
+
+===== BAŞ (ilk 1500 karakter) =====
+#  Created by: Ramy-Badr-Ahmed (https://github.com/Ramy-Badr-Ahmed)
+#  in Pull Request: #11532
+#  https://github.com/TheAlgorithms/Python/pull/11532
+#
+#  Please mention me (@Ramy-Badr-Ahmed) in any issue or pull request
+#  addressing bugs/corrections to this file.
+#  Thank you!
+
+from __future__ import annotations
+
+
+class KDNode:
+    """
+    Represents a node in a KD-Tree.
+
+    Attributes:
+        point: The point stored in this node.
+        left: The left child node.
+        right: The right child node.
+    """
+
+    def __init__(
+        self,
+        point: list[float],
+        left: KDNode | None = None,
+        right: KDNode | None = None,
+    ) -> None:
+        """
+        Initializes a KDNode with the given point and child nodes.
+
+        Args:
+            point (list[float]): The point stored in this node.
+            left (Optional[KDNode]): The left child node.
+            right (Optional[KDNode]): The right child node.
+        """
+        self.point = point
+        self.left = left
+        self.right = right
+

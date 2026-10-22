@@ -1,0 +1,101 @@
+document_id: DOC_000117
+title: benchmark_sorts.py
+source_name: thealgorithms_python
+url: https://github.com/TheAlgorithms/Python/blob/3935d286dfa3d258ab77c22d584202141a3eb1b9/sorts/benchmark_sorts.py
+language: code
+document_type: kod
+publication_year: 
+subtopic: siralama_ve_arama
+split: train
+char_count: 4755
+token_count: 1184
+
+===== BAŞ (ilk 1500 karakter) =====
+#!/usr/bin/env -S uv run --script
+
+"""
+Benchmark several sorting algorithms on the same random datasets.
+
+This is a *reference* benchmark, not a rigorous one: it times each algorithm on a
+few shared, randomly generated integer datasets and prints a small comparison
+table.  It exists so that visitors can see the practical cost of the different
+strategies in this directory side by side, without embedding timing code inside
+the individual algorithm modules (which keeps those files clean, import-cheap,
+and focused on being readable reference implementations).
+
+Run it from the repository root:
+
+    python -m sorts.benchmark_sorts
+
+The individual algorithms are imported from their own modules, so this file never
+re-implements a sort.
+"""
+
+import random
+import sys
+from collections.abc import Callable, Sequence
+from itertools import pairwise
+from timeit import timeit
+from typing import Protocol
+
+from sorts.bubble_sort import bubble_sort_iterative
+from sorts.cocktail_shaker_sort import cocktail_shaker_sort
+from sorts.comb_sort import comb_sort
+from sorts.gnome_sort import gnome_sort
+from sorts.heap_sort import heap_sort
+from sorts.insertion_sort import insertion_sort
+from sorts.merge_sort import merge_sort
+from sorts.quick_sort import quick_sort
+from sorts.selection_sort import selection_sort
+from sorts.shell_sort import shell_sort
+from sorts.tim_sort import tim_sort
+
+# name -> callable.  Every callable accepts a list and returns the sorted list.
+SORTS: dict[str, Callable[[list[int]],
+
+===== ORTA (2377. karakterden 700 karakter) =====
+he data (some sort in place), and its
+    result is checked against Python's built-in ``sorted`` as the ground truth.
+
+    >>> all_sorts_agree([5, 1, 4.2, 2, 8.5, 0, 2])
+    True
+    >>> all_sorts_agree([])
+    True
+    >>> all_sorts_agree([42])
+    True
+    >>> all_sorts_agree(list(range(5, -6, -1)))
+    True
+    >>> all_sorts_agree(list("Python"))
+    True
+    """
+    expected = sorted(data)
+    return all(list(sort_fn(data.copy())) == expected for sort_fn in SORTS.values())
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def benchmark[T: Comparable](data: list[T], number: int = 1) -> dict[str, float]:
+    """
+    Time every algorithm in ``SORTS`` on a c
+
+===== SON (son 500 karakter) =====
+ange(size)] for size in sizes}
+
+    header = "algorithm".ljust(22) + "".join(f"{size:>12}" for size in sizes)
+    print(header)
+    print("-" * len(header))
+
+    per_size = {size: benchmark(data) for size, data in datasets.items()}
+    for name in SORTS:
+        row = name.ljust(22)
+        row += "".join(f"{per_size[size][name]:>12.4f}" for size in sizes)
+        print(row)
+
+    print("\nseconds per sort (lower is better); dataset = uniform random ints")
+
+
+if __name__ == "__main__":
+    main()
+

@@ -1,0 +1,29 @@
+document_id: DOC_000233
+title: Associative array
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Associative_array
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: hash_tablolari
+split: train
+char_count: 13910
+token_count: 2760
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, an associative array, key-value store, map, symbol table, or dictionary is an abstract data type that stores a collection of key/value pairs, such that each possible key appears at most once in the collection. In mathematical terms, an associative array is a function with finite domain. It supports 'lookup', 'remove', and 'insert' operations.
+The dictionary problem is the classic problem of designing efficient data structures that implement associative arrays. The two major solutions to the dictionary problem are hash tables and search trees. It is sometimes also possible to solve the problem using directly addressed arrays, binary search trees, or other more specialized structures.
+Many programming languages include associative arrays as primitive data types, while many other languages provide software libraries that support associative arrays. Content-addressable memory is a form of direct hardware-level support for associative arrays.
+Associative arrays have many applications including such fundamental programming patterns as memoization and the decorator pattern. The name does not come from the associative property known in mathematics. Rather, it arises from the association of values with keys. It should not be confused with associative processors.
+Operations
+In an associative array, the association between a key and a value is often known as a "mapping"; the same word may also be used to refer to the process of creating a new association.
+The operat
+
+===== ORTA (6955. karakterden 700 karakter) =====
+lement an associative array with a self-balancing binary search tree, such as an AVL tree or a red–black tree.
+Compared to hash tables, these structures have both strengths and weaknesses. The worst-case performance of self-balancing binary search trees is significantly better than that of a hash table, with a time complexity in big O notation of O(log n). This is in contrast to hash tables, whose worst-case performance involves all elements sharing a single bucket, resulting in O(n) time complexity. In addition, and like all binary search trees, self-balancing binary search trees keep their elements in order. Thus, traversing its elements follows a least-to-greatest pattern, whereas travers
+
+===== SON (son 500 karakter) =====
+les in most cases, although saving objects to a RDB can be complicated, a problem known as object-relational impedance mismatch.
+After approximately 2010, the need for high-performance databases suitable for cloud computing and more closely matching the internal structure of the programs using them led to a renaissance in the key–value store market. These systems can store and retrieve associative arrays in a native fashion, which can greatly improve performance in common web-related workflows.
+

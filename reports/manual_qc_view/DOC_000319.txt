@@ -1,0 +1,46 @@
+document_id: DOC_000319
+title: Doubly linked list
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Doubly_linked_list
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: train
+char_count: 8649
+token_count: 1904
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains three fields: two link fields (references to the previous and to the next node in the sequence of nodes) and one data field. The beginning and ending nodes' previous and next links, respectively, point to some kind of terminator, typically a sentinel node or null, to facilitate traversal of the list. If there is only one sentinel node, then the list is circularly linked via the sentinel node. It can be conceptualized as two singly linked lists formed from the same data items, but in opposite sequential orders.
+The two node links allow traversal of the list in either direction. While adding or removing a node in a doubly linked list requires changing more links than the same operations on a singly linked list, the operations are simpler and potentially more efficient (for nodes other than first nodes) because there is no need to keep track of the previous node during traversal or no need to traverse the list to find the previous node, so that its link can be modified.
+Nomenclature and implementation
+The first and last nodes of a doubly linked list for all practical applications are immediately accessible (i.e., accessible without traversal, and usually called head and tail) and therefore allow traversal of the list from the beginning or end of the list, respectively: e.g., traversing the list from beginning to end, or from 
+
+===== ORTA (4324. karakterden 700 karakter) =====
+s easier than insertion, but requires special handling if the node to be removed is the firstNode or lastNode:
+function remove(List list, Node node)
+    if node.prev == null
+        list.firstNode  := node.next
+    else
+        node.prev.next  := node.next
+    if node.next == null
+        list.lastNode  := node.prev
+    else
+        node.next.prev  := node.prev
+One subtle consequence of the above procedure is that deleting the last node of a list sets both firstNode and lastNode to null, and so it handles removing the last node from a one-element list correctly. Notice that we also don't need separate "removeBefore" or "removeAfter" methods, because in a doubly linked list we can just use "r
+
+===== SON (son 500 karakter) =====
+n insertAfter(Node node, Node newNode)
+    newNode.next  := node.next
+    if newNode.next != null
+        newNode.next.prev = addressOf(newNode.next)
+    node.next  := newNode
+    newNode.prev  := addressOf(node.next)
+Deleting a node
+To remove a node, we simply modify the link pointed by prev, regardless of whether the node was the first one of the list.
+function remove(Node node)
+    atAddress(node.prev)  := node.next
+    if node.next != null
+        node.next.prev = node.prev
+    destroy node
+

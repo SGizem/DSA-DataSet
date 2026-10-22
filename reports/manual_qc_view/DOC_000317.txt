@@ -1,0 +1,28 @@
+document_id: DOC_000317
+title: Double-ended queue
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Double-ended_queue
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: yigin_ve_kuyruk
+split: train
+char_count: 26124
+token_count: 6020
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a double-ended queue (abbreviated as deque — // DEK), is an abstract data type that serves as a container, with a restricted access to the stored items. As a generalization of both the stack and the queue, the deque may have similar functions as a data buffer: it can be use both as a retainer (queue), or for backtracking (stack). However it offers greater flexibility in managing the order of elements and some algorithms are based on its functionalities.
+Description
+The double-ended queue is most often presented as a generalized queue, which gives its name. It is a queue that "allows insertions and deletions at both ends". The deque is also described as a generalization of the stack abstract data structure, as "two stacks joined together at the base", with a shared bottom item, or as a combination of both the stack and the queue. And then conversely the queue and the stack are restricted forms of the deque.
+Different analogies with real-world objects are used to describe the deque. It is compared to a "deck of cards" with which the structure shares some properties and the pronunciation. The deque is also likened to a "necklace with beads that can be added and/or removed at either end". Like the queue, it is depicted as a set of items lined up in a pipe open at both ends ; unlike the queue, the items can move in both direction in the pipe. The "railroad model" introduced by Knuth (after "Dijkstra's shunting yard") focus on the similarity with the queue, wit
+
+===== ORTA (13062. karakterden 700 karakter) =====
+r-time simulation into a real-time simulation: as soon as the two stack become sufficiently unbalanced, recopying to create two balanced stacks begins.
+— Kaplan, Haim; Tarjan, Robert E. (1995). "Persistent lists with catenation via recursive slow-down". Proc. of the 27th annual ACM symposium on Theory of computing. Las Vegas, Nevada. pp. 93–102. doi:10.1145/225058.225090.
+This last process could be rather complicated as it needs to be executed concurrently with other operations and completed before the next one, to achieve an amortized real-time complexity. The next step is to support the operations in O(1) worst-case time. Another challenge is the real-time catenation of deques. Okasaki giv
+
+===== SON (son 500 karakter) =====
+ (TBB) library for parallel programming.
+Deque automaton
+A Deque automaton (DA) is a finite-state machine equipped with a deque auxiliary memory. It generalizes Pushdown automaton (PDA) (stack automaton) and Queue automaton (Pull up automaton, PUA). As such it is equivalent to a Turing machine, and therefore it can process the same class of formal languages. But unlike the PDA and the PUA which impose serialization, a deque automaton permits parallel or interleaved execution of some operations.
+

@@ -1,0 +1,58 @@
+document_id: DOC_000138
+title: Algoritma
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Algoritma
+language: tr
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: test
+char_count: 5726
+token_count: 1968
+
+===== BAŞ (ilk 1500 karakter) =====
+Algoritma, belli bir problemi çözmek veya belirli bir amaca ulaşmak için tasarlanan yol. Matematikte ve bilgisayar biliminde bir işi yapmak için tanımlanan, bir başlangıç durumundan başladığında, açıkça belirlenmiş bir son durumunda sonlanan, sonlu işlemler kümesidir. Genellikle bilgisayar programlamada kullanılır ve tüm programlama dillerinin temeli algoritmaya dayanır. Aynı zamanda algoritma tek bir problemi çözecek davranışın, temel işleri yapan komutların veya deyimlerin adım adım ortaya konulmasıdır ve bu adımların sıralamasına dikkat edilmelidir. Bir problem çözülürken algoritmik ve sezgisel (herustic) olmak üzere iki yaklaşım vardır. Algoritmik yaklaşımda da çözüm için olası yöntemlerden en uygun olan seçilir ve yapılması gerekenler adım adım ortaya konulur. Algoritmayı belirtmek için; metinsel olarak düz ifade ve akış diyagramı olmak üzere 2 yöntem kullanılır. Algoritmalar bir programlama dili vasıtasıyla bilgisayarlar tarafından işletilebilirler.
+İlk algoritma, el-Hârizmî tarafından "Hisab el-cebir ve el-mukabala" kitabında sunulmuştur. Algoritma sözcüğü de el-Hârizmî'nin isminin Avrupalılarca telaffuzundan doğmuştur.
+Tarihi
+Algoritma sözcüğü, Özbekistan'ın Harezm bölgesindeki Hive kentinde doğmuş olan Ebu Abdullah Muhammed İbn Musa el Harezmi'den gelir. Bu alim 9. yüzyılda cebir alanındaki algoritmik çalışmalarını kitaba dökerek matematiğe çok büyük bir katkı sağlamıştır. "Hisab el-cebir ve el-mukabala (حساب الجبر و المقابلة)" kitabı dünyanın ilk cebir kitabı ve ayn
+
+===== ORTA (2863. karakterden 700 karakter) =====
+ / 2a
+değerlerini hesapla ve x1,x2 değişkenleri göster.
+Eğer D≥0 değilse,
+Gerçek kısım(rp) ve sanal kısmını(ip) hesapla.
+rp ← b / 2a
+ip ← √ (D) / 2a
+Adım 5: "rp + j(ip)" ve "rp - j(ip)" değerlerini göster.
+Adım 6: Dur.
+Kullanıcı tarafından girilen bir sayının faktöriyel değerini bulmak için bir algoritma yazalım:
+Adım 1: Başla.
+Adım 2: factorial, i ve n değişkenlerini tanımla.
+Adım 3: Değişkenlerin başlangıç değerlerini tanımla.
+factorial ← 1
+i ← 1
+Adım 4: Ekrandan girilen n değerini oku.
+Adım 5: (i=n) eşitliği sağlanana kadar tekrarla.
+5.1: factorial←factorial*i
+5.2: i←i+1
+Adım 6: factorial değişkeninin değerini göster.
+Adım 7: Dur.
+Hukuki Konular
+Algoritmalar, tek başlarına, genellikle pat
+
+===== SON (son 500 karakter) =====
+urdukları ve farklı otoriteler tarafından toplumun belli kesimlerini baskılamak için kullanıldıklarının altı çizilmektedir.
+Önemli algoritma türleri
+- Arama algoritmaları
+- Bellek yönetimi algoritmaları
+- Bilgisayar grafiği algoritmaları
+- Birleşimsel algoritmalar
+- Çizge algoritmaları
+- Evrimsel algoritmalar
+- Genetik algoritmalar
+- Kripto algoritmaları veya kriptografik algoritmalar
+- Kök bulma algoritmaları
+- Optimizasyon algoritmaları
+- Sıralama algoritmaları
+- Veri sıkıştırma algoritmaları
+

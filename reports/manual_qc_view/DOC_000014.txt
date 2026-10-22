@@ -1,0 +1,81 @@
+document_id: DOC_000014
+title: Open Data Structures: Skiplists
+source_name: open_data_structures
+url: https://opendatastructures.org/ods-python.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2015
+subtopic: diziler_ve_listeler
+split: train
+char_count: 23031
+token_count: 7010
+
+===== BAŞ (ilk 1500 karakter) =====
+Chapter 4
+In this chapter, we discuss a beautiful data structure: the skiplist, which
+has a variety of applications. Using a skiplist we can implement a List
+that has O(logn) time implementations of get(i), set(i,x), add(i,x), and
+remove(i). We can also implement an SSet in which all operations run in
+O(logn) expected time.
+The efficiency of skiplists relies on their use of randomization. When
+a new element is added to a skiplist, the skiplist uses random coin tosses
+to determine the height of the new element. The performance of skiplists
+is expressed in terms of expected running times and path lengths. This
+expectation is taken over the random coin tosses used by the skiplist. In
+the implementation, the random coin tosses used by a skiplist are simulated using a pseudo-random number (or bit) generator.
+4.1
+The Basic Structure
+Conceptually, a skiplist is a sequence of singly-linked lists L0,...,Lh. Each
+list Lr contains a subset of the items in Lr−1. We start with the input list
+L0 that contains n items and construct L1 from L0, L2 from L1, and so on.
+The items in Lr are obtained by tossing a coin for each element, x, in Lr−1
+and including x in Lr if the coin turns up as heads. This process ends
+when we create a list Lr that is empty. An example of a skiplist is shown
+in Figure 4.1.
+For an element, x, in a skiplist, we call the height of x the largest value
+0 1 2 3 4 5 6
+sentinel
+L0 L1 L2 L3 L4 L5
+Figure 4.1: A skiplist containing seven elements.
+r such that x appears in Lr. 
+
+===== ORTA (11515. karakterden 700 karakter) =====
+m a node, u, at level r
+we decrement the length of the edge leaving u at that level. We also check
+if u.next[r] is the element of rank i and, if so, splice it out of the list at that
+level. An example is shown in Figure 4.8.
+remove(i)
+u ←sentinel
+r ←h
+j ←−1
+while r ≥0 do
+while u.next[r] ≠ nil and j + u.length[r] < i do
+j ←j + u.length[r]
+u ←u.next[r]
+u.length[r] ←u.length[r] −1
+if j + u.length[r] + 1 = i and u.next[r] ≠ nil then
+x ←u.next[r].x
+u.length[r] ←u.length[r] + u.next[r].length[r]
+u.next[r] ←u.next[r].next[r]
+if u = sentinel and u.next[r] = nil then
+h ←h −1
+r ←r −1
+n ←n −1
+return x
+4.3.1
+Summary
+The following theorem summarizes the performance of the SkiplistList
+data structure:
+The
+
+===== SON (son 500 karakter) =====
+trokes and seeing the results.
+Exercise 4.15. (This exercise should be done after reading about binary
+search trees, in Section 6.2.) Compare skiplists with binary search trees
+in the following ways:
+1. Explain how removing some edges of a skiplist leads to a structure
+that looks like a binary tree and is similar to a binary search tree.
+2. Skiplists and binary search trees each use about the same number
+of pointers (2 per node). Skiplists make better use of those pointers,
+though. Explain why.
+

@@ -1,0 +1,58 @@
+document_id: DOC_000021
+title: Open Data Structures: Sorting Algorithms
+source_name: open_data_structures
+url: https://opendatastructures.org/ods-python.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2015
+subtopic: siralama_ve_arama
+split: train
+char_count: 31816
+token_count: 9816
+
+===== BAŞ (ilk 1500 karakter) =====
+Chapter 11
+This chapter discusses algorithms for sorting a set of n items. This might
+seem like a strange topic for a book on data structures, but there are several good reasons for including it here. The most obvious reason is that
+two of these sorting algorithms (quicksort and heap-sort) are intimately
+related to two of the data structures we have already studied (random
+binary search trees and heaps, respectively).
+The first part of this chapter discusses algorithms that sort using only
+comparisons and presents three algorithms that run in O(nlogn) time. As
+it turns out, all three algorithms are asymptotically optimal; no algorithm
+that uses only comparisons can avoid doing roughly nlogn comparisons
+in the worst case and even the average case.
+Before continuing, we should note that any of the SSet or priority
+Queue implementations presented in previous chapters can also be used
+to obtain an O(nlogn) time sorting algorithm. For example, we can sort
+n items by performing n add(x) operations followed by n remove() operations on a BinaryHeap or MeldableHeap. Alternatively, we can use n
+add(x) operations on any of the binary search tree data structures and
+then perform an in-order traversal (Exercise 6.8) to extract the elements
+in sorted order. However, in both cases we go through a lot of overhead
+to build a structure that is never fully used. Sorting is such an important
+problem that it is worthwhile developing direct methods that are as fast,
+simple, and space-efficient as 
+
+===== ORTA (15908. karakterden 700 karakter) =====
+, the
+first call to trickle down(i) is with i ←n/2 −1 and the first comparison is
+between elements a[n/2 −1] and a[n −1].
+Since all input elements are distinct, this first comparison has only
+two possible outcomes. The second comparison done by the algorithm
+may depend on the outcome of the first comparison. The third comparison may depend on the results of the first two, and so on. In this way,
+any deterministic comparison-based sorting algorithm can be viewed as
+a rooted binary comparison tree. Each internal node, u, of this tree is labelled with a pair of indices u.i and u.j. If a[u.i] < a[u.j] the algorithm
+proceeds to the left subtree, otherwise it proceeds to the right subtree.
+Each le
+
+===== SON (son 500 karakter) =====
+d another pair of permutations of 1,2,3 that are not
+correctly sorted by the comparison tree in Figure 11.6.
+Exercise 11.10. Prove that logn! = nlogn −O(n).
+Exercise 11.11. Prove that a binary tree with k leaves has height at least
+logk.
+Exercise 11.12. Prove that, if we pick a random leaf from a binary tree
+with k leaves, then the expected height of this leaf is at least logk.
+Exercise 11.13. The implementation of radix sort(a,k) given here works
+when the input array, a contains only integers.
+

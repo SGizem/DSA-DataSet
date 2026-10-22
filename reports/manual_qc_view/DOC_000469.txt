@@ -1,0 +1,42 @@
+document_id: DOC_000469
+title: Parallel array
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Parallel_array
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: train
+char_count: 5969
+token_count: 1337
+
+===== BAŞ (ilk 1500 karakter) =====
+In computing, a group of parallel arrays (also known as structure of arrays or SoA) is a form of implicit data structure that uses multiple arrays to represent a singular array of records. It keeps a separate, homogeneous data array for each field of the record, each having the same number of elements. Then, objects located at the same index in each array are implicitly the fields of a single record. Pointers from one object to another are replaced by array indices. This contrasts with the normal approach of storing all fields of each record together in memory (also known as array of structures or AoS). For example, one might declare an array of 100 names, each a string, and 100 ages, each an integer, associating each name with the age that has the same index.
+Examples
+An example in C using parallel arrays:
+int  ages[]   = {0,          17,        2,          52,         25};
+char *names[] = {"None",     "Mike",    "Billy",    "Tom",      "Stan"};
+int  parent[] = {0 /*None*/, 3 /*Tom*/, 1 /*Mike*/, 0 /*None*/, 3 /*Tom*/};
+for (i = 1; i <= 4; i++) {
+    printf("Name: %s, Age: %d, Parent: %s \n",
+           names[i], ages[i], names[parent[i]]);
+}
+in Perl (using a hash of arrays to hold references to each array):
+my %data = (
+    first_name   => ['Joe',  'Bob',  'Frank',  'Hans'    ],
+    last_name    => ['Smith','Seger','Sinatra','Schultze'],
+    height_in_cm => [169,     158,    201,      199      ]);
+for $i (0..$#{$data{first_name}}) {
+    printf "Name: %s %s\n", $data{first_n
+
+===== ORTA (2984. karakterden 700 karakter) =====
+ behaviour.
+- They may allow efficient processing with SIMD instructions in certain instruction set architectures
+Several of these advantages depend strongly on the particular programming language and implementation in use.
+However, parallel arrays also have several strong disadvantages, which serves to explain why they are not generally preferred:
+- They have significantly worse locality of reference when visiting the records non-sequentially and examining multiple fields of each record, because the various arrays may be stored arbitrarily far apart.
+- They obscure the relationship between fields of a single record (e.g. no type information relates the index between them, an index may be us
+
+===== SON (son 500 karakter) =====
+age provide a way to declare actual records, and arrays of them. In other languages it may be feasible to simulate this by declaring an array of n*m size, where m is the size of all the fields together, packing the fields into what is effectively a record, even though the particular language lacks direct support for records. Some compiler optimizations, particularly for vector processors, are able to perform this transformation automatically when arrays of structures are created in the program.
+

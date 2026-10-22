@@ -1,0 +1,36 @@
+document_id: DOC_000575
+title: Threaded binary tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Threaded_binary_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 5824
+token_count: 1274
+
+===== BAŞ (ilk 1500 karakter) =====
+In computing, a threaded binary tree is a binary tree variant that facilitates traversal in a particular order.
+An entire binary search tree can be easily traversed in order of the main key but given only a pointer to a node, finding the node which comes next may be slow or impossible. For example, leaf nodes by definition have no descendants, so given only a pointer to a leaf node no other node can be reached. A threaded tree adds extra information in some or all nodes, so that for any given single node the "next" node can be found quickly, allowing tree traversal without recursion and the extra storage (proportional to the tree's depth) that recursion requires.
+Threading
+"A binary tree is threaded by making all right child pointers that would normally be null point to the in-order successor of the node (if it exists), and all left child pointers that would normally be null point to the in-order predecessor of the node."
+This assumes the traversal order is the same as in-order traversal of the tree. However, pointers can instead (or in addition) be added to tree nodes, rather than replacing. Linked lists thus defined are also commonly called "threads", and can be used to enable traversal in any order(s) desired. For example, a tree whose nodes represent information about people might be sorted by name, but have extra threads allowing quick traversal in order of birth date, weight, or any other known characteristic.
+Motivation
+Trees, including (but not limited to) binary sear
+
+===== ORTA (2912. karakterden 700 karakter) =====
+for in-order traversal exists, that uses no stack and leaves the tree unmodified. One of the solutions to this problem is tree threading, presented by Joseph M. Morris in 1979. In the 1969 follow-up edition, Knuth attributed the threaded tree representation to Perlis and Thornton (1960).
+Relation to parent pointers
+Another way to achieve similar goals is to include a pointer in every node, to that node's parent node. Given that, the "next" node can always be reached, "right" pointers are still null whenever there are no right children. To find the "next" node from a node whose right pointer is null, walk up through "parent" pointers until reaching a node whose right pointer is not null, and 
+
+===== SON (son 500 karakter) =====
+versal
+Threads are references to the predecessors and successors of the node according to an inorder traversal.
+In-order traversal of the threaded tree is A,B,C,D,E,F,G,H,I, the predecessor of E is D, the successor of E is F.
+Example
+Let's make the Threaded Binary tree out of a normal binary tree:
+The in-order traversal for the above tree is — D B A E C. So, the respective Threaded Binary tree will be --
+Null links
+In an m-way threaded binary tree with n nodes, there are n×m − (n−1) void links.
+

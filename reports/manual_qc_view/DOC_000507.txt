@@ -1,0 +1,32 @@
+document_id: DOC_000507
+title: Range mode query
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Range_mode_query
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: validation
+char_count: 10219
+token_count: 3172
+
+===== BAŞ (ilk 1500 karakter) =====
+In data structures, the range mode query problem asks to build a data structure on some input data to efficiently answer queries asking for the mode of any consecutive subset of the input.
+Problem statement
+Given an array $A[1:n] = [a_1,a_2,...,a_n]$, we wish to answer queries of the form $mode(A, i:j)$, where $1 \leq i \leq j \leq n$. The mode $mode(S)$ of any array $S = [s_1,s_2,...,s_k]$ is an element $s_i$ such that the frequency of $s_i$ is greater than or equal to the frequency of $s_j \; \forall j \in \{1,...,k\}$. For example, if $S = [1,2,4,2,3,4,2]$, then $mode(S) = 2$ because it occurs three times, while all other values occur fewer times. In this problem, the queries ask for the mode of subarrays of the form $A[i:j] = [a_i,a_{i+1},...,a_j]$.
+Theorem 1
+Let $A$ and $B$ be any multisets. If $c$ is a mode of $A \cup B$ and $c \notin A$, then $c$ is a mode of $B$.
+Proof
+Let $c \notin A$ be a mode of $C = A \cup B$ and $f_c$ be its frequency in $C$. Suppose that $c$ is not a mode of $B$. Thus, there exists an element $b$ with frequency $f_b$ that is the mode of $B$. Since $b$ is the mode of $B$ and that $c \notin A$, then $f_b > f_c$. Thus, $b$ should be the mode of $C$ which is a contradiction.
+Results
+Lower bound
+Any data structure using $S$ cells of $w$ bits each needs $\Omega\left(\frac{\log n}{\log (S w/n)}\right)$ time to answer a range mode query.
+This contrasts with other range query problems, such as the range minimum query which have solutions offering constan
+
+===== ORTA (5109. karakterden 700 karakter) =====
+er over $A$, since for any $a,i,j$, $B[a]$ is a mode for $B[i:j]$ if and only if $A[a]$ is a mode for $A[i:j]$. We can convert an answer for $B$ to an answer for $A$ in constant time by looking in $A$ or $B$ at the corresponding index.
+Given a query $mode(B,i,j)$, the query is split in three parts: the prefix, the span and the suffix. Let $b_i=\lceil (i-1)/t\rceil$ and $b_j = \lfloor j/t \rfloor -1$. These denote the indices of the first and last block that are completely contained in $B$. The range of these blocks is called the span. The prefix is then $B[i:min\{b_i t,j\}]$ (the set of indices before the span), and the suffix is $B[max\{(b_j+1)t+1,i\}:j]$ (the set of indices after the span)
+
+===== SON (son 500 karakter) =====
+ed inside a block, in which case the answer is stored in table $T$. If the query spans exactly one or more blocks, then the answer is found in table $S$. Otherwise, use the pointer stored in table $S$ at position $S[b_{i'},b_{j'}]$, where $b_{i'},b_{j'}$ are the indices of the blocks that contain respectively $i$ and $j$, to find the table $U_{b_{i'},b_{j'}}$ that contains the positions of the mode for these blocks and use the position to find the mode in $A$. This can be done in constant time.
+

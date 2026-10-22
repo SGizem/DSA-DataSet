@@ -1,0 +1,38 @@
+document_id: DOC_000532
+title: Shadow heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Shadow_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: agaclar
+split: validation
+char_count: 5764
+token_count: 1563
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a shadow heap is a mergeable heap data structure which supports efficient heap merging in the amortized sense. More specifically, shadow heaps make use of the shadow merge algorithm to achieve insertion in O(f(n)) amortized time and deletion in O((log n log log n)/f(n)) amortized time, for any choice of 1 ≤ f(n) ≤ log log n.
+Throughout this article, it is assumed that A and B are binary heaps with |A| ≤ |B|.
+Shadow merge
+Shadow merge is an algorithm for merging two binary heaps efficiently if these heaps are implemented as arrays. Specifically, the running time of shadow merge on two heaps $A$ and $B$ is $O(|A| + \min\{\log |B| \log \log |B|, \log |A| \log |B|\})$.
+Algorithm
+We wish to merge the two binary min-heaps $A$ and $B$. The algorithm is as follows:
+- Concatenate the array $A$ at the end of the array $B$ to obtain an array $C$.
+- Identify the shadow of $A$ in $C$; that is, the ancestors of the last $|A|$ nodes in $C$ which destroy the heap property.
+- Identify the following two parts of the shadow from $C$:
+  - The path $P$: the set of nodes in the shadow for which there are at most 2 at any depth of $C$;
+  - The subtree $T$: the remainder of the shadow.
+- Extract and sort the smallest $|P|$ nodes from the shadow into an array $S$.
+- Transform $S$ as follows:
+  - If $|S| > |C|$, then starting from the smallest element in the sorted array, sequentially insert each element of $S$ into $C$, replacing them with $C$'s smallest elements.
+  - If $|S| \le
+
+===== ORTA (2882. karakterden 700 karakter) =====
+an element to the shadow heap, place it in the array $A$. If the array becomes too large according to the specified threshold, we first build a heap out of $A$ using Floyd's algorithm for heap construction, and then merge this heap with $B$ using shadow merge. Finally, the merging of shadow heaps is simply done through sequential insertion of one heap into the other using the above insertion procedure.
+Analysis
+We are given a shadow heap $H = (B, A)$, with threshold function $\log |H| \leq f(H) \leq \log |H| \log \log |H|$ as above. Suppose that the threshold function is such that any change in $|B|$ induces no larger a change than in $f(H)$. We derive the desired running time bounds for the
+
+===== SON (son 500 karakter) =====
+orithm for merging the binary heaps in $O(|A| + \log |A| \log |B|)$ time. Their algorithm is known to be more efficient than the second naive solution described above roughly when $|A| > \log |B|$. Shadow merge performs asymptotically better than their algorithm, even in the worst case.
+There are several other heaps which support faster merge times. For instance, Fibonacci heaps can be merged in $O(1)$ time. Since binary heaps require $\Omega(|A|)$ time to merge, shadow merge remains efficient.
+

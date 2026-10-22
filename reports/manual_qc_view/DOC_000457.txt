@@ -1,0 +1,38 @@
+document_id: DOC_000457
+title: Odd–even sort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Odd–even_sort
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 4570
+token_count: 1150
+
+===== BAŞ (ilk 1500 karakter) =====
+In computing, an odd–even sort or odd–even transposition sort (also known as brick sort or parity sort) is a relatively simple sorting algorithm, developed originally for use on parallel processors with local interconnections. It is a comparison sort related to bubble sort, with which it shares many characteristics. It functions by comparing all odd/even indexed pairs of adjacent elements in the list and swapping pairs where in the wrong order (where the first is larger than the second). The next step repeats this for even/odd indexed pairs (of adjacent elements). Then it alternates between odd/even and even/odd steps until the list is sorted.
+Sorting on processor arrays
+On parallel processors, with one value per processor and only local left–right neighbor connections, the processors all concurrently do a compare–exchange operation with their neighbors, alternating between odd–even and even–odd pairings. This algorithm was originally presented, and shown to be efficient on such processors, by Habermann in 1972.
+The algorithm extends efficiently to the case of multiple items per processor. In the Baudet–Stevenson odd–even merge-splitting algorithm, each processor sorts its own sublist at each step, using any efficient sort algorithm, and then performs a merge splitting, or transposition–merge, operation with its neighbor, with neighbor pairing alternating between odd–even and even–odd on each step.
+Batcher's odd–even mergesort
+A related but more efficient sort algorithm is th
+
+===== ORTA (2285. karakterden 700 karakter) =====
+false;
+      }
+    }
+  }
+}
+Proof of correctness
+Claim: Let $a_1, ..., a_n$ be a sequence of data ordered by <. The odd–even sort algorithm correctly sorts this data in $n$ passes. (A pass here is defined to be a full sequence of odd–even, or even–odd comparisons. The passes occur in order pass 1: odd–even, pass 2: even–odd, etc.)
+Proof:
+This proof is based loosely on one by Thomas Worsch.
+Since the sorting algorithm only involves comparison-swap operations and is oblivious (the order of comparison-swap operations does not depend on the data), by Knuth's 0–1 sorting principle, it suffices to check correctness when each $a_i$ is either 0 or 1. Assume that there are $e$ 1s.
+Observe that the rig
+
+===== SON (son 500 karakter) =====
+s at most $n - e + 2$ passes to move the second rightmost 1 to its correct position.
+Continuing in this manner, by induction it can be shown that the $i$-th rightmost 1 is moved to its correct position in at most $n - e + i$ passes. Since $i \leq e$, it follows that the $i$-th rightmost 1 is moved to its correct position in at most $n - e + e = n$ passes. The list is thus correctly sorted in $n$ passes. QED.
+We remark that each pass takes $O(n)$ steps, so this algorithm has $O(n^2)$ complexity.
+

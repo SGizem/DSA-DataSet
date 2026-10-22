@@ -1,0 +1,26 @@
+document_id: DOC_000598
+title: WAVL tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/WAVL_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: agaclar
+split: train
+char_count: 16924
+token_count: 3855
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a WAVL tree or weak AVL tree is a self-balancing binary search tree. WAVL trees are named after AVL trees, another type of balanced search tree, and are closely related both to AVL trees and red–black trees, which all fall into a common framework of rank balanced trees. Like other balanced binary search trees, WAVL trees can handle insertion, deletion, and search operations in time O(log n) per operation.
+WAVL trees are designed to combine some of the best properties of both AVL trees and red–black trees. One advantage of AVL trees over red–black trees is being more balanced: they have height at most $\log_{\varphi} n\approx 1.44\log_2 n$ (for a tree with n data items, where $\varphi$ is the golden ratio), while red–black trees have larger maximum height, $2\log_2 n$. If a WAVL tree is created using only insertions, without deletions, then it has the same small height bound that an AVL tree has. On the other hand, red–black trees have the advantage over AVL trees in lesser restructuring of their trees. In AVL trees, each deletion may require a logarithmic number of tree rotation operations, while red–black trees have simpler deletion operations that use only a constant number of tree rotations. WAVL trees, like red–black trees, use only a constant number of tree rotations, and the constant is even better than for red–black trees.
+WAVL trees were introduced by Haeupler, Sen & Tarjan (2015). The same authors also provided a common view of AVL trees, WAVL tr
+
+===== ORTA (8462. karakterden 700 karakter) =====
+hmic number of rank changes, and a constant number of tree rotations.
+Deletion
+Deleting an internal node from a WAVL tree starts with ordinary binary search tree deletion. For an internal node with no external child, that means finding its successor in the tree, exchanging the node with its successor, and then removing the node from its new tree position, where its left child is necessarily an external node. To remove an internal node with an external child, replace the node with the other child.
+Bottom-up rebalancing begins by considering the rank-difference between a node - initially, the node that replaced the deleted node - and its parent. If there is no parent, balance is restored. Befo
+
+===== SON (son 500 karakter) =====
+their tree structures, WAVL trees are special cases of red–black trees, their update operations are different. The tree rotations used in WAVL tree update operations may make changes that would not be permitted in a red–black tree, because they would in effect cause the recoloring of large subtrees of the red–black tree rather than making color changes only on a single path in the tree. This allows WAVL trees to perform fewer tree rotations per deletion, in the worst case, than red-black trees.
+

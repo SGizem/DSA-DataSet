@@ -1,0 +1,25 @@
+document_id: DOC_000146
+title: Bağlı liste
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Bağlı_liste
+language: tr
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: diziler_ve_listeler
+split: validation
+char_count: 1064
+token_count: 313
+
+===== BAŞ (ilk 1500 karakter) =====
+Bağlı liste, her elemanın bir değerinin yanında bir de referans içerdiği veri yapısıdır.
+Bağlı listeler en basit ve en çok kullanılan veri yapılarındandır. Yığın, kuyruk gibi diğer soyut veri yapılarını gerçeklemek için sıklıkla kullanılır. Bağlı listeler pek çok programlama dili ile uygulanabilir. Lisp ve Scheme gibi dillerin içinde bağlı liste veri yapısı gömülü olarak vardır. 1955 yılında Allen Newell, Cliff Shaw ve Herbert Simon tarafından geliştirilmiştir.
+Avantajları
+- Bağlı liste bir dinamik veri yapısıdır ve programın çalışması sırasında büyüyüp küçülebilir.
+- Ekleme ve çıkarma işlemleri, dizilerin aksine kaydırma işlemi gerektirmeden kolayca yapılabilir.
+- Yığın ve kuyruk gibi veri yapıları bağlı liste kullanılarak gerçeklenebilir.
+- Bağlı liste oluşturulurken bir başlanıç boyutu belirtilmesine gerek yoktur.
+- Listenin ortasına veri eklenebilir ya da ortasından veri kaldırılabilir.
+Dezavantajları
+- Sahip olduğu işaretçiler sebebiyle dizilere göre daha çok hafıza gerektirir.
+- Tekli bağlı listede geriye dönüş işlemleri oldukça külfetlidir.
+

@@ -1,0 +1,75 @@
+document_id: DOC_000017
+title: Open Data Structures: Random Binary Search Trees
+source_name: open_data_structures
+url: https://opendatastructures.org/ods-python.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2015
+subtopic: agaclar
+split: train
+char_count: 26130
+token_count: 7667
+
+===== BAŞ (ilk 1500 karakter) =====
+Chapter 7
+In this chapter, we present a binary search tree structure that uses randomization to achieve O(logn) expected time for all operations.
+7.1
+Random Binary Search Trees
+Consider the two binary search trees shown in Figure 7.1, each of which
+has n = 15 nodes. The one on the left is a list and the other is a perfectly
+balanced binary search tree. The one on the left has a height of n −1 = 14
+and the one on the right has a height of three.
+Imagine how these two trees could have been constructed. The one on
+the left occurs if we start with an empty BinarySearchTree and add the
+sequence
+⟨0,1,2,3,4,5,6,7,8,9,10,11,12,13,14⟩.
+No other sequence of additions will create this tree (as you can prove by
+induction on n). On the other hand, the tree on the right can be created
+by the sequence
+⟨7,3,11,1,5,9,13,0,2,4,6,8,10,12,14⟩.
+Other sequences work as well, including
+⟨7,3,1,5,0,2,4,6,11,9,13,8,10,12,14⟩,
+and
+⟨7,3,1,11,5,0,2,4,6,9,13,8,10,12,14⟩.
+0 1 2 3 ... 14 0 1 2 3 4 5 6 7 8 10 12 14 13 9 11
+Figure 7.1: Two binary search trees containing the integers 0,...,14.
+In fact, there are 21,964,800 addition sequences that generate the tree on
+the right and only one that generates the tree on the left.
+The above example gives some anecdotal evidence that, if we choose a
+random permutation of 0,...,14, and add it into a binary search tree, then
+we are more likely to get a very balanced tree (the right side of Figure 7.1)
+than we are to get a very unbalanced tree (the left side of Figure 
+
+===== ORTA (13065. karakterden 700 karakter) =====
+f
+w. If u continues to violate the heap property, we will have to repeat this,
+decreasing u’s depth by one every time, until u either becomes the root or
+u.parent.p < u.p.
+add(x)
+u ←new node(x)
+if add node(u) then
+bubble up(u)
+return true
+return false
+bubble up(u)
+while u ≠ r and u.parent.p > u.p do
+if u.parent.right = u then
+rotate left(u.parent)
+else
+rotate right(u.parent)
+if u.parent = nil then
+r ←u
+An example of an add(x) operation is shown in Figure 7.7.
+The running time of the add(x) operation is given by the time it takes
+to follow the search path for x plus the number of rotations performed
+to move the newly-added node, u, up to its correct location in the Treap.
+By Lemma 7.2, the ex
+
+===== SON (son 500 karakter) =====
+ch can be thought of as the inverse of the
+split(x) operation. This operation removes all values from the Treap t2
+and adds them to the receiver. This operation presupposes that the smallest value in t2 is greater than the largest value in the receiver. The absorb(t2)
+operation should run in O(logn) expected time.
+Exercise 7.14. Implement Martinez’s randomized binary search trees, as
+discussed in this section. Compare the performance of your implementation with that of the Treap implementation.
+

@@ -1,0 +1,30 @@
+document_id: DOC_000239
+title: B-tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/B-tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: validation
+char_count: 34875
+token_count: 7802
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree generalizes the binary search tree, allowing nodes to have more than two children.
+By allowing more children under one node than a regular self-balancing binary search tree, the B-tree reduces the height of the tree and puts the data in fewer separate blocks. This is especially important for trees stored in secondary storage (e.g., disk drives), as these systems have relatively high latency and work with relatively large blocks of data, hence the B-tree's use in databases and file systems. This remains a major advantage when the tree is stored in memory, as modern computer systems rely heavily on CPU caches. Compared to reading from the cache, reading from memory after a cache miss costs significant time.
+History
+While working at Boeing Research Labs, Rudolf Bayer and Edward M. McCreight invented B-trees to efficiently manage index pages for large random-access files. Their basic assumption was that indices would be so voluminous that only small chunks of the tree could fit in the main memory. Bayer and McCreight's paper Organization and maintenance of large ordered indices was first circulated in July 1970 and later published in Acta Informatica.
+Bayer and McCreight never explained what, if anything, the B stands for; Boeing, balanced, between, broad, bushy, and Bayer have been sugge
+
+===== ORTA (17437. karakterden 700 karakter) =====
+ary search requiring roughly log_2 N disk reads to one requiring only log_b N disk reads where b is the blocking factor (the number of entries per block: b = 100 entries per block in our example; log_{100} 1,000,000 = 3 reads).
+In practice, if the main database is being frequently searched, the aux-aux index and much of the aux index may reside in a disk cache, so they would not incur a disk read. The B-tree remains the standard index implementation in almost all relational databases, and many nonrelational databases use it as well.
+Insertions and deletions
+If the database does not change, then compiling the index is simple to do, and the index never needs to be changed. If there are changes
+
+===== SON (son 500 karakter) =====
+ the Linux kernel to reduce lock contention in virtual memory management.
+(a,b)-tree
+(a,b)-trees are generalizations of B-trees. B-trees require that each internal node have a minimum of $\lfloor K / 2 \rfloor + 1$ children and a maximum of $K$ children, for some preset value of $K$. In contrast, an (a,b)-tree allows the minimum number of children for an internal node to be set arbitrarily low. In an (a,b)-tree, each internal node has between a and b children, for some preset values of a and b.
+

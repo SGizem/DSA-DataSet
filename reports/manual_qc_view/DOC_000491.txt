@@ -1,0 +1,30 @@
+document_id: DOC_000491
+title: Pseudo-polynomial time
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Pseudo-polynomial_time
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: karmasiklik_analizi
+split: train
+char_count: 4321
+token_count: 978
+
+===== BAŞ (ilk 1500 karakter) =====
+In computational complexity theory, a numeric algorithm runs in pseudo-polynomial time if its running time is bounded from above by a polynomial function of the two variables: the numeric value of the input (the largest integer present in the input) and the length of the input (the number of bits required to represent it).
+In general, using a positional number system, the numeric value of the input is exponential in the input length, which is why a pseudo-polynomial time algorithm does not necessarily run in polynomial time with respect to the input length. The distinction between the value of a number and its length is due to positional encoding; if numeric inputs are instead encoded in unary then the length and value are the same.
+An NP-complete problem with known pseudo-polynomial time algorithms is called weakly NP-complete. An NP-complete problem is called strongly NP-complete if it is proven that it cannot be solved by a pseudo-polynomial time algorithm unless P = NP. The strong/weak kinds of NP-hardness are defined analogously. Strong NP-completeness of a problem can be established by a pseudo-polynomial transformation from a known strongly NP-complete problem.
+Examples
+Primality testing
+Consider solving the problem of testing whether a number n is prime by naively checking whether a number in $\{ 2, 3, \dots, \sqrt{n} \}$ divides $n$ evenly. This approach can take up to $\sqrt{n} - 1$ divisions, which is sub-linear in the value of n but exponential in the length of n 
+
+===== ORTA (2160. karakterden 700 karakter) =====
+n general the algorithm is truly linear in the length of the input. Compared with the actual numbers being added (in the billions), the algorithm could be called "pseudo-logarithmic time", though such a term is not standard. Thus, adding 300-digit numbers is not impractical. Similarly, long division is quadratic: an m-digit number can be divided by a n-digit number in $O(mn)$ steps (see Big O notation.)
+In the case of primality, it turns out there is a different algorithm for testing whether n is prime (discovered in 2002) that runs in time $O((\log {n})^6)$.
+Knapsack problem
+In the knapsack problem, we are given $n$ items with weight $w_i$ and value $v_i$, along with a maximum weight capaci
+
+===== SON (son 500 karakter) =====
+ the magnitude of the largest integer). An example is the partition problem. Both weak NP-hardness and weak polynomial-time correspond to encoding the input integers in binary coding.
+- If a problem is strongly NP-hard, then it does not even have a pseudo-polynomial time algorithm. It also does not have a fully-polynomial time approximation scheme. An example is the 3-partition problem. Both strong NP-hardness and pseudo-polynomial time correspond to encoding the input integers in unary coding.
+

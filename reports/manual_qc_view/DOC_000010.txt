@@ -1,0 +1,68 @@
+document_id: DOC_000010
+title: All-Pairs Shortest Paths
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: graflar
+split: train
+char_count: 35747
+token_count: 9816
+
+===== BAŞ (ilk 1500 karakter) =====
+The tree which fills the arms grew from the tiniest sprout;
+the tower of nine storeys rose from a (small) heap of earth;
+the journey of a thousand li commenced with a single step.
+— Lao-Tzu, Tao Te Ching, chapter 64 (6th century BCE),
+translated by James Legge (1891)
+And I would walk five hundred miles,
+And I would walk five hundred more,
+Just to be the man who walks a thousand miles
+To fall down at your door.
+— The Proclaimers, “I’m Gonna Be (500 Miles)”,
+Sunshine on Leith (2001)
+Almost there... Almost there...
+— Red Leader [Drewe Henley], Star Wars (1977)
+9
+All-Pairs Shortest Paths
+9.1
+Introduction
+In the previous chapter, we discussed several algorithms to find the shortest
+paths from a single source vertex s to every other vertex of the graph, by
+constructing a shortest path tree rooted at s. The shortest path tree specifies
+two pieces of information for each node v in the graph:
+• dist(v) is the length of the shortest path from s to v;
+• pred(v) is the second-to-last vertex in the shortest path from s to v.
+In this chapter, we consider the more general all pairs shortest path problem,
+which asks for the shortest path from every possible source to every possible
+destination. For every pair of vertices u and v, we want to compute the following
+information:
+• dist(u, v) is the length of the shortest path from u to v;
+• pred(u, v) is the second-to-last vertex on the shortest path from u to v.
+These intuitive definitions exclude a few boundary cases, all of which we
+already s
+
+===== ORTA (17873. karakterden 700 karakter) =====
+n the all-pairs-shortest-path problem in unweighted undirected graphs.
+Journal of Computer and System Sciences, 51(3):400-403, 1995. This is one of the few algorithms
+papers where (in the 1992 conference version at least) the algorithm is completely described
+and analyzed in the abstract of the paper. See also: Noga Alon, Zvi Galil, Oded Margalit*. On
+the exponent of the all pairs shortest path problem. Journal of Computer and System Sciences
+54(2):255–262, 1997.
+9.8
+(Kleene-Roy-)Floyd-Warshall(-Ingerman)
+Our fast dynamic programming algorithm is still a factor of O(log V) slower
+in the worst case than the standard implementation of Johnson’s algorithm.
+A different formulation of shortest pa
+
+===== SON (son 500 karakter) =====
+ed to compute the nth “funny” power of A using Yuval’s algorithm?
+(Recall that if A is the weighted adjacency matrix of a graph, then the
+nth “funny” power of A is the matrix of shortest-path distances.)
+(e) Why doesn’t Yuval’s algorithm imply an all-pairs shortest path algorithm
+that is faster than Floyd-Warshall for arbitrary edge weights? How are
+we cheating?
+10In particular, do not use logarithms or division or the floor function ⌊x⌋. Trust me—this is a
+can of worms you do not want to open.
+

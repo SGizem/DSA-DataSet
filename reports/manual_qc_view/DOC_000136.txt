@@ -1,0 +1,38 @@
+document_id: DOC_000136
+title: AVL ağacı
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/AVL_ağacı
+language: tr
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: agaclar
+split: test
+char_count: 2592
+token_count: 963
+
+===== BAŞ (ilk 1500 karakter) =====
+Bilgisayar bilimlerinde bir AVL ağacı (İsmini icat eden Adelson-Velsky ve Landis'den alır) kendi kendini dengeleyen bir İkili arama ağacıdır. Bu tip Veri yapılarının icat edilmiş ilk örneğidir. Bir AVL ağacında, iki çocuk alt ağacın uzunluk farklı en fazla bir olabilir; Eğer herhangi bir anda fark birden fazlaysa, dengeleme yapılarak bu özellik korunur. Arama, ekleme ve silme işlemlerinin hepsi hem ortalama hem de en kötü durumlarda O(log n) zaman sürer, burada $n$ harfi operasyon öncesindeki düğüm(node) adetidir. Ekleme ve çıkarma işlemleri ağacın bir veya daha fazla ağaç rotasyonları ile dengelenmesini gerektirebilir.
+AVL ağacı ismini iki Sovyet mucitlerinden alır, Georgy Adelson-Velsky ve Evgenii Landis algoritmayı 1962'deki makaleleri "An algorithm for the organization of information".'de yayımladılar.
+AVL ağaçı ve Kırmızı-siyah ağaç aynı operasyonları destekledikleri ve ikisinde de basit operasyonlar için ${\displaystyle {\text{O}}(\log n)}$ zamanı sürdüğü için sıklıkla kıyaslanırlar. Arama işleminin fazla olduğu uygulamalar için AVL ağaçları daha katı şekilde dengelendiği için Kırmızı-siyah ağaçtan daha hızlıdır. Kırmızı siyah ağaçlara benzer şekilde AVL ağaçları uzunluğa göre dengelenmiştir.
+Tanım
+Dengeleme Faktörü (Balance factor)
+Bir İkili ağaçda bir düğümün(node) Dengeleme Faktörü X iki çocuk alt ağaçlarının uzunluk farkı olarak tanımlanır.
+- $\text{BF}(X) := \text{Uzunluk}(\text{SağAltAğaç}(X)) - \text{Uzunluk}(\text{SolAltAğaç}(X))$
+Bir ikili ağaçın AVL ağacı olar
+
+===== ORTA (1296. karakterden 700 karakter) =====
+ngeleme Faktörü X iki çocuk alt ağaçlarının uzunluk farkı olarak tanımlanır.
+- $\text{BF}(X) := \text{Uzunluk}(\text{SağAltAğaç}(X)) - \text{Uzunluk}(\text{SolAltAğaç}(X))$
+Bir ikili ağaçın AVL ağacı olarak tanımlanması için değişmez(Invariant)'ın
+- $\text{BF}(X) \in {\{-1,0,1\}}$ bütün düğmleri için geçerli olması gerekir.
+Bir düğüm X için eğer $\text{BF}(X)<0$ ise o düğüm sol taraf ağırlıklı(left-heavy), $\text{BF}(X)>0$ ise sağ taraf ağırlıklı(right-heavy) ve $\text{BF}(X)=0$ ise dengeli denir.
+Özellikleri
+Denge faktörlerini güncel tutmak için daha önceki denge faktörünü ve uzunluktaki değişimi bilmek yeterlidir, yani mutlak uzunluğu bilmek gerekli değildir. AVL denge bilgisini alışıldık 
+
+===== SON (son 500 karakter) =====
+tin de yeterli olduğu görülmüştür.
+$n$ adet düğüme sahip bir AVL ağacının uzunluğu $h$ (En fazla katman sayısı olarak sayılmaktadır), $\log_2(n+1) \le h < \log_\varphi(n+2) + b$ aralığındadır.
+Burada $\varphi := \tfrac{1+\sqrt 5}2 \approx 1.618$  altın oran ve $b := \frac{\log_2 5}{2 \log_2 \varphi} - 2 \approx \; -0.3277 .$
+Bunun sebebi $h$ uzunluğundaki bir AVL ağacı en az $F_{h+2}-1$ düğüm içermektedir. Burada 
+$\{F_n\}_{n\in\N}$, değeri başlangıç değerleri $F_1=F_2=1$ olan Fibonacci dizisi.
+

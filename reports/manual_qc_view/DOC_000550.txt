@@ -1,0 +1,31 @@
+document_id: DOC_000550
+title: Spanning tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Spanning_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 13447
+token_count: 2846
+
+===== BAŞ (ilk 1500 karakter) =====
+In the mathematical field of graph theory, a spanning tree T of an undirected graph G is a subgraph that is a tree which includes all of the vertices of G. In general, a graph may have several spanning trees, but a graph that is not connected will not contain a spanning tree (see about spanning forests below). If all of the edges of G are also edges of a spanning tree T of G, then G is a tree and is identical to T (that is, a tree has a unique spanning tree and it is itself).
+Applications
+Several pathfinding algorithms, including Dijkstra's algorithm and the A* search algorithm, internally build a spanning tree as an intermediate step in solving the problem.
+In order to minimize the cost of power networks, wiring connections, piping, automatic speech recognition, etc., people often use algorithms that gradually build a spanning tree (or many such trees) as intermediate steps in the process of finding the minimum spanning tree.
+The Internet and many other telecommunications networks have transmission links that connect nodes together in a mesh topology that includes some loops. In order to avoid bridge loops and routing loops, many routing protocols designed for such networks—including the Spanning Tree Protocol, Open Shortest Path First, Link-state routing protocol, Augmented tree-based routing, etc.—require each router to remember a spanning tree.
+A special kind of spanning tree, the Xuong tree, is used in topological graph theory to find graph embeddings with maximum genus.
+
+===== ORTA (6723. karakterden 700 karakter) =====
+= t(G − e) + t(G/e), where G − e is the multigraph obtained by deleting e and G/e is the contraction of G by e. The term t(G − e) in this formula counts the spanning trees of G that do not use edge e, and the term t(G/e) counts the spanning trees of G that use e.
+In this formula, if the given graph G is a multigraph, or if a contraction causes two vertices to be connected to each other by multiple edges, then the redundant edges should not be removed, as that would lead to the wrong total. For instance a bond graph connecting two vertices by k edges has k different spanning trees, each consisting of a single one of these edges.
+Tutte polynomial
+The Tutte polynomial of a graph can be defined 
+
+===== SON (son 500 karakter) =====
+ graph corresponds to a choice function of the family of sets. Therefore, if every infinite connected graph has a spanning tree, then the axiom of choice is true.
+In directed multigraphs
+The idea of a spanning tree can be generalized to directed multigraphs. Given a vertex v on a directed multigraph G, an oriented spanning tree T rooted at v is an acyclic subgraph of G in which every vertex other than v has outdegree 1. This definition is only satisfied when the "branches" of T point towards v.
+

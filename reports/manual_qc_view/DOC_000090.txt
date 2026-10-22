@@ -1,0 +1,100 @@
+document_id: DOC_000090
+title: viterbi.py
+source_name: thealgorithms_python
+url: https://github.com/TheAlgorithms/Python/blob/3935d286dfa3d258ab77c22d584202141a3eb1b9/dynamic_programming/viterbi.py
+language: code
+document_type: kod
+publication_year: 
+subtopic: ozyineleme_ve_dp
+split: train
+char_count: 13447
+token_count: 3337
+
+===== BAŞ (ilk 1500 karakter) =====
+from typing import Any
+
+
+def viterbi(
+    observations_space: list,
+    states_space: list,
+    initial_probabilities: dict,
+    transition_probabilities: dict,
+    emission_probabilities: dict,
+) -> list:
+    """
+    Viterbi Algorithm, to find the most likely path of
+    states from the start and the expected output.
+
+    https://en.wikipedia.org/wiki/Viterbi_algorithm
+
+    Wikipedia example
+
+    >>> observations = ["normal", "cold", "dizzy"]
+    >>> states = ["Healthy", "Fever"]
+    >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
+    >>> trans_p = {
+    ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
+    ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
+    ... }
+    >>> emit_p = {
+    ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
+    ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
+    ... }
+    >>> viterbi(observations, states, start_p, trans_p, emit_p)
+    ['Healthy', 'Healthy', 'Fever']
+    >>> viterbi((), states, start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, (), start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, states, {}, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, states, start_p, {}, emit_p)
+    Traceback (most recent call last):
+        ...
+ 
+
+===== ORTA (6723. karakterden 700 karakter) =====
+
+    emission_probabilities: Any,
+) -> None:
+    """
+    >>> observations = ["normal", "cold", "dizzy"]
+    >>> states = ["Healthy", "Fever"]
+    >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
+    >>> trans_p = {
+    ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
+    ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
+    ... }
+    >>> emit_p = {
+    ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
+    ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
+    ... }
+    >>> _validation(observations, states, start_p, trans_p, emit_p)
+    >>> _validation([], states, start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+            ...
+    ValueError: There's an em
+
+===== SON (son 500 karakter) =====
+must be a dict"
+        raise ValueError(msg)
+    if not all(isinstance(x, str) for x in _object):
+        msg = f"{var_name} all keys must be strings"
+        raise ValueError(msg)
+    if not all(isinstance(x, value_type) for x in _object.values()):
+        nested_text = "nested dictionary " if nested else ""
+        msg = f"{var_name} {nested_text}all values must be {value_type.__name__}"
+        raise ValueError(msg)
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+

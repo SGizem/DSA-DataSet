@@ -1,0 +1,64 @@
+document_id: DOC_000022
+title: Open Data Structures: Graphs
+source_name: open_data_structures
+url: https://opendatastructures.org/ods-python.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2015
+subtopic: graflar
+split: train
+char_count: 22032
+token_count: 5998
+
+===== BAŞ (ilk 1500 karakter) =====
+Chapter 12
+In this chapter, we study two representations of graphs and basic algorithms that use these representations.
+Mathematically, a (directed) graph is a pair G = (V ,E) where V is a set
+of vertices and E is a set of ordered pairs of vertices called edges. An edge
+(i,j) is directed from i to j; i is called the source of the edge and j is called
+the target. A path in G is a sequence of vertices v0,...,vk such that, for
+every i ∈{1,...,k}, the edge (vi−1,vi) is in E. A path v0,...,vk is a cycle if,
+additionally, the edge (vk,v0) is in E. A path (or cycle) is simple if all of its
+vertices are unique. If there is a path from some vertex vi to some vertex
+vj then we say that vj is reachable from vi. An example of a graph is shown
+in Figure 12.1.
+Due to their ability to model so many phenomena, graphs have an
+enormous number of applications. There are many obvious examples.
+Computer networks can be modelled as graphs, with vertices corresponding to computers and edges corresponding to (directed) communication
+links between those computers. City streets can be modelled as graphs,
+with vertices representing intersections and edges representing streets
+joining consecutive intersections.
+Less obvious examples occur as soon as we realize that graphs can
+model any pairwise relationships within a set. For example, in a university setting we might have a timetable conflict graph whose vertices
+represent courses offered in the university and in which the edge (i,j) is
+present if and o
+
+===== ORTA (11016. karakterden 700 karakter) =====
+ded that these neighbours have
+never been in q before. The only major difference between the breadth-first-search algorithm for graphs and the one for trees is that the algorithm for graphs has to ensure that it does not add the same vertex to q
+more than once. It does this by using an auxiliary boolean array, seen, that
+tracks which vertices have already been discovered.
+bfs(g,r)
+seen ←new boolean array(n)
+q ←SLList()
+q.add(r)
+seen[r] ←true
+while q.size() > 0 do
+i ←q.remove()
+for j in g.out edges(i) do
+if seen[j] = false then
+q.add(j)
+seen[j] ←true
+An example of running bfs(g,0) on the graph from Figure 12.1 is shown
+in Figure 12.4. Different executions are possible, depending on the orderi
+
+===== SON (son 500 karakter) =====
+on of each
+algorithm on some graph where r is the source of more than 1 edge.)
+Exercise 12.10. A universal sink in a graph G is a vertex that is the target
+of n −1 edges and the source of no edges.^1 Design and implement an
+algorithm that tests if a graph G, represented as an AdjacencyMatrix, has
+a universal sink. Your algorithm should run in O(n) time.
+1A universal sink, v, is also sometimes called a celebrity: Everyone in the room recognizes
+v, but v doesn’t recognize anyone else in the room.
+

@@ -1,0 +1,20 @@
+document_id: DOC_000549
+title: Spaghetti sort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Spaghetti_sort
+language: en
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: siralama_ve_arama
+split: train
+char_count: 1702
+token_count: 371
+
+===== BAŞ (ilk 1500 karakter) =====
+Spaghetti sort is a linear-time, analog algorithm for sorting a sequence of items, introduced by A. K. Dewdney in his Scientific American column. This algorithm sorts a sequence of items requiring O(n) stack space in a stable manner. It requires a parallel processor, which is assumed to be able to find the maximum of a sequence of items in O(1) time.
+Algorithm
+For simplicity, assume we are sorting a list of natural numbers. The sorting method is illustrated using uncooked rods of spaghetti:
+- For each number x in the list, obtain a rod of length x. (One practical way of choosing the unit is to let the largest number m in the list correspond to one full rod of spaghetti. In this case, the full rod equals m spaghetti units. To get a rod of length x, break a rod in two so that one piece is of length x units; discard the other piece.)
+- Once you have all your spaghetti rods, take them loosely in your fist and lower them to the table, so that they all stand upright, resting on the table surface. Now, for each rod, lower your other hand from above until it meets with a rod—this one is clearly the longest. Remove this rod and insert it into the front of the (initially empty) output list (or equivalently, place it in the last unused slot of the output array). Repeat until all rods have been removed.
+Analysis
+Preparing the n rods of spaghetti takes linear time. Lowering the rods on the table takes constant time, O(1). This is possible because the hand, the spaghetti rods and the table

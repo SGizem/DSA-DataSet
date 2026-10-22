@@ -1,0 +1,68 @@
+document_id: DOC_000005
+title: Greedy Algorithms
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: algoritma_paradigmalari
+split: train
+char_count: 62927
+token_count: 16013
+
+===== BAŞ (ilk 1500 karakter) =====
+The point is, ladies and gentleman, greed is good. Greed works, greed is right.
+Greed clarifies, cuts through, and captures the essence of the evolutionary spirit.
+Greed in all its forms, greed for life, money, love, knowledge has marked the
+upward surge in mankind. And greed—mark my words—will save not only Teldar
+Paper but the other malfunctioning corporation called the USA.
+— Gordon Gekko [Michael Douglas], Wall Street (1987)
+There is always an easy solution to every human problem—
+neat, plausible, and wrong.
+— H. L. Mencken, “The Divine Afflatus”,
+New York Evening Mail (November 16, 1917)
+4
+Greedy Algorithms
+4.1
+Storing Files on Tape
+Suppose we have a set of n files that we want to store on magnetic tape.^1 In the
+future, users will want to read those files from the tape. Reading a file from
+tape isn’t like reading a file from disk; first we have to fast-forward past all the
+other files, and that takes a significant amount of time. Let L[1.. n] be an array
+listing the lengths of each file; specifically, file i has length L[i]. If the files are
+stored in order from 1 to n, then the cost of accessing the kth file is
+cost(k) =
+k
+∑
+i=1
+L[i].
+1Readers who are tempted to object that magnetic tape has been obsolete for decades
+are cordially invited to tour your nearest supercomputer facility; ask to see the tape robots.
+Alternatively, consider filing a sequence of books on a library bookshelf. You know, those strange
+brick-like objects made of dead trees and ink?
+The cost reflec
+
+===== ORTA (31463. karakterden 700 karakter) =====
+ry position has been accepted. Each round has two stages:
+1. An arbitrary unmatched hospital A offers its position to the best doctor α
+(according to A’s preference list) who has not already rejected it.
+2. If α is unmatched, she (tentatively) accepts A’s offer. If α already has
+a match but prefers A, she rejects her current match and (tentatively)
+accepts the new offer from A. Otherwise, α rejects the new offer.
+Each doctor ultimately accepts the best offer that she receives, according to her
+preference list.^{11} In short, hospitals make offers greedily, and doctors accept
+offers greedily. The doctors’ ability to reject their current matches in favor of
+better offers is the key to making t
+
+===== SON (son 500 karakter) =====
+uired to hit
+every balloon, then your greedy algorithm must output either m or m+1.
+(Of course, you must prove this fact.)
+(c) Describe an algorithm that solves the minimum zap problem in O(n^2)
+time.
+n(d) Describe an algorithm that solves the minimum zap problem in O(nlog n)
+time.
+Assume you have a subroutine that tells you the range of angles of rays that
+intersects an arbitrary circle c in O(1) time. This subroutine is not difficult
+to write, but it’s not the interesting part of the problem.
+

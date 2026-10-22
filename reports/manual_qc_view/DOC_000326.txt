@@ -1,0 +1,33 @@
+document_id: DOC_000326
+title: Edit distance
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Edit_distance
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: ozyineleme_ve_dp
+split: train
+char_count: 10661
+token_count: 2491
+
+===== BAŞ (ilk 1500 karakter) =====
+In computational linguistics and computer science, edit distance is a string metric, i.e. a way of quantifying how dissimilar two strings (e.g., words) are to one another, that is measured by counting the minimum number of operations required to transform one string into the other. Edit distances find applications in natural language processing, where automatic spelling correction can determine candidate corrections for a misspelled word by selecting words from a dictionary that have a low distance to the word in question. In bioinformatics, it can be used to quantify the similarity of DNA sequences, which can be viewed as strings of the letters A, C, G and T.
+Different definitions of an edit distance use different sets of like operations. Levenshtein distance operations are the removal, insertion, or substitution of a character in the string. Being the most common metric, the term Levenshtein distance is often used interchangeably with edit distance.
+Types of edit distance
+Different types of edit distance allow different sets of string operations. For instance:
+Some edit distances are defined as a parameterizable metric calculated with a specific set of allowed edit operations, and each operation is assigned a cost (possibly infinite). This is further generalized by DNA sequence alignment algorithms such as the Smith–Waterman algorithm, which make an operation's cost depend on where it is applied.
+Formal definition and properties
+Given two strings a and b on an alphabet Σ (e
+
+===== ORTA (5330. karakterden 700 karakter) =====
+ scripts, since common prefixes and suffixes can be skipped in linear time.
+Computation
+The first algorithm for computing minimum edit distance between a pair of strings was published by Damerau in 1964.
+Common algorithm
+Using Levenshtein's original operations, the (nonsymmetric) edit distance from $a = a_1\ldots a_m$ to $b = b_1\ldots b_n$ is given by $d_{mn}$, defined by the recurrence
+- $\begin{align}d_{i0} &= \sum_{k=1}^{i} w_\mathrm{del}(a_{k}), & & \quad \text{for}\; 1 \leq i \leq m \\ d_{0j} &= \sum_{k=1}^{j} w_\mathrm{ins}(b_{k}), & & \quad \text{for}\; 1 \leq j \leq n \\ d_{ij} &= \begin{cases} d_{i-1, j-1} & \text{for}\; a_{i} = b_{j}\\ \min \begin{cases} d_{i-1, j} + w_\mathrm{del
+
+===== SON (son 500 karakter) =====
+)$, where $d(x,y)$ is the string edit distance. When the language L is context free, there is a cubic time dynamic programming algorithm proposed by Aho and Peterson in 1972 which computes the language edit distance. For less expressive families of grammars, such as the regular grammars, faster algorithms exist for computing the edit distance.
+Language edit distance has found many diverse applications, such as RNA folding, error correction, and solutions to the Optimum Stack Generation problem.
+

@@ -1,0 +1,28 @@
+document_id: DOC_000235
+title: Asymptotically optimal algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Asymptotically_optimal_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: karmasiklik_analizi
+split: test
+char_count: 5451
+token_count: 1071
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, an algorithm is said to be asymptotically optimal if, roughly speaking, for large inputs it performs at worst a constant factor (independent of the input size) worse than any possible algorithm. It is a term commonly encountered in computer science research as a result of widespread use of big O notation.
+More formally, an algorithm is asymptotically optimal with respect to a particular resource if the problem has been proven to require Ω(f(n)) of that resource, and the algorithm has been proven to use only O(f(n)).
+These proofs require an assumption of a particular model of computation, i.e., certain restrictions on operations allowable with the input data.
+As a simple example, it's known that all comparison sorts require at least Ω(n log n) comparisons in the average and worst cases. Mergesort and heapsort are comparison sorts that perform O(n log n) comparisons, so they are asymptotically optimal in this sense.
+If the input data have some a priori properties that can be exploited in construction of algorithms, in addition to comparisons, then asymptotically faster algorithms may be possible. For example, if it is known that the N objects are (not necessarily distinct) integers from the range [1, N], then they may be sorted O(N) time, e.g., by the bucket sort.
+A consequence of an algorithm being asymptotically optimal is that, for large enough inputs, no algorithm can outperform it by more than a constant factor. For this reason, asymptotically optimal 
+
+===== ORTA (2725. karakterden 700 karakter) =====
+ice fall into special cases that have more efficient algorithms or that heuristic algorithms with bad worst-case times can nevertheless solve efficiently.
+- On modern computers, hardware optimizations such as memory cache and parallel processing may be "broken" by an asymptotically optimal algorithm (assuming the analysis did not take these hardware optimizations into account). In this case, there could be sub-optimal algorithms that make better use of these features and outperform an optimal algorithm on realistic data.
+An example of an asymptotically optimal algorithm not used in practice is Bernard Chazelle's linear-time algorithm for triangulation of a simple polygon. Another is the resi
+
+===== SON (son 500 karakter) =====
+ spanning trees, where $\alpha(n)$ is the very slowly growing inverse of the Ackermann function, but the best known lower bound is the trivial $\Omega(n)$. Whether this algorithm is asymptotically optimal is unknown, and would be likely to be hailed as a significant result if it were resolved either way. Coppersmith and Winograd (1982) proved that matrix multiplication has a weak form of speed-up among a restricted class of algorithms (Strassen-type bilinear identities with lambda-computation).
+

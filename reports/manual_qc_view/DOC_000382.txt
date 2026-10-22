@@ -1,0 +1,30 @@
+document_id: DOC_000382
+title: Interval scheduling
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Interval_scheduling
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: algoritma_paradigmalari
+split: train
+char_count: 12988
+token_count: 2935
+
+===== BAŞ (ilk 1500 karakter) =====
+Interval scheduling is a class of problems in computer science, particularly in the area of algorithm design. The problems consider a set of tasks. Each task is represented by an interval describing the time in which it needs to be processed by some machine (or, equivalently, scheduled on some resource). For instance, task A might run from 2:00 to 5:00, task B might run from 4:00 to 10:00 and task C might run from 9:00 to 11:00. A subset of intervals is compatible if no two intervals overlap on the machine/resource. For example, the subset {A,C} is compatible, as is the subset {B}; but neither {A,B} nor {B,C} are compatible subsets, because the corresponding intervals within each subset overlap.
+The interval scheduling maximization problem (ISMP) is to find a largest compatible set, i.e., a set of non-overlapping intervals of maximum size. The goal here is to execute as many tasks as possible, that is, to maximize the throughput. It is equivalent to finding a maximum independent set in an interval graph.
+A generalization of the problem considers $k>1$ machines/resources. Here the goal is to find $k$ compatible subsets whose union is the largest.
+In an upgraded version of the problem, the intervals are partitioned into groups. A subset of intervals is compatible if no two intervals overlap, and moreover, no two intervals belong to the same group (i.e., the subset contains at most a single representative of each group). Each group of intervals corresponds to a single task, and 
+
+===== ORTA (6494. karakterden 700 karakter) =====
+ervals
+GISDPk is NP-complete when $k\geq 3$, even when all intervals have the same length. This can be shown by a reduction from the following version of the Boolean satisfiability problem, which was shown to be NP-complete likewise to the unrestricted version.
+  - Let $X = \{x_1, x_2, \dots, x_p\}$ be a set of Boolean variables. Let $C = \{c_1, c_2, \dots, c_q\}$ be a set of clauses over X such that (1) each clause in C has at most three literals and (2) each variable is restricted to appear once or twice positively and once negatively overall in C. Decide whether there is an assignment to variables of X such that each clause in C has at least one true literal.
+Given an instance of this sat
+
+===== SON (son 500 karakter) =====
+sions. This generalization, too, is NP-complete.
+Another variation is resource allocation, in which a set of intervals s are scheduled using resources k such that k is minimized. That is, all the intervals must be scheduled, but the objective is to minimize the usage of resources.
+Another variation is when there are m processors instead of a single processor. I.e., m different tasks can run in parallel. See identical-machines scheduling.
+Single-machine scheduling is also a very similar problem.
+

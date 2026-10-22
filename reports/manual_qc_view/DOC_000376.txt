@@ -1,0 +1,34 @@
+document_id: DOC_000376
+title: Incidence matrix
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Incidence_matrix
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: test
+char_count: 6134
+token_count: 1434
+
+===== BAŞ (ilk 1500 karakter) =====
+In mathematics, an incidence matrix is a logical matrix that shows the relationship between two classes of objects, usually called an incidence relation. If the first class is X and the second is Y, the matrix has one row for each element of X and one column for each mapping from X to Y. The entry in row x and column y is 1 if the vertex x is part of (called incident in this context) the mapping that corresponds to y, and 0 if it is not. There are variations; see below.
+Graph theory
+Incidence matrix is a common graph representation in graph theory. It is different to an adjacency matrix, which encodes the relation of vertex-vertex pairs.
+Undirected and directed graphs
+In graph theory an undirected graph has two kinds of incidence matrices: unoriented and oriented.
+The unoriented incidence matrix (or simply incidence matrix) of an undirected graph is a $n\times m$ matrix B, where n and m are the numbers of vertices and edges respectively, such that
+- $B_{ij}=\begin{cases}1 & \text{if vertex }v_i\text{ is incident with edge }e_j, \\ 0 & \text{otherwise.}\end{cases}$
+For example, the incidence matrix of the undirected graph shown on the right is a matrix consisting of 4 rows (corresponding to the four vertices, 1–4) and 4 columns (corresponding to the four edges, $e_{1},e_{2},e_{3},e_{4}$):
+If we look at the incidence matrix, we see that the sum of each column is equal to 2. This is because each edge has a vertex connected to each end.
+The incidence matrix of a directed graph is
+
+===== ORTA (3067. karakterden 700 karakter) =====
+ent field.
+Signed and bidirected graphs
+The incidence matrix of a signed graph is a generalization of the oriented incidence matrix. It is the incidence matrix of any bidirected graph that orients the given signed graph. The column of a positive edge has a 1 in the row corresponding to one endpoint and a −1 in the row corresponding to the other endpoint, just like an edge in an ordinary (unsigned) graph. The column of a negative edge has either a 1 or a −1 in both rows. The line graph and Kirchhoff matrix properties generalize to signed graphs.
+Multigraphs
+The definitions of incidence matrix apply to graphs with loops and multiple edges. The column of an oriented incidence matrix that corres
+
+===== SON (son 500 karakter) =====
+ Y is a class of subsets of X, called "blocks", subject to rules that depend on the type of design. The incidence matrix is an important tool in the theory of block designs. For instance, it can be used to prove Fisher's inequality, a fundamental theorem of balanced incomplete 2-designs (BIBDs), that the number of blocks is at least the number of points. Considering the blocks as a system of sets, the permanent of the incidence matrix is the number of systems of distinct representatives (SDRs).
+

@@ -1,0 +1,32 @@
+document_id: DOC_000034
+title: Sorting
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/sorting/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: siralama_ve_arama
+split: train
+char_count: 60055
+token_count: 13589
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- understand the problem of sorting a set of numbers (or letters) in a defined order.
+- be able to implement a variety of well-known sorting algorithms.
+- be able to evaluate the efficiency and relative advantages of different algorithms given different input cases.
+- be able to analyze sorting algorithms to determine their average-case and worst-case time and space complexity.
+Introduction
+Applying an order to a set of objects is a common general problem in life as well as computing. You may open up your email and see that the most recent emails are at the top of your inbox. Your favorite radio station may have a top-10 ranking of all the new songs based on votes from listeners. You may be asked by a relative to put a shelf of books in alphabetical order by the authors’ names. All these scenarios involve ordering or ranking based on some value. To achieve these goals, some form of sorting algorithm must be used. A key observation is that these sorting problems rely on a specific comparison operator that imposes an ordering (“a” comes before “b” in alphabetical order, and 10 < 12 in numerical order). As a terminology note, alphabetical ordering is also known as lexical, lexicographic, or dictionary ordering. Alphabetical and numerical orderings are usually the most common orderings, but date or calendar ordering is also common.
+In this chapter, we will explore several sorting algorithms. Sorting is a classic problem in computer science. Th
+
+===== ORTA (30027. karakterden 700 karakter) =====
+ess we have not discussed: the merge process. Let us explore merging at one of the intermediate levels. The example below shows one of the merge steps. The top portion shows conceptually what happens. The bottom portion shows that specific items are moved into specific positions in the new sorted array.
+Figure 3.23
+To implement Merge Sort, the merge function will be an important part of the algorithm. Let us explore merging with another diagram that more closely resembles our eventual design. At this intermediate step, the data of interest is part of a larger array. These data are composed of two sorted sublists. There are some specific indexes we want to know about. Specifically, they are t
+
+===== SON (son 500 karakter) =====
+does it seem to improve at all?
+- Implement Quick Sort in your language of choice. Next, determine the time for sorting 100 values that are already sorted using Quick Sort (complete the 1.d exercise). Next, randomly generate 1,000 arrays of size 100 and sort them while calculating the runtime. Are any as slow as Quick Sort on the sorted array? If so, how many? If not, what is the closest time?
+JaJa, Joseph. “A Perspective on Quicksort.” Computing in Science & Engineering 2, no. 1 (2000): 43–49.
+

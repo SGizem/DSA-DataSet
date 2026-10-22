@@ -1,0 +1,34 @@
+document_id: DOC_000506
+title: Range minimum query
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Range_minimum_query
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: train
+char_count: 7314
+token_count: 1800
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a range minimum query (RMQ) solves the problem of finding the minimal value in a sub-array of an array of comparable objects. Range minimum queries have several use cases in computer science, such as the lowest common ancestor problem and the longest common prefix problem (LCP).
+Definition
+Given an array A[1 … n] of n objects taken from a totally ordered set, such as integers, the range minimum query RMQ_A(l,r) =arg min A[k] (with 1 ≤ l ≤ k ≤ r ≤ n) returns the position of the minimal element in the specified sub-array A[l … r].
+For example, when A = [0,5,2,5,4,3,1,6,3], then the answer to the range minimum query for the sub-array A[3 … 8] = [2,5,4,3,1,6] is , as A[7] = 1.
+Algorithms
+Naive solution
+In a typical setting, the array A is static, i.e., elements are not inserted or deleted during a series of queries, and the queries to be answered on-line (i.e., the whole set of queries are not known in advance to the algorithm). In this case a suitable preprocessing of the array into a data structure ensures faster query answering. A naive solution is to precompute all possible queries, i.e. the minimum of all sub-arrays of A, and store these in an array B such that B[i, j] = min(A[i…j]); then a range min query can be solved in constant time by array lookup in B. There are Θ(n²) possible queries for a length-n array, and the answers to these can be computed in Θ(n²) time by dynamic programming.
+Solution using constant time after linearithmic space and time pr
+
+===== ORTA (3657. karakterden 700 karakter) =====
+contained in the range, and the two minima mentioned above, need to be compared to answer the query.
+- Because the array was divided into blocks of size log n/4, there are at most 4n/log n blocks that are fully contained in the query.
+- By using the linearithmic solution one can find the overall minimum among these blocks. This data structure has size O(n/log n log (n/log n)) = O(n).
+- Now, only three minima need to be compared.
+For example, using the array A = [0,5,2,5,4,3,1,6,3] and a block size of (for illustrative purposes only) yields the minimum array A' = [0,3,1].
+Solution using constant time and linear space
+Using the solution above, the sub-queries inside the blocks that are not ful
+
+===== SON (son 500 karakter) =====
+the LCP of the suffixes that start at indexes i and j in T. To do this we first compute the suffix array A, and the inverse suffix array A^{−1}. We then compute the LCP array H giving the LCP of adjacent suffixes in A. Once these data structures are computed, and RMQ preprocessing is complete, the length of the general LCP can be computed in constant time by the formula: LCP(i, j) = RMQ_H(A^{-1}[i] + 1, A^{-1}[j]), where we assume for simplicity that A^{-1}[i] + 1 <= A^{-1}[j] (otherwise swap).
+

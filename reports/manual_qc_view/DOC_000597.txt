@@ -1,0 +1,35 @@
+document_id: DOC_000597
+title: Van Emde Boas tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Van_Emde_Boas_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 11736
+token_count: 2951
+
+===== BAŞ (ilk 1500 karakter) =====
+A van Emde Boas tree (Dutch pronunciation: [vɑn ˈɛmdə ˈboːɑs]), also known as a vEB tree or van Emde Boas priority queue, is a tree data structure which implements an associative array with m-bit integer keys. It was invented by a team led by Dutch computer scientist Peter van Emde Boas in 1975. It performs all operations in O(log m) time (assuming that an $m$ bit operation can be performed in constant time), or equivalently in $O(\log \log M)$ time, where $M = 2^m$ is the largest element that can be stored in the tree. The parameter $M$ is not to be confused with the actual number of elements stored in the tree, by which the performance of other tree data-structures is often measured.
+The standard vEB tree has an unideal space efficiency of $O(M)$. For example, for storing 32-bit integers (i.e., when $m = 32$), it requires $M = 2^{32}$ bits of storage. To resolve this, vEB trees can be modified to achieve $O(n \log M)$ space, or similar data structures with equivalent asymptotic time efficiency and space efficiency of $O(n)$ (where $n$ is the number of stored elements) can be used.
+Supported operations
+A vEB tree supports the operations of an ordered associative array, which includes the usual associative array operations along with two more order operations, FindNext and FindPrevious:
+- Insert: insert a key/value pair with an m-bit key;
+- Delete: remove the key/value pair with a given key;
+- Lookup: find the value associated with a given key;
+- FindNext: find the key/value 
+
+===== ORTA (5868. karakterden 700 karakter) =====
+the tree and we set T.min = M and T.max = −1 to indicate that the tree is empty.
+- Otherwise, if x == T.min then we need to find the second-smallest value y in the vEB tree, delete it from its current location, and set T.min=y. The second-smallest value y is T.children[T.aux.min].min, so it can be found in O(1) time. We delete y from the subtree that contains it.
+- If x≠T.min and x≠T.max then we delete x from the subtree T.children[i] that contains x.
+- If x == T.max then we will need to find the second-largest value y in the vEB tree and set T.max=y. We start by deleting x as in previous case. Then value y is either T.min or T.children[T.aux.max].max, so it can be found in O(1) time.
+- In a
+
+===== SON (son 500 karakter) =====
+e leaves buckets of size log log M.
+A space-efficient and partially persistent version of vEB trees was presented by Dietz and Raman. This version uses O(n) space, and supports an insert in the current version in O(log log M) amortized and expected time, while a query on any version remains O(log log M).
+Implementations
+There is a verified implementation in Isabelle (proof assistant). Both functional correctness and time bounds are proved. Efficient imperative Standard ML code can be generated.
+

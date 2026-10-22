@@ -1,0 +1,46 @@
+document_id: DOC_000402
+title: Knapsack problem
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Knapsack_problem
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: ozyineleme_ve_dp
+split: validation
+char_count: 28641
+token_count: 7977
+
+===== BAŞ (ilk 1500 karakter) =====
+The knapsack problem is the following problem in combinatorial optimization:
+- Given a set of items, each with a weight and a value, determine which items to include in the collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.
+It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items. The problem often arises in resource allocation where the decision-makers have to choose from a set of non-divisible projects or tasks under a fixed budget or time constraint, respectively.
+The knapsack problem has been studied for more than a century, with early works dating back to 1897.
+The subset sum problem is a special case of the decision and 0-1 problems where for each kind of item, the weight equals the value: $w_i=v_i$. In the field of cryptography, the term knapsack problem is often used to refer specifically to the subset sum problem. The subset sum problem is one of Karp's 21 NP-complete problems.
+Applications
+Knapsack problems appear in real-world decision-making processes in a wide variety of fields, such as finding the least wasteful way to cut raw materials, selection of investments and portfolios, selection of assets for asset-backed securitization, and generating keys for the Merkle–Hellman and other knapsack cryptosystems.
+One early application of knapsack algorithms was in the construction and scoring of tests in which the te
+
+===== ORTA (14320. karakterden 700 karakter) =====
+1, 23) = 505\\ \end{align}$$
+Besides, we can break the recursion and convert it into a tree. Then we can cut some leaves and use parallel computing to expedite the running of this method.
+To find the actual subset of items, rather than just their total value, we can run this after running the function above:
+/**
+ * Returns the indices of the items of the optimal knapsack.
+ * i: We can include items 1 through i in the knapsack
+ * j: maximum weight of the knapsack
+ */
+function knapsack(i: int, j: int): Set<int> {
+    if i == 0 then:
+        return {}
+    if m[i, j] > m[i-1, j] then:
+        return {i} ∪ knapsack(i-1, j-w[i])
+    else:
+        return knapsack(i-1, j)
+}
+knapsack(n, W)
+Meet-in-th
+
+===== SON (son 500 karakter) =====
+omized algorithm for the unweighted non-removable setting. It is 2-competitive, which is the best possible. For the weighted removable setting, they give a 2-competitive algorithm, prove a lower bound of ~1.368 for randomized algorithms, and prove that no deterministic algorithm can have a constant competitive ratio. For the unweighted removable setting, they give an 10/7-competitive-ratio algorithm, and prove a lower bound of 1.25.
+There are several other papers on the online knapsack problem.
+

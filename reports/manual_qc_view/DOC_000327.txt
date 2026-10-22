@@ -1,0 +1,43 @@
+document_id: DOC_000327
+title: Eight queens puzzle
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Eight_queens_puzzle
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: algoritma_paradigmalari
+split: train
+char_count: 13835
+token_count: 3527
+
+===== BAŞ (ilk 1500 karakter) =====
+The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other; thus, a solution requires that no two queens share the same row, column, or diagonal. There are 92 solutions. The problem was first posed in the mid-19th century. In the modern era, it is often used as an example problem for various computer programming techniques.
+The eight queens puzzle is a special case of the more general n queens problem of placing n non-attacking queens on an n×n chessboard. Solutions exist for all natural numbers n with the exception of n = 2 and n = 3. Although the exact number of solutions is only known for n ≤ 27, the asymptotic growth rate of the number of solutions is approximately $(0.143n)^n$.
+History
+Chess composer Max Bezzel published the eight queens puzzle in 1848. Franz Nauck published the first solutions in 1850. Nauck also extended the puzzle to the n queens problem, with n queens on a chessboard of n×n squares.
+Since then, many mathematicians, including Carl Friedrich Gauss, have worked on both the eight queens puzzle and its generalized n-queens version. In 1874, S. Günther proposed a method using determinants to find solutions. J.W.L. Glaisher refined Gunther's approach.
+In 1972, Edsger Dijkstra used this problem to illustrate the power of what he called structured programming. He published a highly detailed description of a depth-first backtracking algorithm.
+Constructing and counting solutions when n = 
+
+===== ORTA (6917. karakterden 700 karakter) =====
+ss variations such as shogi. For instance, the n+k dragon kings problem asks to place k shogi pawns and n+k mutually nonattacking dragon kings on an n×n shogi board.
+- Nonstandard boards
+- Pólya studied the n queens problem on a toroidal ("donut-shaped") board and showed that there is a solution on an n×n board if and only if n is not divisible by 2 or 3.
+- Domination
+- Given an n×n board, the domination number is the minimum number of queens (or other pieces) needed to attack or occupy every square. For n = 8 the queen's domination number is 5.
+- Queens and other pieces
+- Variants include mixing queens with other pieces; for example, placing m queens and m knights on an n×n board so that no
+
+===== SON (son 500 karakter) =====
+erm
+def n_queens(n: int) -> int:
+    domain = list(range(0, n))
+    perm = [[]]
+    for i in range(n):
+        new_perm = list(filter(property, extend(perm, n)))
+        perm = new_perm
+    return len(perm)
+In popular culture
+- In the game The 7th Guest, the 8th Puzzle: "The Queen's Dilemma" in the game room of the Stauf mansion is the de facto eight queens puzzle.
+- In the game Professor Layton and the Curious Village, the 130th puzzle: "Too Many Queens 5" (クイーンの問題5) is an eight queens puzzle.
+

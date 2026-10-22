@@ -1,0 +1,29 @@
+document_id: DOC_000529
+title: Self-organizing list
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Self-organizing_list
+language: en
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: diziler_ve_listeler
+split: train
+char_count: 2898
+token_count: 606
+
+===== BAŞ (ilk 1500 karakter) =====
+A self-organizing list is a list that reorders its elements based on some self-organizing heuristic to improve average access time. The aim of a self-organizing list is to improve efficiency of linear search by moving more frequently accessed items towards the head of the list. A self-organizing list achieves near constant time for element access in the best case. A self-organizing list uses a reorganizing algorithm to adapt to various query distributions at runtime.
+History
+The concept of self-organizing lists has its roots in the idea of activity organization of records in files stored on disks or tapes. One frequently cited discussion of self-organizing files and lists is that of Knuth. John McCabe gave the first algorithmic complexity analyses of the Move-to-Front (MTF) strategy where an item is moved to the front of the list after it is accessed. He analyzed the average time needed for randomly ordered list to get in optimal order. The optimal ordering of a list is the one in which items are ordered in the list by the probability with which they will be needed, with the most accessed item first. The optimal ordering may not be known in advance, and may also change over time.
+McCabe introduced the transposition strategy in which an accessed item is exchanged with the item in front of it in the list. He made the conjecture that in the average case, transposition worked at least as well as MTF in approaching the optimal ordering of records in the limit. This conjecture was 
+
+===== ORTA (1449. karakterden 700 karakter) =====
+ering of records in the limit. This conjecture was later proved by Rivest. McCabe also noted that with either the transposition or MTF heuristic, the optimal ordering of records would be approached even if the heuristic was only applied every Nth access, and that a value of N might be chosen that would reflect the relative cost of relocating records with the value of approaching the optimal ordering more quickly. Further improvements were made, and algorithms suggested by researchers including: Rivest, Tenenbaum and Nemes, Knuth, and Bentley and McGeoch (e.g. Worst-case analyses for self-organizing sequential search heuristics).
+Applications
+A self-organizing list uses a self-organising heur
+
+===== SON (son 500 karakter) =====
+tion is at the top so it can be found quickly, without having to traverse the whole list.
+- Self-learning Frequency list (or 'Order by access frequency') - re-arranges a list of options in a GUI menu, so that the top ones are the options most commonly selected by the user.
+- Re-insert at random position
+- Move to back - used to organise a list of mirror servers, so that once a server has been used for downloading, it goes to the back of the queue, to discourage the user from selecting it again.
+

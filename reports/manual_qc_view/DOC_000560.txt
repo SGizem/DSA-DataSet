@@ -1,0 +1,31 @@
+document_id: DOC_000560
+title: String-searching algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/String-searching_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: validation
+char_count: 9552
+token_count: 2017
+
+===== BAŞ (ilk 1500 karakter) =====
+A string-searching algorithm, sometimes called string-matching algorithm, is an algorithm that searches a body of text for portions that match by pattern.
+A basic example of string searching is when the pattern and the searched text are arrays of elements of an alphabet (finite set) Σ. Σ may be a human language alphabet, for example, the letters A through Z and other applications may use a binary alphabet (Σ = {0,1}) or a DNA alphabet (Σ = {A,C,G,T}) in bioinformatics.
+In practice, the method of feasible string-search algorithm may be affected by the string encoding. In particular, if a variable-width encoding is in use, then it may be slower to find the Nth character, perhaps requiring time proportional to N. This may significantly slow some search algorithms. One of many possible solutions is to search for the sequence of code units instead, but doing so may produce false matches unless the encoding is specifically designed to avoid it.
+Overview
+The most basic case of string searching involves one (often very long) string, sometimes called the haystack, and one (often very short) string, sometimes called the needle. The goal is to find one or more occurrences of the needle within the haystack. For example, one might search for to within:
+Some books are to be tasted, others to be swallowed, and some few to be chewed and digested.
+One might request the first occurrence of "to", which is the fourth word; or all occurrences, of which there are 3; or the last, which is the fifth
+
+===== ORTA (4776. karakterden 700 karakter) =====
+average case, this takes O(n + m) steps, where n is the length of the haystack and m is the length of the needle; but in the worst case, searching for a string like "aaaab" in a string like "aaaaaaaaab", it takes O(nm)
+Finite-state-automaton-based search
+In this approach, backtracking is avoided by constructing a deterministic finite automaton (DFA) that recognizes a stored search string. These are expensive to construct—they are usually created using the powerset construction—but are very quick to use. For example, the DFA shown to the right recognizes the word "MOMMY". This approach is frequently generalized in practice to search for arbitrary regular expressions.
+Stubs
+Knuth–Morris–Pratt 
+
+===== SON (son 500 karakter) =====
+special symbol, ø (read: don't care), which can match any other symbol (including another ø). Don't care symbols can appear either in the pattern or in the text. In 2002, an algorithm for this problem that runs in $O(n\log m)$ time has been given by Richard Cole and Ramesh Hariharan, improving on a solution from 1973 by Fischer and Paterson that has complexity $O(n\log m\log k)$, where k is the size of the alphabet. Another algorithm, claimed simpler, has been proposed by Clifford and Clifford.
+

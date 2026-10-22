@@ -1,0 +1,28 @@
+document_id: DOC_000341
+title: Fisher–Yates shuffle
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 23078
+token_count: 4948
+
+===== BAŞ (ilk 1500 karakter) =====
+The Fisher–Yates shuffle is an algorithm for shuffling a finite sequence. The algorithm takes a list of all the elements of the sequence, and continually determines the next element in the shuffled sequence by randomly drawing an element from the list until no elements remain. The algorithm produces an unbiased permutation: every permutation is equally likely. The modern version of the algorithm takes time proportional to the number of items being shuffled and shuffles them in place.
+The Fisher–Yates shuffle is named after Ronald Fisher and Frank Yates, who first described it. It is also known as the Knuth shuffle after Donald Knuth. A variant of the Fisher–Yates shuffle, known as Sattolo's algorithm, may be used to generate random cyclic permutations of length n instead of random permutations.
+Fisher and Yates' original method
+The original Fisher–Yates shuffle was published in 1938 by Ronald Fisher and Frank Yates in their book Statistical tables for biological, agricultural and medical research. Their description of the algorithm used pencil and paper; a table of random numbers provided the randomness. The basic method given for generating a random permutation of the numbers 1 through N goes as follows:
+- Write down the numbers from 1 through N.
+- Pick a random number k between one and the number of unstruck numbers remaining (inclusive).
+- Counting from the low end, strike out the kth number not yet struck out, and write it down at the end of a separate list.
+- Repeat from
+
+===== ORTA (11539. karakterden 700 karakter) =====
+ssigns a random number to each element of the set to be shuffled and then sorts the set according to the assigned numbers. The sorting method has the same asymptotic time complexity as Fisher–Yates: although general sorting is O(n log n), numbers are efficiently sorted using Radix sort in O(n) time. Like the Fisher–Yates shuffle, the sorting method produces unbiased results. However, care must be taken to ensure that the assigned random numbers are never duplicated, since sorting algorithms typically do not order elements randomly in case of a tie. Additionally, this method requires asymptotically larger space: O(n) additional storage space for the random numbers, versus O(1) space for the F
+
+===== SON (son 500 karakter) =====
+PRNG with modulo 2^e are less random than the high-order ones: the low n bits of the generator themselves have a period of at most 2^n. When the divisor is a power of two, taking the remainder essentially means throwing away the high-order bits, such that one ends up with a significantly less random value. Different rules apply if the LCG has prime modulo, but such generators are uncommon. This is an example of the general rule that a poor-quality RNG or PRNG will produce poor-quality shuffles.
+

@@ -1,0 +1,15 @@
+document_id: DOC_000147
+title: Başvuru çizelgesi
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Başvuru_çizelgesi
+language: tr
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: diziler_ve_listeler
+split: train
+char_count: 575
+token_count: 179
+
+===== BAŞ (ilk 1500 karakter) =====
+Bilişimde başvuru çizelgesi, genellikle dizi ya da ilişkisel dizi biçiminde tasarlanan ve çalışma zamanında yapılması beklenen bir işlemi yalın bir dizinleme işlemine dönüştürmeye yarayan veri yapısı. Bir değerin bellekten okunma süresinin çalışma zamanında yürütülecek "yüksek tutarlı" bir hesaplama ya da giriş/çıkış işleminden kısa oluşu bu yöntemin temel avantajı olarak görülmektedir. Durağan program belleğinde saklanabilen bu çizelge, programın çalışmasını izleyen süreçte de hesaplanabilmektedir. Başvuru çizelgesi girdinin doğrulanması amacına da hizmet etmektedir.
+

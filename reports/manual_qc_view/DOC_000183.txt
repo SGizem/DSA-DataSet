@@ -1,0 +1,42 @@
+document_id: DOC_000183
+title: Sayarak sıralama
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Sayarak_sıralama
+language: tr
+document_type: ansiklopedi
+publication_year: 2021
+subtopic: siralama_ve_arama
+split: train
+char_count: 1941
+token_count: 591
+
+===== BAŞ (ilk 1500 karakter) =====
+Sayarak sıralama bilgisayar bilimlerinde kullanılan ve kova sıralaması gibi sıralanacak dizinin içindeki değerlerin aralığının bilinmesi durumunda kullanılabilen bir sıralama algoritmasıdır. Sayarak sıralama algoritması dizideki değerlerin aralık bilgilerini yeni bir dizi oluşturmak için kullanır. Oluşturulan yeni dizinin her bir satırı ana dizide o satır numarasının değerine sahip ögelerin sayısını gösterir. Yeni dizideki öge değeri sayıları daha sonra ana dizideki tüm değerlerin doğru konuma konulması için kullanılır. Sayarak sıralama algoritması güvercin yuvası sıralamasından daha verimsiz bir algoritmadır.
+C++ ile uygulaması
+Aşağıdaki program sayarak sıralama algoritmasının C++ dilinde yazılmış bir uygulamasını göstermektedir.
+/// countingSort - değerleri tutan bir diziyi sıralamak için.
+///
+/// Algoritmanın verimli çalışması için sıralacak
+/// değerlerin aralığı sıralanacak ögelerin sayısından
+/// çok daha büyük olmamalıdır.
+///
+/// param nums - girdi - sıralanacak değerler dizisiǖ
+/// param size - girdi - dizideki ögelerin sayısı
+///
+void counting_sort(int *nums, int size)
+{
+	// search for the minimum and maximum values in the input
+	int i, min = nums[0], max = min;
+	for(i = 1; i < size; ++i)
+	{
+		if (nums[i] < min)
+			min = nums[i];
+		else if (nums[i] > max)
+			max = nums[i];
+	}
+
+	// create a counting array, counts, with a member for
+	// each possible discrete value in the input.
+	// initialize all counts to 0.
+	int distinct_element_count = max - min + 1;
+	int*counts =

@@ -1,0 +1,116 @@
+document_id: DOC_000115
+title: ternary_search.py
+source_name: thealgorithms_python
+url: https://github.com/TheAlgorithms/Python/blob/3935d286dfa3d258ab77c22d584202141a3eb1b9/searches/ternary_search.py
+language: code
+document_type: kod
+publication_year: 
+subtopic: siralama_ve_arama
+split: train
+char_count: 5370
+token_count: 1737
+
+===== BAŞ (ilk 1500 karakter) =====
+"""
+This is a type of divide and conquer algorithm which divides the search space into
+3 parts and finds the target value based on the property of the array or list
+(usually monotonic property).
+
+Time Complexity  : O(log3 N)
+Space Complexity : O(1)
+"""
+
+from __future__ import annotations
+
+# This is the precision for this function which can be altered.
+# It is recommended for users to keep this number greater than or equal to 10.
+precision = 10
+
+
+# This is the linear search that will occur after the search space has become smaller.
+
+
+def lin_search(left: int, right: int, array: list[int], target: int) -> int:
+    """Perform linear search in list. Returns -1 if element is not found.
+
+    Parameters
+    ----------
+    left : int
+        left index bound.
+    right : int
+        right index bound.
+    array : List[int]
+        List of elements to be searched on
+    target : int
+        Element that is searched
+
+    Returns
+    -------
+    int
+        index of element that is looked for.
+
+    Examples
+    --------
+    >>> lin_search(0, 4, [4, 5, 6, 7], 7)
+    3
+    >>> lin_search(0, 3, [4, 5, 6, 7], 7)
+    -1
+    >>> lin_search(0, 2, [-18, 2], -18)
+    0
+    >>> lin_search(0, 1, [5], 5)
+    0
+    >>> lin_search(0, 3, ['a', 'c', 'd'], 'c')
+    1
+    >>> lin_search(0, 3, [.1, .4 , -.1], .1)
+    0
+    >>> lin_search(0, 3, [.1, .4 , -.1], -.1)
+    2
+    """
+    for i in range(left, right):
+        if array[i] == target:
+            return i
+    return -1
+
+
+def ite_ternary_search(array
+
+===== ORTA (2685. karakterden 700 karakter) =====
+third
+
+        elif target < array[one_third]:
+            right = one_third
+        elif array[two_third] < target:
+            left = two_third + 1
+
+        else:
+            left = one_third + 1
+            right = two_third
+    return -1
+
+
+def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> int:
+    """Recursive method of the ternary search algorithm.
+
+    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> rec_ternary_search(0, len(test_list), test_list, 3)
+    -1
+    >>> rec_ternary_search(4, len(test_list), test_list, 42)
+    8
+    >>> rec_ternary_search(0, 2, [4, 5, 6, 7], 4)
+    0
+    >>> rec_ternary_search(0, 3, [4, 5, 6, 7], -10)
+    -1
+    >>> rec
+
+===== SON (son 500 karakter) =====
+
+    assert collection == sorted(collection), f"List must be ordered.\n{collection}."
+    target = int(input("Enter the number to be found in the list:\n").strip())
+    result1 = ite_ternary_search(collection, target)
+    result2 = rec_ternary_search(0, len(collection), collection, target)
+    if result2 != -1:
+        print(f"Iterative search: {target} found at positions: {result1}")
+        print(f"Recursive search: {target} found at positions: {result2}")
+    else:
+        print("Not found")
+

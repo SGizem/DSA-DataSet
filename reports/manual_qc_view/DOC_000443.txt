@@ -1,0 +1,40 @@
+document_id: DOC_000443
+title: Mergeable heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Mergeable_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: agaclar
+split: train
+char_count: 1414
+token_count: 326
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a mergeable heap (also called a meldable heap) is an abstract data type, which is a heap supporting a merge operation.
+Definition
+A mergeable heap supports the usual heap operations:
+- Make-Heap(), create an empty heap.
+- Insert(H,x), insert an element x into the heap H.
+- Min(H), return the minimum element, or Nil if no such element exists.
+- Extract-Min(H), extract and return the minimum element, or Nil if no such element exists.
+And one more that distinguishes it:
+- Merge(H1,H2), combine the elements of H1 and H2 into a single heap.
+Trivial implementation
+It is straightforward to implement a mergeable heap given a simple heap:
+Merge(H1,H2):
+- x ← Extract-Min(H2)
+- while x ≠ Nil
+  - Insert(H1, x)
+  - x ← Extract-Min(H2)
+This can however be wasteful as each Extract-Min(H) and Insert(H,x) typically have to maintain the heap property.
+More efficient implementations
+Examples of mergeable heap data structures include:
+- Binomial heap
+- Fibonacci heap
+- Leftist tree
+- Pairing heap
+- Skew heap
+A more complete list with performance comparisons can be found at Heap (data structure) § Comparison of theoretic bounds for variants.
+In most mergeable heap structures, merging is the fundamental operation on which others are based. Insertion is implemented by merging a new single-element heap with the existing heap. Deletion is implemented by merging the children of the deleted node.
+

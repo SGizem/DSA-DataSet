@@ -1,0 +1,92 @@
+document_id: DOC_000100
+title: edmonds_blossom_algorithm.py
+source_name: thealgorithms_python
+url: https://github.com/TheAlgorithms/Python/blob/3935d286dfa3d258ab77c22d584202141a3eb1b9/graphs/edmonds_blossom_algorithm.py
+language: code
+document_type: kod
+publication_year: 
+subtopic: graflar
+split: train
+char_count: 10664
+token_count: 2105
+
+===== BAŞ (ilk 1500 karakter) =====
+from collections import deque
+
+
+class BlossomAuxData:
+    """Class to hold auxiliary data during the blossom algorithm's execution."""
+
+    def __init__(
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
+    ) -> None:
+        """
+        Initializes the BlossomAuxData instance.
+
+        Args:
+            queue: A deque for BFS processing.
+            parent: List of parent vertices in the augmenting path.
+            base: List of base vertices for each vertex.
+            in_blossom: Boolean list indicating if a vertex is in a blossom.
+            match: List of matched vertices.
+            in_queue: Boolean list indicating if a vertex is in the queue.
+        """
+        self.queue = queue
+        self.parent = parent
+        self.base = base
+        self.in_blossom = in_blossom
+        self.match = match
+        self.in_queue = in_queue
+
+
+class BlossomData:
+    """Class to encapsulate data related to a blossom in the graph."""
+
+    def __init__(
+        self,
+        aux_data: BlossomAuxData,
+        vertex_u: int,
+        vertex_v: int,
+        lowest_common_ancestor: int,
+    ) -> None:
+        """
+        Initializes the BlossomData instance.
+
+        Args:
+            aux_data: The auxiliary data related to the blossom.
+            vertex_u: One vertex in the blossom.
+            vertex_v: The other vertex in the blossom.
+            lowest_co
+
+===== ORTA (5332. karakterden 700 karakter) =====
+ a parent;
+                            # check for a cycle/blossom
+                            base_u = EdmondsBlossomAlgorithm.find_base(
+                                base, parent, current, y
+                            )
+                            if base_u != EdmondsBlossomAlgorithm.UNMATCHED:
+                                EdmondsBlossomAlgorithm.contract_blossom(
+                                    BlossomData(
+                                        BlossomAuxData(
+                                            queue,
+                                            parent,
+                                            base,
+                                            in_blossom,
+          
+
+===== SON (son 500 karakter) =====
+ in range(len(blossom_data.aux_data.base)):
+            if blossom_data.aux_data.in_blossom[blossom_data.aux_data.base[i]]:
+                # Contract to the lowest common ancestor
+                blossom_data.aux_data.base[i] = blossom_data.lowest_common_ancestor
+                if not blossom_data.aux_data.in_queue[i]:
+                    # Add to queue if not already present
+                    blossom_data.aux_data.queue.append(i)
+                    blossom_data.aux_data.in_queue[i] = True
+

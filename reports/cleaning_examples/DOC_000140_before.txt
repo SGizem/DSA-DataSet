@@ -1,0 +1,10 @@
+Görünüm
+Algoritma tasarımı, problemlerin çözümünde matematiksel bir süreç oluşturmak amacıyla kullanılan özel bir yöntemdir. Algoritma tasarımı uygulamaları, Algoritma mühendisleri tarafından yapılır.
+Ayrıca bakınız
+- Bölmek ve algoritmayı ele geçirmek
+- Dinamik programlama
+- Hırslı algoritma
+- Backtracking
+Kaynakça
+Dış bağlantılar
+- New York Eyalet Üniversitesi Bilgisayar Bilimi bölümünden Steven Skiena tarafından hazırlanan Stony Brook Algoritma Deposu28 Kasım 2009 tarihinde Wayback Machine sitesinde arşivlendi.

@@ -1,0 +1,21 @@
+document_id: DOC_000182
+title: Sabır sıralaması
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Sabır_sıralaması
+language: tr
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 702
+token_count: 237
+
+===== BAŞ (ilk 1500 karakter) =====
+Sabır sıralaması bilgisayar bilimlerinde kullanılan ve bir kâğıt oyununa dayanan bir sıralama algoritmasıdır.
+Kağıt oyunu
+Oyun, 1, 2, ..., n biçiminde numaralandırılmış n adet oyun kağıdından oluşan desteyle oynanır. Kağıtlar masanın üzerinde aşadaki kurallara uygun olarak bölümlere ayrılır:
+- Başlangıçta hiçbir kâğıt yığını yoktur. Oynanan ilk kart tek kartta oluşan bir alt deste oluşturur.
+- Oynanan her yeni kart ya en üstte kendisinden daha büyük bir kart bulunan kâğıt yığının en üstüne ya da masadaki tüm yığınların en sağına yeni bir yığın oluşturmak üzere yerleştirilir.
+- Dağıtılacak kâğıt kalmadığı zaman oyun biter.
+Oyunun amacı oyunu olabilecek en az sayıda kâğıt yığınıyla bitirmektir.
+

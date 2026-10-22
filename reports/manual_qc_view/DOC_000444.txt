@@ -1,0 +1,35 @@
+document_id: DOC_000444
+title: Merkle tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Merkle_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 5796
+token_count: 1301
+
+===== BAŞ (ilk 1500 karakter) =====
+In cryptography and computer science, a hash tree or Merkle tree is a tree in which every "leaf" node is labelled with the cryptographic hash of a data block, and every node that is not a leaf (called a branch, inner node, or inode) is labelled with the cryptographic hash of the labels of its child nodes. A hash tree allows efficient and secure verification of the contents of a large data structure. A hash tree is a generalization of a hash list and a hash chain.
+Demonstrating that a leaf node is a part of a given binary hash tree requires computing a number of hashes proportional to the logarithm of the number of leaf nodes in the tree. Conversely, in a hash list, the number is proportional to the number of leaf nodes itself. A Merkle tree is therefore an efficient example of a cryptographic commitment scheme, in which the root of the tree is seen as a commitment and leaf nodes may be revealed and proven to be part of the original commitment.
+The concept of a hash tree is named after Ralph Merkle, who patented it in 1979.
+Uses
+Hash trees can be used to verify any kind of data stored, handled and transferred in and between computers. They can help ensure that data blocks received from other peers in a peer-to-peer network are received undamaged and unaltered, and even to check that the other peers do not lie and send fake blocks.
+Hash trees are used in:
+- hash-based cryptography.
+- InterPlanetary File System (IPFS),
+- BitTorrent
+- hashtree
+- ZFS file system (to counter data d
+
+===== ORTA (2898. karakterden 700 karakter) =====
+or root hash or master hash). Before downloading a file on a P2P network, in most cases the top hash is acquired from a trusted source, for instance a friend or a web site that is known to have good recommendations of files to download. When the top hash is available, the hash tree can be received from any non-trusted source, like any peer in the P2P network. Then, the received hash tree is checked against the trusted top hash, and if the hash tree is damaged or fake, another hash tree from another source will be tried until the program finds one that matches the top hash.
+The main difference from a hash list is that one branch of the hash tree can be downloaded at a time and the integrity o
+
+===== SON (son 500 karakter) =====
+be valid only if the prefix decreases at each step and is still positive when the leaf is reached.
+Tiger tree hash
+The Tiger tree hash is a widely used form of hash tree. It uses a binary hash tree (two child nodes under each node), usually has a data block size of 1024 bytes and uses the Tiger hash.
+Tiger tree hashes are used in Gnutella, Gnutella2, and Direct Connect P2P file sharing protocols and in file sharing applications such as Phex, BearShare, LimeWire, Shareaza, DC++ and gtk-gnutella.
+

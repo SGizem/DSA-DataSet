@@ -1,0 +1,28 @@
+document_id: DOC_000240
+title: Backtracking
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Backtracking
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: algoritma_paradigmalari
+split: train
+char_count: 10771
+token_count: 2270
+
+===== BAŞ (ilk 1500 karakter) =====
+Backtracking is a class of algorithms for finding solutions to some computational problems, notably constraint satisfaction or enumeration problems, that incrementally builds candidates to the solutions, and abandons a candidate ("backtracks") as soon as it determines that the candidate cannot possibly be completed to a valid solution.
+The classic textbook example of the use of backtracking is the eight queens puzzle, that asks for all arrangements of eight chess queens on a standard chessboard so that no queen attacks any other. In the common backtracking approach, the partial candidates are arrangements of k queens in the first k rows of the board, all in different rows and columns. Any partial solution that contains two mutually attacking queens can be abandoned.
+Backtracking can be applied only for problems which admit the concept of a "partial candidate solution" and a relatively quick test of whether it can possibly be completed to a valid solution. It is useless, for example, for locating a given value in an unordered table. When it is applicable, however, backtracking is often much faster than brute-force enumeration of all complete candidates, since it can eliminate many candidates with a single test.
+Backtracking is an important tool for solving constraint satisfaction problems, such as crosswords, verbal arithmetic, Sudoku, and many other puzzles. It is often the most convenient technique for parsing, for the knapsack problem and other combinatorial optimization pr
+
+===== ORTA (5385. karakterden 700 karakter) =====
+s false, the algorithm will still find all solutions, but it will be equivalent to a brute-force search.
+The accept procedure should return true if c is a complete and valid solution for the problem instance P, and false otherwise. It may assume that the partial candidate c and all its ancestors in the tree have passed the reject test.
+The general pseudo-code above does not assume that the valid solutions are always leaves of the potential search tree. In other words, it admits the possibility that a valid solution for P can be further extended to yield other valid solutions.
+The first and next procedures are used by the backtracking algorithm to enumerate the children of a node c of the tre
+
+===== SON (son 500 karakter) =====
+ccessive changes when there is no choice point, as the backtracking will erase all of the changes as a single operation.
+An alternative to the variable trail is to keep a timestamp of when the last change was made to the variable. The timestamp is compared to the timestamp of a choice point. If the choice point has an associated time later than that of the variable, it is unnecessary to revert the variable when the choice point is backtracked, as it was changed before the choice point occurred.
+

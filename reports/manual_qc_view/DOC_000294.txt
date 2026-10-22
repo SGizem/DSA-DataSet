@@ -1,0 +1,38 @@
+document_id: DOC_000294
+title: Consistent hashing
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Consistent_hashing
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: hash_tablolari
+split: test
+char_count: 10890
+token_count: 2452
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, consistent hashing is a special kind of hashing technique such that when a hash table is resized, only $n/m$ keys need to be remapped on average where $n$ is the number of keys and $m$ is the number of slots. Consistent hashing evenly distributes cache keys across shards, even if some of the shards crash or become unavailable. In contrast, in most traditional hash tables, a change in the number of array slots causes nearly all keys to be remapped because the mapping between the keys and the slots is defined by a modular operation.
+Consistent hashing is used by Content Delivery Networks because it is useful for distributing requests for content from a rotating population of web servers. Tim Berners-Lee credits consistent hashing algorithms, and Daniel Lewin as their inventor, with solving the slashdotting problem which plagued the World Wide Web in the 1990s.
+History
+The term "consistent hashing" was introduced by David Karger et al. at MIT for use in distributed caching, particularly for the web. This academic paper from 1997 in Symposium on Theory of Computing introduced the term "consistent hashing" as a way of distributing requests among a changing population of web servers. Each slot is then represented by a server in a distributed system or cluster. The addition of a server and the removal of a server (during scalability or outage) requires only $num\_keys/num\_slots$ items to be re-shuffled when the number of slots (i.e. servers) change. The authors
+
+===== ORTA (5445. karakterden 700 karakter) =====
+ added cache server identifies its "predecessor" and moves all the BLOBs, whose mapping belongs to this server (i.e. whose hash value is less than that of the new server), from it. However, in the case of web page caches, in most implementations there is no involvement of moving or copying, assuming the cached BLOB is small enough. When a request hits a newly added cache server, a cache miss happens and a request to the actual web server is made and the BLOB is cached locally for future requests. The redundant BLOBs on the previously used cache servers would be removed as per the cache eviction policies.
+Implementation
+Let $h_{b}(x)$ and $h_{s}(x)$ be the hash functions used for the BLOB and
+
+===== SON (son 500 karakter) =====
+tack's Object Storage Service Swift
+- Partitioning component of Amazon's storage system Dynamo
+- Data partitioning in Apache Cassandra
+- Data partitioning in ScyllaDB
+- Data partitioning in Voldemort
+- Akka's consistent hashing router
+- Riak, a distributed key-value database
+- Gluster, a network-attached storage file system
+- Akamai content delivery network
+- Discord chat application
+- Load balancing gRPC requests to a distributed cache in SpiceDB
+- Chord algorithm
+- MinIO object storage system
+

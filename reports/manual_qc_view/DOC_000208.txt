@@ -1,0 +1,46 @@
+document_id: DOC_000208
+title: 2–3–4 tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/2–3–4_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 5609
+token_count: 1426
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a 2–3–4 tree (also called a 2–4 tree) is a self-balancing data structure that can be used to implement dictionaries. The numbers mean a tree where every node with children (internal node) has either two, three, or four child nodes:
+- a 2-node has one data element, and if internal has two child nodes;
+- a 3-node has two data elements, and if internal has three child nodes;
+- a 4-node has three data elements, and if internal has four child nodes;
+- 2-node
+- 3-node
+- 4-node
+2–3–4 trees are B-trees of order 4; like B-trees in general, they can search, insert and delete in O(log n) time. One property of a 2–3–4 tree is that all external nodes are at the same depth.
+2–3–4 trees are closely related to red–black trees by interpreting red links (that is, links to red children) as internal links of 3-nodes and 4-nodes, although this correspondence is not one-to-one. Left-leaning red–black trees restrict red–black trees by forbidding nodes with a single red right child, which yields a one-to-one correspondence between left-leaning red–black trees and 2–3–4 trees.
+Properties
+- Every node (leaf or internal) is a 2-node, 3-node or a 4-node, and holds one, two, or three data elements, respectively.
+- All leaves are at the same depth (the bottom level).
+- All data is kept in sorted order.
+Insertion
+To insert a value, we start at the root of the 2–3–4 tree:
+- If the current node is a 4-node:
+  - Remove and save the middle value to get a 3-node.
+  - Split the remaining 3-n
+
+===== ORTA (2804. karakterden 700 karakter) =====
+t deleted elements are ignored. Deleted elements can then be re-used by overwriting them when performing an insertion later. However, the drawback of this method is that the size of the tree does not decrease. If a large proportion of the elements of the tree are deleted, then the tree will become much larger than the current size of the stored elements, and the performance of other operations will be adversely affected by the deleted elements.
+When this is undesirable, the following algorithm can be followed to remove a value from the 2–3–4 tree:
+- Find the element to be deleted.
+  - If the element is not in a leaf node, remember its location and continue searching until a leaf, which will 
+
+===== SON (son 500 karakter) =====
+ther to form a 4-node.
+  - Transfer the sibling's children to this node.
+Once the sought value is reached, it can now be placed at the removed entry's location without a problem because we have ensured that the leaf node has more than 1 key.
+Deletion in a 2–3–4 tree is O(log n), assuming transfer and fusion run in constant time (O(1)).
+Parallel operations
+Since 2–3–4 trees are similar in structure to red–black trees, parallel algorithms for red–black trees can be applied to 2–3–4 trees as well.
+

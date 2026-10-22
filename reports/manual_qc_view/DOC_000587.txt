@@ -1,0 +1,27 @@
+document_id: DOC_000587
+title: Tree (graph theory)
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Tree_(graph_theory)
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 12946
+token_count: 3123
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory, a tree is an undirected graph in which every pair of distinct vertices is connected by exactly one path, or equivalently, a connected acyclic undirected graph. A forest is an undirected graph in which any two vertices are connected by at most one path, or equivalently an acyclic undirected graph, or equivalently a disjoint union of trees.
+A directed tree, oriented tree, polytree, or singly connected network is a directed acyclic graph (DAG) whose underlying undirected graph is a tree. A polyforest (or directed forest or oriented forest) is a directed acyclic graph whose underlying undirected graph is a forest.
+The various kinds of data structures referred to as trees in computer science have underlying graphs that are trees in graph theory, although such data structures are generally rooted trees. A rooted tree may be directed, called a directed rooted tree, either making all its edges point away from the root—in which case it is called an arborescence or out-tree—or making all its edges point towards the root—in which case it is called an anti-arborescence or in-tree. A rooted tree itself has been defined by some authors as a directed graph. A rooted forest is a disjoint union of rooted trees. A rooted forest may be directed, called a directed rooted forest, either making all its edges point away from the root in each rooted tree—in which case it is called a branching or out-forest—or making all its edges point towards the root in each rooted tree—in which c
+
+===== ORTA (6473. karakterden 700 karakter) =====
+s any vertex that is either a child of v or is (recursively) a descendant of a child of v. A sibling to a vertex v is any other vertex on the tree that shares a parent with v. A leaf is a vertex with no children. An internal vertex is a vertex that is not a leaf.
+The height of a vertex in a rooted tree is the length of the longest downward path to a leaf from that vertex. The height of the tree is the height of the root. The depth of a vertex is the length of the path to its root (root path). The depth of a rooted tree is the maximum depth of any vertex, which is the same as the height of the tree. Depth is commonly needed in the manipulation of the various self-balancing trees, AVL trees in
+
+===== SON (son 500 karakter) =====
+tar tree of order n is a tree of order n with as many leaves as possible.
+- A caterpillar tree is a tree in which all vertices are within distance 1 of a central path subgraph.
+- A lobster tree is a tree in which all vertices are within distance 2 of a central path subgraph.
+- A regular tree of degree d is the infinite tree with d edges at each vertex. These arise as the Cayley graphs of free groups, and in the theory of Tits buildings. In statistical mechanics they are known as Bethe lattices.
+

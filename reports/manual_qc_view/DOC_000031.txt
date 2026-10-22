@@ -1,0 +1,39 @@
+document_id: DOC_000031
+title: Recursion
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/recursion/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: ozyineleme_ve_dp
+split: validation
+char_count: 43922
+token_count: 10089
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- understand the features of recursion and recursive processes.
+- be able to identify the components of a recursive algorithm.
+- be able to implement some well-known recursive algorithms.
+- be able to estimate the complexity of recursive processes.
+- understand the benefits of recursion as a problem-solving strategy.
+Introduction
+Recursion is a powerful tool for computation that often saves the programmer considerable work. As you will see, the benefit of recursion lies in its ability to simplify the code of algorithms, but first we want to better understand recursion. Let’s look at a simple nonrecursive function to calculate the product of 2 times a nonnegative integer, n, by repeated addition:
+1 function multiplyBy2(n)
+2 set sum to 0
+3 for i = 1 to n
+4 set sum to sum + 2
+5 return sum.
+This function takes a number, n, as an input parameter and then defines a procedure to repeatedly add 2 to a sum. This approach to calculation uses a for-loop explicitly. Such an approach is sometimes referred to as an iterative process. This means that the calculation repeatedly modifies a fixed number of variables that change the current “state” of the calculation. Each pass of the loop updates these state variables, and they evolve toward the correct value. Imagine how this process will evolve as a computer executes the function call multiplyBy2(3). A “call” asks the computer to evaluate the function by executing its code.
+When the process starts, sum is
+
+===== ORTA (21961. karakterden 700 karakter) =====
+hed, the characters would print in their normal order. This algorithm resembles another recursive algorithm for visiting the nodes of a tree data structure that you will see in a later chapter.
+Wrappers and Helper Functions for Recursion
+You may have noticed that recReverse(“HELLO”, 0) seems like an odd interface for a function that reverses a string. There is an extra piece of state, the value 0, that is needed anytime we want to reverse something. Starting the reverse process in the middle of the string at index 3, for example, seems like an uncommon use case. In general, we would expect that reversing the string will almost always be done for the entire string. To address this problem, we
+
+===== SON (son 500 karakter) =====
+ in your procedure.
+- Implement the three powerOf2 algorithms (iterative, recursive, and fastPowerOf2) in your language of choice. Calculate the runtime of the different algorithms, and determine which algorithms perform best for which values of n. Using your data, create a “super” algorithm that checks the size of n and calls the most efficient algorithm depending on the value of n.
+Abelson, Harold, and Gerald Jay Sussman. Structure and Interpretation of Computer Programs. The MIT Press, 1996.
+

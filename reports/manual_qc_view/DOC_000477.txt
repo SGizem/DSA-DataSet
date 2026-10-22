@@ -1,0 +1,25 @@
+document_id: DOC_000477
+title: Persistent data structure
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Persistent_data_structure
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 29671
+token_count: 6208
+
+===== BAŞ (ilk 1500 karakter) =====
+In computing, a persistent data structure or not ephemeral data structure is a data structure that always preserves the previous version of itself when it is modified. Such data structures are effectively immutable, as their operations do not (visibly) update the structure in-place, but instead always yield a new updated structure. The term was introduced in Driscoll, Sarnak, Sleator, and Tarjan's 1986 article.
+A data structure is partially persistent if all versions can be accessed but only the newest version can be modified. The data structure is fully persistent if every version can be both accessed and modified. If there is also a meld or merge operation that can create a new version from two previous versions, the data structure is called confluently persistent. Structures that are not persistent are called ephemeral.
+These types of data structures are particularly common in logical and functional programming, as languages in those paradigms discourage (or fully forbid) the use of mutable data.
+Partial versus full persistence
+In the partial persistence model, a programmer may query any previous version of a data structure, but may only update the latest version. This implies a linear ordering among each version of the data structure. In the fully persistent model, both updates and queries are allowed on any version of the data structure. In some cases the performance characteristics of querying or updating older versions of a data structure may be allowed to degrade, as 
+
+===== ORTA (14835. karakterden 700 karakter) =====
+bjects that are in some sorted order from top to bottom. What we care about is where the point that we are looking at fits in this order. We sort the endpoints of the segments by their x coordinate. For each strip $s_{i}$, we store the subset segments that cross $s_{i}$ in a dictionary. When the vertical line sweeps the line segments, whenever it passes over the left endpoint of a segment then we add it to the dictionary. When it passes through the right endpoint of the segment, we remove it from the dictionary. At every endpoint, we save a copy of the dictionary and we store all the copies sorted by the x coordinates. Thus we have a data structure that can answer any query. In order to find
+
+===== SON (son 500 karakter) =====
+s are often implemented in such a way that successive versions of a data structure share underlying memory ergonomic use of such data structures generally requires some form of automatic garbage collection system such as reference counting or mark and sweep. In some platforms where persistent data structures are used it is an option to not use garbage collection which, while doing so can lead to memory leaks, can in some cases have a positive impact on the overall performance of an application.
+

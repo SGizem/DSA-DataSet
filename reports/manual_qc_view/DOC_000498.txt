@@ -1,0 +1,28 @@
+document_id: DOC_000498
+title: Quicksort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Quicksort
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 48211
+token_count: 11131
+
+===== BAŞ (ilk 1500 karakter) =====
+Quicksort is an efficient, general-purpose sorting algorithm. Quicksort was developed by British computer scientist Tony Hoare in 1959 and published in 1961. It is still a commonly used algorithm for sorting. Overall, it is slightly faster than merge sort and heapsort for randomized data, particularly on larger distributions.
+Quicksort is a divide-and-conquer algorithm. It works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. For this reason, it is sometimes called partition-exchange sort. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
+Quicksort is a comparison sort, meaning that it can sort items of any type for which a "less-than" relation (formally, a total order) is defined. It is a comparison-based sort since elements a and b are only swapped in case their relative order has been obtained in the transitive closure of prior comparison-outcomes. Most implementations of quicksort are not stable, meaning that the relative order of equal sort items is not preserved.
+Mathematical analysis of quicksort shows that, on average, the algorithm takes $O(n \log{n})$ comparisons to sort n items. In the worst case, it makes $O(n^2)$ comparisons.
+History
+The quicksort algorithm was developed in 1959 by Tony Hoare while he was a visiting student at Moscow State University. At 
+
+===== ORTA (24105. karakterden 700 karakter) =====
+ant. Compared to the "many small sorts" optimization, this version may execute fewer instructions, but it makes suboptimal use of the cache memories in modern computers.
+Parallelization
+Quicksort's divide-and-conquer formulation makes it amenable to parallelization using task parallelism. The partitioning step is accomplished through the use of a parallel prefix sum algorithm to compute an index for each array element in its section of the partitioned array. Given an array of size n, the partitioning step performs O(n) work in O(log n) time and requires O(n) additional scratch space. After the array has been partitioned, the two partitions can be sorted recursively in parallel. Assuming an i
+
+===== SON (son 500 karakter) =====
+alled partition sorts, which on average (with all input orderings equally likely) perform at most $n\log n + {O}(n)$ comparisons (close to the information theoretic lower bound) and ${\Theta}(n\log n)$ operations; at worst they perform ${\Theta}(n\log^2 n)$ comparisons (and also operations); these are in-place, requiring only additional ${O}(\log n)$ space. Practical efficiency and smaller variance in performance were demonstrated against optimized quicksorts (of Sedgewick and Bentley-McIlroy).
+

@@ -1,0 +1,31 @@
+document_id: DOC_000399
+title: Karatsuba algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Karatsuba_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: karmasiklik_analizi
+split: train
+char_count: 9797
+token_count: 3075
+
+===== BAŞ (ilk 1500 karakter) =====
+The Karatsuba algorithm is a fast multiplication algorithm for integers. It was discovered by Anatoly Karatsuba in 1960 and published in 1962. It is a divide-and-conquer algorithm that reduces the multiplication of two n-digit numbers to three multiplications of n/2-digit numbers and, by repeating this reduction, to at most $n^{\log_23}\approx n^{1.58}$ single-digit multiplications. It is therefore asymptotically faster than the traditional algorithm, which performs $n^2$ single-digit products.
+The Karatsuba algorithm was the first multiplication algorithm asymptotically faster than the quadratic "grade school" algorithm.
+History
+The standard procedure for multiplication of two n-digit numbers requires a number of elementary operations proportional to $n^2\,\!$, or $O(n^2)\,\!$ in big-O notation. Andrey Kolmogorov conjectured that the traditional algorithm was asymptotically optimal, meaning that any algorithm for that task would require $\Omega(n^2)\,\!$ elementary operations.
+In 1960, Kolmogorov organized a seminar on mathematical problems in cybernetics at the Moscow State University, where he stated the $\Omega(n^2)\,\!$ conjecture and other problems in the complexity of computation. Within a week, Karatsuba, then a 23-year-old student, found an algorithm that multiplies two n-digit numbers in $O(n^{\log_2 3})$ elementary steps, thus disproving the conjecture. Kolmogorov was very excited about the discovery; he communicated it at the next meeting of the seminar, which was
+
+===== ORTA (4898. karakterden 700 karakter) =====
+e.
+- result = 72 · 1000^2 + 11538 · 1000 + 272205 = 83810205.
+Note that the intermediate third multiplication operates on an input domain which is less than two times larger than for the two first multiplications, its output domain is less than four times larger, and base-1000 carries computed from the first two multiplications must be taken into account when computing these two subtractions.
+Recursive application
+If n is four or more, the three multiplications in Karatsuba's basic step involve operands with fewer than n digits. Therefore, those products can be computed by recursive calls of the Karatsuba algorithm. The recursion can be applied until the numbers are so small that they can (o
+
+===== SON (son 500 karakter) =====
+ $z_1 = z_2 + z_0 - (x_1 - x_0)(y_1 - y_0).$
+The computation of $z_4 = (x_1 - x_0)(y_1 - y_0)$ will produce a result in the range of $-B^m < z_4 < B^m$. This method also needs one extra bit, to encode the sign of the potentially negative numbers, but it can be handled by computing the absolute value $\left|z_4\right| = \left|x_1 - x_0\right|\left|y_1 - y_0\right|$ with a fixed-width multiplier, computing the sign of $z_4$ separately, and finally summing
+- $z_1 = z_2 + z_0 \pm \left|z_4\right|.$
+

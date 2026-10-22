@@ -1,0 +1,31 @@
+document_id: DOC_000029
+title: Linked Lists
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/linked-lists/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: diziler_ve_listeler
+split: train
+char_count: 22459
+token_count: 4991
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- begin to understand how differences in data structures result in trade-offs and help when choosing which to apply in a real-world scenario.
+- begin to use links or references to build more complex data structures.
+- grasp the power and limitations of common arrays.
+Introduction
+You have a case of cola you wish to add to your refrigerator. Your initial approach is to add all colas to the refrigerator while still in the box. That way, when you want to retrieve a drink, they are all in the same place, making them easier to find. You will also know when you are running low because the box will be nearly empty. Storing them while still in the box clearly has some benefits. It does come with one major issue though. Consider a refrigerator filled with groceries. You may not have an empty spot large enough to accommodate the entire case of cola. However, if you open the case and store each can individually, you can probably find some spot for each of the 12 cans. You have now found a way to keep all cans cold, but locating those cans is now more difficult than it was before. You are now faced with a trade-off: Would you rather have all cans cold at the cost of slower retrieval times or all cans warm on the counter with faster retrieval times? This leads to judgment calls, like deciding between how much we value a cold cola and how quickly we need to retrieve one.
+Our case of cola is like a data structure, and storing all cans in the box is analo
+
+===== ORTA (11229. karakterden 700 karakter) =====
+ This function is responsible for inserting the value at a desired position, regardless of whether that position is 0, 2, or 200. Inserting a value into the middle of a linked list means that we must set references for the prior’s Next as well as newNode.Next. Inserting at position 0 is fundamentally different in that there is no prior node.
+- More so than other statements, lines 14 and 15 may feel interchangeable. They are not. Much like the classic exchange exercise in many programming textbooks, executing these statements in the reverse order will lead to different behavior. It is a worthwhile exercise to consider what the outcome would be if they were switched.
+We can visually trace the 
+
+===== SON (son 500 karakter) =====
+linked list that correctly maintains the Prior reference when the removal occurs at position 0, length − 1, or some arbitrary position in between.
+- Write a removeAtPosition function for a singly linked list that correctly maintains the Head and Tail references when the removal occurs at position 0, length − 1, or some arbitrary position between.
+Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms, 2nd ed. Cambridge, MA: The MIT Press, 2001.
+

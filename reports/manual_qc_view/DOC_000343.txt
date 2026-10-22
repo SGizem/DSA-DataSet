@@ -1,0 +1,48 @@
+document_id: DOC_000343
+title: Floyd–Rivest algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Floyd–Rivest_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: test
+char_count: 4454
+token_count: 1135
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, the Floyd–Rivest algorithm is a selection algorithm developed by Robert W. Floyd and Ronald L. Rivest that has an optimal expected number of comparisons within lower-order terms. It is functionally equivalent to quickselect, but runs faster in practice on average. It has an expected running time of O(n) and an expected number of comparisons of n + min(k, n − k) + O(n^{1/2} log^{1/2} n).
+The algorithm was originally presented in a 1973 Stanford University technical report containing two papers, where it was referred to as SELECT and paired with PICK, or median of medians. It was subsequently published in Communications of the ACM, volume 18, issue 3.
+Algorithm
+The Floyd–Rivest algorithm is a divide-and-conquer algorithm, sharing many similarities with quickselect. It uses sampling to help partition the list into three sets. It then recursively selects the kth smallest element from the appropriate set.
+The general steps are:
+- Select a small random sample S from the list L.
+- From S, recursively select two elements u and v, such that u < v. These two elements will be the pivots for the partition and are expected to contain the kth smallest element of the entire list between them (in a sorted list).
+- Using u and v, partition S into three sets: A, B, and C. A will contain the elements with values less than u, B will contain the elements with values between u and v, and C will contain the elements with values greater than v.
+- Partition the remaining elements
+
+===== ORTA (2227. karakterden 700 karakter) =====
+l S and repeatedly updating u and v to keep the size of B small enough (O(n^{1/2} log^{1/2} n) at Θ(n) processed elements) without unacceptable risk of the desired element being outside of B.
+Pseudocode version
+The following pseudocode rearranges the elements between left and right, such that for some value k, where left ≤ k ≤ right, the kth element in the list will contain the (k − left + 1)th smallest value, with the ith element being less than or equal to the kth for all left ≤ i ≤ k and the jth element being larger or equal to for k ≤ j ≤ right:
+// left is the left index for the interval
+// right is the right index for the interval
+// k is the desired index value, where array[k] is the (
+
+===== SON (son 500 karakter) =====
+         while array[i] < t do
+                i := i + 1
+            while array[j] > t do
+                j := j − 1
+        if array[left] = t then
+            swap array[left] and array[j]
+        else
+            j := j + 1
+            swap array[j] and array[right]
+        // Adjust left and right towards the boundaries of the subset
+        // containing the (k − left + 1)th smallest element.
+        if j ≤ k then
+            left := j + 1
+        if k ≤ j then
+            right := j − 1
+

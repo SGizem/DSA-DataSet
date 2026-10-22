@@ -1,0 +1,29 @@
+document_id: DOC_000543
+title: Soft heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Soft_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 5301
+token_count: 1166
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a soft heap is a variant on the simple heap data structure that has constant amortized time complexity for 5 types of operations. This is achieved by carefully "corrupting" (increasing) the keys of at most a constant fraction of values in the heap.
+Definition and performance
+The constant time operations are:
+- create(S): Create a new soft heap
+- insert(S, x): Insert an element into a soft heap
+- meld(S, S'): Combine the contents of two soft heaps into one, destroying both
+- delete(S, x): Delete an element from a soft heap
+- findmin(S): Get the element with minimum key in the soft heap
+Other heaps such as Fibonacci heaps achieve most of these bounds without any corruption, but cannot provide a constant-time bound on the critical delete operation. The amount of corruption can be controlled by the choice of a parameter $\varepsilon$, but the lower this is set, the more time insertions require: expressed using Big-O notation, the amortized time will be $O(\log 1/\varepsilon)$ for an error rate of $\varepsilon$. Some versions of soft heaps allow the create, insert, and meld operations to take constant time in the worst case, producing amortized rather than worst-case performance only for findmin and delete. As with comparison sort, these algorithms access the keys only by comparisons; if arithmetic operations on integer keys are allowed, the time dependence on $\varepsilon$ can be reduced to $O(\log\log 1/\varepsilon)$ or (with randomization) $O(\sqrt{\log\log
+
+===== ORTA (2650. karakterden 700 karakter) =====
+e structure is the result of what Chazelle called "carpooling" in a soft heap. Each node in the soft heap contains a linked list of keys and one common key. The common key is an upper bound on the values of the keys in the linked list. Once a key is added to the linked list, it is considered corrupted because its value is never again relevant in any of the soft heap operations: only the common keys are compared. This is what makes soft heaps "soft"; one cannot be sure whether any particular value put into it will be corrupted. The purpose of these corruptions is effectively to lower the information entropy of the data, enabling the data structure to break through information-theoretic barrie
+
+===== SON (son 500 karakter) =====
+d, so at least $n/3$ are uncorrupted. These uncorrupted and undeleted elements must all belong to the second subset, because they are greater than or equal to the soft heap's (possibly corrupted) value of $L$, which is in turn greater than the true value of $L$. Thus, both subsets have between 33% and 66% of the elements. Because each level of recursion reduces the problem size by a constant factor, the total time of the algorithm can be bounded by a geometric series, showing that it is $O(n)$.
+

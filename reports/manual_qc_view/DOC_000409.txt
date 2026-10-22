@@ -1,0 +1,16 @@
+document_id: DOC_000409
+title: Lazy deletion
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Lazy_deletion
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: hash_tablolari
+split: train
+char_count: 797
+token_count: 151
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, lazy deletion refers to a method of deleting elements from a hash table that uses open addressing. In this method, deletions are done by marking an element as deleted, rather than erasing it entirely. Deleted locations are treated as empty when inserting and as occupied during a search. The deleted locations are sometimes referred to as tombstones.
+The problem with this scheme is that as the number of delete/insert operations increases, the cost of a successful search increases. To improve this, when an element is searched and found in the table, the element is relocated to the first location marked for deletion that was probed during the search. Instead of finding an element to relocate when the deletion occurs, the relocation occurs lazily during the next search.
+

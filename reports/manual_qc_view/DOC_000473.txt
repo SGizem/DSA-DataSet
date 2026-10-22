@@ -1,0 +1,33 @@
+document_id: DOC_000473
+title: Path-based strong component algorithm
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Path-based_strong_component_algorithm
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 3570
+token_count: 780
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory, the strongly connected components of a directed graph may be found using an algorithm that uses depth-first search in combination with two stacks, one to keep track of the vertices in the current component and the second to keep track of the current search path. Versions of this algorithm have been proposed by Purdom (1970), Munro (1971), Dijkstra (1976), Cheriyan & Mehlhorn (1996), and Gabow (2000); of these, Dijkstra's version was the first to achieve linear time.
+Description
+The algorithm performs a depth-first search of the given graph G, maintaining as it does two stacks S and P (in addition to the normal call stack for a recursive function). Stack S contains all the vertices that have not yet been assigned to a strongly connected component, in the order in which the depth-first search reaches the vertices. Stack P contains vertices that have not yet been determined to belong to different strongly connected components from each other. It also uses a counter C of the number of vertices reached so far, which it uses to compute the preorder numbers of the vertices.
+When the depth-first search reaches a vertex v, the algorithm performs the following steps:
+- Set the preorder number of v to C, and increment C.
+- Push v onto S and also onto P.
+- For each edge from v to a neighboring vertex w:
+  - If the preorder number of w has not yet been assigned (the edge is a tree edge), recursively search w;
+  - Otherwise, if w has not yet been assigned to a strongly con
+
+===== ORTA (1785. karakterden 700 karakter) =====
+he popped vertices to a new component.
+  - Pop v from P.
+The overall algorithm consists of a loop through the vertices of the graph, calling this recursive search on each vertex that does not yet have a preorder number assigned to it.
+History and development
+The path-based algorithm family for finding strongly connected components was developed from several key historical contributions. The earliest version was proposed as Paul Purdom's 1970 transitive closure algorithm, which utilized naive cycle contraction. This was optimized by J. Ian Munro in 1971 using a set-merging approach, running in O(m + n log n) time. Edsger W. Dijkstra, in his 1976 book, introduced the first linear-time O(m + n)
+
+===== SON (son 500 karakter) =====
+algorithm also uses depth first search together with a stack to keep track of vertices that have not yet been assigned to a component, and moves these vertices into a new component when it finishes expanding the final vertex of its component. However, in place of the stack P, Tarjan's algorithm uses a vertex-indexed array of preorder numbers, assigned in the order that vertices are first visited in the depth-first search. The preorder array is used to keep track of when to form a new component.
+

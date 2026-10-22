@@ -1,0 +1,27 @@
+document_id: DOC_000232
+title: Association list
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Association_list
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: train
+char_count: 3417
+token_count: 663
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer programming and particularly in Lisp, an association list, often referred to as an alist, is a linked list in which each list element (or node) comprises a key and a value. The association list is said to associate the value with the key. In order to find the value associated with a given key, a sequential search is used: each element of the list is searched in turn, starting at the head, until the key is found. Associative lists provide a simple way of implementing an associative array, but are efficient only when the number of keys is very small.
+Operation
+An associative array is an abstract data type that can be used to maintain a collection of key–value pairs and look up the value associated with a given key. The association list provides a simple way of implementing this data type.
+To test whether a key is associated with a value in a given association list, search the list starting at its first node and continuing either until a node containing the key has been found or until the search reaches the end of the list (in which case the key is not present). To add a new key–value pair to an association list, create a new node for that key-value pair, set the node's link to be the previous first element of the association list, and replace the first element of the association list with the new node. Although some implementations of association lists disallow having multiple nodes with the same keys as each other, such duplications are not problematic for this sea
+
+===== ORTA (1708. karakterden 700 karakter) =====
+nodes containing the key out of the list. The scan should continue to the end of the list, even when the key is found, in case the same key may have been inserted multiple times.
+Performance
+The disadvantage of association lists is that the time to search is O(n), where n is the length of the list. For large lists, this may be much slower than the times that can be obtained by representing an associative array as a binary search tree or as a hash table. Additionally, unless the list is regularly pruned to remove elements with duplicate keys, multiple values associated with the same key will increase the size of the list, and thus the time to search, without providing any compensatory advanta
+
+===== SON (son 500 karakter) =====
+association lists with an additional operation, that reverses the addition of a key–value pair without scanning the list for other copies of the same key. In this way, the association list can function as a stack, allowing local variables to temporarily shadow other variables with the same names, without destroying the values of those other variables.
+Many programming languages, including Lisp, Scheme, OCaml, and Haskell have functions for handling association lists in their standard libraries.
+

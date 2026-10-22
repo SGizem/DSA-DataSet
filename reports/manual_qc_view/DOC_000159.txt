@@ -1,0 +1,24 @@
+document_id: DOC_000159
+title: En kısa yol problemi
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/En_kısa_yol_problemi
+language: tr
+document_type: ansiklopedi
+publication_year: 2021
+subtopic: graflar
+split: train
+char_count: 968
+token_count: 313
+
+===== BAŞ (ilk 1500 karakter) =====
+Çizge kuramında, en kısa yol problemi, bir çizgedeki iki düğümü bağlayan ve ağırlıkları toplamı en az olan ayrıtlar dizisini bulma problemidir.
+Algoritmalar
+Bu problemi çözen en bilindik algoritmalar şunlardır:
+- Dijkstra algoritması: ayrıt ağırlıkları eksi değerli olmamak üzere, tek kaynaklı en kısa yol problemini çözer.
+- Bellman–Ford algoritması: eksi değerli ayrıt ağırlıklarına izin verir şekilde, tek kaynaklı en kısa yol problemini çözer.
+- A* arama algoritması: iki düğüm arasındaki en kısa yolu bulur ve sezgisel yöntemlerle aramayı hızlandırır.
+- Floyd-Warshall algoritması: bütün düğüm çiftleri için en kısa yolları bulur, eksi değere izin verir.
+- Johnson algoritması: bütün düğüm çiftleri için en kısa yolları bulur, seyrek çizgelerde Floyd–Warshall algoritmasından daha hızlı çalışabilir.
+- Viterbi algoritması: ayrıtların olasılıksal ağırlıkları olan stokastik en kısa yol problemini çözer.
+Özel durumlarda kullanışlı olan birçok algoritma mevcuttur.
+

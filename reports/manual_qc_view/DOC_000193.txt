@@ -1,0 +1,32 @@
+document_id: DOC_000193
+title: Van Emde Boas ağacı
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Van_Emde_Boas_ağacı
+language: tr
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 11812
+token_count: 3782
+
+===== BAŞ (ilk 1500 karakter) =====
+van Emde Boas ağacı veya kısaca vEB ağacı, sınırlı bir tam sayı evreni üzerinde çalışan bir ağaç veri yapısıdır. Aynı yapı literatürde van Emde Boas öncelik kuyruğu olarak da adlandırılır. Genellikle {0,\ldots, U-1} aralığındaki anahtarlar üzerinde tanımlanır ve üyelik sorgusu, ekleme, silme, en küçük/en büyük elemanı bulma, öncül ve ardıl arama işlemlerini destekler. vEB ağacı, U anahtar evreninin büyüklüğü olmak üzere bu işlemlerin çoğunu O(\log \log U) zamanda gerçekleştirir. Eğer anahtarlar w bitlik tam sayılarla temsil ediliyorsa U = 2^w olur ve işlem süresi eşdeğer olarak O(\log w) biçiminde ifade edilebilir. Bu zaman sınırı, sabit zamanda sözcük işlemleri yapılabildiğini varsayan word RAM benzeri hesaplama modellerinde geçerlidir. Veri yapısı, 1975 yılında Hollandalı bilgisayar bilimci Peter van Emde Boas liderliğindeki ekip tarafından geliştirilmiştir.Peter van Emde Boas: Preserving order in a forest in less than logarithmic time, Proceedings of the 16th Annual Symposium on Foundations of Computer Science, 1975, ss. 75–84. Daha sonra van Emde Boas, Kaas ve Zijlstra tarafından verimli bir öncelik kuyruğu olarak ayrıntılı biçimde incelenmiştir.van Emde Boas, P.; Kaas, R.; Zijlstra, E. (1976). "Design and implementation of an efficient priority queue". Mathematical Systems Theory. 10: 99-127. doi:10.1007/BF01683268. Standart vEB ağacının temel dezavantajı, alan kullanımının anahtar evreninin büyüklüğüne bağlı olmasıdır. Bu nedenle klasik biçimiyle O(U) alan kullanır. Örn
+
+===== ORTA (5906. karakterden 700 karakter) =====
+in == NIL then
+        Insert(T.summary, h)
+        EmptyInsert(T.cluster[h], l)
+    else
+        Insert(T.cluster[h], l)
+if x > T.max then
+    T.max = x
+end Ekleme işleminde bazen iki özyinelemeli çağrı varmış gibi görünür; ancak alt küme boş olduğunda ikinci çağrı tam bir özyinelemeli ekleme değil, sabit zamanda yapılan EmptyInsert işlemidir. Bu nedenle ekleme işlemi de O(\log \log U) zamanda çalışır.
+Silme
+Silme işlemi vEB ağacındaki en karmaşık işlemdir. Bunun nedeni, silinen elemanın min veya max olması durumunda bu alanların doğru biçimde güncellenmesi gerekmesidir. Eğer silinen değer min ise, önce yapıdaki ikinci en küçük değer bulunur ve yeni min yapılır. Eğer bir alt küme tamamen bo
+
+===== SON (son 500 karakter) =====
+zation. University of Rochester. TR 353.
+Doğrulanmış gerçekleştirmeler
+vEB ağaçları için Isabelle ispat yardımcısında doğrulanmış bir gerçekleştirme bulunmaktadır.Ammer, Thomas; Lammich, Peter (23 Kasım 2021). "van Emde Boas Trees". Archive of Formal Proofs. Erişim tarihi: 26 Kasım 2021. Bu çalışmada veri yapısının işlevsel doğruluğu ve işlem sürelerine ilişkin sınırlar biçimsel olarak kanıtlanmıştır. Ayrıca daha verimli zorunlu programlama tarzındaki gerçekleştirmelere geçiş de ele alınmıştır.
+

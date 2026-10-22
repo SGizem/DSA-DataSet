@@ -1,0 +1,20 @@
+document_id: DOC_000174
+title: Lineer zaman
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Lineer_zaman
+language: tr
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: karmasiklik_analizi
+split: validation
+char_count: 688
+token_count: 226
+
+===== BAŞ (ilk 1500 karakter) =====
+Lineer zamanda çalışan bir algoritma, bir Turing makinesinin girişin uzunluğunun en fazla n katı tane adımda çözebildiği bir problemdir. Lineer zaman, polinomsal zamanın bir alt kümesidir.
+Örneğin, iki kelimenin birbirinin tersi olup olmadığını anlama problemi lineer zamanda çözülebilir:
+- İlk adımda, Turing makinesi ilk kelimeyi okur ve o kelimeyi temsil eden bir duruma geçer
+- İkinci bir geçişte, Turing makinesi diğer kelimeyi tersten okur
+- İkinci okuma sonunda, geldiği durumun ilk durumla aynı olup olmadığına bakar
+Dolayısıyla, eğer kelimenin uzunluğu $n \,$ ise, bu problem o kelime için $2 n \,$ adımda bitecek ve iki kelimenin birbirinin tersi olup olmadığını söyleyecektir.
+

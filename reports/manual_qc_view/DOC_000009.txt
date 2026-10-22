@@ -1,0 +1,69 @@
+document_id: DOC_000009
+title: Shortest Paths
+source_name: erickson_algorithms
+url: https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
+language: en
+document_type: ders_kitabi
+publication_year: 2019
+subtopic: graflar
+split: train
+char_count: 73133
+token_count: 20048
+
+===== BAŞ (ilk 1500 karakter) =====
+I study my Bible as I gather apples. First I shake the whole tree, that the ripest might
+fall. Then I climb the tree and shake each limb, and then each branch and then each
+twig, and then I look under each leaf.
+— attributed to Martin Luther (c. 1500)
+Life is an unfoldment, and the further we travel the more truth we can comprehend.
+To understand the things that are at our door is the best preparation for
+understanding those that lie beyond.
+— attributed to Hypatia of Alexandria (c. 400) by Elbert Hubbard
+in Little Journeys to the Homes of Great Teachers (1908)
+Your mind will answer most questions if you learn to relax and wait for the answer.
+Like one of those thinking machines, you feed in your question, sit back, and wait ...
+— William S. Burroughs, Naked Lunch (1959)
+The methods given in this paper require no foresight or ingenuity,
+and hence deserve to be called algorithms.
+— Edward R. Moore, “The Shortest Path Through a Maze” (1959)
+8
+Shortest Paths
+Suppose we are given a weighted directed graph G = (V, E, w) with two special
+vertices, and we want to find the shortest path from a source vertex s to a target
+vertex t. That is, we want to find the directed path P starting at s and ending
+at t that minimizes the function
+w(P) :=
+∑
+u→v∈P
+w(u→v).
+For example, if I want to answer the question “What’s the fastest way to drive
+from my old apartment in Champaign, Illinois to my wife’s old apartment in
+Columbus, Ohio?”, I might use a graph whose vertices are cities, edges are
+roa
+
+===== ORTA (36566. karakterden 700 karakter) =====
+4 9 –5 1 –3 –7 –5 2 6 10 3 8 3 4 5 0 0 3 4 4 9
+Figure 8.15. A complete run of Dijkstra’s algorithm on a graph with negative edges. At each iteration,
+bold edges indicate predecessors; shaded vertices are in the priority queue; and the bold vertex is the
+next to be scanned. Compare with Figure 8.17.
+relaxing edges, although some authors refer to “Bellman-Kalaba”^{11} and a few
+early sources refer to “Bellman-Shimbel”.
+The Shimbel / Moore / Woodbury-Dantzig / Bellman-Ford / Kalaba / Minty /
+Brosh^{12} algorithm can be summarized in one line:
+Bellman-Ford: Relax ALL the tense edges, then recurse.
+BellmanFord(s)
+InitSSSP(s)
+while there is at least one tense edge
+for every edge u→v
+if u→v is tens
+
+===== SON (son 500 karakter) =====
+nt stake through the undead ranger’s heart, you wisely decide to
+immediately leave the park as fast as possible.
+Describe and analyze an efficient algorithm to find a path from your
+current location to an arbitrary EXIT node, such that the total expected
+number of vampires encountered along the path is as small as possible. Be
+sure to account for both the vertex probabilities and the edge probabilities.
+[Hint: Even without the vertex probabilities, this is not the same as the
+previous problem!]
+

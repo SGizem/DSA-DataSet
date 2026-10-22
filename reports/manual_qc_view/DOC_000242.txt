@@ -1,0 +1,48 @@
+document_id: DOC_000242
+title: Bead sort
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Bead_sort
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: siralama_ve_arama
+split: train
+char_count: 5832
+token_count: 1346
+
+===== BAŞ (ilk 1500 karakter) =====
+Bead sort, also called gravity sort, is a natural sorting algorithm, developed by Joshua J. Arulanandham, Cristian S. Calude and Michael J. Dinneen in 2002, and published in The Bulletin of the European Association for Theoretical Computer Science. Both digital and analog hardware implementations of bead sort can achieve a sorting time of O(n); however, the implementation of this algorithm tends to be significantly slower in software and can only be used to sort lists of positive integers. Also, it would seem that even in the best case, the algorithm requires O(n^2) space.
+Algorithm overview
+The bead sort operation can be compared to the manner in which beads slide on parallel poles, such as on an abacus. However, each pole may have a distinct number of beads. Initially, it may be helpful to imagine the beads suspended on vertical poles. In Step 1, such an arrangement is displayed using n=5 rows of beads on m=4 vertical poles. The numbers to the right of each row indicate the number that the row in question represents; rows 1 and 2 are representing the positive integer 3 (because they each contain three beads) while the top row represents the positive integer 2 (as it only contains two beads).
+If we then allow the beads to fall, the rows now represent the same integers in sorted order. Row 1 contains the largest number in the set, while row n contains the smallest. If the above-mentioned convention of rows containing a series of beads on poles 1..k and leaving poles k+1..m em
+
+===== ORTA (2916. karakterden 700 karakter) =====
+ without a mechanism to assist in finding empty spaces below the beads, such as in software implementations.
+Like the Pigeonhole sort, bead sort is unusual in that in worst case it can perform faster than O(n log n), the fastest performance possible for a comparison sort in worst case. This is possible because the key for a bead sort is always a positive integer and bead sort exploits its structure.
+Implementation
+This implementation is written in Python; it is assumed that the input_list will be a sequence of integers. The function returns a new list rather than mutating the one passed in, but it can be trivially modified to operate in place efficiently.
+def beadsort(input_list):
+    """Bea
+
+===== SON (son 500 karakter) =====
+0; i < a.length; i++) {
+            for (int j = 0; j < a[i]; j++) {
+                beads[i][j] = 1;
+            }
+        }
+
+        // move down the beads
+        for (int j = 0; j < max; j++) {
+            int sum = 0;
+            for (int i = 0; i < a.length; i++) {
+                sum += beads[i][j];
+                beads[i][j] = 0;
+            }
+
+            for (int i = a.length - 1; i >= a.length - sum;
+                 i--) {
+                a[i] = j + 1;
+            }
+        }
+    }
+

@@ -1,0 +1,26 @@
+document_id: DOC_000302
+title: d-ary heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/D-ary_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: agaclar
+split: train
+char_count: 6915
+token_count: 1656
+
+===== BAŞ (ilk 1500 karakter) =====
+The d-ary heap or d-heap is a priority queue data structure, a generalization of the binary heap in which the nodes have d children instead of 2. Thus, a binary heap is a 2-heap, and a ternary heap is a 3-heap. According to Tarjan and Jensen et al., d-ary heaps were invented by Donald B. Johnson in 1975.
+This data structure allows decrease priority operations to be performed more quickly than binary heaps, at the expense of slower delete minimum operations. This tradeoff leads to better running times for algorithms such as Dijkstra's algorithm in which decrease priority operations are more common than delete min operations. Additionally, d-ary heaps have better memory cache behavior than binary heaps, allowing them to run more quickly in practice despite having a theoretically larger worst-case running time. Like binary heaps, d-ary heaps are an in-place data structure that use no additional storage beyond that needed to store the array of items in the heap.
+Data structure
+The d-ary heap consists of an array of n items, each of which has a priority associated with it. These items may be viewed as the nodes in a complete d-ary tree, listed in breadth first traversal order: the item at position 0 of the array (using zero-based numbering) forms the root of the tree, the items at positions 1 through d are its children, the next d^2 items are its grandchildren, etc. Thus, the parent of the item at position i (for any i > 0) is the item at position ⌊(i − 1)/d⌋ and its children are 
+
+===== ORTA (3457. karakterden 700 karakter) =====
+ a new item into the heap, to decrease the priority of an item in a min-heap, or to increase the priority of an item in a max-heap, is O(log n / log d). In the downward-swapping procedure, each swap involves d comparisons and takes O(d) time: it takes d − 1 comparisons to determine the minimum or maximum of the children and then one more comparison against the parent to determine whether a swap is needed. Therefore, the time to delete the root item, to increase the priority of an item in a min-heap, or to decrease the priority of an item in a max-heap, is O(d log n / log d).
+When creating a d-ary heap from a set of n items, most of the items are in positions that will eventually hold leaves 
+
+===== SON (son 500 karakter) =====
+n Fibonacci heaps for this application.
+4-heaps may perform better than binary heaps in practice, even for delete-min operations. Additionally, a d-ary heap typically runs much faster than a binary heap for heap sizes that exceed the size of the computer's cache memory; this may be due to the binary heap implicating more cache misses or virtual memory page faults, which can consume more processing time than the extra work of the few additional comparisons at each level entailed by a d-ary heap.
+

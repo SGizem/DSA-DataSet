@@ -1,0 +1,40 @@
+document_id: DOC_000032
+title: Search Trees
+source_name: open_guide_dsa
+url: https://pressbooks.palni.org/anopenguidetodatastructuresandalgorithms/chapter/search-trees/
+language: en
+document_type: ders_kitabi
+publication_year: 2023
+subtopic: agaclar
+split: train
+char_count: 18806
+token_count: 4156
+
+===== BAŞ (ilk 1500 karakter) =====
+After reading this chapter you will…
+- extend your understanding of linked data structures.
+- learn the basics techniques that drive performance in modern databases.
+Introduction
+We begin by listing some desirable aspects of data structures:
+- economical and dynamic memory consumption
+- ability to insert or delete keys in sublinear time
+- ability to look up keys by exact match to a key in sublinear time
+- ability to retrieve several key values based on a range
+With these criteria in mind, let us review some of the data structures studied so far. Arrays allow us constant-time lookup, assuming we know the index of the item we want to retrieve. Finding that index requires a linear traversal of an unsorted array or a logarithmic Binary Search of a sorted array. Arrays have an unfortunate side effect in that they must be preallocated in memory. As a result, inserts and deletes require either excess allocation or reallocation (with a great deal of copying).
+We then considered linked lists. Conveniently, we are not required to know the capacity before performing the initial insert. Linked lists are less economic in memory consumption, as each stored datum requires us to also store a next (and possibly previous) reference. Locating a particular position for insert or delete requires a Linear Search, but the insertions or deletions at that point are constant time.
+Then we arrived at hash tables. Finally, we had a data structure that allowed for true constant-time lookups based on a ke
+
+===== ORTA (9403. karakterden 700 karakter) =====
+ve to consider. When deleting a key from a BST, the node containing that key may be in four different states with respect to its children: no children, left child only, right child only, and both left and right children.
+No Children
+First, we must locate the node containing the key to be deleted. If that node has no children, it is by definition a leaf node. To delete a key at the leaf node, it suffices to simply remove the parent’s reference to the leaf node. In the example below, the node containing the value 4 has no children. We can simply go to that node’s parent and set the left child reference to null.
+Figure 8.3
+Left Child Only / Right Child Only
+If a node contains a key to be delete
+
+===== SON (son 500 karakter) =====
+Accessed September 27, 2023. https://pages.cs.wisc.edu/~ealexand/cs367/NOTES/AVL-Trees/index.html
+“Binary Tree.” Wikipedia. Last modified August 28 2023. https://en.wikipedia.org/wiki/Binary_tree
+Galles, David. “AVL Tree.” USF Computer Science Department. Accessed September 27, 2023. https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
+Galles, David. “Binary Search Tree.” USF Computer Science Department. Accessed September 27, 2023. https://www.cs.usfca.edu/~galles/visualization/BST.html
+

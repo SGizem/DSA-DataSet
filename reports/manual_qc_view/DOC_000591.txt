@@ -1,0 +1,34 @@
+document_id: DOC_000591
+title: Trie
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Trie
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 13006
+token_count: 2698
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a trie, also known as a digital tree or prefix tree, is a specialized search tree data structure used to store and retrieve strings from a dictionary or set. Unlike a binary search tree, nodes in a trie do not store their associated key. Instead, each node's position within the trie determines its associated key, with the connections between nodes defined by individual characters rather than the entire key.
+Tries are particularly effective for tasks such as autocomplete, spell checking, and IP routing, offering advantages over hash tables due to their prefix-based organization and lack of hash collisions. Every child node shares a common prefix with its parent node, and the root node represents the empty string. While basic trie implementations can be memory-intensive, various optimization techniques such as compression and bitwise representations have been developed to improve their efficiency. A notable optimization is the radix tree, which provides more efficient prefix-based storage.
+While tries store character strings, they can be adapted to work with any ordered sequence of elements, such as permutations of digits or shapes. A notable variant is the bitwise trie, which uses individual bits from fixed-length binary data (such as integers or memory addresses) as keys.
+History, etymology, and pronunciation
+The idea of a trie for representing a set of strings was first abstractly described by Axel Thue in 1912. Tries were first described in a computer c
+
+===== ORTA (6503. karakterden 700 karakter) =====
+urning the node itself.
+Replacing other data structures
+Replacement for hash tables
+A trie can be used to replace a hash table, over which it has the following advantages:
+- Searching for a node with an associated key of size $m$ has the complexity of $O(m)$, whereas an imperfect hash function may have numerous colliding keys, and the worst-case lookup speed of such a table would be $O(N)$, where $N$ denotes the total number of nodes within the table.
+- Tries do not need a hash function for the operation, unlike a hash table; there are also no collisions of different keys in a trie.
+- Within a trie, keys can be efficiently sorted lexicographically.
+However, tries are less efficient than a ha
+
+===== SON (son 500 karakter) =====
+informatics, notably in sequence alignment software applications such as BLAST, which indexes all the different substrings of length k (called k-mers) of a text by storing the positions of their occurrences in a compressed trie sequence databases.
+Internet routing
+Compressed variants of tries, such as databases for managing Forwarding Information Base (FIB), are used in storing IP address prefixes within routers and bridges for prefix-based lookup to resolve mask-based operations in IP routing.
+

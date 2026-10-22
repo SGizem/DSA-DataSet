@@ -1,0 +1,1 @@
+Algoritma tasarımı, problemlerin çözümünde matematiksel bir süreç oluşturmak amacıyla kullanılan özel bir yöntemdir. Algoritma tasarımı uygulamaları, Algoritma mühendisleri tarafından yapılır.

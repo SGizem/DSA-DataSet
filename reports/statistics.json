@@ -1,0 +1,268 @@
+{
+  "version": "1.0",
+  "melt": {
+    "raw": 609,
+    "extraction_failed": 1,
+    "after_extraction": 608,
+    "after_filter": 586,
+    "exact_duplicate": 0,
+    "after_exact": 586,
+    "near_duplicate": 0,
+    "after_near": 586,
+    "final": 586
+  },
+  "summary": {
+    "Veri kaynağı sayısı": "6",
+    "Ham doküman": "609",
+    "Extraction başarılı": "608",
+    "Extraction başarısız": "1",
+    "Filtering sonrası": "586",
+    "Exact duplicate": "0",
+    "Near duplicate": "0",
+    "Final doküman": "586",
+    "Toplam kelime": "1.028.018",
+    "Toplam token": "1.512.566",
+    "Türkçe içerik (token)": "%3,8",
+    "Manuel kontrol örneği": "150",
+    "Manuel kalite başarısı": "%90,0",
+    "Instruction örneği": "3.218",
+    "Instruction kontrol örneği": "200"
+  },
+  "exclusions": {
+    "filter/too_short": 17,
+    "filter/out_of_domain": 5,
+    "extract/too_short": 1
+  },
+  "sources": {
+    "wikipedia_en": {
+      "documents": 397,
+      "tokens": 982088,
+      "words": 706465,
+      "chars": 4243656
+    },
+    "erickson_algorithms": {
+      "documents": 10,
+      "tokens": 178257,
+      "words": 119299,
+      "chars": 674425
+    },
+    "open_data_structures": {
+      "documents": 14,
+      "tokens": 113108,
+      "words": 72403,
+      "chars": 394219
+    },
+    "thealgorithms_python": {
+      "documents": 100,
+      "tokens": 105305,
+      "words": 45541,
+      "chars": 389291
+    },
+    "open_guide_dsa": {
+      "documents": 11,
+      "tokens": 77086,
+      "words": 60976,
+      "chars": 347863
+    },
+    "vikipedi_tr": {
+      "documents": 54,
+      "tokens": 56722,
+      "words": 23334,
+      "chars": 173918
+    }
+  },
+  "languages": {
+    "code": {
+      "documents": 100,
+      "tokens": 105305
+    },
+    "en": {
+      "documents": 432,
+      "tokens": 1350539
+    },
+    "tr": {
+      "documents": 54,
+      "tokens": 56722
+    }
+  },
+  "subtopics": {
+    "agaclar": {
+      "documents": 133,
+      "tokens": 321170
+    },
+    "algoritma_paradigmalari": {
+      "documents": 18,
+      "tokens": 58153
+    },
+    "diziler_ve_listeler": {
+      "documents": 55,
+      "tokens": 120123
+    },
+    "genel": {
+      "documents": 3,
+      "tokens": 1391
+    },
+    "graflar": {
+      "documents": 86,
+      "tokens": 272266
+    },
+    "hash_tablolari": {
+      "documents": 37,
+      "tokens": 101468
+    },
+    "karmasiklik_analizi": {
+      "documents": 33,
+      "tokens": 95810
+    },
+    "ozyineleme_ve_dp": {
+      "documents": 44,
+      "tokens": 171115
+    },
+    "siralama_ve_arama": {
+      "documents": 147,
+      "tokens": 279831
+    },
+    "yigin_ve_kuyruk": {
+      "documents": 30,
+      "tokens": 91239
+    }
+  },
+  "splits": {
+    "train": {
+      "documents": 470,
+      "tokens": 1199337,
+      "chars": 4939124
+    },
+    "validation": {
+      "documents": 58,
+      "tokens": 177085,
+      "chars": 721335
+    },
+    "test": {
+      "documents": 58,
+      "tokens": 136144,
+      "chars": 562913
+    }
+  },
+  "tokens": {
+    "tokenizer": "Qwen/Qwen3-4B-Base",
+    "tokenizer_revision": "906bfd4b4dc7f14ee4320094d8b41684abff8539",
+    "add_special_tokens": false,
+    "overall": {
+      "documents": 586,
+      "total": 1512566,
+      "min": 106,
+      "median": 1564.0,
+      "mean": 2581.2,
+      "p95": 8143.5,
+      "max": 33370
+    },
+    "by_split": {
+      "train": {
+        "documents": 470,
+        "total": 1199337,
+        "min": 106,
+        "median": 1522.0,
+        "mean": 2551.8,
+        "p95": 8086.5,
+        "max": 33370
+      },
+      "validation": {
+        "documents": 58,
+        "total": 177085,
+        "min": 226,
+        "median": 1946.5,
+        "mean": 3053.2,
+        "p95": 8293.8,
+        "max": 21380
+      },
+      "test": {
+        "documents": 58,
+        "total": 136144,
+        "min": 136,
+        "median": 1552.5,
+        "mean": 2347.3,
+        "p95": 7208.0,
+        "max": 9031
+      }
+    },
+    "long_doc_warning_tokens": 80000,
+    "long_documents": []
+  },
+  "instruction": {
+    "total": 3218,
+    "planned": 3760,
+    "generated": 3757,
+    "after_auto": 3629,
+    "pending_judge": 0,
+    "after_judge": 3263,
+    "after_build": 3261,
+    "removed": {
+      "Yargıç model": 366,
+      "Otomatik kontroller": 128,
+      "Manuel kontrol": 43,
+      "Üretim hatası": 3,
+      "Derleme": 2
+    },
+    "reasons": {
+      "judge/task_mismatch": 147,
+      "judge/judge_rejected": 140,
+      "auto_check/task_mismatch": 92,
+      "judge/not_grounded": 79,
+      "manual_qc/manual_rejected": 43,
+      "auto_check/wrong_language": 20,
+      "auto_check/duplicate_instruction": 8,
+      "auto_check/too_short": 8,
+      "generate/generation_error": 3,
+      "build/not_grounded": 2
+    },
+    "task_types": {
+      "kavram_aciklama": 596,
+      "coktan_secmeli_soru_uretimi": 399,
+      "algoritma_izleme": 379,
+      "karsilastirma": 378,
+      "kod_okuma": 332,
+      "karmasiklik_analizi": 295,
+      "hata_bulma": 237,
+      "bilgi_yetersizligi": 201,
+      "yanlis_cevap_aciklama": 201,
+      "konu_ozeti_anlatim": 200
+    },
+    "splits": {
+      "train": 2584,
+      "validation": 325,
+      "test": 309
+    },
+    "with_context": 1308,
+    "tokens": 1425951,
+    "verified_by": {
+      "auto_judge": 3061,
+      "manual": 157
+    }
+  },
+  "manual_qc": {
+    "corpus": {
+      "reviewed": 150,
+      "checks": {
+        "readable": 150,
+        "in_domain": 150,
+        "extraction_ok": 144,
+        "header_footer_clean": 149,
+        "no_broken_chars": 146,
+        "metadata_ok": 146
+      },
+      "all_ok": 135
+    },
+    "instruction": {
+      "reviewed": 200,
+      "checks": {
+        "instruction_clear": 192,
+        "response_correct": 186,
+        "grounded_in_source": 189,
+        "answers_instruction": 194,
+        "task_type_ok": 184
+      },
+      "all_ok": 157
+    }
+  }
+}

@@ -1,0 +1,29 @@
+document_id: DOC_000217
+title: Addressable heap
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Addressable_heap
+language: en
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: agaclar
+split: train
+char_count: 1083
+token_count: 235
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, an addressable heap is an abstract data type. Specifically, it is a mergeable heap supporting access to the elements of the heap via handles (also called references). It allows the key of the element referenced by a particular handle to be removed or decreased.
+Definition
+An addressable heap supports the following operations:
+- Make-Heap(), creating an empty heap.
+- Insert(H,x), inserting an element x into the heap H, and returning a handle to it.
+- Min(H), returning a handle to the minimum element, or Nil if no such element exists.
+- Extract-Min(H), extracting and returning a handle to the minimum element, or Nil if no such element exists.
+- Remove(h), removing the element referenced by h (from its respective heap).
+- Decrease-Key(h,k), decreasing the key of the element referenced by h to k; illegal if k is larger than the key referenced by h.
+- Merge(H1,H2), combining the elements of H1 and H2.
+Examples
+Examples of addressable heaps include:
+- Fibonacci heaps
+- Binomial heaps
+A more complete list with performance comparisons can be found here.
+

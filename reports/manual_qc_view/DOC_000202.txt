@@ -1,0 +1,55 @@
+document_id: DOC_000202
+title: İkili arama ağacı
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/İkili_arama_ağacı
+language: tr
+document_type: ansiklopedi
+publication_year: 2024
+subtopic: agaclar
+split: validation
+char_count: 4664
+token_count: 1341
+
+===== BAŞ (ilk 1500 karakter) =====
+İkili arama ağacı, verileri organize etmek için kullanılan bir çeşit ikili ağaçtır. İkili ağaçtan temel farkı, verilerin sıralanmış bir şekilde tutulmasıdır, bu sayede ikili arama algoritmasının kullanılmasına imkân verir.
+İkili arama ağaçlarında; her düğümün sağ çocuğu kendisinden büyük, sol çocuğu ise kendisinden küçüktür. Bu ağaçlarda çalışan arama algoritması önce kökten başlar, eğer aranan eleman kökten büyükse sağ çocuğa, kökten küçükse sol çocuğa ilerler. Böylece, eleman bulunana yapraklara kadar yinelemeli bir şekilde ilerleme sağlanır.
+İşlemler
+İkili arama ağacı üzerinde; arama, ekleme, silme işlemleri yapılabilir.
+Arama
+Kökten başlanarak arama işlemi yapılır. Eğer aranan eleman o anki düğümden büyükse sağa, küçükse sola ilerlenir. Bu algoritma bir döngü içinde ya da özyinelemeli şekilde uygulanabilir. Python kodu şu şekildedir:
+def search_recursively(key, node):
+    if node is None or node.key == key:
+        return node
+    if key < node.key:
+        return search_recursively(key, node.left)
+    # key > node.key
+    return search_recursively(key, node.right)
+def search_iteratively(key, node): 
+    current_node = node
+    while current_node is not None:
+        if key == current_node.key:
+            return current_node
+        elif key < current_node.key:
+            current_node = current_node.left
+        else: # key > current_node.key:
+            current_node = current_node.right
+    return current_node
+Ekleme
+Eleman ekleme işlemi her zaman yapraklara ya da tek
+
+===== ORTA (2332. karakterden 700 karakter) =====
+, D'yi silmeden önce D'den büyük en küçük eleman bulunur (inorder successor) buna da E diyelim. E ile D yer değiştirilir ve ardından D silinir.
+Bir elemandan büyük en küçük eleman, o elemanın sağ alt ağacının en solundaki elemandır ve bunu bulmak için ekstra metot yazmak gerekir. Bu yüzden, silme algoritması ekleme ve arama algoritmalarına göre daha uzundur. Python kodu şu şekildedir:
+def find_min(self):   # Gets minimum node in a subtree
+    current_node = self
+    while current_node.left_child:
+        current_node = current_node.left_child
+    return current_node
+def replace_node_in_parent(self, new_value=None):
+    if self.parent:
+        if self == self.parent.left_child:
+            se
+
+===== SON (son 500 karakter) =====
+arın yüksekliğini azaltarak ağaç üzerinde çalışan algoritmaların performansını arttırır. Örneğin boş bir ikili arama ağacına 1, 2, 3, 4, 5, 6, 7 elemanlarını sırayla eklediğimizi düşünelim. Bu durumda elemanlar hep sağ tarafa ekleneceği için ağaç esasen bir bağlı listeye dönüşür. Halbuki, aynı elemanlar, yüksekliği 3 olan bir ağaca da yerleştirilebilirlerdi. Bu durum, dengeli ikili arama ağaçlarının icadına yol açmıştır. AVL ağacı, 2-3-4 ağacı ve kırmızı-siyah ağaçlar dengeli ağaçlara örnektir.
+

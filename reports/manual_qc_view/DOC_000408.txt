@@ -1,0 +1,36 @@
+document_id: DOC_000408
+title: LCP array
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/LCP_array
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: diziler_ve_listeler
+split: test
+char_count: 15559
+token_count: 4165
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, the longest common prefix array (LCP array) is an auxiliary data structure to the suffix array. It stores the lengths of the longest common prefixes (LCPs) between all pairs of consecutive suffixes in a sorted suffix array.
+For example, if A := [aab, ab, abaab, b, baab] is a suffix array, the longest common prefix between A[1] = aab and A[2] = ab is a which has length 1, so H[2] = 1 in the LCP array H. Likewise, the LCP of A[2] = ab and A[3] = abaab is ab, so H[3] = 2.
+Augmenting the suffix array with the LCP array allows one to efficiently simulate top-down and bottom-up traversals of the suffix tree, speeds up pattern matching on the suffix array and is a prerequisite for compressed suffix trees.
+History
+The LCP array was introduced in 1993, by Udi Manber and Gene Myers alongside the suffix array in order to improve the running time of their string search algorithm.
+Definition
+Let $A$ be the suffix array of the string $S=s_1,s_2,\ldots s_{n-1}\$$ of length $n$, where $\$$ is a sentinel letter that is unique and lexicographically smaller than any other character. Let $S[i,j]$ denote the substring of $S$ ranging from $i$ to $j$. Thus, $S[A[i], n]$ is the $i$th smallest suffix of $S$.
+Let $\operatorname{lcp}(v,w)$ denote the length of the longest common prefix between two strings $v$ and $w$. Then the LCP array $H[1,n]$ is an integer array of size $n$ such that $H[1]$ is undefined and $H[i]=\operatorname{lcp}(S[A[i-1],n],S[A[i],n])$ for every $1<i\leq n$. 
+
+===== ORTA (7779. karakterden 700 karakter) =====
+d the first $k$ characters of $P$ and then decided whether $P$ is lexicographically smaller or larger than $M$. Let's assume the outcome is that $P$ is larger than $M$. So, in the next step, we consider $(M,\dots,R)$ and a new central point $M'$ in the middle:
+             M ...... M' ...... R
+             |
+      we know:
+         lcp(P,M)==k
+The trick now is that LCP-LR is precomputed such that an $O(1)$-lookup tells us the longest common prefix of $M$ and $M'$, $\mathrm{lcp}(M,M')$.
+We already know (from the previous step) that $M$ itself has a prefix of $k$ characters in common with $P$: $\mathrm{lcp}(P,M)=k$. Now there are three possibilities:
+- Case 1: $k < \mathrm{lcp}(M,M')$, i.e. $P
+
+===== SON (son 500 karakter) =====
+fix that is shared by all of these suffixes is the minimum value in the interval $H[A^{-1}[i]+1,A^{-1}[j]]$. This value can be found in constant time if $H$ is preprocessed for range minimum queries.
+Thus given a string $S$ of length $n$ and two arbitrary positions $i,j$ in the string $S$ with $A^{-1}[i] < A^{-1}[j]$, the length of the longest common prefix of the suffixes $S[i,n]$ and $S[j,n]$ can be computed as follows: $\operatorname{LCP}(i,j)=H[\operatorname{RMQ}_H(A^{-1}[i]+1,A^{-1}[j])]$.
+

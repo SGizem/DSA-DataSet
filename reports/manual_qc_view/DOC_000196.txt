@@ -1,0 +1,73 @@
+document_id: DOC_000196
+title: Yığın sıralaması
+source_name: vikipedi_tr
+url: https://tr.wikipedia.org/wiki/Yığın_sıralaması
+language: tr
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: siralama_ve_arama
+split: train
+char_count: 3383
+token_count: 910
+
+===== BAŞ (ilk 1500 karakter) =====
+Yığın Sıralaması (İngilizcesi: Heapsort), bilgisayar bilimlerinde kullanılan karşılaştırmaya dayalı bir sıralama algoritmasıdır. Uygulamada pek çok bilgisayarda hızlı sıralama algoritmasından daha yavaş çalışsa da en kötü durumda O(n log n) çalışma süresi vardır. Yığın sıralaması diziyi yerinde sıralar ancak kararlı bir sıralama algoritması değildir.
+Sözde Kodu
+Aşağıda yığın sıralaması algoritmasının sözde kodu verilmiştir. swap dizideki iki öğenin yerlerini değiştirmek için kullanılmaktadır.
+ function heapSort(a, count) is
+     input: an unordered array a of length count
+
+     (first place a in max-heap order)
+     heapify(a, count)
+
+     end := count - 1
+     while end > 0 do
+         (swap the root(maximum value) of the heap with the last element of the heap)
+         swap(a[end], a[0])
+         (decrease the size of the heap by one so that the previous max value will
+         stay in its proper placement)
+         end := end - 1
+         (put the heap back in max-heap order)
+         siftDown(a, 0, end)
+
+ function heapify(a, count) is
+     (start is assigned the index in a of the last parent node)
+     start := (count - 1) / 2
+
+     while start ≥ 0 do
+         (sift down the node at index start to the proper place such that all nodes below
+          the start index are in heap order)
+         siftDown(a, start, count-1)
+         start := start - 1
+     (after sifting down the root all nodes/elements are in heap order)
+
+ function siftDown(a, start, end) is
+     input: end 
+
+===== ORTA (1691. karakterden 700 karakter) =====
+= root * 2 + 1            (root*2+1 points to the left child)
+         (If the child has a sibling and the child's value is less than its sibling's...)
+         if child < end and a[child] < a[child + 1] then
+             child := child + 1           (... then point to the right child instead)
+         if a[root] < a[child] then       (out of max-heap order)
+             swap(a[root], a[child])
+             root := child                (repeat to continue sifting down the child now)
+         else
+             return
+heapify fonksiyonu alttan üste doğru bir yığın oluşturmak için kullanılırken yığın özelliği kazandırılmak için öğeler aşağıya doğru incelenir. Aşağıda gösterilmiş bir diğer yol k
+
+===== SON (son 500 karakter) =====
+ sifting up the last node all nodes are in heap order)
+
+ function siftUp(a, start, end) is
+     input: start represents the limit of how far up the heap to sift.
+                   end is the node to sift up.
+     child := end 
+     while child > start
+        parent := ⌊(child - 1) ÷ 2⌋
+         if a[parent] < a[child] then (out of max-heap order)
+             swap(a[parent], a[child])
+             child := parent (repeat to continue sifting up the parent now)
+         else
+             return
+

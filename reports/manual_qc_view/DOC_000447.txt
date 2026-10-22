@@ -1,0 +1,38 @@
+document_id: DOC_000447
+title: Minimum spanning tree
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Minimum_spanning_tree
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: graflar
+split: train
+char_count: 21097
+token_count: 4643
+
+===== BAŞ (ilk 1500 karakter) =====
+In graph theory, a minimum spanning tree (MST) or minimum weight spanning tree is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight. That is, it is a spanning tree whose sum of edge weights is as small as possible. More generally, any edge-weighted undirected graph (not necessarily connected) has a minimum spanning forest, which is a union of the minimum spanning trees for its connected components.
+There are many use cases for minimum spanning trees. One example is a telecommunications company trying to lay cable in a new neighborhood. If it is constrained to bury the cable only along certain paths (e.g. roads), then there would be a graph containing the points (e.g. houses) connected by those paths. Some of the paths might be more expensive, because they are longer, or require the cable to be buried deeper; these paths would be represented by edges with larger weights. Currency is an acceptable unit for edge weight – there is no requirement for edge lengths to obey normal rules of geometry such as the triangle inequality. A spanning tree for that graph would be a subset of those paths that has no cycles but still connects every house; there might be several spanning trees possible. A minimum spanning tree would be one with the lowest total cost, representing the least expensive path for laying the cable.
+Properties
+Possible multiplicity
+If there are 
+
+===== ORTA (10548. karakterden 700 karakter) =====
+r of such permutations is at most (r^2)!.
+- For each permutation, solve the MST problem on the given graph using any existing algorithm, and compare the result to the answer given by the DT.
+- The running time of any MST algorithm is at most r^2, so the total time required to check all permutations is at most (r^2 + 1)!.
+Hence, the total time required for finding an optimal DT for all graphs with r vertices is:
+- $2^{r \choose 2} \cdot r^{2^{(r^2+2)}} \cdot (r^2+1)!,$
+which is less than
+- $2^{2^{r^2+o(r)}}.$
+Optimal algorithm
+Seth Pettie and Vijaya Ramachandran have found a provably optimal deterministic comparison-based minimum spanning tree algorithm. The following is a simplified descript
+
+===== SON (son 500 karakter) =====
+s, contiguous regions.
+- Comparing ecotoxicology data.
+- Topological observability in power systems.
+- Measuring homogeneity of two-dimensional materials.
+- Minimax process control.
+- Minimum spanning trees can also be used to describe financial markets. A correlation matrix can be created by calculating a coefficient of correlation between any two stocks. This matrix can be represented topologically as a complex network and a minimum spanning tree can be constructed to visualize relationships.
+

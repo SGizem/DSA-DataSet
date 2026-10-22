@@ -1,0 +1,51 @@
+document_id: DOC_000365
+title: Heap (data structure)
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Heap_(data_structure)
+language: en
+document_type: ansiklopedi
+publication_year: 2026
+subtopic: agaclar
+split: train
+char_count: 12023
+token_count: 2673
+
+===== BAŞ (ilk 1500 karakter) =====
+In computer science, a heap is a tree-based data structure that satisfies the heap property: In a max heap, for any given node C, if P is the parent node of C, then the key (the value) of P is greater than or equal to the key of C. In a min heap, the key of P is less than or equal to the key of C. The node at the "top" of the heap (with no parents) is called the root node.
+The heap is one maximally efficient implementation of an abstract data type called a priority queue, and in fact, priority queues are often referred to as "heaps", regardless of how they may be implemented. In a heap, the highest (or lowest) priority element is always stored at the root. However, a heap is not a sorted structure; it can be regarded as being partially ordered. A heap is a useful data structure when it is necessary to repeatedly remove the object with the highest (or lowest) priority, or when insertions need to be interspersed with removals of the root node.
+A common implementation of a heap is the binary heap, in which the tree is a complete binary tree (see figure). The heap data structure, specifically the binary heap, was introduced by J. W. J. Williams in 1964, as a data structure for the heapsort sorting algorithm. Heaps are also crucial in several efficient graph algorithms such as Dijkstra's algorithm. When a heap is a complete binary tree, it has the smallest possible height—a heap with N nodes and a branches for each node always has log_a N height.
+Note that, as shown in the graphic
+
+===== ORTA (6011. karakterden 700 karakter) =====
+here s_2(N) is the sum of all digits of the binary representation of N and e_2(N) is the exponent of 2 in the prime factorization of N. This is faster than a sequence of consecutive insertions into an originally empty heap, which is log-linear.
+Variants
+- 2–3 heap
+- B-heap
+- Beap
+- Binary heap
+- Binomial heap
+- Brodal queue
+- d-ary heap
+- Fibonacci heap
+- K-D Heap
+- Leaf heap
+- Leftist heap
+- Skew binomial heap
+- Strict Fibonacci heap
+- Min-max heap
+- Pairing heap
+- Radix heap
+- Randomized meldable heap
+- Skew heap
+- Soft heap
+- Ternary heap
+- Treap
+- Weak heap
+Comparison of theoretic bounds for variants
+Here are time complexities of various heap data structures. The abbreviation am. indicat
+
+===== SON (son 500 karakter) =====
+th a set of test cases. A heap is used in the implementation of the timer event loop.
+- The Rust programming language has a binary max-heap implementation, BinaryHeap, in the collections module of its standard library. The implementation can be transformed into a min-heap through the use of a helper wrapper struct, Reverse, which overloads the comparison operators to their reverse.
+- .NET has PriorityQueue class which uses quaternary (d-ary) min-heap implementation. It is available from .NET 6.
+

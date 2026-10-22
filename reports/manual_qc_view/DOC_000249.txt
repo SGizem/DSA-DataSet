@@ -1,0 +1,45 @@
+document_id: DOC_000249
+title: Bidirectional search
+source_name: wikipedia_en
+url: https://en.wikipedia.org/wiki/Bidirectional_search
+language: en
+document_type: ansiklopedi
+publication_year: 2025
+subtopic: graflar
+split: train
+char_count: 5539
+token_count: 1335
+
+===== BAŞ (ilk 1500 karakter) =====
+Bidirectional search is a graph search algorithm that finds a shortest path from an initial vertex to a goal vertex in a directed graph. It runs two simultaneous searches: one forward from the initial state, and one backward from the goal, stopping when the two meet. The reason for this approach is that in many cases it is faster: for instance, in a simplified model of search problem complexity in which both searches expand a tree with branching factor b, and the distance from start to goal is d, each of the two searches has complexity O(b^{d/2}) (in Big O notation), and the sum of these two search times is much less than the O(b^d) complexity that would result from a single search from the beginning to the goal.
+Andrew Goldberg and others explained the correct termination conditions for the bidirectional version of Dijkstra’s Algorithm.
+As in A* search, bi-directional search can be guided by a heuristic estimate of the remaining distance to the goal (in the forward tree) or from the start (in the backward tree).
+Ira Pohl was the first one to design and implement a bi-directional heuristic search algorithm. Search trees emanating from the start and goal nodes failed to meet in the middle of the solution space. The BHFFA algorithm of de Champeaux fixed this defect.
+A solution found by the uni-directional A* algorithm using an admissible heuristic has a shortest path length; the same property holds for the BHFFA2 bidirectional heuristic version described by de Champeaux . BHFFA
+
+===== ORTA (2769. karakterden 700 karakter) =====
+a search tree
+- $k(n,m)$
+- the cost associated with moving from node $n$ to node $m$
+- $g(n)$
+- the cost from the root to the node $n$
+- $h(n)$
+- the heuristic estimate of the distance between the node $n$ and the goal
+- $s$
+- the start state
+- $t$
+- the goal state (sometimes $g$, not to be confused with the function)
+- $d$
+- the current search direction. By convention, $d$ is equal to 1 for the forward direction and 2 for the backward direction
+- $d'$
+- the opposite search direction (i.e. $d' = 3 - d$)
+- $\mathrm{TREE}_d$
+- the search tree in direction d. If $d = 1$, the root is $s$, if $d = 2$, the root is $t$
+- $\mathrm{OPEN}_d$
+- the leaves of $\mathrm{TREE}_d$ (sometimes referred to as 
+
+===== SON (son 500 karakter) =====
+\mathrm{OPEN}_{d'} \right \}$
+where $H(n,o)$ returns an admissible (i.e. not overestimating) heuristic estimate of the distance between nodes n and o.
+Front-to-Front suffers from being excessively computationally demanding. Every time a node n is put into the open list, its $f = g + h$ value must be calculated. This involves calculating a heuristic estimate from n to every node in the opposing OPEN set, as described above. The OPEN sets increase in size exponentially for all domains with b > 1.
+
