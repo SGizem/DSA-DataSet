@@ -1,0 +1,263 @@
+project:
+  random_seed: 42
+  # v0.5: FAZ 3 (extraction + cleaning) sonu, 14.10.2026
+  # v0.9: FAZ 7 (filtreleme, dedup, split, token sayımı) sonu, 19.10.2026
+  version: "1.0"
+
+# Yollar proje köküne göre göreceli yazılır (kod içine yol gömülmez).
+paths:
+  sources_csv: config/sources.csv
+  download_manifest: config/download_manifest.csv
+  domain_keywords: config/domain_keywords.yaml
+  subtopics: config/subtopics.yaml
+  prompts_dir: config/prompts
+  registry: data/registry.csv
+  raw_dir: data/raw
+  extracted_dir: data/extracted
+  cleaned_dir: data/cleaned
+  instruction_dir: data/instruction
+  final_dir: data/final
+  samples_dir: data/samples
+  reports_dir: reports
+  exclusions_csv: reports/exclusions.csv
+  download_log: reports/download_log.csv
+  extraction_report: reports/extraction_report.csv
+  engine_comparison: reports/engine_comparison.csv
+  cleaning_report: reports/cleaning_report.csv
+  cleaning_rules: reports/cleaning_rules.md
+  cleaning_examples_dir: reports/cleaning_examples
+  calibration_domain: reports/calibration_domain.csv
+  calibration_report: reports/calibration_domain_report.md
+  near_duplicates: reports/near_duplicates.csv
+  token_stats: reports/token_stats.json
+  statistics_md: reports/statistics.md
+  statistics_json: reports/statistics.json
+  calibration_dedup: reports/calibration_dedup.csv
+  calibration_dedup_report: reports/calibration_dedup_report.md
+  log_dir: reports/logs
+  environment_txt: reports/environment.txt
+
+download:
+  user_agent: "SDU-DatasetBot/1.0 (+{CONTACT_EMAIL})"   # CONTACT_EMAIL .env'den
+  delay_seconds: 2
+  timeout_seconds: 30
+  max_retries: 3
+  respect_robots_txt: true
+
+extract:
+  engine: pymupdf            # pymupdf | pdfplumber
+  min_extracted_chars: 200
+  replacement_char_max_ratio: 0.02
+
+clean:
+  repeated_line_min_pages: 5
+  # R3/R4 yalnızca sayfanın ilk ve son bu kadar dolu satırına bakar: sayfa başlığı ve numarası hep
+  # oradadır. Gövdede tekrar eden satırlar sözde kod ve formül parçasıdır (ölçüm: experiments.md).
+  page_edge_lines: 2
+  # "Search" çıkarıldı: İngilizce Vikipedi'de 7 yerde gerçek bölüm başlığı. "Appearance"/"Görünüm":
+  # Vikipedi'nin görünüm menüsünden metne sızan satır.
+  boilerplate_lines: ["Ana Sayfa", "İletişim", "Home", "Menu", "Skip to content", "Next", "Previous",
+                      "Appearance", "Görünüm"]
+  # R8: bu alan adlarından gelen dokümanlarda sondaki kaynakça bölümleri silinir.
+  reference_section_domains: ["wikipedia.org"]
+  trailing_sections: ["References", "External links", "See also", "Notes", "Further reading", "Bibliography",
+                      "Citations", "Sources", "Footnotes", "Kaynakça", "Dış bağlantılar", "Notlar",
+                      "Ayrıca bakınız", "Kaynaklar", "Dipnotlar",
+                      # 22.10.2026: liste bağlantıları korununca Türkçe sıralama maddelerinin sonundaki gezinme
+                      # listesi metne girdi (7 madde).
+                      "Diğer sıralama algoritmaları", "Diğer Sıralama Algoritmaları"]
+  # Kesim noktasından sonra bu uzunluğu aşan, liste öğesi ve künye olmayan satır ikiden fazlaysa ya da böyle bir
+  # satırın önünde içerik başlığı varsa kesilmez (scripts/utils/text_utils.py, R8).
+  trailing_section_max_line_chars: 60
+  # R9: PDF'te art arda en az short_line_run_min satır, her biri en çok short_line_max_chars karakterse
+  # (şekil hücresi, parçalı formül) tek satırda birleştirilir. 2-3 satırlık diziler çoğunlukla alt alta
+  # kesirdir (n / 2); birleştirmek onları okunur yapmaz, dokunulmaz.
+  short_line_max_chars: 3
+  short_line_run_min: 4
+  example_count: 20
+
+filter:
+  min_chars: {prose: 500, code: 150}
+  allowed_languages: [tr, en]
+  max_noise_ratio: 0.15
+  # Dil tespiti: dokümandan seed'li en fazla 5 parça x 1000 karakter, çoğunluk oyu (langdetect).
+  language_samples: 5
+  language_sample_chars: 1000
+  language_min_prose_chars: 200   # düzyazı bundan azsa dil bütün metinden tespit edilir
+  # --calibrate: domain_score çeyreklerinden tabakalı, elle etiketleyeceğim doküman sayısı.
+  calibration_size: 50
+  # 19.10.2026 kalibrasyonu (reports/calibration_domain_report.md): 50 etiketten 49'u alan içi. Skor tek alan
+  # dışı dokümanı (Pivot eleman, 25,6) ancak 4 alan içi dokümanı da eleyerek yakalayabiliyor. Eşik, elle
+  # incelenen en düşük skorlu alan içi dokümanın (Özyineleme, 2,71) altında: skor, alakasız metne karşı
+  # güvenlik ağı; alan dışı bulunanlar aşağıdaki listeyle elenir.
+  domain_score_threshold: 2.5
+  # Elle incelenip kapsam dışı bulunan dokümanlar (README'deki kapsam tanımı: işletim sistemi ve veritabanı iç yapısı
+  # kapsam dışı). Ham veri silinmez; FAZ 4 bunları out_of_domain olarak eler ve gerekçeyi yazar.
+  out_of_scope_urls:
+    "https://en.wikipedia.org/wiki/T-tree": "ana bellek veritabanlarinin indeks yapisi"
+    "https://en.wikipedia.org/wiki/Log-structured_merge-tree": "veritabani depolama motoru yapisi"
+    "https://en.wikipedia.org/wiki/Free_list": "isletim sistemi dinamik bellek yonetimi"
+    "https://en.wikipedia.org/wiki/Extendible_hashing": "veritabani ve dosya sistemi indeksleme"
+    "https://tr.wikipedia.org/wiki/Pivot_eleman": "cogunlugu Gauss eliminasyonu (sayisal lineer cebir); kalibrasyon etiketi 0"
+
+dedup:
+  shingle_words: 5
+  minhash_num_perm: 128
+  # 19.10.2026 kalibrasyonu (reports/calibration_dedup_report.md): 586 dokümanın bütün çiftlerinde en yüksek
+  # gerçek Jaccard 0,26; en benzer 50 çiftin hepsi farklı içerik. Kontrollü değişiklik deneyinde 0,85 tek
+  # satır/menü eklenmiş ve ~%5 satırı silinmiş kopyaları yakalıyor, %20 ve üstü farklı metni yakalamıyor.
+  jaccard_threshold: 0.85
+  # LSH yalnızca aday çift üretir; her aday gerçek Jaccard ile doğrulanır. Eşiği kalibrasyon aralığının
+  # altında tutulur ki 0,60-0,95 arasındaki çiftler de aday olarak gelsin.
+  lsh_threshold: 0.5
+  calibration_size: 50
+  calibration_range: [0.60, 0.95]
+  # Kopya kümesinde hangi kaynağın kalacağı (önde olan tutulur). Önce ders kitapları: tek yazarlı, editörlü,
+  # ders düzeyinde anlatım ve CC BY (CC BY-SA'nın "aynı lisansla paylaş" yükümlülüğü yok). Kitaplar arasında
+  # HTML olan Open Guide önde (PDF çıkarım izleri yok), sonra lisansı CC BY 4.0 olan Erickson, sonra
+  # CC BY 2.5 CA ODS. Sonra Vikipedi: Türkçe önde, çünkü corpus'ta Türkçe pay az. Kod en sonda.
+  source_priority: [open_guide_dsa, erickson_algorithms, open_data_structures, vikipedi_tr, wikipedia_en,
+                    thealgorithms_python]
+
+split:
+  ratios: {train: 0.80, validation: 0.10, test: 0.10}
+  stratify_by: source_name
+
+tokens:
+  # Final döneminde CPT/SFT için Qwen3 ailesini seçtim (rehber §2 ve §10 örneği). Sürümü sabit: token sayıları
+  # başka bilgisayarda da aynı çıksın. Yalnızca tokenizer dosyaları iner, model ağırlıkları değil.
+  tokenizer: "Qwen/Qwen3-4B-Base"
+  tokenizer_revision: "906bfd4b4dc7f14ee4320094d8b41684abff8539"
+  long_doc_warning_tokens: 80000
+
+# data/samples: depoya konacak küçük örnek veri (rehber §13: büyük veri dosyaları depoya girmez, örnekler girer).
+# Her final JSONL'den seed'li birkaç kısa kayıt; bütün kaynakların lisansı (CC BY, CC BY-SA, MIT) atıfla yeniden
+# dağıtıma izin veriyor ve her kayıtta url + license alanı var.
+samples:
+  per_split: 3
+  max_chars: 8000
+  instruction_per_task: 1          # data/samples/instruction_sample.jsonl: her görev türünden bu kadar örnek
+  instruction_max_tokens: 400
+
+instruction:
+  target_total: 3000
+  # Doğrulamada elenecekler için fazladan planlanan oran: 3.000 x 1,15 = 3.450 görev.
+  plan_factor: 1.15
+  max_per_document: 40
+  with_context_ratio: 0.40
+  passage_tokens: {min: 250, max: 700}
+  # Aynı passage'a düşen en çok bu kadar görev tek istekte üretilir (günlük 500 istek kotası için).
+  tasks_per_request: 3
+  # bilgi_yetersizligi görevlerinin bu kadarı "alan dışı" soru (passage yok, source_document=null),
+  # kalanı "metinde yok" sorusu (bağlamlı).
+  out_of_domain_share: 0.5
+  out_of_domain_batch: 5           # bir istekte üretilen alan dışı örnek sayısı
+  # Alan dışı sorular için tohum konular. Son grup bilgisayar biliminin ders kapsamı dışında kalan konuları
+  # (README'deki kapsam tanımı: işletim sistemi, veritabanı iç yapısı, NP-tamlık ispatları): model alanın sınırını öğrensin.
+  out_of_domain_topics:
+    - hava durumu
+    - futbol maç sonucu tahmini
+    - yemek tarifi
+    - döviz kuru ve borsa tahmini
+    - hastalık belirtileri ve ilaç önerisi
+    - hukuki danışmanlık
+    - Osmanlı tarihi
+    - tatil ve seyahat önerisi
+    - film ve dizi önerisi
+    - kişisel bütçe planlama
+    - spor ve diyet programı
+    - burç yorumu
+    - şiir ya da şarkı sözü yazma
+    - güncel siyaset
+    - araba bakımı
+    - işletim sistemlerinde süreç zamanlama
+    - veritabanında işlem (transaction) yönetimi ve indeks motoru iç yapısı
+    - bilgisayar ağlarında TCP/IP protokolleri
+    - kriptografik şifreleme algoritmaları
+    - NP-tamlık ispatları ve indirgemeler
+    - derin öğrenme modeli eğitimi
+    - web sitesi tasarımı ve CSS
+  # 19.10.2026: gemini-2.5-flash yeni kullanıcılara kapalı (404). Ücretsiz katman sınırları (AI Studio,
+  # Rate Limit sayfası): Flash modelleri dakikada 5 / günde 20 istek; Flash Lite modelleri dakikada 15 /
+  # günde 500 istek. ~6.000 istek (üretim + yargıç) ancak Lite modellerle sığıyor. Üretici ve yargıç ayrı
+  # modeller: her birinin kendi günlük kotası var ve model kendi ürettiğini yargılamamış oluyor.
+  teacher:
+    provider: gemini               # gemini | local
+    model: "gemini-3.5-flash-lite"
+    requests_per_minute: 12        # sınır 15; ağ gecikmesi ve yeniden denemeler için pay
+    requests_per_day: 500          # ücretsiz katman sınırı; dolunca script durur, ertesi gün kaldığı yerden sürer
+    temperature: 0.7
+    top_p: 0.95
+    max_output_tokens: 4096        # bir istekte en çok tasks_per_request örnek üretiliyor
+    local:                         # provider: local için OpenAI uyumlu yerel sunucu (ör. Ollama, LM Studio)
+      base_url: "http://localhost:11434/v1"
+      model: ""
+  judge:
+    provider: gemini
+    model: "gemini-3.1-flash-lite"
+    requests_per_minute: 12
+    requests_per_day: 500
+    temperature: 0.0
+    top_p: 1.0
+    max_output_tokens: 2048
+    out_of_domain_batch: 10        # passage'ı olmayan alan dışı örnekler bir istekte bu kadar yargılanır
+    local:
+      base_url: "http://localhost:11434/v1"
+      model: ""
+  # 10_verify_instructions otomatik kontrolleri. Uzunluklar Qwen3 token'ı. Sınırları üretimin ilk 179 kaydına
+  # baktıktan sonra koydum: cevaplar 59-520, talimatlar 12-231 token arasındaydı. Sınırlar bu aralığın
+  # dışında geniş tutuldu; amaç doğal uzunluk farkını değil, yarım kalmış ya da kontrolden çıkmış çıktıyı yakalamak.
+  verify:
+    instruction_tokens: {min: 8, max: 800}
+    response_tokens: {min: 40, max: 1200}
+    # Talimat benzerliği: talimat metninin kelime kümesi Jaccard'ı. Bağlamlı örneklerde yalnızca aynı passage'ı
+    # gören örnekler karşılaştırılır: farklı passage'la gelen aynı talimat modele farklı bir mesajdır.
+    duplicate_threshold: 0.90
+    duplicate_num_perm: 128
+    # Kod satırları dışındaki düzyazı en az bu kadar harf içeriyorsa dil tespiti yapılır.
+    language_min_letters: 40
+    # Bu kadar harften uzun Türkçe düzyazıda hiç ç/ğ/ı/ö/ş/ü yoksa metin Türkçe karakter kullanılmadan yazılmıştır
+    # (22.10.2026: 3.730 kayıtta 15 cevap ve 16 talimat, çoğu izleme). wrong_language ile elenir.
+    ascii_turkish_min_letters: 60
+  # Ana plana EK görevler (ana plan değişmez). 20.10.2026: ana üretimin ilk 1.568 örneğinde izlemelerin %48,5'i,
+  # hata bulmanın %80'i doğrulamadan geçti; bu oranla izleme ~201 örnekte kalıyordu (hedef 360), hata bulma ~222
+  # (hedef 240). Ek görevler önce kod dosyalarına (izleme %76 geçti), sonra kod bloklu passage'lara (%43) veriliyor.
+  top_up:
+    algoritma_izleme: 280
+    hata_bulma: 30
+  # 11_build_instruction_dataset. Örnekleri corpus v0.9'un passage'larından ürettim; v1.0 düzeltmeleri bazı
+  # passage'ları değiştirdi. passage'ın 5 kelimelik dizilerinden v1.0 doküman metninde bulunanların oranı bu
+  # eşiğin altındaysa passage temizlikte silinmiştir, örnek setten çıkar. 22.10.2026: 1.319 passage'ta en düşük
+  # iki değer 0,019 (DOC_000239'un kaynakça bölümü) ve 0,487; geri kalanların hepsi 0,59'un üstünde.
+  build:
+    passage_ngram: 5
+    min_passage_overlap: 0.25
+  prompt_version: "v1"
+  taxonomy:
+    kavram_aciklama: 0.18
+    karsilastirma: 0.12
+    algoritma_izleme: 0.12
+    coktan_secmeli_soru_uretimi: 0.12
+    karmasiklik_analizi: 0.10
+    kod_okuma: 0.10
+    hata_bulma: 0.08
+    yanlis_cevap_aciklama: 0.06
+    konu_ozeti_anlatim: 0.06
+    bilgi_yetersizligi: 0.06
+
+# Manuel kalite kontrolü (rehber §12: 100-200 doküman ve 150-200 instruction örneği elle incelenir).
+# Corpus örneklemi kaynağa, instruction örneklemi görev türüne göre orantılı tabakalı; küçük gruplar da temsil
+# edilsin diye her gruptan en az min_per_* öğe.
+manual_qc:
+  corpus_size: 150
+  min_per_source: 5
+  instruction_size: 200
+  min_per_task: 5
+  corpus_csv: reports/manual_qc_corpus.csv
+  # Corpus v0.9'da aynı 150 dokümanla yaptığım 1. tur. Bulduğum hataları düzelttikten sonra (experiments.md,
+  # 22.10.2026) aynı dokümanları v1.0'da yeniden inceledim; rapor iki turu yan yana gösterir.
+  corpus_round1_csv: reports/manual_qc_corpus_round1.csv
+  instruction_csv: reports/manual_qc_instruction.csv
+  instruction_view: reports/manual_qc_instruction_view.md
+  view_dir: reports/manual_qc_view
+  quality_report: reports/quality_report.md

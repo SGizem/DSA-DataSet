@@ -1,0 +1,18 @@
+# domain_keywords.yaml  (çok kelimeli terimler daha güçlü sinyaldir)
+# Eşleşme kelime başındadır: "algoritma" "algoritmaları"nı da sayar. Aynı yerde iki terim eşleşirse
+# uzun olan sayılır ("hash table" bir kez sayılır, "hash" ayrıca sayılmaz).
+# 14.10.2026 eklemeleri (ikinci satırlar): ölçümde sıralama maddeleri "sort" listede olmadığı için
+# 0 puan alıyordu ("Cascade merge sort"). Eklenenler DSA'nın çekirdek terimleri ve O( gösterimi;
+# "ağac": ünsüz yumuşaması ("ağacı", "ağaca") "ağaç" kalıbına uymuyor.
+terms:
+  tr: ["veri yapısı", "veri yapıları", "algoritma", "bağlı liste", "ikili arama", "ikili ağaç",
+       "graf", "çizge", "sıralama", "zaman karmaşıklığı", "karmaşıklık", "özyineleme",
+       "hash tablosu", "karma tablo", "öncelik kuyruğu", "dinamik programlama", "açgözlü",
+       "en kısa yol", "yığın", "kuyruk", "dizi", "ağaç",
+       "arama", "düğüm", "karma", "asimptotik", "sözde kod", "o(", "ağac"]
+  en: ["data structure", "data structures", "algorithm", "linked list", "binary search",
+       "binary tree", "graph", "sorting", "time complexity", "big-o", "recursion",
+       "hash table", "priority queue", "dynamic programming", "greedy", "breadth-first",
+       "depth-first", "shortest path", "stack", "queue", "heap", "array", "tree",
+       "sort", "search", "hash", "complexity", "node", "vertex", "vertices", "pseudocode",
+       "asymptotic", "amortized", "recurrence", "big o", "o("]

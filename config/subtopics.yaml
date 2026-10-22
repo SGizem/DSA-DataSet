@@ -1,0 +1,41 @@
+# subtopics.yaml  (önce başlık: en sonda biten eşleşme; başlıkta yoksa gövde: en çok eşleşen; hiç yoksa "genel")
+# 14.10.2026: graflar'a "spanning tree"/"kapsayan ağaç" eklendi (yoksa "Minimum spanning tree" ağaç sayılıyordu);
+# algoritma_paradigmalari eklendi (açgözlü, geri izleme ve böl-yönet hiçbir alt konuda değildi);
+# agaclar'a "ağac" eklendi: ünsüz yumuşaması ("ağacı") "ağaç" kalıbına uymuyordu.
+# 22.10.2026: manuel kontrolde 150 dokümanın 27'sinde alt konu yanlıştı. Listelere alanın yerleşik terim ve
+# problem adlarını ekledim (knapsack -> DP, recurrence -> karmaşıklık, queens/scheduling -> paradigmalar,
+# string search/median -> sıralama ve arama, depth-first search/shortest path -> graflar ...).
+# Başlıkta aynı yerde biten iki eşleşmeden uzun olan kazanır: "depth-first search" (graflar) > "search".
+# "title:" önekli terimler yalnızca başlıkta sayılır: gövdede her konuda geçen genel kelimeler (search, list).
+# "yığın" Türkçe Vikipedi'de stack anlamında ("Yığın (veri tipi)"), yigin_ve_kuyruk'ta kalıyor;
+# "Yığın sıralaması" başlıktaki son eşleşme kuralıyla sıralamaya gidiyor.
+diziler_ve_listeler: ["dizi", "array", "bağlı liste", "linked list", "title:list", "title:liste", "title:vector",
+                      "title:vektör", "skiplist", "skip list", "title:buffer"]
+yigin_ve_kuyruk: ["yığın", "yığıt", "stack", "kuyruk", "queue", "deque", "push", "pop", "enqueue", "dequeue"]
+agaclar: ["ağaç", "ağac", "tree", "bst", "avl", "heap", "kök", "yaprak", "root", "leaf", "trie", "treap",
+          "ancestor"]
+graflar: ["graf", "çizge", "graph", "bfs", "dfs", "dijkstra", "kenar", "düğüm", "edge", "vertex",
+          "spanning tree", "kapsayan ağaç", "mst", "depth-first search", "depth first search",
+          "breadth-first search", "breadth first search", "best-first search",
+          "derin öncelikli arama", "derinlik öncelikli arama", "genişlik öncelikli arama", "sığ öncelikli arama", "bidirectional search", "a* search", "a* arama",
+          "iterative deepening", "shortest path", "en kısa yol", "eulerian", "minimum cut", "connected component",
+          "strong component", "connectivity", "adjacency list", "adjacency matrix", "komşuluk", "maze"]
+siralama_ve_arama: ["sıralama", "sort", "quicksort", "mergesort", "heapsort", "funnelsort", "smoothsort",
+                    "ikili arama", "binary search", "title:search", "title:arama", "title:select", "title:seçim",
+                    "median", "ortanca", "shuffle", "string-search", "string search", "string-matching",
+                    "string matching", "pattern matching", "inversion", "merge algorithm"]
+hash_tablolari: ["hash", "karma", "çakışma", "collision", "bucket", "open addressing", "açık adresleme",
+                 "probing", "lazy deletion", "associative array", "ilişkisel dizi", "multimap"]
+karmasiklik_analizi: ["karmaşıklık", "big-o", "complexity", "asimptotik", "asymptotic", "recurrence",
+                      "yineleme bağıntısı", "running time", "çalışma zamanı", "linear time", "lineer zaman",
+                      "polynomial time", "pseudo-polynomial", "tradeoff", "trade-off", "amortized", "amortize",
+                      "master theorem", "potential method"]
+ozyineleme_ve_dp: ["özyineleme", "recursion", "dinamik programlama", "dynamic programming", "memoization",
+                   "subproblem", "alt problem", "knapsack", "sırt çantası", "subset sum", "edit distance",
+                   "levenshtein", "longest common", "en uzun ortak", "viterbi", "needleman", "palindrome partition",
+                   "fibonacci"]
+algoritma_paradigmalari: ["greedy", "açgözlü", "backtracking", "geri izleme", "divide-and-conquer",
+                          "divide and conquer", "böl ve yönet", "böl-yönet", "queens", "vezir", "scheduling",
+                          "çizelgeleme", "charging argument", "optimal substructure", "gas station",
+                          "activity selection", "continuous knapsack", "fractional knapsack", "branch and bound",
+                          "brute force", "brute-force", "kaba kuvvet", "dancing links", "algorithm x"]

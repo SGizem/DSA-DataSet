@@ -1,0 +1,34 @@
+# Sırlar
+.env
+
+# Ortam
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Büyük veri (Git'e girmez; data/samples hariç)
+data/raw/*
+data/extracted/*
+data/cleaned/*
+data/instruction/*
+data/final/*
+!data/raw/.gitkeep
+!data/extracted/.gitkeep
+!data/cleaned/.gitkeep
+!data/instruction/.gitkeep
+!data/final/.gitkeep
+
+# Üretilen loglar
+reports/logs/
+
+# Ders belgeleri (depoya girmez)
+Vize Rehberi.docx
+tasarim-1-rapor-sablonu-13052025 (1) (1).docx
+~$*.docx
+
+# Çalışma şartnamesi (depoya girmez)
+docs/BRIEF.md
+
+# Releases'e yüklenecek veri paketi
+dist/
