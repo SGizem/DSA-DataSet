@@ -19,7 +19,7 @@
 | Türkçe içerik (token) | %3,8 |
 | Manuel kontrol örneği | 150 |
 | Manuel kalite başarısı | %90,0 |
-| Instruction örneği | 3.218 |
+| Instruction örneği | 3.212 |
 | Instruction kontrol örneği | 200 |
 
 ## (a) Erime tablosu
@@ -113,7 +113,7 @@ Tokenizer: `Qwen/Qwen3-4B-Base` (revision `906bfd4`), özel token eklenmeden.
 
 ## (h) Instruction istatistikleri
 
-Toplam örnek: 3.218
+Toplam örnek: 3.212
 
 Erime (planlanan görevden final örneğe):
 
@@ -124,7 +124,7 @@ Erime (planlanan görevden final örneğe):
 | Otomatik kontroller sonrası | 3.629 | 128 |
 | Yargıç model sonrası | 3.263 | 366 |
 | Derleme sonrası (passage'ı v1.0'da silinmiş olanlar) | 3.261 | 2 |
-| Manuel kontrol sonrası (final) | 3.218 | 43 |
+| Manuel kontrol sonrası (final) | 3.212 | 49 |
 
 Eleme sebepleri:
 
@@ -134,7 +134,7 @@ Eleme sebepleri:
 | judge | judge_rejected | 140 |
 | auto_check | task_mismatch | 92 |
 | judge | not_grounded | 79 |
-| manual_qc | manual_rejected | 43 |
+| manual_qc | manual_rejected | 49 |
 | auto_check | wrong_language | 20 |
 | auto_check | duplicate_instruction | 8 |
 | auto_check | too_short | 8 |
@@ -145,43 +145,43 @@ Görev türü dağılımı:
 
 | Görev türü | Planlanan | Elenen | Final | Final payı |
 | --- | --- | --- | --- | --- |
-| algoritma_izleme | 694 | 315 | 379 | %11,8 |
-| kavram_aciklama | 621 | 25 | 596 | %18,5 |
-| coktan_secmeli_soru_uretimi | 414 | 15 | 399 | %12,4 |
-| karsilastirma | 414 | 36 | 378 | %11,7 |
+| algoritma_izleme | 694 | 316 | 378 | %11,8 |
+| kavram_aciklama | 621 | 25 | 596 | %18,6 |
+| coktan_secmeli_soru_uretimi | 414 | 17 | 397 | %12,4 |
+| karsilastirma | 414 | 36 | 378 | %11,8 |
 | kod_okuma | 345 | 13 | 332 | %10,3 |
 | karmasiklik_analizi | 345 | 50 | 295 | %9,2 |
-| hata_bulma | 306 | 69 | 237 | %7,4 |
+| hata_bulma | 306 | 72 | 234 | %7,3 |
 | konu_ozeti_anlatim | 207 | 7 | 200 | %6,2 |
-| yanlis_cevap_aciklama | 207 | 6 | 201 | %6,2 |
-| bilgi_yetersizligi | 207 | 6 | 201 | %6,2 |
+| yanlis_cevap_aciklama | 207 | 6 | 201 | %6,3 |
+| bilgi_yetersizligi | 207 | 6 | 201 | %6,3 |
 
 bilgi_yetersizligi alt türleri: alan_disi 101, metinde_yok 100
 
 | Split | Örnek | Oran |
 | --- | --- | --- |
-| train | 2.584 | %80,3 |
-| validation | 325 | %10,1 |
+| train | 2.579 | %80,3 |
+| validation | 324 | %10,1 |
 | test | 309 | %9,6 |
 
-with_context oranı: %40,6 (1.308 örnek)
+with_context oranı: %40,7 (1.306 örnek)
 
 Örnek başına token (kullanıcı mesajı + cevap, Qwen3):
 
 | Toplam | Min | Medyan | Ortalama | 95. yüzdelik | Maks |
 | --- | --- | --- | --- | --- | --- |
-| 1.425.951 | 66 | 298 | 443,1 | 938 | 1.293 |
+| 1.423.322 | 66 | 298 | 443,1 | 938 | 1.293 |
 
 | verified_by | Örnek |
 | --- | --- |
 | auto_judge | 3.061 |
-| manual | 157 |
+| manual | 151 |
 
 Üretim modeli ve prompt:
 
 | Öğretmen model | prompt_version | prompt_sha | Örnek |
 | --- | --- | --- | --- |
-| gemini-3.5-flash-lite | v1 | 8efe20f68258 | 3.218 |
+| gemini-3.5-flash-lite | v1 | 8efe20f68258 | 3.212 |
 
 ## (i) Manuel kalite kontrolü
 
@@ -202,8 +202,8 @@ Instruction manuel kontrolü: 200 örnek incelendi.
 | Kontrol | Başarılı | Oran |
 | --- | --- | --- |
 | instruction_clear | 192/200 | %96,0 |
-| response_correct | 186/200 | %93,0 |
+| response_correct | 183/200 | %91,5 |
 | grounded_in_source | 189/200 | %94,5 |
 | answers_instruction | 194/200 | %97,0 |
-| task_type_ok | 184/200 | %92,0 |
-| hepsi başarılı | 157/200 | %78,5 |
+| task_type_ok | 181/200 | %90,5 |
+| hepsi başarılı | 151/200 | %75,5 |

@@ -25,7 +25,7 @@
     "Türkçe içerik (token)": "%3,8",
     "Manuel kontrol örneği": "150",
     "Manuel kalite başarısı": "%90,0",
-    "Instruction örneği": "3.218",
+    "Instruction örneği": "3.212",
     "Instruction kontrol örneği": "200"
   },
   "exclusions": {
@@ -190,7 +190,7 @@
     "long_documents": []
   },
   "instruction": {
-    "total": 3218,
+    "total": 3212,
     "planned": 3760,
     "generated": 3757,
     "after_auto": 3629,
@@ -200,7 +200,7 @@
     "removed": {
       "Yargıç model": 366,
       "Otomatik kontroller": 128,
-      "Manuel kontrol": 43,
+      "Manuel kontrol": 49,
       "Üretim hatası": 3,
       "Derleme": 2
     },
@@ -209,7 +209,7 @@
       "judge/judge_rejected": 140,
       "auto_check/task_mismatch": 92,
       "judge/not_grounded": 79,
-      "manual_qc/manual_rejected": 43,
+      "manual_qc/manual_rejected": 49,
       "auto_check/wrong_language": 20,
       "auto_check/duplicate_instruction": 8,
       "auto_check/too_short": 8,
@@ -218,26 +218,26 @@
     },
     "task_types": {
       "kavram_aciklama": 596,
-      "coktan_secmeli_soru_uretimi": 399,
-      "algoritma_izleme": 379,
+      "coktan_secmeli_soru_uretimi": 397,
       "karsilastirma": 378,
+      "algoritma_izleme": 378,
       "kod_okuma": 332,
       "karmasiklik_analizi": 295,
-      "hata_bulma": 237,
+      "hata_bulma": 234,
       "bilgi_yetersizligi": 201,
       "yanlis_cevap_aciklama": 201,
       "konu_ozeti_anlatim": 200
     },
     "splits": {
-      "train": 2584,
-      "validation": 325,
+      "train": 2579,
+      "validation": 324,
       "test": 309
     },
-    "with_context": 1308,
-    "tokens": 1425951,
+    "with_context": 1306,
+    "tokens": 1423322,
     "verified_by": {
       "auto_judge": 3061,
-      "manual": 157
+      "manual": 151
     }
   },
   "manual_qc": {
@@ -257,12 +257,12 @@
       "reviewed": 200,
       "checks": {
         "instruction_clear": 192,
-        "response_correct": 186,
+        "response_correct": 183,
         "grounded_in_source": 189,
         "answers_instruction": 194,
-        "task_type_ok": 184
+        "task_type_ok": 181
       },
-      "all_ok": 157
+      "all_ok": 151
     }
   }
 }

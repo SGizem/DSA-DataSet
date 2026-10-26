@@ -113,6 +113,14 @@ eklemek ya da çıkarmak yalnızca sınırdaki bir iki dokümanın kümesini de�
 büyüse de test kümesi kararlı kalıyor. Bir dokümanın bütün metni tek kümede; instruction örnekleri de kaynak
 dokümanının kümesini alıyor.
 
+**Chunk'lar.** Corpus doküman olarak teslim ediliyor; CPT'de model bir seferde sınırlı sayıda token
+(sequence length) gördüğü için uzun dokümanlar parçalara bölünecek. En uzun doküman 33.370, p95 8.143 token.
+Parçaları rastgele karakter sayısından değil paragraf, başlık ve cümle sınırlarından keseceğim: kesilmiş bir
+tanım ya da yarım kalmış bir sözde kod modele yanlış bir bütün öğretir. Aynı yöntemi instruction üretiminde
+kullandım (`scripts/utils/chunking.py`, 250–700 token'lık passage'lar). Bölme doküman düzeyinde yapıldığı ve
+chunk'lar ondan sonra oluşturulacağı için bir dokümanın parçaları farklı kümelere düşmüyor. Nihai uzunluk final
+döneminde seçilecek modelin bağlam uzunluğuna göre belirlenecek.
+
 ## Lisans ve kullanım
 
 Bütün kaynaklar açık lisanslı; kaynak bazında lisanslar yukarıdaki tabloda. Vikipedi'den gelen kısım CC

@@ -6,7 +6,9 @@
 
 - Varsayılan: 01_download -> 08_statistics. Bir adım hata verirse durur.
 - --redo: 02, 03 ve 04'ü --redo ile çalıştırır (daha önce işlenmiş dokümanlar da baştan işlenir). 05-08 her
-  çalıştırmada bütün dokümanları zaten yeniden işler.
+  çalıştırmada bütün dokümanları zaten yeniden işler. Depo `data/registry.csv`'yi işlenmiş hâliyle taşıyor,
+  ara dosyalar (`data/extracted/`, `data/cleaned/`) ise depoda yok; işlenmiş görünen bir dokümanın ara dosyası
+  eksikse (temiz bir kopya) --redo kendiliğinden açılır.
 - --with-instruction: ardından 09 -> 11 ve istatistikler için yeniden 08. 09 günlük kota dolunca durur;
   o durumda 10 yargıç kararı bekleyen örnek bırakır ve 11 derlemeyi reddeder (run_all da durur).
 - Kalibrasyon (04/05 --calibrate) ve manuel kalite kontrolü (12, 13) run_all dışındadır: insan kararı ister.
@@ -51,6 +53,18 @@ def check_thresholds(cfg: dict[str, Any]) -> None:
     if missing:
         raise SystemExit(f"Kalibrasyon eşiği boş: {', '.join(missing)}. Önce 04_filter --calibrate / "
                          "05_deduplicate --calibrate ile etiketleyip eşiği config.yaml'a yazın.")
+
+
+def missing_intermediates(registry: pd.DataFrame) -> list[str]:
+    """İşlenmiş görünen (extracted_path / cleaned_path dolu) ama ara dosyası diskte olmayan dokümanlar."""
+    missing = []
+    for _, row in registry.iterrows():
+        for col in ("extracted_path", "cleaned_path"):
+            path = row.get(col, "")
+            if path and not (PROJECT_ROOT / path).exists():
+                missing.append(row["document_id"])
+                break
+    return missing
 
 
 def run_steps(steps: list[str], config: str, redo: bool, logger) -> None:
@@ -133,6 +147,20 @@ def instruction_problems(cfg: dict[str, Any]) -> list[str]:
     return problems
 
 
+def manual_review_problems(labels: pd.DataFrame, checks: list[str], data: list[dict[str, Any]]) -> list[str]:
+    """Manuel etiketler veri setine yansımış mı: onaylanan örnek sette ve manual işaretli, reddedilen sette yok."""
+    by_key = {r["key"]: r for r in data}
+    problems = []
+    for _, row in labels.iterrows():
+        approved = all(row[c] == "1" for c in checks)
+        record = by_key.get(row["key"])
+        if approved and (record is None or not str(record.get("verified_by", "")).startswith("manual:")):
+            problems.append(f"{row['key']}: onaylı ama sette manuel onaylı değil")
+        if not approved and record is not None:
+            problems.append(f"{row['key']}: reddedildi ama hâlâ sette")
+    return problems
+
+
 def check_deliverables(cfg: dict[str, Any]) -> int:
     failed = 0
     print("Teslim dosyaları:")
@@ -158,6 +186,15 @@ def check_deliverables(cfg: dict[str, Any]) -> int:
             empty = int((df[cols] == "").any(axis=1).sum())
             failed += bool(empty)
             print(f"Manuel kontrol ({checks}): {'OK' if not empty else f'{empty}/{len(df)} satır doldurulmamış'}")
+            final_set = resolve_path(cfg, "final_dir") / "instruction_v1.0.jsonl"
+            if checks == "instruction" and not empty and final_set.exists():
+                problems = manual_review_problems(df, cols, read_jsonl(final_set))
+                failed += bool(problems)
+                print("Manuel kararlar veri setine yansımış: " + ("OK" if not problems else
+                      f"{len(problems)} sorun (etiket değiştiyse `python -m scripts.13_qc_report "
+                      "--reviewer-name \"<ad>\"` yeniden çalıştırılmalı)"))
+                for p in problems[:20]:
+                    print(f"  - {p}")
     print("SONUÇ:", "hepsi tamam" if not failed else f"{failed} eksik/sorun")
     return failed
 
@@ -173,7 +210,15 @@ def main() -> None:
         raise SystemExit(1 if check_deliverables(cfg) else 0)
     logger = setup_logger("run_all", cfg)
     check_thresholds(cfg)
-    run_steps(CORPUS_STEPS, args.config, args.redo, logger)
+    redo = args.redo
+    registry_path = resolve_path(cfg, "registry")
+    if not redo and registry_path.exists():
+        missing = missing_intermediates(pd.read_csv(registry_path, dtype=str, keep_default_na=False))
+        if missing:
+            logger.info("%d dokümanın ara dosyası yok (ör. %s): 02-04 --redo ile baştan çalışacak.",
+                        len(missing), missing[0])
+            redo = True
+    run_steps(CORPUS_STEPS, args.config, redo, logger)
     if args.with_instruction:
         run_steps(INSTRUCTION_STEPS, args.config, False, logger)
     logger.info("Pipeline tamamlandı.")

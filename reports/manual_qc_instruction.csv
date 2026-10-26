@@ -1093,7 +1093,7 @@ if n > length(t) then resize()
 t[hash(x)].append(x)
 n = n + 1
 return true
-```","Hatalı satır `if n > length(t) then resize()`: koşul eksik eleman sayısını hesaba katmaktadır. Yeni eklenecek elemanla birlikte toplam sayının tablonun kapasitesini aşıp aşmadığı kontrol edilmelidir, aksi takdirde `n <= length(t)` değişmezliği bozulur. Doğru satır şu şekilde olmalıdır: `if n + 1 > length(t) then resize()`.",1,1,1,1,1,"gerçek tek hata (n yerine n + 1), değişmez n ≤ length(t) gerekçesi doğru"
+```","Hatalı satır `if n > length(t) then resize()`: koşul eksik eleman sayısını hesaba katmaktadır. Yeni eklenecek elemanla birlikte toplam sayının tablonun kapasitesini aşıp aşmadığı kontrol edilmelidir, aksi takdirde `n <= length(t)` değişmezliği bozulur. Doğru satır şu şekilde olmalıdır: `if n + 1 > length(t) then resize()`.",1,1,1,1,0,"talimat hatanın yerini ima ediyor (""tablonun boyutunu ayarlarken""), koddaki tek boyut satırı resize koşulu; hata ve düzeltme doğru (DOC_000051:0 ile aynı ölçüt, ikinci okumada düzelttim)"
 28,INS_00325,DOC_000015:0:kod_okuma,kod_okuma,,False,DOC_000015,Open Data Structures: Hash Tables,"Chapter 5
 Hash tables are an efficient method of storing a small number, n, of inte-
 gers from a large range U = {0,...,2^w −1}. The term hash table includes a
@@ -1889,7 +1889,7 @@ def test_nearest_neighbour_search() -> None:
         assert kdtree is not None, f""Expected None for empty points list, got {kdtree}""
     else:
         assert kdtree is not None, ""Expected a KDNode, got None""
-```","Hatalı satır `assert kdtree is not None`: boş nokta listesi verildiğinde `expected_result` `None` olmalıdır ve fonksiyonun `None` döndürmesi beklenir. Ancak bu satırda `kdtree` değerinin `None` olmaması iddia edilmektedir, bu da testin boş liste durumunda hata vermesine yol açar. Düzeltilmiş satır şu şekilde olmalıdır: `assert kdtree is None, f""Expected None for empty points list, got {kdtree}""`.",1,1,1,1,1,
+```","Hatalı satır `assert kdtree is not None`: boş nokta listesi verildiğinde `expected_result` `None` olmalıdır ve fonksiyonun `None` döndürmesi beklenir. Ancak bu satırda `kdtree` değerinin `None` olmaması iddia edilmektedir, bu da testin boş liste durumunda hata vermesine yol açar. Düzeltilmiş satır şu şekilde olmalıdır: `assert kdtree is None, f""Expected None for empty points list, got {kdtree}""`.",1,1,1,1,0,"talimat hatanın yerini söylüyor (""boş liste kontrolünde beklenen sonuç yanlış ele alınıyor""); hata ve düzeltme doğru (DOC_000466:1 ile aynı ölçüt, ikinci okumada düzelttim)"
 50,INS_00746,DOC_000072:1:hata_bulma,hata_bulma,,True,DOC_000072,stack.py,">>> S = Stack()
         >>> S.push(10)
         >>> S.is_empty()
@@ -2005,7 +2005,7 @@ import doctest
 ```python
 def is_full(self) -> bool:
     return self.size() < self.limit
-```","Hatalı satır `return self.size() < self.limit`: karşılaştırma operatörü yanlış seçilmiş. Küçüktür işareti yığıtın dolu olup olmadığını değil, kapasitenin altında olup olmadığını kontrol eder; bu yüzden yığıt dolduğunda bile True yerine yanlış sonuç üretebilir. Düzeltilmiş satır şu şekilde olmalıdır: `return self.size() == self.limit`.",1,1,1,1,1,
+```","Hatalı satır `return self.size() < self.limit`: karşılaştırma operatörü yanlış seçilmiş. Küçüktür işareti yığıtın dolu olup olmadığını değil, kapasitenin altında olup olmadığını kontrol eder; bu yüzden yığıt dolduğunda bile True yerine yanlış sonuç üretebilir. Düzeltilmiş satır şu şekilde olmalıdır: `return self.size() == self.limit`.",1,1,1,1,0,"talimat hatanın yerini söylüyor (""is_full() metodu yanlış sonuç veriyor"") ve kod yalnızca o tek satırdan ibaret; bulunacak bir şey kalmıyor (DOC_000513:9 ile aynı ölçüt, ikinci okumada düzelttim)"
 51,INS_00838,DOC_000100:0:algoritma_izleme,algoritma_izleme,,False,DOC_000100,edmonds_blossom_algorithm.py,"from collections import deque
 
 
@@ -2959,7 +2959,7 @@ B) Sahip oldukları işaretçiler sebebiyle dizilere göre daha çok hafıza ger
 C) Ekleme ve çıkarma işlemlerinde kaydırma işlemi yapılması zorunludur
 D) Oluşturulurken mutlaka başlangıç boyutu belirtilmelidir
 Doğru şık: B
-Açıklama: Bağlı listeler, her düğümde veri dışında bir de işaretçi (referans) tuttukları için dizilere kıyasla daha fazla hafıza harcarlar. A, C ve D şıkları ise bağlı listelerin avantajları arasındadır.",1,1,1,1,1,"küçük kusur: açıklama yanlış şıkları ""avantajlar arasındadır"" diyor; aslında avantajların tersi"
+Açıklama: Bağlı listeler, her düğümde veri dışında bir de işaretçi (referans) tuttukları için dizilere kıyasla daha fazla hafıza harcarlar. A, C ve D şıkları ise bağlı listelerin avantajları arasındadır.",1,0,1,1,1,"HATA: açıklama A, C ve D şıklarını ""bağlı listelerin avantajları arasındadır"" diyor; bu şıklar avantajların tersi, yani açıklama yanlış bilgi veriyor (ilk okumada küçük kusur saymıştım, ikinci okumada yanlış bilgi olduğu için düzelttim)"
 65,INS_00981,DOC_000148:0:hata_bulma,hata_bulma,,False,DOC_000148,Birleştirmeli sıralama,"Birleşmeli Sıralama (Merge Sort), bilgisayar bilimlerinde $\mathcal{O}(n~\log(n))$ derecesinde karmaşıklığa sahip bir sıralama algoritmasıdır. Girdi olarak aldığı diziyi en küçük hale gelene kadar ikili gruplara böler ve karşılaştırma yöntemi kullanarak diziyi sıralar.
 Algoritma
 Algoritmanın çalışması kavramsal olarak şöyledir:
@@ -3926,7 +3926,7 @@ B) Anahtar boyutunu önceki değerinin kareköküne düşürerek temsil için ge
 C) Anahtarları doğrudan K kelimelik bir bellekte saklayarak sabit zamana indirger.
 D) Anahtar boyutunu her adımda n faktör kadar azaltır.
 Doğru şık: B
-Açıklama: Metne göre bu teknik, anahtar boyutunu önceki değerinin kareköküne düşürerek bir anahtarı temsil etmek için gereken bit sayısını yarıya indirmektedir. A şıkkı sadece bit sayısını yarıya indirmeden bahsettiği için eksiktir, C şıkkı Van Emde Boas ağacının bellek ihtiyacını karıştırmaktadır, D şıkkı ise radix sıralamasının doğrusal zamanda anahtar boyutunu n faktörküçültme özelliğidir.",1,1,1,1,1,"küçük kusur: açıklama A şıkkını yanlış özetliyor (""sadece bit sayısını yarıya indirmeden bahsediyor""); yazım hatası ""n faktörküçültme"""
+Açıklama: Metne göre bu teknik, anahtar boyutunu önceki değerinin kareköküne düşürerek bir anahtarı temsil etmek için gereken bit sayısını yarıya indirmektedir. A şıkkı sadece bit sayısını yarıya indirmeden bahsettiği için eksiktir, C şıkkı Van Emde Boas ağacının bellek ihtiyacını karıştırmaktadır, D şıkkı ise radix sıralamasının doğrusal zamanda anahtar boyutunu n faktörküçültme özelliğidir.",1,0,1,1,1,"HATA: açıklama A şıkkını yanlış anlatıyor (""sadece bit sayısını yarıya indirmeden bahsediyor""); A şıkkı anahtar boyutunu yarıya indirip bit sayısını koruduğunu söylüyor; yazım hatası ""n faktörküçültme"" (ikinci okumada düzelttim)"
 115,INS_01922,DOC_000381:3:kod_okuma,kod_okuma,,False,DOC_000381,Interpolation sort,"Interpolation tag sort algorithm
 - Set a tag array equal to the original array size and initialize to a false value.
 - [Main Sort] Determines whether all buckets of the original array have been sorted. If the sorting is not completed, the [Divide function] is executed.
@@ -4308,7 +4308,7 @@ One weakness of insertion sort is that it may require a high number of swap oper
 1. Başlangıç durumu: Harflerin arasında boşluklar olan [A, _, C, _, E] dizisi ele alınır.
 2. Ekleme noktası bulma: Eklenecek olan B elemanı, A ile C arasında uygun olan boş konuma (ilk boşluk) yerleştirilir.
 3. Yerleştirme: B harfi uygun olan boşluğa yerleştirilir ve sadece birkaç komşu eleman hareket ettirilerek işlem tamamlanır.
-Sonuç: [A, B, C, _, E] durumuna ulaşılır.",1,1,1,1,1,"küçük kusur: örnekte boşluk zaten var, hiçbir eleman kaymıyor; cevap yine de ""birkaç komşu eleman hareket ettirilir"" diyor"
+Sonuç: [A, B, C, _, E] durumuna ulaşılır.",1,0,1,1,1,"HATA: verilen örnekte boşluk zaten hazır, hiçbir eleman kaymıyor; izleme yine de ""birkaç komşu eleman hareket ettirilir"" diyor, yani izleme örnekle uyuşmuyor (ikinci okumada düzelttim)"
 132,INS_02096,DOC_000417:5:karsilastirma,karsilastirma,,False,DOC_000417,Linear probing,"History
 The idea of an associative array that allows data to be accessed by its value rather than by its address dates back to the mid-1940s in the work of Konrad Zuse and Vannevar Bush,[22] but hash tables were not described until 1953, in an IBM memorandum by Hans Peter Luhn. Luhn used a different collision resolution method, chaining, rather than linear probing.[23]
 Knuth (1963) summarizes the early history of linear probing. It was the first open addressing method, and was originally synonymous with open addressing. According to Knuth, it was first used by Gene Amdahl, Elaine M. McGraw (née Boehme), and Arthur Samuel in 1954, in an assembler program for the IBM 701 computer.[9] The first published description of linear probing is by Peterson (1957),[9] who also credits Samuel, Amdahl, and Boehme but adds that ""the system is so natural, that it very likely may have been conceived independently by others either before or since that time"".[24] Another early publication of this method was by Soviet researcher Andrey Ershov, in 1958.[25]

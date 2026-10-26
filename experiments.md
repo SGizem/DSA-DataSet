@@ -1042,3 +1042,68 @@ Depoda veri dosyaları olmadığı için `data/samples/`'a her görev türünden
 Veri paketi (Rehber §13: büyük veri depoya girmez, yeri README'de): `data/final/` ve `data/instruction/`
 (17 dosya, 49 MB) tek zip'te, 10,6 MB, içinde SHA256SUMS.txt; GitHub Releases'e `v1.0` olarak yüklenecek.
 Ham veri (111 MB) paylaşılmıyor; manifest ve indirme günlüğüyle yeniden indirilebiliyor.
+
+## 22.10.2026 — Instruction etiketlerinin ikinci okuması
+
+Sunumdan önce 200 örneği, özellikle onayladığım 157'sini baştan bir kez daha okudum; izleme ve kod çıktılarını
+yeniden hesapladım. İki tür tutarsızlık buldum ve 6 etiketi değiştirdim (`reports/manual_qc_instruction.csv`,
+notlarda "ikinci okumada düzelttim"):
+
+- **Küçük kusur değil, yanlış bilgi (3):** ilk turda "küçük kusur" diye geçtiğim cümleler aslında yanlış bilgi
+  veriyordu. Bağlı liste sorusunun açıklaması yanlış şıkları "bağlı listelerin avantajları" sayıyor
+  (DOC_000146:0); Kirkpatrick–Reisch sorusunun açıklaması A şıkkını yanlış anlatıyor (DOC_000378:3); library sort
+  izlemesi hiçbir elemanın kaymadığı örnekte "birkaç eleman kaydırılır" diyor (DOC_000415:0).
+  Ölçüt: açıklamada ya da izlemede yanlış bir ifade varsa response_correct = 0; yalnızca terim, yazım ya da
+  üslup kusuru varsa 1.
+- **Hata bulmada aynı ölçüt (3):** ilk turda hatanın yerini talimatta veren örnekleri çıkarmıştım ("heap1 boş
+  olduğunda", "minn ve maxx değerlerini yanlış atıyor"), ama aynı durumdaki üç örneği onaylamışım: "is_full()
+  metodu yanlış sonuç veriyor" ve kod yalnızca o satır (DOC_000072:1), "boş liste kontrolünde beklenen sonuç
+  yanlış ele alınıyor" (DOC_000059:0), "tablonun boyutunu ayarlarken" (DOC_000015:0). Üçünde de task_type_ok = 0.
+
+Çıkardığım 43 örneğin sınırda olanlarını da yeniden okudum; hiçbirini geri almadım.
+
+Yeni sonuç: hepsi başarılı 151/200 (%75,5; %95 güven aralığı %69,1–%80,9), cevap doğru 183/200, görev türüne
+uygun 181/200; cevabı yanlış oranı %8,5 (17/200; %5,4–%13,2). Hata bulma 16 örnekten 2'si. 13'ü yeniden
+çalıştırınca set 3.218 → 3.212 (2.579 / 324 / 309). Örnek id'leri anahtar sırasıyla verildiği için kaydı;
+Instruction Card'daki format örneğinin id'sini (INS_01643) ve kartlardaki sayıları güncelledim. `data/samples/`
+içindeki iki örnek değişti (çoktan seçmeli ve hata bulma); ikisini de passage'la karşılaştırdım, doğru.
+
+## 26.10.2026 — Temiz kopyada yeniden üretim testi
+
+Rehber §19'daki "pipeline baştan sona yeniden çalıştırılabilir mi?" sorusunu denemeden cevaplamak istemedim.
+Depoyu GitHub'dan boş bir klasöre klonladım; yanına yalnızca depoda olmayan ham veriyi (`data/raw/`) ve
+Releases'teki zip'in `data/instruction/` klasörünü koydum. Zip'in 17 dosyası SHA256SUMS ile doğrulandı.
+
+İlk denemede sorun çıktı: depodaki `data/registry.csv` dokümanları işlenmiş (final) olarak gösteriyor, ara
+dosyalar (`data/extracted/`, `data/cleaned/`) ise depoda yok. 02 "işlenecek doküman yok" deyip geçti, 03 var
+olmayan ara dosyayı açmaya çalışıp durdu. `--redo` ile çalıştırınca sorun kalmadı. Düzeltme: `run_all`
+çalışmadan önce registry'de işlenmiş görünen ama ara dosyası diskte olmayan doküman var mı diye bakıyor; varsa
+02–04'ü kendiliğinden `--redo` ile çalıştırıyor (`missing_intermediates`, testi `tests/test_run_all.py`).
+
+Sonuç (düzeltilmiş `run_all`, ardından API anahtarı olmadan 10, 11, 08):
+
+| Dosya | Releases'teki dosyayla |
+| --- | --- |
+| `train.jsonl`, `validation.jsonl`, `test.jsonl` | bayt bayt aynı |
+| `instruction_v1.0.jsonl`, `instruction_{train,validation,test}.jsonl` | bayt bayt aynı |
+| `reports/statistics.md`, `statistics.json` | aynı |
+| `reports/exclusions.csv`, `extraction_report.csv` | yalnızca zaman sütunlarında (timestamp, seconds) farklı |
+
+Erime yine 609 → 608 → 586. Ham dosyalar diskte olduğu için 01 hiçbir siteye istek atmadı (indirme günlüğü
+değişmedi), 10 yargıç kararlarını dosyadan okudu. 01 `.env`'de iletişim adresi olmadan çalışmıyor; bu bilinçli
+(README'de yazıyor). Kurulu paketler `requirements.txt` ile aynı sürümde, `pip check` temiz.
+
+Bir açık daha kapattım: `run_all --check-deliverables` manuel kontrol tablosunun dolu olup olmadığına
+bakıyordu ama kararların veri setine yansıyıp yansımadığına bakmıyordu. 22.10'daki ikinci okumada 6 etiketi
+değiştirdiğimde denetim yine "hepsi tamam" dedi, oysa o 6 örnek hâlâ setteydi. Şimdi onaylanan her örneğin
+sette ve `verified_by=manual` olduğunu, reddedilen her örneğin sette olmadığını da denetliyor
+(`manual_review_problems`); 13 yeniden çalıştırılmadan bu 6 örneği yakalıyor, 13'ten sonra temiz. Testler: 100 geçti.
+
+Aynı gün README'ye "Değerlendirme planı" bölümünü ekledim: ayrılmış test kümeleri, karşılaştırılacak üç sistem
+ve tasarım raporundaki ölçütler.
+
+Sonra 13'ü ikinci okumanın etiketleriyle çalıştırdım. Set 3.218 → 3.212 (2.579 / 324 / 309), manuel onaylı 151,
+manual_rejected 49; sayılar kartlara önceden yazdıklarımla aynı çıktı. `--check-deliverables` artık "hepsi
+tamam" diyor, 100 test geçiyor. Instruction Card'daki kod okuma ölçümünü final sete göre yeniden yaptım: 332
+örneğin 184'ünde talimattaki kod passage'ın birebir kopyası değil (22.10'daki 335/187, manuel kontrolden önceki
+setti). Veri zip'ini yeni dosyalarla yeniden oluşturdum.

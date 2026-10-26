@@ -1,6 +1,6 @@
 # Kalite kontrol raporu
 
-`python -m scripts.13_qc_report` üretir. İnceleyen: Sedef Gizem Orulluoğlu. Tarih: 22.10.2026. Örneklemi `scripts/12_sample_for_manual_qc.py` seed 42 ile çekti: corpus kaynağa, instruction seti görev türüne göre orantılı tabakalı. Her kontrol 1 (başarılı) ya da 0 (başarısız).
+`python -m scripts.13_qc_report` üretir. İnceleyen: Sedef Gizem Orulluoğlu. Tarih: 26.10.2026. Örneklemi `scripts/12_sample_for_manual_qc.py` seed 42 ile çekti: corpus kaynağa, instruction seti görev türüne göre orantılı tabakalı. Her kontrol 1 (başarılı) ya da 0 (başarısız).
 
 Kontrol tanımları:
 
@@ -77,20 +77,20 @@ Aynı dokümanları önce corpus v0.9'da inceledim, bulduğum hataları pipeline
 | Kontrol | Başarılı | Oran |
 | --- | --- | --- |
 | instruction_clear | 192/200 | %96,0 |
-| response_correct | 186/200 | %93,0 |
+| response_correct | 183/200 | %91,5 |
 | grounded_in_source | 189/200 | %94,5 |
 | answers_instruction | 194/200 | %97,0 |
-| task_type_ok | 184/200 | %92,0 |
-| **hepsi başarılı** | 157/200 | %78,5 |
+| task_type_ok | 181/200 | %90,5 |
+| **hepsi başarılı** | 151/200 | %75,5 |
 
 ### Görev türü bazında
 
 | Görev türü | İncelenen | Hepsi başarılı | Başarısız kontroller |
 | --- | --- | --- | --- |
-| algoritma_izleme | 23 | 20 (%87,0) | response_correct 3 |
+| algoritma_izleme | 23 | 19 (%82,6) | response_correct 4 |
 | bilgi_yetersizligi | 14 | 14 (%100,0) | — |
-| coktan_secmeli_soru_uretimi | 24 | 20 (%83,3) | grounded_in_source 1, answers_instruction 3, task_type_ok 1 |
-| hata_bulma | 16 | 5 (%31,2) | instruction_clear 1, response_correct 4, grounded_in_source 1, task_type_ok 8 |
+| coktan_secmeli_soru_uretimi | 24 | 18 (%75,0) | response_correct 2, grounded_in_source 1, answers_instruction 3, task_type_ok 1 |
+| hata_bulma | 16 | 2 (%12,5) | instruction_clear 1, response_correct 4, grounded_in_source 1, task_type_ok 11 |
 | karmasiklik_analizi | 19 | 15 (%78,9) | instruction_clear 2, grounded_in_source 1, answers_instruction 1, task_type_ok 1 |
 | karsilastirma | 23 | 16 (%69,6) | instruction_clear 2, grounded_in_source 1, answers_instruction 2, task_type_ok 2 |
 | kavram_aciklama | 33 | 28 (%84,8) | instruction_clear 1, response_correct 4, grounded_in_source 3, task_type_ok 1 |
@@ -109,15 +109,19 @@ Aynı dokümanları önce corpus v0.9'da inceledim, bulduğum hataları pipeline
 | DOC_000005:18:karsilastirma | karsilastirma | instruction_clear | talimat "hastalar (doktorlar)" diyor: metinde hasta değil doktor var, ifade yanıltıcı |
 | DOC_000006:21:karsilastirma | karsilastirma | grounded_in_source | son cümle ("bağlantı ve döngüsüzlüğü test etmek için ilk tanım tercih edilir") metinde yok |
 | DOC_000014:0:karsilastirma | karsilastirma | task_type_ok | karşılaştırma türünde ama talimat bir ilişkiyi açıklatıyor, karşılaştırma ekseni yok |
+| DOC_000015:0:hata_bulma | hata_bulma | task_type_ok | talimat hatanın yerini ima ediyor ("tablonun boyutunu ayarlarken"), koddaki tek boyut satırı resize koşulu; hata ve düzeltme doğru (DOC_000051:0 ile aynı ölçüt, ikinci okumada düzelttim) |
 | DOC_000015:6:kavram_aciklama | kavram_aciklama | response_correct, grounded_in_source | HATA: q'yu "silinmiş elemanlar hariç" diye tanımlıyor; metne göre q = n + del sayısı, yani silinenler dahil |
 | DOC_000021:17:konu_ozeti_anlatim | konu_ozeti_anlatim | instruction_clear, task_type_ok | bağlamsız talimat "bu dersteki uygulaması" diyerek görülmeyen metne dayanıyor; cevap tek cümle, özet değil |
 | DOC_000021:2:hata_bulma | hata_bulma | task_type_ok | hatanın yeri talimatta söyleniyor ("i1 ← i2 satırı yanlış"); hata, kaynak metindeki PDF çıkarım bozukluğundan geliyor |
 | DOC_000026:9:kod_okuma | kod_okuma | task_type_ok | kod okuma türünde ama "kod" yalnızca metindeki bir koşul satırı; aslında kavram sorusu |
 | DOC_000030:0:yanlis_cevap_aciklama | yanlis_cevap_aciklama | response_correct, grounded_in_source | HATA: son cümle "O(1) ekleme için yığın (heap) gerekir" diyor; ikili yığında ekleme O(log n), metinde de böyle bir bilgi yok |
 | DOC_000051:0:hata_bulma | hata_bulma | task_type_ok | talimat hatanın yerini ima ediyor ("minn ve maxx değerlerini yanlış atıyor"); hata gerçek, düzeltme doğru |
+| DOC_000059:0:hata_bulma | hata_bulma | task_type_ok | talimat hatanın yerini söylüyor ("boş liste kontrolünde beklenen sonuç yanlış ele alınıyor"); hata ve düzeltme doğru (DOC_000466:1 ile aynı ölçüt, ikinci okumada düzelttim) |
+| DOC_000072:1:hata_bulma | hata_bulma | task_type_ok | talimat hatanın yerini söylüyor ("is_full() metodu yanlış sonuç veriyor") ve kod yalnızca o tek satırdan ibaret; bulunacak bir şey kalmıyor (DOC_000513:9 ile aynı ölçüt, ikinci okumada düzelttim) |
 | DOC_000110:1:hata_bulma | hata_bulma | instruction_clear | talimattaki belirti yanıltıcı ("sıralı olmayan dizide hata fırlatması gerekirken"); asıl hata bound = 0 ve cevap onu doğru buluyor |
 | DOC_000111:0:hata_bulma | hata_bulma | response_correct, task_type_ok | HATA: konan değişiklik (prev >= yerine prev >) davranışı değiştirmiyor; iki sürümü 39 dizi × 210 değerde çalıştırdım, sonuçlar aynı. Cevabın "sonsuz döngü / yanlış indeks" iddiası yanlış |
 | DOC_000124:0:algoritma_izleme | algoritma_izleme | response_correct | sonuç [1,2,3] doğru ama izleme kodun sırasını yanlış anlatıyor: kod aynı j adımında önce ileri sonra geri karşılaştırıyor (j=0'da iki yer değişimi), cevap önce bütün ileri turu yapıyor |
+| DOC_000146:0:coktan_secmeli_soru_uretimi | coktan_secmeli_soru_uretimi | response_correct | HATA: açıklama A, C ve D şıklarını "bağlı listelerin avantajları arasındadır" diyor; bu şıklar avantajların tersi, yani açıklama yanlış bilgi veriyor (ilk okumada küçük kusur saymıştım, ikinci okumada yanlış bilgi olduğu için düzelttim) |
 | DOC_000148:0:hata_bulma | hata_bulma | response_correct, grounded_in_source, task_type_ok | HATA: talimattaki kod kaynaktaki kodla aynı (yalnızca ≤ yerine <=), hata konmamış; cevap var olmayan bir hata uyduruyor |
 | DOC_000158:2:hata_bulma | hata_bulma | task_type_ok | talimat hatanın yerini söylüyor ("while döngüsünün koşulunda"); hata ve düzeltme doğru |
 | DOC_000206:4:karsilastirma | karsilastirma | instruction_clear | bağlamsız talimat 2–3 heap'e özgü "çalışma alanı" kavramını hangi yapı olduğunu söylemeden kullanıyor ("Heap veri yapısında") |
@@ -130,8 +134,10 @@ Aynı dokümanları önce corpus v0.9'da inceledim, bulduğum hataları pipeline
 | DOC_000270:5:kavram_aciklama | kavram_aciklama | response_correct | HATA: "kökler üzerinde dörder kılavuz" diyor; metne göre her kök için iki, toplam dört kılavuz var; talimatta yazım hatası "Brodie kuyruğu" |
 | DOC_000343:1:kod_okuma | kod_okuma | grounded_in_source | talimattaki kod kaynaktan bozuk kopyalanmış: newRight satırında "(n − i) × s/n" yerine "(n − i) − s/n"; cevap farkı fark etmiyor |
 | DOC_000360:4:karmasiklik_analizi | karmasiklik_analizi | instruction_clear, task_type_ok | talimat bulanık: metin "n, 2^b'den çok küçük" diyor, talimat "b'den küçük" diyor; sorulan şey asimptotik karmaşıklık değil, sabit maliyet (bölme yerine kaydırma) |
+| DOC_000378:3:coktan_secmeli_soru_uretimi | coktan_secmeli_soru_uretimi | response_correct | HATA: açıklama A şıkkını yanlış anlatıyor ("sadece bit sayısını yarıya indirmeden bahsediyor"); A şıkkı anahtar boyutunu yarıya indirip bit sayısını koruduğunu söylüyor; yazım hatası "n faktörküçültme" (ikinci okumada düzelttim) |
 | DOC_000404:1:konu_ozeti_anlatim | konu_ozeti_anlatim | response_correct | HATA: "en az 1 içeren sütunlar incelenir" diyor; metinde en az sayıda 1 içeren sütun seçiliyor; matris boşsa başarıyla bitme adımı yok |
 | DOC_000405:3:coktan_secmeli_soru_uretimi | coktan_secmeli_soru_uretimi | answers_instruction | bağlamsız örnekte üretilen soru metindeki S/W örneğine dayanıyor (W[2], S[10]); örneği görmeyen öğrenci cevaplayamaz |
+| DOC_000415:0:algoritma_izleme | algoritma_izleme | response_correct | HATA: verilen örnekte boşluk zaten hazır, hiçbir eleman kaymıyor; izleme yine de "birkaç komşu eleman hareket ettirilir" diyor, yani izleme örnekle uyuşmuyor (ikinci okumada düzelttim) |
 | DOC_000417:5:karsilastirma | karsilastirma | answers_instruction | karşılaştırma tek taraflı: zincirleme için yalnızca tarih var, teknik özellik yok; terim hataları: "linear probing" için "doğrusal arama", "assembler" için "derleyici" |
 | DOC_000454:5:hata_bulma | hata_bulma | response_correct | düzeltme doğru (or) ama gerekçe çelişkili: "dizilerden herhangi biri bitene kadar devam etmeli" diyor, doğrusu ikisi de bitene kadar |
 | DOC_000454:6:yanlis_cevap_aciklama | yanlis_cevap_aciklama | instruction_clear | talimat yanlış önkabulle soruyor ("uzun sekanslar için neden uygundur"); cevap doğru; yazım hatası "hizzalama" |
@@ -148,4 +154,4 @@ Aynı dokümanları önce corpus v0.9'da inceledim, bulduğum hataları pipeline
 
 ## Uygulanan işlem
 
-Instruction setinde incelenen 200 örnekten 157 tanesi onaylandı (verified=true, verified_by=manual:Sedef Gizem Orulluoğlu); 43 tanesi manual_rejected sebebiyle setten çıkarıldı (reports/exclusions.csv, aşama manual_qc). Corpus'ta inceleme yalnızca ölçüm için; hatalı dokümanların listesi yukarıda.
+Instruction setinde incelenen 200 örnekten 151 tanesi onaylandı (verified=true, verified_by=manual:Sedef Gizem Orulluoğlu); 49 tanesi manual_rejected sebebiyle setten çıkarıldı (reports/exclusions.csv, aşama manual_qc). Corpus'ta inceleme yalnızca ölçüm için; hatalı dokümanların listesi yukarıda.

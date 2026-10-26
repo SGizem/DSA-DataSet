@@ -75,9 +75,9 @@ kontrolün sonuçları `reports/quality_report.md` içinde. v1.0 özeti:
 
 | | Domain Corpus v1.0 | Instruction Dataset v1.0 |
 | --- | --- | --- |
-| Boyut | 586 doküman (6 kaynaktan 609 ham), 1.512.566 token (Qwen3 tokenizer) | 3.218 örnek, 10 görev türü, 1.425.951 token |
-| Ayrım | 470 / 58 / 58 doküman | 2.584 / 325 / 309 örnek |
-| Manuel kontrol | 150 doküman, iki tur: hepsi başarılı %65,3 → %90,0 | 200 örnek: hepsi başarılı %78,5, cevap doğru %93; başarısız 43 örnek setten çıkarıldı |
+| Boyut | 586 doküman (6 kaynaktan 609 ham), 1.512.566 token (Qwen3 tokenizer) | 3.212 örnek, 10 görev türü, 1.423.322 token |
+| Ayrım | 470 / 58 / 58 doküman | 2.579 / 324 / 309 örnek |
+| Manuel kontrol | 150 doküman, iki tur: hepsi başarılı %65,3 → %90,0 | 200 örnek: hepsi başarılı %75,5, cevap doğru %91,5; başarısız 49 örnek setten çıkarıldı |
 
 ## Kaynaklar
 
@@ -125,7 +125,7 @@ Python 3.13.14 (Windows 11) ile geliştirdim; kullandığım ortam `reports/envi
 python -m venv venv
 venv\Scripts\activate            # Linux/macOS: source venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env             # CONTACT_EMAIL (indirme User-Agent'ı) ve GEMINI_API_KEY (instruction üretimi)
+copy .env.example .env           # Linux/macOS: cp; CONTACT_EMAIL (indirme User-Agent'ı), GEMINI_API_KEY (instruction üretimi)
 ```
 
 Script'ler proje kökünden modül olarak ve **sanal ortam etkinken** çalışır (sistem Python'unda kurulu
@@ -147,6 +147,23 @@ python -m scripts.13_qc_report --reviewer-name "<ad soyad>"   # rapor + reddedil
 ```
 
 Her script `--config` ve `--limit N` (hızlı deneme) alır; logları `reports/logs/` altına yazar.
+Depo `data/registry.csv`'yi işlenmiş hâliyle taşıyor, ara dosyalar ise depoda yok; `run_all` bunu fark edip
+02–04'ü baştan çalıştırır (elle zorlamak için `--redo`).
+
+Teslim edilen instruction setini zip'teki ara dosyalardan, API anahtarı olmadan yeniden derlemek için
+(`--with-instruction` önce 09'u, yani üretimi çalıştırır; bunun yerine):
+
+```bash
+python -m scripts.10_verify_instructions       # kayıtlı yargıç kararlarını okur, API'ye istek atmaz
+python -m scripts.11_build_instruction_dataset # manuel inceleme kararları zip'teki manual_review.jsonl'den
+python -m scripts.08_statistics
+```
+
+**Yeniden üretim testi (26.10.2026).** Depoyu GitHub'dan boş bir klasöre klonladım, yanına yalnızca ham veriyi
+ve Releases'teki zip'in `data/instruction/` klasörünü koydum, `.env`'de API anahtarı yokken `run_all`'ı ve
+ardından 10, 11, 08'i çalıştırdım. Corpus'un 3 ve instruction setinin 4 teslim dosyası Releases'teki
+dosyalarla bayt bayt aynı çıktı; `reports/statistics.md` aynı, `exclusions.csv` ve `extraction_report.csv`
+yalnızca zaman sütunlarında farklı. Hiçbir siteye ve API'ye istek gitmedi (`experiments.md`).
 Instruction üretimi ücretsiz API katmanının günlük kotasıyla sınırlı: kota dolunca 09 ve 10 durur, ertesi
 gün aynı komutla kaldıkları yerden devam eder.
 
@@ -168,6 +185,23 @@ düzenlenmiş olabileceği için ham veriyi yeniden indirmek birkaç dokümanda 
 Instruction örnekleri öğretmen modelle (temperature 0,7) üretildiği için 09 yeniden çalıştırılırsa birebir
 aynı örnekler çıkmaz; teslim edilen set zip'teki dosyadır. 10 ve 11, zip'teki yargıç kararlarıyla API'ye
 istek atmadan aynı seti yeniden derler.
+
+## Değerlendirme planı
+
+Değerlendirme seti vizede istenmiyor (Rehber §11), ama ölçümün temeli şimdiden ayrıldı:
+
+- **Ayrılmış test kümeleri.** Corpus testi 58 doküman, instruction testi 309 örnek. Ayrım doküman düzeyinde:
+  bir test dokümanının ne metni ne de ondan üretilen bir örnek eğitim kümelerine giriyor
+  (`run_all --check-deliverables` her çalıştırmada denetliyor). Test kümesi seed'li ve kararlı; corpus final
+  döneminde büyüse de mevcut test dokümanları yerinde kalıyor.
+- **Karşılaştırılacak sistemler (Rehber §20).** Hazır model, corpus'la alana uyarlanmış model ve üstüne
+  instruction setiyle SFT yapılmış model.
+- **Ölçütler.** Tasarım raporundaki metrikler: geçerli JSON oranı ve şema uyumu (çoktan seçmeli soru
+  görevinde cevap JSON), kaynağa sadakat (bağlamlı test örneklerinde cevabın passage'a dayanması) ve kör insan
+  değerlendirmesi. Ek olarak corpus test kümesinde dil modeli kaybı (perplexity): alan uyarlamasının etkisini
+  doğrudan gösterir. Dış ölçüt adayı: MMLU college_computer_science ve Türkçe çevirisi (yukarıdaki tablo).
+- **Sınırlılık.** Instruction test örnekleri de aynı öğretmen modelle üretildi; sonuçlar bu modelin üslubuna
+  yakın çıkabilir. Bu yüzden insan değerlendirmesi ve dış set ölçümün parçası.
 
 ## Lisans notu
 
