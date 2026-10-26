@@ -17,7 +17,11 @@ fark: Vize Rehberi final döneminde fine-tuning'den önce continued pretraining 
 istediği için instruction setinin yanına bir domain corpus hazırladım; token sayımında Rehber'in örneğindeki
 Qwen3 tokenizer'ını kullandım (raporda aday model Qwen2.5-3B; model seçimi final döneminde). İki
 tokenizer'ın kuralları ve sözlüğü aynı: Qwen2.5-3B tokenizer'ıyla da corpus 1.512.566, instruction seti
-1.423.322 token çıkıyor (`experiments.md`, 26.10.2026), yani sayılar iki model için de geçerli.
+1.423.322 token çıkıyor (`experiments.md`, 26.10.2026), yani sayılar iki model için de geçerli. Takvim
+farkı: raporda fine-tuning güz döneminin 5–9. haftalarındaydı; Vize Rehberi ilk yedi haftayı yalnızca veri
+hazırlamaya ayırdığı için model eğitimi final dönemine kaydı. Instruction setinin görev türlerini raporun
+sisteminden (konu anlatımı, kaynağa dayalı sınav soruları, yanlış cevap açıklaması, RAG için bağlamlı
+örnekler) nasıl çıkardığım `INSTRUCTION_CARD.md` içinde ("Görev türlerinin gerekçesi").
 
 ## Problem ve alan tanımı
 
@@ -177,8 +181,8 @@ Vize Rehberi §13 gereği büyük veri dosyalarını depoya koymadım (`.gitigno
 | Ne | Boyut | Nerede |
 | --- | --- | --- |
 | Teslim edilen veri setleri (`data/final/`: corpus train/validation/test, `instruction_v1.0.jsonl` ve SFT dosyaları) | 16 MB | Bu deponun **Releases** sayfasında, `v1.0` sürümüne eklenmiş `DSA-DataSet-v1.0-data.zip` |
-| Instruction üretiminin ara dosyaları (`data/instruction/`: passage'lar, plan, ham üretim, yargıç kararları, manuel inceleme kararları) | 33 MB | Aynı zip dosyasında |
-| Ham dosyalar (`data/raw/`: PDF, HTML, kod) | 111 MB | Paylaşılmıyor. Adresler `config/download_manifest.csv` içinde; `python -m scripts.01_download` yeniden indirir. İlk indirmenin boyut ve SHA-256 değerleri `reports/download_log.csv` içinde |
+| Instruction üretiminin ara dosyaları (`data/instruction/`: passage'lar, plan, ham üretim, yargıç kararları, manuel inceleme kararları) | 34 MB | Aynı zip dosyasında |
+| Ham dosyalar (`data/raw/`: PDF, HTML, kod) | 115 MB (587 dosya) | Paylaşılmıyor. Adresler `config/download_manifest.csv` içinde; `python -m scripts.01_download` yeniden indirir. İlk indirmenin boyut ve SHA-256 değerleri `reports/download_log.csv` içinde |
 | `data/extracted/`, `data/cleaned/` | — | Ham veriden `python -m scripts.run_all` ile yeniden üretilir |
 
 Zip proje köküne açılınca `data/final/` ve `data/instruction/` klasörleri oluşur; içindeki
@@ -197,7 +201,10 @@ Değerlendirme seti vizede istenmiyor (Rehber §11), ama ölçümün temeli şim
   (`run_all --check-deliverables` her çalıştırmada denetliyor). Test kümesi seed'li ve kararlı; corpus final
   döneminde büyüse de mevcut test dokümanları yerinde kalıyor.
 - **Karşılaştırılacak sistemler (Rehber §20).** Hazır model, corpus'la alana uyarlanmış model ve üstüne
-  instruction setiyle SFT yapılmış model.
+  instruction setiyle SFT yapılmış model. Tasarım raporundaki üç yapılandırma (temel model, fine-tune
+  edilmiş model, fine-tune edilmiş + RAG) bununla uyumlu: Rehber, raporun fine-tune adımını CPT ve SFT
+  olarak ikiye ayırıyor. RAG'li yapılandırma RAG altyapısı kurulunca (raporun takviminde güz 10–13. hafta)
+  eklenecek; bağlamlı test örnekleri (ders metni + talimat) o karşılaştırmada da kullanılabilir.
 - **Ölçütler.** Tasarım raporundaki metrikler: geçerli JSON oranı ve şema uyumu (çoktan seçmeli soru
   görevinde cevap JSON), kaynağa sadakat (bağlamlı test örneklerinde cevabın passage'a dayanması) ve kör insan
   değerlendirmesi. Ek olarak corpus test kümesinde dil modeli kaybı (perplexity): alan uyarlamasının etkisini

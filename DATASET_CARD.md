@@ -72,6 +72,13 @@ dosyanın HTTP durumu, boyutu ve SHA-256'sı `reports/download_log.csv` içinde.
   bellek veritabanı indeksleri) elendi.
   Dil (tr/en) ve bozuk karakter oranı (%15) filtresine takılan doküman olmadı. Alan dışı içeriği 50
   dokümanı elle etiketleyerek kalibre ettim (`reports/calibration_domain_report.md`).
+  500 karakter Rehber'deki örnek değer; sonradan elenen 17 dokümanı tek tek okuyarak kontrol ettim. Hepsi
+  1–5 cümlelik taslak madde (12'si Türkçe Vikipedi, ör. "Kuyruk (veri yapısı)" 411, "Dizi (veri yapısı)" 477
+  karakter); 16'sının konusu corpus'ta daha uzun bir dokümanda var (Queue, Array, Depth-first search ...),
+  yalnızca "Kirkpatrick–Reisch sort" yok. Eşik keskin bir kalite sınırı değil: hemen üstünde kalan "Sabit
+  zaman" (515) da kısa bir madde. Bedeli Türkçe metnin yaklaşık %2,6'sı (4.566 karakter). Kodda eşiği 150
+  tuttum çünkü birkaç satırlık bir fonksiyon tam bir algoritma olabilir; en kısa kod dosyası
+  (`factorial.py`) 585 karakter olduğu için bu eşik hiçbir dosyayı elemedi.
 - **Deduplication:** Exact duplicate SHA-256 ile, near duplicate MinHash (128 permütasyon, 5 kelimelik
   shingle) + gerçek Jaccard ≥ 0,85 ile. Hiç tekrar bulunmadı: 586 dokümanın bütün çiftlerinde en yüksek
   Jaccard 0,26. Eşiği 50 çifti elle etiketleyerek ve kontrollü değişiklik deneyiyle (metne tek satır
@@ -86,11 +93,20 @@ JSONL, satır başına bir doküman. Alanlar: `document_id`, `title`, `source`, 
 `document_type` (ders_kitabi / ansiklopedi / kod), `publication_year`, `subtopic`, `split`, `char_count`,
 `word_count`, `token_count`, `text`.
 
+Alanları Rehber §9'daki örnekten aldım ve üç alan ekledim. `license`: Vikipedi kısmının CC BY-SA koşulu
+doküman düzeyinde izlenebilsin diye. `split`: dosyadan bağımsız da hangi kümede olduğu görülsün diye.
+`word_count`: Rehber kelime sayısını da raporlamayı istiyor. `source`, `url` ve `document_id` her metni
+kaynağına bağlıyor: instruction örnekleri `source_document` ile bu kimliğe dönüyor; ileride RAG'de cevabın
+kaynağını göstermek (raporda "yanlış cevaplarda kaynak sayfa") için de bu alanlar gerekiyor. `subtopic`
+alt konu dağılımını, `language` dil dağılımını çıkarmak için.
+
 ## İstatistikler
 
 | Ölçüt | Değer |
 | --- | --- |
 | Final doküman | 586 |
+| Dosya boyutu: ham / final (3 JSONL, metadata dahil) | 114,6 MB (587 dosya) / 6,6 MB |
+| Toplam karakter | 6.223.372 |
 | Toplam kelime | 1.028.018 |
 | Toplam token (Qwen3 tokenizer, `Qwen/Qwen3-4B-Base`) | 1.512.566 |
 | Doküman başına token: min / medyan / ortalama / p95 / max | 106 / 1.564 / 2.581,2 / 8.143,5 / 33.370 |
@@ -159,8 +175,10 @@ Structures 5/7, Erickson 2/6. Kalan 15 hatanın listesi aşağıda ve raporda.
   manuel kontrolde en düşük başarıyı aldı.
 - `subtopic` genel konulu maddelerde ve yanıltıcı başlıklarda yanlış (örneklemde 4/150: "Introduction",
   "Algoritma" gibi giriş metinleri; ikisi başlığın yanlış alt konuya işaret etmesi).
-- Tablolar kapsam dışı: Vikipedi'deki veri tabloları (ör. düzenleme mesafesi türleri) metne alınmadı.
-  İçinde kod olan düzen tabloları açılıyor.
+- Tablolar kapsam dışı: HTML dokümanlarındaki veri tabloları (ör. düzenleme mesafesi türleri, karmaşıklık
+  karşılaştırma tabloları) metne alınmadı. Final corpus'ta 107 dokümanda 246 tablo var: İngilizce Vikipedi
+  95 doküman / 225 tablo, Türkçe Vikipedi 7 / 10, Open Guide 5 / 11. İçinde kod olan düzen tabloları
+  açılıyor. Taranmış (OCR gerektiren) PDF yok.
 - Vikipedi'de az sayıda kalıntı: dipnot metninin paragrafa karışması, kenar kutusu yazısı, bir telaffuz
   kalıntısı ("deque — // DEK)"), örnek değerlerin kaybolması, kaynak sayfada da bulunan anlamsız bir
   karakter ("dizisiǖ") (örneklemde birer doküman).

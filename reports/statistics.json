@@ -11,15 +11,24 @@
     "after_near": 586,
     "final": 586
   },
+  "sizes": {
+    "raw_files": 587,
+    "raw_bytes": 114581413,
+    "final_jsonl_bytes": 6575361,
+    "chars": 6223372
+  },
   "summary": {
     "Veri kaynağı sayısı": "6",
     "Ham doküman": "609",
+    "Ham dosya boyutu": "114,6 MB (587 dosya)",
     "Extraction başarılı": "608",
     "Extraction başarısız": "1",
     "Filtering sonrası": "586",
     "Exact duplicate": "0",
     "Near duplicate": "0",
     "Final doküman": "586",
+    "Final corpus dosya boyutu (3 JSONL, metadata dahil)": "6,6 MB",
+    "Toplam karakter": "6.223.372",
     "Toplam kelime": "1.028.018",
     "Toplam token": "1.512.566",
     "Türkçe içerik (token)": "%3,8",

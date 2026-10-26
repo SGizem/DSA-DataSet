@@ -36,6 +36,28 @@ Bağlamlı örnekte kullanıcı mesajı ders içeriğini (passage) ve talimatı 
 dayanmayı öğrenir. Bağlamsız örnekte yalnızca talimat vardır; model bilgiyi kendisi taşımalıdır. Bağlamlı
 oranı %40,7 (hedef %40).
 
+## Görev türlerinin gerekçesi
+
+Görev türlerini tasarım raporunda tarif ettiğim sistemin öğrenciye yapacağı işlerden çıkardım:
+
+| Tasarım raporunda | Görev türleri |
+| --- | --- |
+| Öğrenci "seçtiği konu için anlatım talep edebilecek" | kavram_aciklama, konu_ozeti_anlatim, karsilastirma |
+| Kaynağa dayalı sınav soruları (değerlendirmede geçerli JSON oranı ve şema uyumu ölçülecek) | coktan_secmeli_soru_uretimi (cevap JSON şemasında) |
+| Öğrenci "yanlış cevaplarda kaynak sayfa ve açıklamayı görebilecek" | yanlis_cevap_aciklama |
+| Dersin seçilme gerekçesi: kod içerikli materyalin doğruluğu bizzat doğrulanabilir | kod_okuma, hata_bulma, algoritma_izleme, karmasiklik_analizi |
+| Problem: genel sohbet botları ders notuna sadık kalmadan cevap üretebiliyor (halüsinasyon) | bilgi_yetersizligi |
+
+Rehber §11'in saydığı görev çeşitlerinden açıklama, karşılaştırma, özetleme, analiz (karmaşıklık), adım
+adım anlatım (izleme) ve problem çözme (hata bulma, kod okuma) bu türlerde var. Hedef paylarda en büyük payı
+kavram açıklamaya verdim (öteki türlerin hepsi kavramı bilmeyi gerektiriyor); hiçbir tür %20'yi geçmiyor
+(Rehber: örneklerin çoğu tek türden gelirse model diğer görevlerde zayıf kalır).
+
+**Neden bağlamlı örnekler?** Raporda model RAG ile çalışacak: öğrencinin sorusuyla ilgili ders içeriği
+vektör veritabanından getirilip modele bağlam olarak verilecek. Bağlamlı örnekler modele bu durumda verilen
+metne dayanmayı, bağlamsız örnekler RAG olmadan da alan bilgisini kullanmayı öğretiyor. Raporun
+"fine-tune edilmiş" ve "fine-tune edilmiş + RAG" yapılandırmalarını karşılaştırabilmek için ikisi de gerekli.
+
 ## Örneklerin üretimi
 
 - **Kaynak metin:** Corpus v0.9'un final dokümanları (bütün kaynakların lisansı API'ye gönderilmeye uygun,
@@ -103,6 +125,11 @@ metinde_yok), `with_context`, `instruction`, `response`, `topic`, `generation_me
 `generation_model`, `prompt_version`, `prompt_sha`, `temperature`, `top_p`, `verified_by` (`auto_judge` ya
 da `manual:<ad>`), `verified`, `judge_model`, `token_count`, `split`. passage metni bu dosyada tutulmuyor;
 `source_document` + `passage_idx` ile `data/instruction/passages.jsonl`'den bulunuyor.
+
+`verified` örneğin bir insan tarafından okunup onaylandığını gösteriyor: yalnızca manuel kontrolde onaylanan
+151 örnekte `true`. Kalan 3.061 örnek (`verified=false`, `verified_by=auto_judge`) doğrulanmamış değil;
+otomatik kontrollerden ve yargıç modelden geçti, ama insan okumadı. Setteki her örnek iki otomatik aşamadan
+geçmiş durumda; geçemeyenler setten çıkarıldı.
 
 `data/final/instruction_{train,validation,test}.jsonl` SFT'ye hazır:
 
@@ -206,6 +233,11 @@ soruları değil. Sorular çoğunlukla tek bir passage'ın kapsamında; birden �
 çözüm isteyen ya da öğrencinin kendi kodunu getirdiği sorular az. Cevaplar kısa (medyan 298 token, kullanıcı
 mesajıyla birlikte). Üzerinde eğitilen model bir öğretim üyesinin yerine geçmez; cevaplarında, yukarıdaki
 oranlarda hata olabilir.
+
+Tasarım raporundaki adaptif mekanizma, soruların zorluğunu öğrencinin başarısına göre ayarlayacak. Bu
+sette sorulara zorluk seviyesi etiketi yok: vizede zorluğu tutarlı biçimde ölçecek bir yöntemim olmadı ve
+tahmini bir etiket koymak istemedim. Adaptif mekanizma geliştirilirken (raporun takviminde bahar dönemi)
+soru zorluğu ayrıca belirlenecek.
 
 ## Sürüm geçmişi
 

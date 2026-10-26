@@ -270,10 +270,21 @@ def main() -> None:
                                       "Instruction manuel kontrolü")
     ins_lines, ins = instruction_section(final_dir, resolve_path(cfg, "instruction_dir"), exclusions)
     tr_tokens = int(final.loc[final["language"] == "tr", "token_count"].sum())
+    # Rehber §2: doküman, kelime, karakter, dosya boyutu ve token birlikte raporlanır. Ham boyut, registry'deki
+    # farklı ham dosyaların diskteki boyutu (kitaplar tek PDF'ten bölüm bölüm alındığı için dosya bir kez sayılır).
+    raw_paths = {p for p in registry["original_path"] if p}
+    raw_bytes = (sum((PROJECT_ROOT / p).stat().st_size for p in raw_paths)
+                 if all((PROJECT_ROOT / p).exists() for p in raw_paths) else None)
+    final_bytes = sum((final_dir / f"{split}.jsonl").stat().st_size for split in SPLITS)
+    out["sizes"] = {"raw_files": len(raw_paths), "raw_bytes": raw_bytes, "final_jsonl_bytes": final_bytes,
+                    "chars": chars}
     summary = [["Veri kaynağı sayısı", n(len(sources))], ["Ham doküman", n(m["raw"])],
+               ["Ham dosya boyutu", f"{dec(raw_bytes / 1e6)} MB ({n(len(raw_paths))} dosya)" if raw_bytes else "—"],
                ["Extraction başarılı", n(m["after_extraction"])], ["Extraction başarısız", n(m["extraction_failed"])],
                ["Filtering sonrası", n(m["after_filter"])], ["Exact duplicate", n(m["exact_duplicate"])],
                ["Near duplicate", n(m["near_duplicate"])], ["Final doküman", n(m["final"])],
+               ["Final corpus dosya boyutu (3 JSONL, metadata dahil)", f"{dec(final_bytes / 1e6)} MB"],
+               ["Toplam karakter", n(chars)],
                ["Toplam kelime", n(words)], ["Toplam token", n(tokens)], ["Türkçe içerik (token)", pct(tr_tokens, tokens)],
                ["Manuel kontrol örneği", n(qc_corpus["reviewed"]) if qc_corpus else "—"],
                ["Manuel kalite başarısı", pct(qc_corpus["all_ok"], qc_corpus["reviewed"]) if qc_corpus else "—"],
@@ -304,9 +315,9 @@ def main() -> None:
                                                  words=("word_count", "sum"), chars=("char_count", "sum"))
     by_source = by_source.sort_values("tokens", ascending=False)
     lines += ["## (c) Kaynaklar", "", f"Kaynak sayısı: {n(len(sources))}", ""]
-    lines += table(["Kaynak", "Doküman", "Doküman payı", "Token", "Token payı", "Kelime"],
-                   [[s, n(r.documents), pct(r.documents, m["final"]), n(r.tokens), pct(r.tokens, tokens), n(r.words)]
-                    for s, r in by_source.iterrows()])
+    lines += table(["Kaynak", "Doküman", "Doküman payı", "Token", "Token payı", "Kelime", "Karakter"],
+                   [[s, n(r.documents), pct(r.documents, m["final"]), n(r.tokens), pct(r.tokens, tokens), n(r.words),
+                     n(r.chars)] for s, r in by_source.iterrows()])
     dominant = by_source[by_source["tokens"] / tokens > SOURCE_SHARE_WARNING]
     for s, r in dominant.iterrows():
         lines += [f"**UYARI:** `{s}` kaynağının token payı {pct(r.tokens, tokens)} "

@@ -8,12 +8,15 @@
 | --- | --- |
 | Veri kaynağı sayısı | 6 |
 | Ham doküman | 609 |
+| Ham dosya boyutu | 114,6 MB (587 dosya) |
 | Extraction başarılı | 608 |
 | Extraction başarısız | 1 |
 | Filtering sonrası | 586 |
 | Exact duplicate | 0 |
 | Near duplicate | 0 |
 | Final doküman | 586 |
+| Final corpus dosya boyutu (3 JSONL, metadata dahil) | 6,6 MB |
+| Toplam karakter | 6.223.372 |
 | Toplam kelime | 1.028.018 |
 | Toplam token | 1.512.566 |
 | Türkçe içerik (token) | %3,8 |
@@ -47,14 +50,14 @@ Toplam elenen: 23
 
 Kaynak sayısı: 6
 
-| Kaynak | Doküman | Doküman payı | Token | Token payı | Kelime |
-| --- | --- | --- | --- | --- | --- |
-| wikipedia_en | 397 | %67,7 | 982.088 | %64,9 | 706.465 |
-| erickson_algorithms | 10 | %1,7 | 178.257 | %11,8 | 119.299 |
-| open_data_structures | 14 | %2,4 | 113.108 | %7,5 | 72.403 |
-| thealgorithms_python | 100 | %17,1 | 105.305 | %7,0 | 45.541 |
-| open_guide_dsa | 11 | %1,9 | 77.086 | %5,1 | 60.976 |
-| vikipedi_tr | 54 | %9,2 | 56.722 | %3,8 | 23.334 |
+| Kaynak | Doküman | Doküman payı | Token | Token payı | Kelime | Karakter |
+| --- | --- | --- | --- | --- | --- | --- |
+| wikipedia_en | 397 | %67,7 | 982.088 | %64,9 | 706.465 | 4.243.656 |
+| erickson_algorithms | 10 | %1,7 | 178.257 | %11,8 | 119.299 | 674.425 |
+| open_data_structures | 14 | %2,4 | 113.108 | %7,5 | 72.403 | 394.219 |
+| thealgorithms_python | 100 | %17,1 | 105.305 | %7,0 | 45.541 | 389.291 |
+| open_guide_dsa | 11 | %1,9 | 77.086 | %5,1 | 60.976 | 347.863 |
+| vikipedi_tr | 54 | %9,2 | 56.722 | %3,8 | 23.334 | 173.918 |
 
 **UYARI:** `wikipedia_en` kaynağının token payı %64,9 (sınır %50).
 

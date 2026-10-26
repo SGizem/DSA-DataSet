@@ -1114,3 +1114,36 @@ seçimine bağlı olup olmadığını ölçtüm: `Qwen/Qwen2.5-3B` (revision `3a
 birleştirmeler) ve decoder bölümleri birebir aynı. Sayım da aynı: corpus 586 dokümanın hepsinde aynı token
 dizisi (toplam 1.512.566), instruction setinin 6.424 mesajında da aynı (toplam 1.423.322). Yani teslim
 ettiğim token sayıları iki model için de geçerli; model seçimi final döneminde danışmanımla netleşecek.
+
+## 26.10.2026 — Rehber ve tasarım raporuna göre son denetim
+
+Vize Rehberi'ni ve Tasarım-I raporunu baştan okuyup her maddeyi depodaki karşılığıyla eşleştirdim. Eksik
+bulduklarım ve yaptıklarım:
+
+- **Karakter sayısı ve dosya boyutu** (Rehber §2: doküman, kelime, karakter, dosya boyutu ve token birlikte
+  raporlanmalı). İstatistik raporunda karakter ve boyut yoktu. `08_statistics` artık özet tabloya ham dosya
+  boyutunu (114,6 MB, 587 dosya; kitaplar tek PDF'ten bölüm bölüm alındığı için 609 dokümandan az),
+  final JSONL boyutunu (6,6 MB) ve toplam karakteri (6.223.372) yazıyor; kaynak tablosuna karakter sütunu
+  ekledim. README'deki ham veri boyutunu da bu ölçüme göre düzelttim (111 → 115 MB, ara dosyalar 33 → 34 MB).
+- **500 karakter eşiğinin gerekçesi** (Rehber §16 bu soruyu örnek veriyor). Eşik Rehber'deki örnek değerdi,
+  gerekçesini yazmamıştım. Elenen 17 dokümanı okudum: hepsi 1–5 cümlelik taslak madde (12'si Türkçe
+  Vikipedi); 16'sının konusu corpus'ta daha uzun bir dokümanda var, yalnızca "Kirkpatrick–Reisch sort" yok.
+  Sınırın iki yanı benzer ("Kuyruk" 411 karakterle elendi, "Sabit zaman" 515 ile kaldı), yani eşik keskin
+  bir kalite sınırı değil. Bedeli Türkçe metnin %2,6'sı (4.566 / 173.918 karakter). Kod eşiği (150) hiçbir
+  dosyayı elemedi; en kısa kod dosyası 585 karakter. Dataset Card'a yazdım.
+- **Tablo içeren belgeler** (Rehber Hafta 3). Ham HTML'lerde saydım: final corpus'ta 107 dokümanda 246 veri
+  tablosu metne alınmadı (İngilizce Vikipedi 95 / 225, Türkçe Vikipedi 7 / 10, Open Guide 5 / 11); FAZ 2'deki
+  sayımla aynı. Dataset Card'daki bilinen problemlere sayıyla ekledim.
+- **Metadata alanlarının gerekçesi** (Rehber §16). Dataset Card'a ekledim: §9'daki alanlar + `license`
+  (CC BY-SA izlenebilsin), `split`, `word_count`; `document_id` / `source` / `url` her metni kaynağına bağlıyor.
+- **Görev türlerinin tasarım raporuyla bağı.** Kartlarda raporun sistemine hiç atıf yoktu. Instruction
+  Card'a "Görev türlerinin gerekçesi" bölümünü ekledim: konu anlatımı → kavram açıklama, özet, karşılaştırma;
+  kaynağa dayalı sınav soruları → çoktan seçmeli (JSON); yanlış cevapta açıklama → yanlış cevap açıklama;
+  kod içerikli materyal → kod okuma, hata bulma, izleme, karmaşıklık; halüsinasyon problemi → bilgi
+  yetersizliği; RAG → %40 bağlamlı örnek.
+- **`verified` alanı.** Yargıçtan geçen 3.061 örnekte `false`; okuyan "doğrulanmamış" sanabilir. Kartta
+  anlamını açıkladım: `true` yalnızca insanın okuyup onayladığı 151 örnekte.
+- **Raporla farklar.** README'ye takvim farkını (raporda fine-tuning güz 5–9. hafta, Rehber'de final
+  dönemi) ve değerlendirmede raporun "fine-tune + RAG" yapılandırmasının yerini ekledim. Raporun adaptif
+  zorluk mekanizması için sorularda zorluk etiketi yok; tahmini etiket koymadım, Instruction Card'ın
+  sınırlılıklarına yazdım.
