@@ -15,7 +15,9 @@ farkı, her örneğin corpus'tan bir kaynak metne dayanması), format geçerlili
 cevaplar JSON şemasına göre), kaynağa sadakat yargıç modelde ve manuel kontrolde denetleniyor. Rapordan iki
 fark: Vize Rehberi final döneminde fine-tuning'den önce continued pretraining de
 istediği için instruction setinin yanına bir domain corpus hazırladım; token sayımında Rehber'in örneğindeki
-Qwen3 tokenizer'ını kullandım (raporda aday model Qwen2.5-3B; model seçimi final döneminde).
+Qwen3 tokenizer'ını kullandım (raporda aday model Qwen2.5-3B; model seçimi final döneminde). İki
+tokenizer'ın kuralları ve sözlüğü aynı: Qwen2.5-3B tokenizer'ıyla da corpus 1.512.566, instruction seti
+1.423.322 token çıkıyor (`experiments.md`, 26.10.2026), yani sayılar iki model için de geçerli.
 
 ## Problem ve alan tanımı
 

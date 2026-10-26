@@ -1107,3 +1107,10 @@ manual_rejected 49; sayılar kartlara önceden yazdıklarımla aynı çıktı. `
 tamam" diyor, 100 test geçiyor. Instruction Card'daki kod okuma ölçümünü final sete göre yeniden yaptım: 332
 örneğin 184'ünde talimattaki kod passage'ın birebir kopyası değil (22.10'daki 335/187, manuel kontrolden önceki
 setti). Veri zip'ini yeni dosyalarla yeniden oluşturdum.
+
+Tasarım raporunda aday model Qwen2.5-3B, token sayımını ise Qwen3 tokenizer'ıyla yaptım. Sayıların model
+seçimine bağlı olup olmadığını ölçtüm: `Qwen/Qwen2.5-3B` (revision `3aab1f1`) tokenizer'ını indirdim
+(yalnızca tokenizer dosyaları). İki `tokenizer.json`'ın normalizer, pre-tokenizer, BPE modeli (sözlük ve
+birleştirmeler) ve decoder bölümleri birebir aynı. Sayım da aynı: corpus 586 dokümanın hepsinde aynı token
+dizisi (toplam 1.512.566), instruction setinin 6.424 mesajında da aynı (toplam 1.423.322). Yani teslim
+ettiğim token sayıları iki model için de geçerli; model seçimi final döneminde danışmanımla netleşecek.
