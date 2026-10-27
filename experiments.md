@@ -1147,3 +1147,18 @@ bulduklarım ve yaptıklarım:
   dönemi) ve değerlendirmede raporun "fine-tune + RAG" yapılandırmasının yerini ekledim. Raporun adaptif
   zorluk mekanizması için sorularda zorluk etiketi yok; tahmini etiket koymadım, Instruction Card'ın
   sınırlılıklarına yazdım.
+
+## 27.10.2026 — Bütün dosyaların son denetimi ve ikinci yeniden üretim testi
+
+Depodaki 97 dosyayı (kod, config, raporlar, belgeler) tek tek taradım. Bulduklarım: yayımlanmayan çalışma
+şartnamesine kalan üç atıf (bir test adı ve iki açıklama satırı) Rehber'e atıfla değiştirildi; `config.yaml`'daki
+"final döneminde Qwen3 ailesini seçtim" yorumu düzeltildi (model seçimi final döneminde; iki tokenizer aynı sayıyı
+veriyor). Eski sayılar (3.218, 468/59/59 ...) yalnızca bu günlüğün tarihli eski girdilerinde kalıyor; o günkü
+durumu anlattıkları için değiştirmedim.
+
+Yeniden üretim testini son kodla (08'in karakter ve boyut satırları dahil) tekrarladım: temiz klon + ham veri +
+zip'in `data/instruction/` klasörü, API anahtarı yok. 7 teslim dosyası, `statistics.md`, `statistics.json`,
+`quality_report.md` ve `data/registry.csv` bayt bayt aynı. `exclusions.csv` ve `extraction_report.csv` içerik
+olarak aynı; yalnızca satır sırası ve zaman sütunları farklı (26.10 girdisinde ve README'de "yalnızca zaman
+sütunları" yazmıştım, satır sırasını da ekledim). Örnek ve temizleme örneği dosyalarında yalnızca satır sonu
+(LF/CRLF) farkı var.

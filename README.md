@@ -165,11 +165,12 @@ python -m scripts.11_build_instruction_dataset # manuel inceleme kararları zip'
 python -m scripts.08_statistics
 ```
 
-**Yeniden üretim testi (26.10.2026).** Depoyu GitHub'dan boş bir klasöre klonladım, yanına yalnızca ham veriyi
-ve Releases'teki zip'in `data/instruction/` klasörünü koydum, `.env`'de API anahtarı yokken `run_all`'ı ve
-ardından 10, 11, 08'i çalıştırdım. Corpus'un 3 ve instruction setinin 4 teslim dosyası Releases'teki
-dosyalarla bayt bayt aynı çıktı; `reports/statistics.md` aynı, `exclusions.csv` ve `extraction_report.csv`
-yalnızca zaman sütunlarında farklı. Hiçbir siteye ve API'ye istek gitmedi (`experiments.md`).
+**Yeniden üretim testi (26.10.2026, 27.10.2026'da son kodla tekrar).** Depoyu boş bir klasöre klonladım,
+yanına yalnızca ham veriyi ve Releases'teki zip'in `data/instruction/` klasörünü koydum, `.env`'de API anahtarı
+yokken `run_all`'ı ve ardından 10, 11, 08'i çalıştırdım. Corpus'un 3 ve instruction setinin 4 teslim dosyası
+Releases'teki dosyalarla bayt bayt aynı çıktı; `reports/statistics.md`, `statistics.json`, `quality_report.md`
+ve `data/registry.csv` da aynı. `exclusions.csv` ve `extraction_report.csv` yalnızca satır sırasında ve zaman
+sütunlarında farklı, içerikleri aynı. Hiçbir siteye ve API'ye istek gitmedi (`experiments.md`).
 Instruction üretimi ücretsiz API katmanının günlük kotasıyla sınırlı: kota dolunca 09 ve 10 durur, ertesi
 gün aynı komutla kaldıkları yerden devam eder.
 
