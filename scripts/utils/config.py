@@ -47,7 +47,7 @@ def set_seed(cfg: dict[str, Any]) -> int:
 
 
 def add_common_args(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
-    """Her script'in ortak argümanları: --config ve --limit (Sözleşme madde 6)."""
+    """Her script'in ortak argümanları: --config ve --limit (hızlı deneme için)."""
     parser.add_argument("--config", default=str(DEFAULT_CONFIG_PATH),
                         help="config.yaml yolu")
     parser.add_argument("--limit", type=int, default=None,

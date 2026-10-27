@@ -32,7 +32,7 @@ def test_math_symbols_are_not_noise_but_decorations_are():
     assert f.noise_ratio("▲♕") == 1.0
 
 
-def test_exclusion_order_follows_brief():
+def test_exclusion_order_follows_plan():
     # Hem kısa hem yanlış dilde: ilk kural (too_short) yazılır.
     assert f.exclusion(row(), metrics(char_count=100, language="de"), CFG)[0] == "too_short"
     assert f.exclusion(row(), metrics(language="de"), CFG)[0] == "wrong_language"

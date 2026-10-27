@@ -1,4 +1,4 @@
-"""Dosyaya + konsola logging ve bitiş özet satırı (Sözleşme madde 6)."""
+"""Dosyaya + konsola logging ve bitiş özet satırı (Rehber §13: hangi dosyada hata olduğu ve kaçının işlendiği görülsün)."""
 from __future__ import annotations
 
 import logging
