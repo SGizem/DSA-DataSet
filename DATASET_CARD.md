@@ -141,7 +141,13 @@ döneminde seçilecek modelin bağlam uzunluğuna göre belirlenecek.
 
 Bütün kaynaklar açık lisanslı; kaynak bazında lisanslar yukarıdaki tabloda. Vikipedi'den gelen kısım CC
 BY-SA 4.0 olduğundan bu kısmı içeren türetilmiş veri aynı lisansla paylaşılmalı. Veri seti akademik amaçla
-hazırlandı. Kişisel veri içermiyor (ders kitabı, ansiklopedi ve açık kaynak kod).
+hazırlandı.
+
+Kişisel veri: final corpus'u e-posta adresi ve telefon numarası için taradım, yok. Hassas kişisel veri
+(sağlık, adres, kimlik) içeren bir kaynak kullanmadım. Geçen kişi adları kamuya açık bilgi: Vikipedi'de ve
+kitaplarda algoritmaları bulan bilim insanları; 13 kod dosyasında ise dosyanın yazarı ("Author: …", GitHub
+kullanıcı adı). Bu satırları açık kaynak katkısının atfı olduğu ve MIT lisanslı kodda atfın korunması
+beklendiği için silmedim.
 
 ## Kalite kontrolü
 

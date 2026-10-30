@@ -156,6 +156,26 @@ sorularda cevap şu şemaya uyan bir JSON metni: `{"question", "options": {"A", 
 
 Ayrıntılı tablolar: `reports/statistics.md` (h).
 
+**Cevaplar kaynağı kopyalıyor mu, uzunlukları değişiyor mu?** Rehber §11'e göre iyi bir cevap kaynaktaki bilgiyi
+taşır ama metni birebir kopyalamaz, uzunluğu da soruya göre değişir. İkisini ölçtüm (`experiments.md`,
+30.10.2026). Kopya ölçüsü: cevabın 8 kelimelik dizilerinden passage'ta birebir geçenlerin payı. Türkçe
+passage'tan üretilen 112 örneğin 65'inde pay 0, 106'sında %20 ya da altında, en yüksek %47. İngilizce
+passage'lardan üretilen 2.675 örneğin 2.591'inde 0 (cevap Türkçe; geçen diziler kod ve terim adları), en
+yüksek %30. Cevap uzunluğu türe göre değişiyor:
+
+| Görev türü | Cevap uzunluğu, kelime: min / medyan / max |
+| --- | --- |
+| bilgi_yetersizligi | 22 / 37 / 63 |
+| karmasiklik_analizi | 19 / 49 / 114 |
+| hata_bulma | 25 / 53 / 94 |
+| kod_okuma | 18 / 55 / 192 |
+| yanlis_cevap_aciklama | 26 / 55 / 90 |
+| kavram_aciklama | 24 / 65 / 112 |
+| karsilastirma | 22 / 77 / 140 |
+| konu_ozeti_anlatim | 38 / 82 / 174 |
+| coktan_secmeli_soru_uretimi (soru, şıklar ve açıklama) | 41 / 89 / 164 |
+| algoritma_izleme | 33 / 101 / 249 |
+
 ## Veri ayrımı
 
 Her örnek, üretildiği dokümanın corpus'taki kümesine giriyor: train 2.579 (%80,3), validation 324 (%10,1),
@@ -189,8 +209,9 @@ dayanması 6, görev türüne uymama 6, kaynağa dayanmayan ek 5, eksik ya da y�
 Örnekler açık lisanslı metinlerden (CC BY 4.0, CC BY 2.5 CA, CC BY-SA 4.0, MIT; kaynak tablosu
 `DATASET_CARD.md`) öğretmen modelle üretilmiş türetilmiş içerik; her örnekte kaynak dokümanın id'si
 saklanıyor. Vikipedi'den üretilen örnekler (%67) CC BY-SA 4.0'ın "aynı lisansla paylaş" koşulunu taşır.
-Üretimde Gemini API'nin kullanım koşulları geçerliydi. Veri seti akademik amaçla hazırlandı; kişisel veri
-içermiyor.
+Üretimde Gemini API'nin kullanım koşulları geçerliydi; API'ye yalnızca açık lisanslı kaynak metinler gitti,
+öğrenci ya da kullanıcı verisi gitmedi. Veri seti akademik amaçla hazırlandı; talimat ve cevaplarda e-posta
+adresi yok (taradım), geçen kişi adları algoritmaları bulan bilim insanları gibi kamuya açık bilgi.
 
 ## Bilinen problemler
 

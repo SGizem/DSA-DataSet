@@ -1162,3 +1162,22 @@ zip'in `data/instruction/` klasörü, API anahtarı yok. 7 teslim dosyası, `sta
 olarak aynı; yalnızca satır sırası ve zaman sütunları farklı (26.10 girdisinde ve README'de "yalnızca zaman
 sütunları" yazmıştım, satır sırasını da ekledim). Örnek ve temizleme örneği dosyalarında yalnızca satır sonu
 (LF/CRLF) farkı var.
+
+## 30.10.2026 — Rehber §4 ve §11'in ölçülmemiş iki maddesi
+
+Rehber'i ve tasarım raporunu yeniden okudum (iki belge de değişmemiş). Daha önce ölçmediğim iki madde buldum:
+
+- **Cevap kaynağı kopyalıyor mu, uzunluk değişiyor mu (Rehber §11).** Kopya ölçüsü: cevabın (çoktan seçmelide
+  soru + şıklar + açıklama) 8 kelimelik dizilerinden passage'ta birebir geçenlerin payı. Türkçe passage'tan
+  üretilen 112 örneğin 65'inde 0, 106'sında ≤ %20, en yüksek %47; İngilizce passage'lardan 2.675 örneğin
+  2.591'inde 0, en yüksek %30 (geçen diziler kod satırları ve terim adları). Uzunluk türe göre değişiyor:
+  medyan bilgi yetersizliğinde 37, algoritma izlemede 101 kelime; en kısa 18, en uzun 249. Tablo Instruction
+  Card'da.
+- **Kişisel veri (Rehber §4).** Kartlarda "kişisel veri içermiyor" yazıyordu ama hiç taramamıştım. Final
+  corpus'ta ve instruction setinde e-posta adresi yok; telefon desenine uyan iki eşleşme kitaptaki sayı dizileri.
+  13 kod dosyasında yazar adı ya da GitHub kullanıcı adı var ("Author: …", "Created by: …"). Açık kaynak katkı
+  atfı oldukları ve MIT lisanslı kodda atfın korunması beklendiği için silmedim; kartlardaki cümleyi bu
+  değerlendirmeyle değiştirdim.
+
+Ayrıca bütün git geçmişini taradım: API anahtarı deseni, `.env`, `.docx` ya da çalışma şartnamesi hiçbir
+commit'te yok; 8 commit'in hepsinin yazarı ben, GitHub'da katkıda bulunan tek hesap benim.
