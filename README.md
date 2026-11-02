@@ -23,6 +23,8 @@ hazırlamaya ayırdığı için model eğitimi final dönemine kaydı. Instructi
 sisteminden (konu anlatımı, kaynağa dayalı sınav soruları, yanlış cevap açıklaması, RAG için bağlamlı
 örnekler) nasıl çıkardığım `INSTRUCTION_CARD.md` içinde ("Görev türlerinin gerekçesi").
 
+**Vize sunumu:** [`sunum/DSA_Vize_Sunumu.pdf`](sunum/DSA_Vize_Sunumu.pdf) (18 slayt).
+
 ## Problem ve alan tanımı
 
 **Problem.** Genel amaçlı dil modelleri veri yapıları ve algoritmalar sorularında Türkçe terimleri
